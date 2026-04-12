@@ -4,103 +4,100 @@ import pandas as pd
 import numpy as np
 from rdkit import Chem
 from rdkit.Chem import AllChem
-from cmapPy.pandasGEXpress.parse import parse
-from drug_to_graph import smiles_to_graph  # 引用你之前的工具
 from rdkit.Chem import rdFingerprintGenerator
+from cmapPy.pandasGEXpress.parse import parse
+from drug_to_graph import smiles_to_graph
 
 
 class MultiModalDataset(Dataset):
+    """
+    PyTorch Dataset for multi-modal drug perturbation data.
+
+    This class integrates 2D topological molecular graphs and 1D functional
+    fingerprints, mapped to systemic transcriptomic signatures (LINCS L1000).
+    """
+
     def __init__(self, csv_file, gctx_file, metrics_file=None, debug_mode=False):
         """
-        参数:
-        csv_file: 你的 clean_dataset.csv
-        gctx_file: 那个 30G 的大文件
-        metrics_file: 刚下载的 sig_metrics.txt (用于质量过滤)
+        Args:
+            csv_file (str): Path to the primary metadata CSV file.
+            gctx_file (str): Path to the LINCS L1000 Level 5 .gctx file.
+            metrics_file (str, optional): Path to sig_metrics.txt for QC filtering.
+            debug_mode (bool): If True, loads a small subset for debugging purposes.
         """
         self.gctx_file = gctx_file
 
-        print(f"正在读取主索引: {csv_file}")
+        print(f"Loading metadata from: {csv_file}")
         self.meta_data = pd.read_csv(csv_file)
 
         # ==========================================
-        # 🟢 Task 2: 质量控制与金标准过滤
+        # Quality Control (QC) and Signature Filtering
         # ==========================================
         if metrics_file:
-            print(f"正在读取质量文件: {metrics_file} ...")
-            # sig_metrics.txt 比较大，我们要根据 sig_id 来合并
+            print(f"Applying quality control filters using: {metrics_file} ...")
             metrics_df = pd.read_csv(metrics_file, sep='\t', usecols=['sig_id', 'tas', 'distil_cc_q75'])
 
-            # 合并：给 clean_dataset 加上 tas 分数
             original_len = len(self.meta_data)
             self.meta_data = pd.merge(self.meta_data, metrics_df, on='sig_id', how='inner')
-            print(f"合并元数据后: {len(self.meta_data)} 条 (原始: {original_len})")
 
-            # 过滤：只保留 TAS >= 0.2 的数据 (这是 CMap 推荐的阈值)
-            # TAS < 0.2 说明药物没起作用，或者是噪音
+            # Retain high-fidelity signatures based on Transcriptional Activity Score (TAS >= 0.2)
             self.meta_data = self.meta_data[self.meta_data['tas'] >= 0.2]
-            print(f"🧹 过滤低质量数据 (TAS < 0.2) 后剩余: {len(self.meta_data)} 条")
+            print(f"QC applied. Samples retained: {len(self.meta_data)} (Original: {original_len})")
         else:
-            print("⚠️ 警告: 未提供 metrics_file，将跳过质量过滤！(仅用于测试)")
+            print("Warning: metrics_file not provided. Bypassing quality control filters.")
 
         # ==========================================
-        # 🧹 新增: 剔除 'restricted' 的保密数据
+        # Data Sanitization
         # ==========================================
         if 'smiles' in self.meta_data.columns:
-            # 记录一下之前的数量
             before_clean = len(self.meta_data)
-
-            # 只保留那些 SMILES 不是 'restricted' 的行
+            # Remove proprietary/restricted structural data
             self.meta_data = self.meta_data[self.meta_data['smiles'] != 'restricted']
+            if before_clean != len(self.meta_data):
+                print(f"Restricted structures removed. Valid samples: {len(self.meta_data)}")
 
-            print(f"🧹 剔除 SMILES='restricted' 数据: {before_clean} -> {len(self.meta_data)}")
-
-        # --- Debug 模式 ---
+        # --- Debug Mode ---
         if debug_mode:
-            print("⚠️ DEBUG模式: 只取前 200 条")
+            print("DEBUG MODE active: Reducing dataset to 200 samples.")
             self.meta_data = self.meta_data.head(200)
 
-        # 缓存列表，加速读取
+        # Cache lists for faster __getitem__ retrieval
         self.all_sig_ids = self.meta_data['sig_id'].tolist()
-        self.all_smiles = self.meta_data['smiles'].tolist()  # 确保你的csv里列名叫 smiles
+        self.all_smiles = self.meta_data['smiles'].tolist()
 
     def __len__(self):
         return len(self.meta_data)
 
     def __getitem__(self, idx):
-        # 1. 获取基本信息
         smiles = self.all_smiles[idx]
         sig_id = self.all_sig_ids[idx]
 
-        # 2. 模态一: 图特征 (Graph)
+        # 1. Modality 1: Topological Graph Extraction
         features, adj = smiles_to_graph(smiles)
         if features is None or adj is None:
             return None
 
-        # 3. 模态二: 化学指纹 (Fingerprint) - NEW! ✨
-        # 这是一个 1024 维的 0/1 向量，捕捉官能团信息
+        # 2. Modality 2: Functional Substructure Motif Extraction (Morgan Fingerprint)
         mol = Chem.MolFromSmiles(smiles)
         if mol is None:
             return None
-        # 半径2，1024位 (这是工业界标准配置)
-        # 创建生成器 (半径2, 1024位)
+
+        # Generate 1024-bit ECFP4 fingerprint
         morgan_gen = rdFingerprintGenerator.GetMorganGenerator(radius=2, fpSize=1024)
-        # 直接生成 NumPy 数组 (浮点型)
         fp_array = morgan_gen.GetFingerprintAsNumPy(mol)
 
-        # 4. 获取标签 (Gene Expression)
+        # 3. Ground Truth: Gene Expression Profile Extraction
         try:
-            # 只读取这一列数据
             data_gctx = parse(self.gctx_file, cid=[sig_id])
             gene_expression = data_gctx.data_df.values.flatten()
-        except Exception as e:
-            # 偶尔会有 sig_id 在 gctx 里找不到的情况，跳过即可
-            # print(f"Error reading {sig_id}: {e}")
+        except Exception:
+            # Handle rare index mismatches or read errors gracefully
             return None
 
-        # 5. 打包返回 (一共 4 样东西)
+        # 4. Return Multi-Modal Data Tuple
         return (
             torch.tensor(features, dtype=torch.float32),
             torch.tensor(adj, dtype=torch.float32),
-            torch.tensor(fp_array, dtype=torch.float32),  # 新增
+            torch.tensor(fp_array, dtype=torch.float32),
             torch.tensor(gene_expression, dtype=torch.float32)
         )

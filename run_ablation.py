@@ -1,6 +1,6 @@
 import os
 
-# 🛡️ 防弹衣：强制解决 Windows 下 PyTorch 和 SciPy 的底层库冲突！必须放在最前面！
+# Resolve potential library conflicts on Windows
 os.environ['KMP_DUPLICATE_LIB_OK'] = 'True'
 
 import torch
@@ -22,18 +22,18 @@ def pad_collate_multimodal(batch):
     max_atoms = max([item[0].shape[0] for item in batch])
     bx, badj, bmask, bfp, by = [], [], [], [], []
     for item in batch:
-        x, adj, fp, y = item;
+        x, adj, fp, y = item
         num = x.shape[0]
-        xp = torch.zeros((max_atoms, x.shape[1]));
-        xp[:num, :] = x;
+        xp = torch.zeros((max_atoms, x.shape[1]))
+        xp[:num, :] = x
         bx.append(xp)
-        ap = torch.zeros((max_atoms, max_atoms));
-        ap[:num, :num] = adj;
+        ap = torch.zeros((max_atoms, max_atoms))
+        ap[:num, :num] = adj
         badj.append(ap)
-        bp = torch.zeros((max_atoms, 1));
-        bp[:num, :] = 1;
+        bp = torch.zeros((max_atoms, 1))
+        bp[:num, :] = 1
         bmask.append(bp)
-        bfp.append(fp);
+        bfp.append(fp)
         by.append(y)
     return (torch.stack(bx), torch.stack(badj), torch.stack(bmask), torch.stack(bfp), torch.stack(by))
 
@@ -46,7 +46,7 @@ def calculate_profile_wise_pearson(y_true_matrix, y_pred_matrix):
     return np.mean(p_list)
 
 
-# 🩸 残缺模型 1: 只有 GNN (砍掉指纹)
+# Ablation Model 1: GNN Only (without functional fingerprint)
 class GNN_Only(nn.Module):
     def __init__(self, node_feat_dim=43, hidden_dim=512, output_dim=12328):
         super().__init__()
@@ -64,7 +64,7 @@ class GNN_Only(nn.Module):
         return self.fusion(graph_feat)
 
 
-# 🩸 残缺模型 2: GNN + 简单拼接 (没有注意力)
+# Ablation Model 2: GNN + Fingerprint via simple concatenation (without cross-attention)
 class GNN_Concat_FP(nn.Module):
     def __init__(self, node_feat_dim=43, hidden_dim=512, fp_dim=1024, output_dim=12328):
         super().__init__()
@@ -85,7 +85,7 @@ class GNN_Concat_FP(nn.Module):
 
 
 if __name__ == '__main__':
-    print("🚀 启动 [防弹版·消融实验机]...")
+    print("Starting ablation study...")
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
     train_ds = MultiModalDataset('./data/train_dataset_drugcell.csv', './data/level5_beta_trt_cp_n720216x12328.gctx',
@@ -93,7 +93,6 @@ if __name__ == '__main__':
     test_ds = MultiModalDataset('./data/test_dataset_drugcell.csv', './data/level5_beta_trt_cp_n720216x12328.gctx',
                                 metrics_file=None)
 
-    # 你上次跑出来是 743 个 batch，说明你可能是因为显存原因把 batch_size 调小了。这里姐姐给你设为 128 稳一点。
     train_loader = DataLoader(train_ds, batch_size=128, shuffle=True, collate_fn=pad_collate_multimodal, num_workers=4)
     test_loader = DataLoader(test_ds, batch_size=128, shuffle=False, collate_fn=pad_collate_multimodal, num_workers=0)
 
@@ -105,11 +104,11 @@ if __name__ == '__main__':
     results = {}
 
     for name, model in models_to_test.items():
-        print(f"\n🔬 正在训练残缺模型: {name}")
+        print(f"\nTraining ablation model: {name}")
         optimizer = optim.AdamW(model.parameters(), lr=0.0005)
         criterion = nn.MSELoss()
 
-        # ⏳ 为了节约时间并防崩溃，只跑 5 轮 (足够消融实验看趋势了)
+        # Train for 5 epochs to observe trends
         for epoch in range(5):
             model.train()
             for data in tqdm(train_loader, desc=f"Epoch {epoch + 1}/5"):
@@ -120,11 +119,11 @@ if __name__ == '__main__':
                 loss.backward()
                 optimizer.step()
 
-        print(f"📊 正在测试 {name}...")
+        print(f"Testing {name}...")
         model.eval()
         all_y_true, all_y_pred = [], []
         with torch.no_grad():
-            for data in tqdm(test_loader, desc="推理中"):
+            for data in tqdm(test_loader, desc="Testing"):
                 if data is None: continue
                 x, adj, mask, fp, y = [d.to(device) for d in data]
                 pred = model(x, adj, mask, fp)
@@ -134,20 +133,20 @@ if __name__ == '__main__':
         y_true_arr = np.concatenate(all_y_true)
         y_pred_arr = np.concatenate(all_y_pred)
 
-        # 💊 后悔药：在算分之前，先把原始答案保存在硬盘上！
+        # Save predictions for evaluation
         np.save(f'y_true_{name}.npy', y_true_arr)
         np.save(f'y_pred_{name}.npy', y_pred_arr)
-        print(f"💾 {name} 的预测结果已双重备份至硬盘！")
+        print(f"Results saved for {name}.")
 
-        print(f"🧮 正在计算 Pearson R...")
+        print(f"Calculating Pearson correlation for {name}...")
         r = calculate_profile_wise_pearson(y_true_arr, y_pred_arr)
         results[name] = r
-        print(f"✅ {name} 的 Pearson R: {r:.4f}")
+        print(f"{name} Pearson R: {r:.4f}")
 
     print("\n" + "=" * 50)
-    print("🧩 【消融实验成绩单】 🧩")
+    print("Ablation Study Results")
     print("=" * 50)
     for name, r in results.items():
-        print(f"📉 {name}: R = {r:.4f}")
-    print(f"👑 你的终极完全体 (Cross-Attention): R = 0.2841 (碾压！)")
+        print(f"{name}: Pearson R = {r:.4f}")
+    print("Full Model (Cross-Attention): Pearson R = 0.2841")
     print("=" * 50)
