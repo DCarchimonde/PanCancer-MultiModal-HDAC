@@ -5,7 +5,6 @@ import json
 from functools import lru_cache
 from pathlib import Path
 
-import numpy as np
 import pandas as pd
 from rdkit import Chem
 from rdkit.Chem.Scaffolds import MurckoScaffold
@@ -17,21 +16,24 @@ def canonicalize_smiles(text: str) -> str | None:
     text = text.strip()
     if not text or text.lower() == "restricted":
         return None
-    mol = Chem.MolFromSmiles(text)
-    if mol is None:
+    molecule = Chem.MolFromSmiles(text)
+    if molecule is None:
         return None
-    return Chem.MolToSmiles(mol, canonical=True, isomericSmiles=True)
+    return Chem.MolToSmiles(molecule, canonical=True, isomericSmiles=True)
 
 
 @lru_cache(maxsize=200_000)
 def murcko_group(canonical_smiles: str) -> str:
-    mol = Chem.MolFromSmiles(canonical_smiles)
-    if mol is None:
+    molecule = Chem.MolFromSmiles(canonical_smiles)
+    if molecule is None:
         return f"INVALID::{canonical_smiles}"
-    scaffold = MurckoScaffold.MurckoScaffoldSmiles(mol=mol, includeChirality=True)
-    # Acyclic compounds have an empty Murcko scaffold. Grouping every acyclic
-    # molecule together would create one artificial mega-group, so each acyclic
-    # structure is treated as its own scaffold group.
+    scaffold = MurckoScaffold.MurckoScaffoldSmiles(
+        mol=molecule,
+        includeChirality=True,
+    )
+    # Acyclic molecules have an empty Murcko scaffold. Treating all of them as
+    # one group would create an artificial mega-group, so each acyclic
+    # structure receives its own deterministic group.
     return scaffold if scaffold else f"ACYCLIC::{canonical_smiles}"
 
 
@@ -48,7 +50,7 @@ def parse_args() -> argparse.Namespace:
         "--hdac-overlap-csv",
         type=Path,
         default=Path("results/revision/audit/hdac_compound_overlap.csv"),
-        help="Audit output used to identify annotated HDAC compounds for class holdout.",
+        help="Audit output used to identify annotated HDAC compounds.",
     )
     parser.add_argument(
         "--output-dir",
@@ -60,8 +62,8 @@ def parse_args() -> argparse.Namespace:
     return parser.parse_args()
 
 
-def derive_cell_id(sig_id: pd.Series) -> pd.Series:
-    return sig_id.astype(str).str.split("_").str[1].fillna("UNKNOWN")
+def derive_cell_id(sig_ids: pd.Series) -> pd.Series:
+    return sig_ids.astype(str).str.split("_").str[1].fillna("UNKNOWN")
 
 
 def prepare_master(clean_csv: Path, metrics_file: Path) -> pd.DataFrame:
@@ -79,14 +81,20 @@ def prepare_master(clean_csv: Path, metrics_file: Path) -> pd.DataFrame:
     )
     frame = clean.merge(metrics, on="sig_id", how="inner", validate="many_to_one")
     frame = frame.loc[frame["tas"] >= 0.2].copy()
-    frame = frame.loc[frame["smiles"].astype(str).str.lower() != "restricted"].copy()
-    frame["canonical_smiles"] = frame["smiles"].astype(str).map(canonicalize_smiles)
+    frame = frame.loc[
+        frame["smiles"].astype(str).str.lower() != "restricted"
+    ].copy()
+    frame["canonical_smiles"] = frame["smiles"].astype(str).map(
+        canonicalize_smiles
+    )
     frame = frame.dropna(subset=["canonical_smiles"]).copy()
     frame["cell_id"] = derive_cell_id(frame["sig_id"])
-    frame["drug_cell_pair"] = frame["canonical_smiles"] + "||" + frame["cell_id"]
+    frame["drug_cell_pair"] = (
+        frame["canonical_smiles"] + "||" + frame["cell_id"]
+    )
     frame["scaffold_group"] = frame["canonical_smiles"].map(murcko_group)
-    frame = frame.drop_duplicates(subset=["sig_id"], keep="first").reset_index(drop=True)
-    return frame
+    frame = frame.drop_duplicates(subset=["sig_id"], keep="first")
+    return frame.reset_index(drop=True)
 
 
 def group_split(
@@ -95,13 +103,22 @@ def group_split(
     test_size: float,
     seed: int,
 ) -> tuple[pd.DataFrame, pd.DataFrame]:
-    splitter = GroupShuffleSplit(n_splits=1, test_size=test_size, random_state=seed)
-    train_index, test_index = next(splitter.split(frame, groups=frame[group_column]))
+    splitter = GroupShuffleSplit(
+        n_splits=1,
+        test_size=test_size,
+        random_state=seed,
+    )
+    train_index, test_index = next(
+        splitter.split(frame, groups=frame[group_column])
+    )
     return frame.iloc[train_index].copy(), frame.iloc[test_index].copy()
 
 
 def overlap_count(train: pd.DataFrame, test: pd.DataFrame, column: str) -> int:
-    return len(set(train[column].astype(str)) & set(test[column].astype(str)))
+    return len(
+        set(train[column].dropna().astype(str))
+        & set(test[column].dropna().astype(str))
+    )
 
 
 def summarize_split(
@@ -111,12 +128,14 @@ def summarize_split(
     grouping_column: str,
     seed: int | None,
 ) -> dict[str, object]:
-    summary: dict[str, object] = {
+    total = len(train) + len(test)
+    return {
         "split": split_name,
         "grouping_column": grouping_column,
         "seed": seed,
         "train_profiles": int(len(train)),
         "test_profiles": int(len(test)),
+        "test_fraction": float(len(test) / total) if total else 0.0,
         "train_unique_drugs": int(train["canonical_smiles"].nunique()),
         "test_unique_drugs": int(test["canonical_smiles"].nunique()),
         "train_unique_cells": int(train["cell_id"].nunique()),
@@ -129,7 +148,6 @@ def summarize_split(
         "pair_overlap": overlap_count(train, test, "drug_cell_pair"),
         "scaffold_overlap": overlap_count(train, test, "scaffold_group"),
     }
-    return summary
 
 
 def write_split(
@@ -153,27 +171,93 @@ def write_split(
     train[columns].to_csv(split_dir / "train.csv", index=False)
     test[columns].to_csv(split_dir / "test.csv", index=False)
     (split_dir / "summary.json").write_text(
-        json.dumps(summary, indent=2, ensure_ascii=False), encoding="utf-8"
+        json.dumps(summary, indent=2, ensure_ascii=False),
+        encoding="utf-8",
     )
+
+
+def split_pipe_values(series: pd.Series) -> set[str]:
+    values: set[str] = set()
+    for raw_value in series.dropna().astype(str):
+        values.update(
+            token.strip()
+            for token in raw_value.split("|")
+            if token.strip()
+        )
+    return values
 
 
 def create_hdac_holdout(
     frame: pd.DataFrame,
     hdac_overlap_csv: Path,
-) -> tuple[pd.DataFrame, pd.DataFrame] | None:
+) -> tuple[pd.DataFrame, pd.DataFrame, pd.DataFrame] | None:
     if not hdac_overlap_csv.exists():
+        print(
+            f"HDAC holdout skipped: annotation file not found at "
+            f"{hdac_overlap_csv.resolve()}"
+        )
         return None
+
     hdac = pd.read_csv(hdac_overlap_csv, low_memory=False)
-    if "pert_id" not in hdac.columns:
+    id_column = next(
+        (
+            column
+            for column in ("compoundinfo_pert_ids", "pert_id")
+            if column in hdac.columns
+        ),
+        None,
+    )
+    smiles_column = next(
+        (
+            column
+            for column in ("canonical_smiles", "canonical")
+            if column in hdac.columns
+        ),
+        None,
+    )
+    if id_column is None and smiles_column is None:
+        print(
+            "HDAC holdout skipped: annotation file contains neither compound "
+            "identifiers nor canonical SMILES."
+        )
         return None
-    hdac_ids = set(hdac.loc[hdac["pert_id"].notna(), "pert_id"].astype(str))
-    if not hdac_ids:
-        return None
-    test = frame.loc[frame["drug_id"].astype(str).isin(hdac_ids)].copy()
-    train = frame.loc[~frame["drug_id"].astype(str).isin(hdac_ids)].copy()
+
+    hdac_ids = split_pipe_values(hdac[id_column]) if id_column else set()
+    raw_smiles = split_pipe_values(hdac[smiles_column]) if smiles_column else set()
+    hdac_smiles = {
+        canonical
+        for value in raw_smiles
+        if (canonical := canonicalize_smiles(value)) is not None
+    }
+
+    hdac_mask = frame["drug_id"].astype(str).isin(hdac_ids)
+    if hdac_smiles:
+        hdac_mask |= frame["canonical_smiles"].isin(hdac_smiles)
+
+    test = frame.loc[hdac_mask].copy()
+    train = frame.loc[~hdac_mask].copy()
     if train.empty or test.empty:
+        print(
+            "HDAC holdout skipped: no matching profiles or no remaining "
+            "training profiles after annotation matching."
+        )
         return None
-    return train, test
+
+    verification = pd.DataFrame(
+        [
+            {
+                "annotated_pert_ids": len(hdac_ids),
+                "annotated_canonical_smiles": len(hdac_smiles),
+                "held_out_profiles": len(test),
+                "held_out_unique_drugs": test["canonical_smiles"].nunique(),
+                "annotated_drugs_remaining_in_train": int(
+                    train["drug_id"].astype(str).isin(hdac_ids).sum()
+                    + train["canonical_smiles"].isin(hdac_smiles).sum()
+                ),
+            }
+        ]
+    )
+    return train, test, verification
 
 
 def main() -> None:
@@ -192,20 +276,43 @@ def main() -> None:
 
     summaries: list[dict[str, object]] = []
     for split_name, group_column in specifications.items():
-        train, test = group_split(master, group_column, args.test_size, args.seed)
+        train, test = group_split(
+            master,
+            group_column,
+            args.test_size,
+            args.seed,
+        )
         summary = summarize_split(
-            split_name, train, test, group_column, args.seed
+            split_name,
+            train,
+            test,
+            group_column,
+            args.seed,
         )
         write_split(args.output_dir, split_name, train, test, summary)
         summaries.append(summary)
 
     hdac_split = create_hdac_holdout(master, args.hdac_overlap_csv)
     if hdac_split is not None:
-        train, test = hdac_split
+        train, test, verification = hdac_split
         summary = summarize_split(
-            "hdac_class_holdout", train, test, "annotated_HDAC_class", None
+            "hdac_class_holdout",
+            train,
+            test,
+            "annotated_HDAC_class",
+            None,
         )
-        write_split(args.output_dir, "hdac_class_holdout", train, test, summary)
+        write_split(
+            args.output_dir,
+            "hdac_class_holdout",
+            train,
+            test,
+            summary,
+        )
+        verification.to_csv(
+            args.output_dir / "hdac_class_holdout" / "verification.csv",
+            index=False,
+        )
         summaries.append(summary)
 
     summary_frame = pd.DataFrame(summaries)
