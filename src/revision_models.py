@@ -4,6 +4,15 @@ import torch
 from torch import nn
 
 
+# PyTorch may otherwise select memory-efficient or flash scaled-dot-product
+# attention kernels whose backward pass is not deterministic on some CUDA
+# versions. The revision experiments prioritize exact seed reproducibility.
+if torch.cuda.is_available():
+    torch.backends.cuda.enable_flash_sdp(False)
+    torch.backends.cuda.enable_mem_efficient_sdp(False)
+    torch.backends.cuda.enable_math_sdp(True)
+
+
 class AtomTokenFingerprintModel(nn.Module):
     """Atom-token Transformer stream plus Morgan-fingerprint MLP stream."""
 
@@ -72,7 +81,7 @@ class AtomTokenFingerprintModel(nn.Module):
 
 
 class FingerprintMLP(nn.Module):
-    """Capacity-matched Morgan-fingerprint baseline."""
+    """Morgan-fingerprint baseline using the original ablation dimensions."""
 
     def __init__(
         self,
