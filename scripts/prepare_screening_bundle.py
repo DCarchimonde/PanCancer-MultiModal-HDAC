@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import re
 import zipfile
 from collections import defaultdict
 from pathlib import Path
@@ -20,6 +21,15 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--gene-ids", type=Path, required=True)
     parser.add_argument("--compoundinfo", type=Path, default=None)
     parser.add_argument("--name-cache", type=Path, default=None)
+    parser.add_argument(
+        "--hdac-overlap",
+        type=Path,
+        default=None,
+        help=(
+            "Optional audited HDAC annotation table. All canonical structures in this "
+            "table are marked as HDAC-annotated in addition to metadata text matching."
+        ),
+    )
     parser.add_argument("--output-dir", type=Path, default=Path("data/screening_input"))
     parser.add_argument("--zip-output", type=Path, default=None)
     return parser.parse_args()
@@ -33,6 +43,11 @@ def canonicalize_smiles(value: object) -> str | None:
     if mol is None:
         return None
     return Chem.MolToSmiles(mol, canonical=True, isomericSmiles=True)
+
+
+def normalize_name(value: object) -> str:
+    """Normalize superficial punctuation differences without merging distinct names."""
+    return re.sub(r"[^a-z0-9]+", "", str(value).lower().strip())
 
 
 def load_gene_ids(path: Path) -> list[str]:
@@ -102,6 +117,28 @@ def load_compoundinfo(path: Path | None) -> pd.DataFrame:
     })
 
 
+def load_audited_hdac_structures(path: Path | None) -> set[str]:
+    if path is None or not path.exists():
+        return set()
+    frame = pd.read_csv(path, low_memory=False)
+    smiles_column = next(
+        (column for column in ["canonical_smiles", "smiles"] if column in frame.columns),
+        None,
+    )
+    if smiles_column is None:
+        raise ValueError(
+            f"HDAC overlap table lacks canonical_smiles/smiles column: {path}"
+        )
+    structures = {
+        canonical
+        for canonical in frame[smiles_column].map(canonicalize_smiles)
+        if canonical is not None
+    }
+    if not structures:
+        raise ValueError(f"HDAC overlap table yielded zero valid structures: {path}")
+    return structures
+
+
 def build_screening_library(args: argparse.Namespace) -> tuple[pd.DataFrame, dict[str, int]]:
     source = pd.read_csv(args.clean_csv, low_memory=False)
     if "smiles" not in source.columns:
@@ -146,24 +183,36 @@ def build_screening_library(args: argparse.Namespace) -> tuple[pd.DataFrame, dic
     empty = library["display_name"].eq("")
     library.loc[empty, "display_name"] = library.loc[empty, "canonical_smiles"]
 
-    cache_name = library["cache_name"].str.lower().str.strip()
-    info_names = library["compoundinfo_name"].str.lower().str.strip()
+    def names_equivalent(row: pd.Series) -> bool:
+        cache = normalize_name(row["cache_name"])
+        info = {
+            normalize_name(part)
+            for part in str(row["compoundinfo_name"]).split("|")
+            if normalize_name(part)
+        }
+        return bool(cache) and cache in info
+
+    cache_name = library["cache_name"].str.strip()
+    info_names = library["compoundinfo_name"].str.strip()
     library["name_conflict"] = (
         cache_name.ne("")
         & info_names.ne("")
-        & ~library.apply(
-            lambda row: row["cache_name"].lower().strip()
-            in {part.lower().strip() for part in row["compoundinfo_name"].split("|")},
-            axis=1,
-        )
+        & ~library.apply(names_equivalent, axis=1)
     )
+
     annotation = (
         library["display_name"] + " " + library["compoundinfo_name"] + " "
         + library["target"] + " " + library["moa"] + " " + library["compound_aliases"]
     ).str.lower()
-    library["is_hdac_annotated"] = annotation.str.contains(
-        "hdac|histone deacetylase", regex=True
+    text_hdac = annotation.str.contains("hdac|histone deacetylase", regex=True)
+    audited_hdac_structures = load_audited_hdac_structures(args.hdac_overlap)
+    audited_hdac = library["canonical_smiles"].isin(audited_hdac_structures)
+    library["hdac_annotation_source"] = np.select(
+        [text_hdac & audited_hdac, audited_hdac, text_hdac],
+        ["metadata_and_audit", "audit", "metadata"],
+        default="",
     )
+    library["is_hdac_annotated"] = text_hdac | audited_hdac
     library.insert(0, "compound_index", np.arange(len(library), dtype=np.int64))
 
     stats = {
@@ -174,6 +223,8 @@ def build_screening_library(args: argparse.Namespace) -> tuple[pd.DataFrame, dic
         "named_by_compoundinfo": int(library["compoundinfo_name"].ne("").sum()),
         "name_conflicts": int(library["name_conflict"].sum()),
         "hdac_annotated_compounds": int(library["is_hdac_annotated"].sum()),
+        "hdac_annotated_by_audit": int(audited_hdac.sum()),
+        "hdac_annotated_by_metadata": int(text_hdac.sum()),
     }
     return library, stats
 
@@ -213,6 +264,7 @@ def build_disease_matrix(
             "value_column": value_column,
             "source_gene_rows": int(len(series)),
             "model_gene_overlap": overlap,
+            "model_gene_overlap_fraction": overlap / len(gene_ids),
             "nonzero_aligned_genes": int(np.count_nonzero(vector)),
         })
     return np.stack(rows), pd.DataFrame(manifests)
