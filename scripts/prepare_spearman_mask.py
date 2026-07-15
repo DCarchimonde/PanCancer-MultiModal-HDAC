@@ -98,14 +98,22 @@ def main() -> None:
         series.index = series.index.astype(str)
         series = series.groupby(level=0).mean()
         aligned = series.reindex(gene_index)
-        mask = aligned.notna().to_numpy(dtype=bool)
+
+        # The original code intersected gene identifiers first and only then filled
+        # missing numeric values with zero. Therefore a source-present gene remains
+        # observed even when its logFC value is NaN.
+        mask = gene_index.isin(series.index)
         masks.append(mask)
+        observed_values = aligned.iloc[np.flatnonzero(mask)].fillna(0.0)
         rows.append({
             "cancer": cancer,
             "source_file": str(path),
             "observed_model_genes": int(mask.sum()),
             "observed_fraction": float(mask.mean()),
-            "observed_zero_values": int((aligned[aligned.notna()] == 0).sum()),
+            "source_present_nan_filled_zero": int(
+                aligned.iloc[np.flatnonzero(mask)].isna().sum()
+            ),
+            "observed_zero_values_after_fill": int((observed_values == 0).sum()),
         })
 
     mask_matrix = np.stack(masks)
@@ -124,8 +132,9 @@ def main() -> None:
         "spearman_unique_gene_masks": unique_masks,
         "spearman_mask_sha256": sha256_file(mask_path),
         "spearman_note": (
-            "Spearman sensitivity uses only genes observed in each source disease "
-            "signature, matching the original pandas corrwith alignment logic."
+            "Spearman sensitivity uses the exact source-present gene intersection for "
+            "each disease signature and fills source-present NaN values with zero, "
+            "matching the original pandas corrwith alignment logic."
         ),
     })
     bundle_manifest_path.write_text(
