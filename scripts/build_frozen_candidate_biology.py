@@ -570,6 +570,10 @@ def summarize_gene_evidence(
 ) -> pd.DataFrame:
     if profiles.ndim != 2:
         raise RuntimeError(f"Profiles must be source x gene, got {profiles.shape}")
+    if profiles.shape[0] == 0 or not np.isfinite(profiles).all():
+        raise RuntimeError(
+            "Gene evidence requires at least one finite source profile"
+        )
     if disease.shape != observed_mask.shape:
         raise RuntimeError("Disease matrix and observed mask shapes differ")
     if profiles.shape[1] != disease.shape[1] or len(gene_annotation) != disease.shape[1]:
@@ -1043,12 +1047,23 @@ def main() -> None:
             "evidence_status",
         ]
     ]
-    network_counts = (
+    observed_network_counts = (
         network_gene_sets.groupby(
             ["candidate", "candidate_role"], as_index=False
         )["gene_id"]
         .nunique()
         .rename(columns={"gene_id": "selected_network_genes"})
+    )
+    network_counts = included[
+        ["candidate", "candidate_role"]
+    ].merge(
+        observed_network_counts,
+        on=["candidate", "candidate_role"],
+        how="left",
+        validate="one_to_one",
+    )
+    network_counts["selected_network_genes"] = (
+        network_counts["selected_network_genes"].fillna(0).astype(int)
     )
     sections = [
         "===== FROZEN CANDIDATE POLICY =====",
