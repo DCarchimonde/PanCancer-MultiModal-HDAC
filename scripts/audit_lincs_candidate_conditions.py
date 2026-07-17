@@ -3,6 +3,7 @@ from __future__ import annotations
 import argparse
 import json
 import os
+import re
 import sys
 from pathlib import Path
 
@@ -163,6 +164,49 @@ def clean_text(series: pd.Series) -> pd.Series:
     return series.fillna("").astype(str).str.strip()
 
 
+def normalize_identifier(value: object) -> str:
+    if pd.isna(value):
+        return ""
+    return re.sub(r"[^a-z0-9]+", "", str(value).strip().lower())
+
+
+def classify_identifier_difference(
+    row: pd.Series,
+    cache_column: str,
+    official_columns: list[str],
+) -> tuple[str, str, str]:
+    cache_value = str(row.get(cache_column, "")).strip()
+    available = {
+        column: str(row.get(column, "")).strip()
+        for column in official_columns
+        if pd.notna(row.get(column, pd.NA))
+        and str(row.get(column, "")).strip()
+    }
+    exact_fields = [
+        column for column, value in available.items() if value == cache_value
+    ]
+    normalized_cache = normalize_identifier(cache_value)
+    normalized_fields = [
+        column
+        for column, value in available.items()
+        if normalized_cache
+        and normalize_identifier(value) == normalized_cache
+    ]
+    if exact_fields:
+        classification = "matches_official_alternate_field"
+        matched_fields = " | ".join(exact_fields)
+    elif normalized_fields:
+        classification = "normalized_official_alias_match"
+        matched_fields = " | ".join(normalized_fields)
+    else:
+        classification = "unresolved_identifier_difference"
+        matched_fields = ""
+    alias_values = " | ".join(
+        f"{column}={value}" for column, value in available.items()
+    )
+    return classification, matched_fields, alias_values
+
+
 def join_unique(series: pd.Series) -> str:
     values = {
         str(value).strip()
@@ -296,45 +340,159 @@ def main() -> None:
 
     discrepancy_frames: list[pd.DataFrame] = []
     comparisons = [
-        ("cache_drug_id", "official_pert_id", "drug_id_vs_pert_id"),
-        ("cache_cell_id", "official_cell_iname", "cell_id_vs_cell_iname"),
+        {
+            "cache_column": "cache_drug_id",
+            "primary_column": "official_pert_id",
+            "official_columns": [
+                "official_pert_id",
+                "official_pert_iname",
+                "official_cmap_name",
+            ],
+            "issue": "drug_id_vs_official_identity",
+        },
+        {
+            "cache_column": "cache_cell_id",
+            "primary_column": "official_cell_iname",
+            "official_columns": [
+                "official_cell_iname",
+                "official_cell_mfc_name",
+            ],
+            "issue": "cell_id_vs_official_identity",
+        },
     ]
-    for cache_column, official_column, issue in comparisons:
-        if cache_column not in merged.columns or official_column not in merged.columns:
+    for comparison in comparisons:
+        cache_column = comparison["cache_column"]
+        primary_column = comparison["primary_column"]
+        official_columns = [
+            column
+            for column in comparison["official_columns"]
+            if column in merged.columns
+        ]
+        if cache_column not in merged.columns or primary_column not in merged.columns:
             continue
         left = clean_text(merged[cache_column])
-        right = clean_text(merged[official_column])
-        mask = left.ne("") & right.ne("") & left.ne(right)
-        if mask.any():
-            discrepancy = merged.loc[
-                mask,
-                ["sig_id", "candidate", cache_column, official_column],
-            ].copy()
-            discrepancy.insert(0, "issue", issue)
-            discrepancy = discrepancy.rename(
-                columns={
-                    cache_column: "cache_value",
-                    official_column: "official_value",
-                }
+        primary = clean_text(merged[primary_column])
+        mask = left.ne("") & primary.ne("") & left.ne(primary)
+        if not mask.any():
+            continue
+        selected_columns = list(
+            dict.fromkeys(
+                [
+                    "sig_id",
+                    "candidate",
+                    cache_column,
+                    primary_column,
+                    *official_columns,
+                ]
             )
-            discrepancy_frames.append(discrepancy)
+        )
+        discrepancy = merged.loc[mask, selected_columns].copy()
+        classifications = discrepancy.apply(
+            lambda row: classify_identifier_difference(
+                row,
+                cache_column,
+                official_columns,
+            ),
+            axis=1,
+            result_type="expand",
+        )
+        classifications.columns = [
+            "classification",
+            "matched_official_fields",
+            "official_alias_values",
+        ]
+        discrepancy = pd.concat(
+            [
+                discrepancy.reset_index(drop=True),
+                classifications.reset_index(drop=True),
+            ],
+            axis=1,
+        )
+        discrepancy.insert(0, "issue", comparison["issue"])
+        discrepancy = discrepancy.rename(
+            columns={
+                cache_column: "cache_value",
+                primary_column: "official_primary_value",
+            }
+        )
+        keep_columns = [
+            "issue",
+            "classification",
+            "sig_id",
+            "candidate",
+            "cache_value",
+            "official_primary_value",
+            "matched_official_fields",
+            "official_alias_values",
+        ]
+        discrepancy_frames.append(discrepancy[keep_columns])
 
     discrepancy_columns = [
         "issue",
+        "classification",
         "sig_id",
         "candidate",
         "cache_value",
-        "official_value",
+        "official_primary_value",
+        "matched_official_fields",
+        "official_alias_values",
     ]
     discrepancies = (
         pd.concat(discrepancy_frames, ignore_index=True)
         if discrepancy_frames
         else pd.DataFrame(columns=discrepancy_columns)
     )
-    if not discrepancies.empty:
-        raise RuntimeError(
-            f"Found {len(discrepancies)} cache/official identifier discrepancies"
+    discrepancy_summary = (
+        discrepancies.groupby(["issue", "classification"], as_index=False)
+        .agg(
+            rows=("sig_id", "size"),
+            unique_signatures=("sig_id", "nunique"),
+            candidates_affected=("candidate", "nunique"),
         )
+        if not discrepancies.empty
+        else pd.DataFrame(
+            columns=[
+                "issue",
+                "classification",
+                "rows",
+                "unique_signatures",
+                "candidates_affected",
+            ]
+        )
+    )
+    candidate_discrepancy_summary = discrepancies.copy()
+    if not candidate_discrepancy_summary.empty:
+        candidate_discrepancy_summary["candidate"] = (
+            candidate_discrepancy_summary["candidate"]
+            .fillna("NON_CANDIDATE_CACHE_ROWS")
+            .astype(str)
+        )
+        candidate_discrepancy_summary = (
+            candidate_discrepancy_summary.groupby(
+                ["candidate", "issue", "classification"], as_index=False
+            )
+            .agg(
+                rows=("sig_id", "size"),
+                unique_signatures=("sig_id", "nunique"),
+                unique_cache_values=("cache_value", "nunique"),
+            )
+        )
+    else:
+        candidate_discrepancy_summary = pd.DataFrame(
+            columns=[
+                "candidate",
+                "issue",
+                "classification",
+                "rows",
+                "unique_signatures",
+                "unique_cache_values",
+            ]
+        )
+    unresolved_identifier_differences = int(
+        discrepancies["classification"]
+        .eq("unresolved_identifier_difference")
+        .sum()
+    )
 
     candidate_conditions = merged.dropna(subset=["candidate"]).copy()
     condition_fields = [
@@ -464,7 +622,10 @@ def main() -> None:
                 "official_matched_signatures": len(official),
                 "unmatched_cache_signatures": len(missing_ids),
                 "duplicate_official_signatures": duplicate_official,
-                "identifier_discrepancies": len(discrepancies),
+                "identifier_primary_differences": len(discrepancies),
+                "identifier_unresolved_differences": (
+                    unresolved_identifier_differences
+                ),
                 "candidate_signatures": len(candidate_conditions),
             }
         ]
@@ -486,6 +647,13 @@ def main() -> None:
     discrepancies.to_csv(
         args.output_dir / "metadata_discrepancies.csv", index=False
     )
+    discrepancy_summary.to_csv(
+        args.output_dir / "metadata_discrepancy_summary.csv", index=False
+    )
+    candidate_discrepancy_summary.to_csv(
+        args.output_dir / "candidate_metadata_discrepancy_summary.csv",
+        index=False,
+    )
 
     manifest = {
         "siginfo_path": str(siginfo_path),
@@ -499,10 +667,25 @@ def main() -> None:
         "candidates_with_measured_signatures": int(
             candidate_summary["signatures"].gt(0).sum()
         ),
-        "identifier_discrepancies": len(discrepancies),
+        "identifier_primary_differences": len(discrepancies),
+        "identifier_unresolved_differences": (
+            unresolved_identifier_differences
+        ),
+        "identifier_audit_status": (
+            "official_metadata_authoritative_differences_recorded"
+            if len(discrepancies)
+            else "exact_primary_identifier_match"
+        ),
+        "identifier_join_key": "sig_id",
         "condition_metadata_note": (
             "Dose, time, cell line, perturbation type, and QC fields are taken "
             "from official siginfo rather than parsed from sig_id."
+        ),
+        "identifier_difference_note": (
+            "Every cache signature is joined one-to-one by official sig_id. "
+            "Differences between cache labels and official primary identifiers "
+            "are retained as diagnostics; downstream condition analyses use "
+            "official identifiers and condition fields."
         ),
     }
     (args.output_dir / "condition_audit_manifest.json").write_text(
@@ -537,6 +720,28 @@ def main() -> None:
             "",
             "===== CACHE / OFFICIAL COVERAGE =====",
             coverage.to_string(index=False),
+            "",
+            "===== IDENTIFIER DIFFERENCE CLASSIFICATION =====",
+            (
+                discrepancy_summary.to_string(index=False)
+                if not discrepancy_summary.empty
+                else "No cache/official primary-identifier differences."
+            ),
+            "",
+            "===== CANDIDATE-AFFECTED IDENTIFIER DIFFERENCES =====",
+            (
+                candidate_discrepancy_summary.loc[
+                    candidate_discrepancy_summary["candidate"]
+                    != "NON_CANDIDATE_CACHE_ROWS"
+                ].to_string(index=False)
+                if (
+                    not candidate_discrepancy_summary.empty
+                    and candidate_discrepancy_summary["candidate"]
+                    .ne("NON_CANDIDATE_CACHE_ROWS")
+                    .any()
+                )
+                else "No candidate signatures have identifier differences."
+            ),
             "",
             "===== CANDIDATE OFFICIAL CONDITIONS =====",
             candidate_summary[report_columns].round(6).to_string(index=False),
