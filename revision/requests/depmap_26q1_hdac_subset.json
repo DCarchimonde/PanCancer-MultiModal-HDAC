@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "release": "DepMap Public 26Q1",
+  "source_manifest_url": "https://depmap.org/portal/api/download/files",
+  "gene_effect_filename": "CRISPRGeneEffect.csv",
+  "model_metadata_filenames": [
+    "Model.csv",
+    "Models.csv"
+  ],
+  "gene_symbols": [
+    "HDAC1",
+    "HDAC2",
+    "HDAC3",
+    "HDAC8"
+  ],
+  "minimum_gene_effect_rows": 500,
+  "output_release_token": "DepMap_Public_26Q1",
+  "purpose": "Frozen-candidate E2 genetic-dependency background; not drug-response validation"
+}
