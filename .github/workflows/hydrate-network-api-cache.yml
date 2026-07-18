@@ -1,0 +1,64 @@
+name: Hydrate network and pathway API cache
+
+on:
+  push:
+    branches:
+      - major-revision-2026
+    paths:
+      - results/revision/reversal_gene_networks_pathways/network_api_request_bundle.json
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: network-api-cache-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  hydrate-cache:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      PYTHONHASHSEED: "0"
+      MPLCONFIGDIR: /tmp/matplotlib-cache
+    steps:
+      - name: Check out the request branch
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref_name }}
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install pinned analysis dependencies
+        run: >-
+          python -m pip install
+          numpy==2.0.1
+          pandas==2.3.3
+          matplotlib==3.9.2
+
+      - name: Verify request bundle exists
+        run: test -f results/revision/reversal_gene_networks_pathways/network_api_request_bundle.json
+
+      - name: Hydrate and validate versioned API responses
+        run: >-
+          python scripts/hydrate_network_api_cache.py
+          --refresh-api
+
+      - name: Commit the auditable response cache
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add results/revision/reversal_gene_networks_pathways/raw_api
+          if git diff --cached --quiet; then
+            echo "The validated response cache is already current."
+            exit 0
+          fi
+          git commit -m "data: hydrate network and pathway API cache"
+          git pull --rebase origin "${GITHUB_REF_NAME}"
+          git push origin "HEAD:${GITHUB_REF_NAME}"
