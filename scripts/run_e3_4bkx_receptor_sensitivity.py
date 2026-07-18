@@ -58,6 +58,20 @@ MOVING_CHAIN = "B"
 MIN_SEQUENCE_IDENTITY = 0.85
 MAX_CA_RMSD_A = 1.50
 MAX_ALIGNED_ZN_DISTANCE_A = 0.75
+MIN_REPAIRED_RESIDUE_BOX_CLEARANCE_A = 5.0
+
+# 4BKX contains five crystallographic side chains resolved only through CB.
+# They are explicitly validated before conservative mutation to alanine.  This
+# preserves the observed backbone/CB coordinates and avoids deleting complete
+# residues with Meeko's --allow_bad_res option.
+INCOMPLETE_SIDECHAIN_REPAIRS = {
+    "74": "LYS",
+    "80": "ARG",
+    "89": "LYS",
+    "108": "GLU",
+    "349": "ASN",
+}
+EXPECTED_ALANINE_ATOMS = {"N", "CA", "C", "O", "CB"}
 
 AMINO_ACIDS = {
     "ALA": "A",
@@ -242,6 +256,7 @@ def write_aligned_receptor(
         if line[21:22] != chain:
             continue
         residue_name = line[17:20].strip()
+        residue_number = line[22:26].strip()
         alternate = line[16:17]
         keep = (
             record == "ATOM" and alternate in {" ", "A"}
@@ -256,6 +271,14 @@ def write_aligned_receptor(
             coordinate, rotation, moving_center, reference_center
         )
         cleaned = line[:16] + (" " if alternate == "A" else alternate) + line[17:]
+        if residue_number in INCOMPLETE_SIDECHAIN_REPAIRS:
+            expected = INCOMPLETE_SIDECHAIN_REPAIRS[residue_number]
+            if residue_name != expected:
+                raise RuntimeError(
+                    f"Unexpected 4BKX residue at {chain}:{residue_number}; "
+                    f"expected={expected}, observed={residue_name}"
+                )
+            cleaned = cleaned[:17] + "ALA" + cleaned[20:]
         cleaned = (
             cleaned[:30]
             + f"{transformed[0]:8.3f}{transformed[1]:8.3f}{transformed[2]:8.3f}"
@@ -266,8 +289,102 @@ def write_aligned_receptor(
     destination.write_text("\n".join(output) + "\n", encoding="utf-8")
 
 
+def inspect_incomplete_sidechains(
+    source: Path,
+    chain: str,
+    moving_zinc: np.ndarray,
+    rotation: np.ndarray,
+    moving_center: np.ndarray,
+    reference_center: np.ndarray,
+    box_center: tuple[float, float, float],
+    box_size: tuple[float, float, float],
+) -> list[dict[str, Any]]:
+    observed: dict[str, dict[str, Any]] = {}
+    for line in source.read_text(encoding="utf-8").splitlines():
+        if line[:6].strip() != "ATOM" or line[21:22] != chain:
+            continue
+        residue_number = line[22:26].strip()
+        if residue_number not in INCOMPLETE_SIDECHAIN_REPAIRS:
+            continue
+        alternate = line[16:17]
+        if alternate not in {" ", "A"}:
+            continue
+        entry = observed.setdefault(
+            residue_number,
+            {
+                "residue_number": residue_number,
+                "original_residue": line[17:20].strip(),
+                "atoms": set(),
+                "ca_coordinate": None,
+            },
+        )
+        atom_name = line[12:16].strip()
+        entry["atoms"].add(atom_name)
+        if atom_name == "CA":
+            entry["ca_coordinate"] = np.asarray(
+                [
+                    float(line[30:38]),
+                    float(line[38:46]),
+                    float(line[46:54]),
+                ],
+                dtype=float,
+            )
+    missing = sorted(set(INCOMPLETE_SIDECHAIN_REPAIRS) - set(observed))
+    if missing:
+        raise RuntimeError(f"Expected incomplete 4BKX residues were absent: {missing}")
+    center = np.asarray(box_center, dtype=float)
+    half_size = np.asarray(box_size, dtype=float) / 2.0
+    rows: list[dict[str, Any]] = []
+    for residue_number in sorted(observed, key=int):
+        entry = observed[residue_number]
+        expected_residue = INCOMPLETE_SIDECHAIN_REPAIRS[residue_number]
+        if entry["original_residue"] != expected_residue:
+            raise RuntimeError(
+                f"Unexpected residue identity at {chain}:{residue_number}: "
+                f"expected={expected_residue}, observed={entry['original_residue']}"
+            )
+        if entry["atoms"] != EXPECTED_ALANINE_ATOMS:
+            raise RuntimeError(
+                f"Incomplete side-chain atom set changed at {chain}:{residue_number}; "
+                f"expected={sorted(EXPECTED_ALANINE_ATOMS)}, "
+                f"observed={sorted(entry['atoms'])}"
+            )
+        if entry["ca_coordinate"] is None:
+            raise RuntimeError(f"Missing C-alpha at {chain}:{residue_number}")
+        aligned_ca = transform_coordinate(
+            entry["ca_coordinate"], rotation, moving_center, reference_center
+        )
+        axis_outside = np.maximum(0.0, np.abs(aligned_ca - center) - half_size)
+        box_clearance = float(np.linalg.norm(axis_outside))
+        rows.append(
+            {
+                "chain": chain,
+                "residue_number": residue_number,
+                "original_residue": expected_residue,
+                "replacement_residue": "ALA",
+                "observed_atoms": sorted(entry["atoms"]),
+                "ca_distance_to_native_4bkx_zinc_a": float(
+                    np.linalg.norm(entry["ca_coordinate"] - moving_zinc)
+                ),
+                "aligned_ca_distance_to_box_center_a": float(
+                    np.linalg.norm(aligned_ca - center)
+                ),
+                "minimum_distance_outside_frozen_box_a": box_clearance,
+                "repair_policy": (
+                    "Retain observed N/CA/C/O/CB coordinates and rename residue ALA; "
+                    "do not model unobserved atoms and do not delete the residue."
+                ),
+            }
+        )
+    return rows
+
+
 def align_4bkx_to_4lxz(
-    reference_path: Path, moving_path: Path, destination: Path
+    reference_path: Path,
+    moving_path: Path,
+    destination: Path,
+    box_center: tuple[float, float, float],
+    box_size: tuple[float, float, float],
 ) -> dict[str, Any]:
     reference_residues, reference_zinc = parse_chain_ca(
         reference_path, REFERENCE_CHAIN
@@ -301,11 +418,31 @@ def align_4bkx_to_4lxz(
         moving_zinc, rotation, moving_center, reference_center
     )
     zinc_distance = float(np.linalg.norm(aligned_zinc - reference_zinc))
+    sidechain_repairs = inspect_incomplete_sidechains(
+        moving_path,
+        MOVING_CHAIN,
+        moving_zinc,
+        rotation,
+        moving_center,
+        reference_center,
+        box_center,
+        box_size,
+    )
     gates = {
         "sequence_identity_ge_0_85": bool(identity >= MIN_SEQUENCE_IDENTITY),
         "ca_rmsd_le_1_50_a": bool(ca_rmsd <= MAX_CA_RMSD_A),
         "aligned_catalytic_zn_distance_le_0_75_a": bool(
             zinc_distance <= MAX_ALIGNED_ZN_DISTANCE_A
+        ),
+        "all_incomplete_sidechains_match_backbone_plus_cb": bool(
+            len(sidechain_repairs) == len(INCOMPLETE_SIDECHAIN_REPAIRS)
+        ),
+        "all_repaired_residues_at_least_5_a_outside_frozen_box": bool(
+            all(
+                row["minimum_distance_outside_frozen_box_a"]
+                >= MIN_REPAIRED_RESIDUE_BOX_CLEARANCE_A
+                for row in sidechain_repairs
+            )
         ),
     }
     if not all(gates.values()):
@@ -330,6 +467,7 @@ def align_4bkx_to_4lxz(
         "reference_zinc_xyz": reference_zinc.tolist(),
         "aligned_4bkx_zinc_xyz": aligned_zinc.tolist(),
         "aligned_zinc_distance_a": zinc_distance,
+        "incomplete_sidechain_repairs": sidechain_repairs,
         "rotation_matrix": rotation.tolist(),
         "moving_centroid": moving_center.tolist(),
         "reference_centroid": reference_center.tolist(),
@@ -579,7 +717,11 @@ def main() -> None:
 
     aligned_receptor = args.output_dir / "4BKX_chainB_aligned_to_4LXZ_chainA.pdb"
     alignment = align_4bkx_to_4lxz(
-        structure_4lxz, structure_4bkx, aligned_receptor
+        structure_4lxz,
+        structure_4bkx,
+        aligned_receptor,
+        center,
+        size,
     )
     zinc = read_zinc(aligned_receptor)
     receptor_basename = args.output_dir / "4BKX_chainB_aligned_receptor"
@@ -803,7 +945,10 @@ def main() -> None:
         "receptor_policy": (
             "4BKX chain B protein plus catalytic Zn only; acetate, potassium, sulfate, "
             "chain A, and other heteroatoms removed. Receptor rigidly aligned to 4LXZ "
-            "chain A before preparation."
+            "chain A before preparation. Five crystallographically incomplete, remote "
+            "side chains resolved only through CB were conservatively represented as "
+            "alanine while retaining all observed backbone/CB coordinates; no residues "
+            "were deleted with allow_bad_res."
         ),
         "box_policy": (
             "Exact center, size, grid spacing, and grid-point counts reused from the "
