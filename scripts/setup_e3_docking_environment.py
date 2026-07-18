@@ -20,6 +20,8 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
+from e3_ad4zn_support import install_ad4zn
+
 
 DEFAULT_ENV_DIR = Path(".venv/e3_docking")
 DEFAULT_SOURCE_DIR = Path("results/revision/docking_controls/source_structures")
@@ -60,6 +62,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--search-root", type=Path, default=Path("/root/autodl-tmp"))
     parser.add_argument("--skip-readiness-audit", action="store_true")
     parser.add_argument("--refresh-vina", action="store_true")
+    parser.add_argument("--refresh-ad4zn", action="store_true")
     return parser.parse_args()
 
 
@@ -248,6 +251,7 @@ def main() -> None:
     bin_dir = args.env_dir / "bin"
     vina_path = bin_dir / "vina"
     download_vina(vina_path, args.refresh_vina)
+    ad4zn = install_ad4zn(args.env_dir, refresh=args.refresh_ad4zn)
 
     execution_env = os.environ.copy()
     execution_env["PATH"] = str(bin_dir.resolve()) + os.pathsep + execution_env.get("PATH", "")
@@ -273,6 +277,7 @@ def main() -> None:
             "source_url": VINA_URL,
             "sha256": sha256_file(vina_path),
         },
+        "ad4zn": ad4zn,
         "meeko_commands": {
             "mk_prepare_ligand.py": str((bin_dir / "mk_prepare_ligand.py").resolve()),
             "mk_prepare_receptor.py": str((bin_dir / "mk_prepare_receptor.py").resolve()),
@@ -303,6 +308,9 @@ def main() -> None:
         f"meeko={versions['meeko']}",
         f"gemmi={versions['gemmi']}",
         f"spyrmsd={versions['spyrmsd']}",
+        f"autogrid={ad4zn['build']['version']}",
+        f"autogrid_sha256={ad4zn['build']['sha256']}",
+        f"ad4zn_parameter_sha256={ad4zn['ad4zn_sha256']}",
         "primary_redocking_structure=4LXZ",
         "hdac1_sensitivity_structure=4BKX",
         "gpu_required=false",
