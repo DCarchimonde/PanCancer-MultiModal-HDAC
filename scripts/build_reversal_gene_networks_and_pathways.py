@@ -168,7 +168,9 @@ def post_bytes(
             )
             if proxy_gateway_error or isinstance(error, urllib.error.URLError):
                 try:
-                    with direct_opener.open(request, timeout=timeout) as response:
+                    with direct_opener.open(
+                        request, timeout=min(timeout, 45)
+                    ) as response:
                         headers = dict(response.headers.items())
                         headers["X-Transport-Fallback"] = "direct_without_environment_proxy"
                         return response.read(), headers
