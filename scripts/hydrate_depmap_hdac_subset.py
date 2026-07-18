@@ -36,6 +36,7 @@ USER_AGENT = (
     "(+https://github.com/DCarchimonde/PanCancer-MultiModal-HDAC)"
 )
 MODEL_ID_ALIASES = {"modelid", "depmapid", "achillesid"}
+UNNAMED_INDEX_ALIASES = {"unnamed0", "unnamed1"}
 LINEAGE_ALIASES = {
     "oncotreelineage",
     "oncotreeprimarydisease",
@@ -275,7 +276,16 @@ def download_file(
 
 
 def find_model_id(columns: Iterable[str], label: str) -> str:
+    columns = list(columns)
     matches = [column for column in columns if normalized(column) in MODEL_ID_ALIASES]
+    if not matches and columns:
+        # DepMap CRISPRGeneEffect matrices conventionally serialize ModelID as
+        # an unnamed CSV index column.  Pandas exposes that header as
+        # ``Unnamed: 0``.  Only accept it in the first position; row values are
+        # validated against the ACH identifier format after loading.
+        first = columns[0]
+        if normalized(first) in UNNAMED_INDEX_ALIASES:
+            matches = [first]
     if len(matches) != 1:
         raise RuntimeError(
             f"Expected exactly one model-ID column in {label}; observed={matches}"
@@ -325,6 +335,13 @@ def export_subsets(
     if gene_effect["ModelID"].duplicated().any():
         duplicates = gene_effect.loc[gene_effect["ModelID"].duplicated(), "ModelID"].head().tolist()
         raise RuntimeError(f"CRISPR gene-effect subset has duplicate model IDs: {duplicates}")
+    valid_model_ids = gene_effect["ModelID"].str.fullmatch(r"ACH-\d{6}", na=False)
+    if not bool(valid_model_ids.all()):
+        invalid = gene_effect.loc[~valid_model_ids, "ModelID"].head().tolist()
+        raise RuntimeError(
+            "The inferred CRISPR model-ID column contains non-ACH identifiers; "
+            f"source_column={gene_id_column!r}, examples={invalid}"
+        )
     if len(gene_effect) < min_rows:
         raise RuntimeError(
             f"CRISPR gene-effect subset has only {len(gene_effect)} rows; "
@@ -378,6 +395,7 @@ def export_subsets(
         "gene_effect_output": gene_output,
         "model_output": model_output,
         "gene_effect_rows": int(len(gene_effect)),
+        "gene_effect_source_id_column": gene_id_column,
         "model_metadata_rows": int(len(model)),
         "model_metadata_columns": list(model.columns),
         "join_matched_rows": matched,
