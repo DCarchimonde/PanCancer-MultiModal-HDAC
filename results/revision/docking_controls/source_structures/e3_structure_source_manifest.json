@@ -1,0 +1,88 @@
+{
+  "schema_version": 1,
+  "status": "passed",
+  "fetched_at_utc": "2026-07-18T13:12:19.921290+00:00",
+  "request_path": "revision/requests/e3_structure_inputs.json",
+  "request_sha256": "5696c8d76315ef882f6c9b0240f2de820921ab3581bf2e9ff6814e849bf10eec",
+  "source_records": [
+    {
+      "url": "https://files.rcsb.org/download/4LXZ.pdb",
+      "output": "results/revision/docking_controls/source_structures/4LXZ.pdb",
+      "bytes": 899586,
+      "sha256": "8f32fb58adcbf1198d1e51aeb242b312f0abf772b58d732a767d7388f4b2fdf3"
+    },
+    {
+      "url": "https://files.rcsb.org/download/4BKX.pdb",
+      "output": "results/revision/docking_controls/source_structures/4BKX.pdb",
+      "bytes": 409617,
+      "sha256": "466c896b02020304b47438a4038269a6f8bcc3af5b6e8e26e6fa8ce1bc73b5fd"
+    },
+    {
+      "url": "https://files.rcsb.org/ligands/download/SHH_ideal.sdf",
+      "output": "results/revision/docking_controls/source_structures/SHH_ideal.sdf",
+      "bytes": 2730,
+      "sha256": "591eba2474a8a7520da2ab44ddbcf4e65b4faf13c266d861f71eac6d360cefe1"
+    },
+    {
+      "url": "https://models.rcsb.org/v1/4lxz/ligand?auth_seq_id=407&encoding=sdf&filename=4lxz_J_SHH.sdf&label_asym_id=J",
+      "output": "results/revision/docking_controls/source_structures/4LXZ_chainA_SHH_bound.sdf",
+      "bytes": 1832,
+      "sha256": "9c9945db70c19dc7cbc5e384acccb4a40416c50a84dab3a20f7349fe4019582e",
+      "normalization": "Removed dynamic ModelServer metadata after M  END"
+    }
+  ],
+  "validation": {
+    "4LXZ": {
+      "resolution_angstrom": 1.85,
+      "protein_chains": [
+        "A",
+        "B",
+        "C"
+      ],
+      "bound_ligand": "SHH (SAHA/vorinostat)",
+      "bound_ligand_chain": "A",
+      "bound_ligand_residue_number": "407",
+      "bound_ligand_heavy_atoms": 19,
+      "catalytic_zinc_atoms_chain_a": 1,
+      "bound_sdf_to_pdb_coordinate_rmsd_angstrom": 0.0,
+      "crystal_heteroatom_to_zinc_distances_angstrom": {
+        "O1": 1.9574128333082914,
+        "O2": 2.331473997281548,
+        "N1": 2.7042000665631227,
+        "O3": 9.830462298386582,
+        "N2": 10.873088153785933
+      }
+    },
+    "4BKX": {
+      "resolution_angstrom": 3.0,
+      "protein_chains": [
+        "A",
+        "B"
+      ],
+      "hdac1_chain": "B",
+      "catalytic_zinc_atoms_chain_b": 1,
+      "hetero_residue_atom_counts": {
+        "ACT": 4,
+        "K": 2,
+        "SO4": 20,
+        "ZN": 1
+      },
+      "has_small_molecule_hdac_inhibitor_cocrystal": false,
+      "role": "HDAC1 receptor-context sensitivity analysis only; it cannot serve as small-molecule inhibitor redocking validation."
+    }
+  },
+  "frozen_structural_design": {
+    "primary_protocol_validation": "Redock crystallographic SHH/SAHA (vorinostat) into human HDAC2 4LXZ and report symmetry-aware heavy-atom RMSD across fixed seeds.",
+    "hdac1_sensitivity": "Use human HDAC1 4BKX only as a receptor-context sensitivity analysis; 4BKX has no co-crystallized small-molecule HDAC inhibitor.",
+    "candidate_scope": [
+      "Mocetinostat",
+      "TC-H-106"
+    ],
+    "positive_controls": [
+      "crystallographic SHH/SAHA",
+      "Vorinostat"
+    ],
+    "negative_controls": "Frozen property-matched non-HDAC decoys selected before docking",
+    "interpretation_guardrail": "Docking is structural plausibility support, not measured binding affinity, target engagement, efficacy, or viability evidence."
+  }
+}

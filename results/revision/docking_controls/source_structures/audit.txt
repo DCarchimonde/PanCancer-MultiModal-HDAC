@@ -1,0 +1,7 @@
+E3 STRUCTURE INPUT HYDRATION: PASSED
+primary_redocking_structure=4LXZ
+primary_cocrystal_ligand=SHH/SAHA/vorinostat
+hdac1_sensitivity_structure=4BKX
+4BKX_small_molecule_inhibitor_cocrystal=false
+4LXZ_bound_sdf_pdb_rmsd=0.00000000
+manifest_sha256=344f5b02fceeb735590484c6511a6873274ebf050d9a6bc3be1e63d3c9c523a3
