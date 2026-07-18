@@ -134,6 +134,7 @@ def post_bytes(
     retries: int,
 ) -> tuple[bytes, dict[str, str]]:
     last_error: Exception | None = None
+    direct_opener = urllib.request.build_opener(urllib.request.ProxyHandler({}))
     for attempt in range(1, retries + 1):
         request = urllib.request.Request(
             url,
@@ -156,11 +157,36 @@ def post_bytes(
                     details = error.read().decode("utf-8", errors="replace")[:2_000]
                 except Exception:
                     details = ""
+            # AutoDL commonly injects an outbound Squid proxy.  A proxy-generated
+            # 502/503/504 does not mean the scientific API rejected the request,
+            # so retry the identical HTTPS request with environment proxies
+            # disabled before consuming another backoff attempt.
+            proxy_gateway_error = (
+                isinstance(error, urllib.error.HTTPError)
+                and error.code in {502, 503, 504}
+                and "squid" in details.lower()
+            )
+            if proxy_gateway_error or isinstance(error, urllib.error.URLError):
+                try:
+                    with direct_opener.open(request, timeout=timeout) as response:
+                        headers = dict(response.headers.items())
+                        headers["X-Transport-Fallback"] = "direct_without_environment_proxy"
+                        return response.read(), headers
+                except (
+                    urllib.error.HTTPError,
+                    urllib.error.URLError,
+                    TimeoutError,
+                ) as direct_error:
+                    last_error = direct_error
+                    details = (
+                        f"proxy_error={error}; proxy_response={details}; "
+                        f"direct_error={direct_error}"
+                    )[:3_000]
             if attempt == retries:
                 raise RuntimeError(
                     f"API request failed after {retries} attempts: {url}; "
-                    f"error={error}; response={details}"
-                ) from error
+                    f"error={last_error}; response={details}"
+                ) from last_error
             time.sleep(min(2 ** (attempt - 1), 8))
     raise RuntimeError(f"API request failed: {url}; {last_error}")
 
@@ -1303,6 +1329,11 @@ def main() -> None:
             "analysis with custom measured gene background and Benjamini-Hochberg FDR."
         ),
         "gprofiler_api": args.gprofiler_base,
+        "http_transport_policy": (
+            "Use environment proxy first; on a Squid-generated HTTP 502/503/504 "
+            "or URL transport failure, retry the identical HTTPS request directly "
+            "with environment proxies disabled."
+        ),
         "gprofiler_response_versions": gprofiler_versions,
         "representative_term_policy": {
             "max_terms_per_candidate_scope_source": args.max_representative_terms,
