@@ -7,6 +7,7 @@ import platform
 import re
 import sys
 import time
+import warnings
 from pathlib import Path
 from typing import Any
 
@@ -557,8 +558,26 @@ def aggregate_measured_hiq_profiles(
 
 
 def safe_nanmedian(values: np.ndarray, axis: int) -> np.ndarray:
-    with np.errstate(invalid="ignore", divide="ignore"):
+    # All-NaN cancer/gene slices are expected when the disease observed-mask
+    # marks a gene as unavailable in that cancer.  They remain NaN and are
+    # excluded downstream; suppress only NumPy's expected slice warning.
+    with warnings.catch_warnings():
+        warnings.filterwarnings(
+            "ignore", message="All-NaN slice encountered", category=RuntimeWarning
+        )
         return np.nanmedian(values, axis=axis)
+
+
+def safe_nanmean(values: np.ndarray, axis: tuple[int, ...]) -> np.ndarray:
+    finite = np.isfinite(values)
+    counts = finite.sum(axis=axis)
+    totals = np.where(finite, values, 0.0).sum(axis=axis)
+    return np.divide(
+        totals,
+        counts,
+        out=np.full(counts.shape, np.nan, dtype=float),
+        where=counts > 0,
+    )
 
 
 def summarize_gene_evidence(
@@ -628,7 +647,7 @@ def summarize_gene_evidence(
     output[f"{evidence_prefix}_median_signed_contribution"] = safe_nanmedian(
         contribution.reshape(-1, contribution.shape[2]), axis=0
     )
-    output[f"{evidence_prefix}_mean_signed_contribution"] = np.nanmean(
+    output[f"{evidence_prefix}_mean_signed_contribution"] = safe_nanmean(
         contribution, axis=(0, 1)
     )
     output[f"{evidence_prefix}_drug_up_fraction"] = np.mean(profiles > 0, axis=0)
@@ -982,6 +1001,9 @@ def main() -> None:
         "split": "hdac_class_holdout",
         "cancers": cancers,
         "gene_count": len(gene_annotation),
+        "genes_unobserved_in_all_cancers": int(
+            (observed_mask.sum(axis=0) == 0).sum()
+        ),
         "consensus_threshold": args.consensus_threshold,
         "threshold_sensitivity": thresholds,
         "network_top_k_per_candidate": args.network_top_k,
