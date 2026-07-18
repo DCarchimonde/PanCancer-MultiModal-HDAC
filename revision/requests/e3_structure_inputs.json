@@ -1,0 +1,27 @@
+{
+  "schema_version": 1,
+  "stable_sources": [
+    {
+      "pdb_id": "4LXZ",
+      "url": "https://files.rcsb.org/download/4LXZ.pdb",
+      "output_name": "4LXZ.pdb",
+      "sha256": "8f32fb58adcbf1198d1e51aeb242b312f0abf772b58d732a767d7388f4b2fdf3"
+    },
+    {
+      "pdb_id": "4BKX",
+      "url": "https://files.rcsb.org/download/4BKX.pdb",
+      "output_name": "4BKX.pdb",
+      "sha256": "466c896b02020304b47438a4038269a6f8bcc3af5b6e8e26e6fa8ce1bc73b5fd"
+    },
+    {
+      "pdb_id": null,
+      "url": "https://files.rcsb.org/ligands/download/SHH_ideal.sdf",
+      "output_name": "SHH_ideal.sdf",
+      "sha256": "591eba2474a8a7520da2ab44ddbcf4e65b4faf13c266d861f71eac6d360cefe1"
+    }
+  ],
+  "bound_ligand_source": {
+    "url": "https://models.rcsb.org/v1/4lxz/ligand?auth_seq_id=407&encoding=sdf&filename=4lxz_J_SHH.sdf&label_asym_id=J",
+    "output_name": "4LXZ_chainA_SHH_bound.sdf"
+  }
+}
