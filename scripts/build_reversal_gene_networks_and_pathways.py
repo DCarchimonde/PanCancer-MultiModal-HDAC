@@ -1024,7 +1024,7 @@ def plot_pathway_heatmap(
     matrix = matrix.reindex(index=ordered_keys, columns=CANDIDATE_ORDER, fill_value=0.0)
     label_lookup = {
         row["term_key"]: f"{row['source']} | {truncate(row['name'])}"
-        for row in selected_terms
+        for row in selected.to_dict("records")
     }
     displayed = np.clip(matrix.to_numpy(dtype=float), 0, 20)
     fig_height = max(6.5, 0.42 * len(matrix))
