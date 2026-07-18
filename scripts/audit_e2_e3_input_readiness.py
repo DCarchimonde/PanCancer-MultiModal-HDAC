@@ -31,6 +31,7 @@ STRUCTURE_SUFFIXES = {
     ".mol",
     ".mol2",
 }
+INHIBITOR_COCRYSTAL_RESIDUES = {"SHH"}
 PRUNED_DIRECTORIES = {
     ".git",
     ".pytest_cache",
@@ -120,7 +121,8 @@ def pdb_summary(path: Path) -> dict[str, Any]:
     summary: dict[str, Any] = {
         "zinc_atoms": 0,
         "hetero_residue_names": [],
-        "has_candidate_cocrystal_ligand": False,
+        "inhibitor_cocrystal_residue_names": [],
+        "has_inhibitor_cocrystal_ligand": False,
     }
     if path.suffix.lower() not in {".pdb", ".gz"}:
         return summary
@@ -141,7 +143,9 @@ def pdb_summary(path: Path) -> dict[str, Any]:
             hetero_names.add(residue)
     summary["zinc_atoms"] = zinc_atoms
     summary["hetero_residue_names"] = sorted(hetero_names)
-    summary["has_candidate_cocrystal_ligand"] = bool(hetero_names)
+    inhibitor_names = sorted(hetero_names & INHIBITOR_COCRYSTAL_RESIDUES)
+    summary["inhibitor_cocrystal_residue_names"] = inhibitor_names
+    summary["has_inhibitor_cocrystal_ligand"] = bool(inhibitor_names)
     return summary
 
 
@@ -171,6 +175,7 @@ def classify_file(path: Path) -> dict[str, Any] | None:
         "model_id_columns": [],
         "lineage_columns": [],
         "contains_4bkx_name": "4bkx" in lower_name,
+        "contains_4lxz_name": "4lxz" in lower_name,
         "pdb_summary": {},
     }
     if depmap_named:
@@ -186,7 +191,7 @@ def classify_file(path: Path) -> dict[str, Any] | None:
         record["lineage_columns"] = [
             column for column, value in normalized.items() if value in LINEAGE_ALIASES
         ]
-    if structure_named and ("4bkx" in lower_name or suffix == ".pdb"):
+    if structure_named and ("4bkx" in lower_name or "4lxz" in lower_name or suffix == ".pdb"):
         record["pdb_summary"] = pdb_summary(path)
     return record
 
@@ -236,11 +241,13 @@ def write_inventory_csv(records: list[dict[str, Any]], path: Path) -> None:
         "size_bytes",
         "size_human",
         "contains_4bkx_name",
+        "contains_4lxz_name",
         "hdac_gene_columns",
         "model_id_columns",
         "lineage_columns",
         "hetero_residue_names",
         "zinc_atoms",
+        "inhibitor_cocrystal_residue_names",
     ]
     with path.open("w", encoding="utf-8", newline="") as handle:
         writer = csv.DictWriter(handle, fieldnames=fields)
@@ -254,6 +261,7 @@ def write_inventory_csv(records: list[dict[str, Any]], path: Path) -> None:
                     "size_bytes": record["size_bytes"],
                     "size_human": record["size_human"],
                     "contains_4bkx_name": record["contains_4bkx_name"],
+                    "contains_4lxz_name": record["contains_4lxz_name"],
                     "hdac_gene_columns": " | ".join(record["hdac_gene_columns"]),
                     "model_id_columns": " | ".join(record["model_id_columns"]),
                     "lineage_columns": " | ".join(record["lineage_columns"]),
@@ -261,6 +269,9 @@ def write_inventory_csv(records: list[dict[str, Any]], path: Path) -> None:
                         pdb.get("hetero_residue_names", [])
                     ),
                     "zinc_atoms": pdb.get("zinc_atoms", ""),
+                    "inhibitor_cocrystal_residue_names": " | ".join(
+                        pdb.get("inhibitor_cocrystal_residue_names", [])
+                    ),
                 }
             )
 
@@ -283,11 +294,17 @@ def main() -> None:
         if record["model_id_columns"] and record["lineage_columns"]
     ]
     structures_4bkx = [record for record in records if record["contains_4bkx_name"]]
-    cocrystal_structures = [
+    structures_4lxz = [record for record in records if record["contains_4lxz_name"]]
+    redocking_cocrystal_structures = [
+        record
+        for record in structures_4lxz
+        if record.get("pdb_summary", {}).get("zinc_atoms", 0) > 0
+        and record.get("pdb_summary", {}).get("has_inhibitor_cocrystal_ligand", False)
+    ]
+    hdac1_sensitivity_structures = [
         record
         for record in structures_4bkx
         if record.get("pdb_summary", {}).get("zinc_atoms", 0) > 0
-        and record.get("pdb_summary", {}).get("has_candidate_cocrystal_ligand", False)
     ]
     docking_engines = {
         key: value
@@ -305,11 +322,13 @@ def main() -> None:
         "e2_depmap_gene_effect_ready": bool(gene_effect_files),
         "e2_depmap_model_metadata_ready": bool(model_metadata_files),
         "e2_depmap_ready": bool(gene_effect_files and model_metadata_files),
-        "e3_4bkx_cocrystal_ready": bool(cocrystal_structures),
+        "e3_4lxz_redocking_cocrystal_ready": bool(redocking_cocrystal_structures),
+        "e3_4bkx_hdac1_sensitivity_ready": bool(hdac1_sensitivity_structures),
         "e3_docking_engine_ready": bool(docking_engines or modules.get("vina")),
         "e3_ligand_preparation_ready": bool(ligand_preparation_ready),
         "e3_local_input_ready": bool(
-            cocrystal_structures
+            redocking_cocrystal_structures
+            and hdac1_sensitivity_structures
             and (docking_engines or modules.get("vina"))
             and ligand_preparation_ready
         ),
@@ -325,7 +344,12 @@ def main() -> None:
         "depmap_model_metadata_matches": [
             record["path"] for record in model_metadata_files
         ],
-        "cocrystal_4bkx_matches": [record["path"] for record in cocrystal_structures],
+        "redocking_cocrystal_4lxz_matches": [
+            record["path"] for record in redocking_cocrystal_structures
+        ],
+        "hdac1_sensitivity_4bkx_matches": [
+            record["path"] for record in hdac1_sensitivity_structures
+        ],
         "executables": executables,
         "python_modules": modules,
         "file_inventory": records,
@@ -337,9 +361,10 @@ def main() -> None:
                 "does not validate candidate drug response or pan-cancer efficacy."
             ),
             "e3": (
-                "Docking controls assess structural plausibility only. Required "
-                "controls remain co-crystal redocking, a known HDAC1 inhibitor, "
-                "and a justified negative/decoy under identical settings."
+                "4LXZ-SHH provides the inhibitor co-crystal redocking control. "
+                "4BKX has no small-molecule HDAC inhibitor co-crystal and is retained "
+                "only for HDAC1 receptor-context sensitivity. Docking assesses "
+                "structural plausibility, not binding affinity or efficacy."
             ),
         },
     }
@@ -359,7 +384,11 @@ def main() -> None:
         f"lineage={record['lineage_columns']}"
         for record in model_metadata_files
     ) or "NONE"
-    structure_display = "\n".join(
+    structure_4lxz_display = "\n".join(
+        f"- {record['path']} :: {record['pdb_summary']}"
+        for record in structures_4lxz
+    ) or "NONE"
+    structure_4bkx_display = "\n".join(
         f"- {record['path']} :: {record['pdb_summary']}"
         for record in structures_4bkx
     ) or "NONE"
@@ -378,8 +407,11 @@ def main() -> None:
             "===== E2 DEPMAP MODEL METADATA =====",
             metadata_display,
             "",
-            "===== E3 4BKX LOCAL STRUCTURES =====",
-            structure_display,
+            "===== E3 4LXZ REDOCKING STRUCTURES =====",
+            structure_4lxz_display,
+            "",
+            "===== E3 4BKX HDAC1 SENSITIVITY STRUCTURES =====",
+            structure_4bkx_display,
             "",
             "===== DOCKING EXECUTABLES =====",
             executable_display,
