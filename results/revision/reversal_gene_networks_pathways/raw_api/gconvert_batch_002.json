@@ -1,0 +1,275 @@
+{
+  "url": "https://biit.cs.ut.ee/gprofiler/api/convert/convert/",
+  "request_sha256": "c3c5b7316cb947d868ded1fb499303aaf0dbd7c5ad1cb42b51f52ebc2160e41d",
+  "response_headers": {
+    "date": "Sat, 18 Jul 2026 12:13:19 GMT",
+    "content-type": "text/html; charset=utf-8",
+    "content-length": "6172",
+    "access-control-allow-origin": "*",
+    "x-frame-options": "SAMEORIGIN",
+    "set-cookie": "X-Session-ID=1dd1042e-674c-4c64-9844-3005101c5a89; Path=/; HttpOnly; Secure; SameSite=Strict; Secure; HttpOnly",
+    "strict-transport-security": "max-age=31536000; preload",
+    "x-content-type-options": "nosniff",
+    "x-xss-protection": "1; mode=block",
+    "x-rate-limit-limit": "1000",
+    "x-rate-limit-remaining": "999",
+    "content-security-policy": "report-uri https://csp.hpc.ut.ee/log; form-action 'self'; frame-ancestors 'self';",
+    "referrer-policy": "strict-origin-when-cross-origin",
+    "connection": "close"
+  },
+  "response": {
+    "result": [
+      {
+        "converted": "ENSG00000068489",
+        "description": "proline rich 11 [Source:HGNC Symbol;Acc:HGNC:25619]",
+        "incoming": "55771",
+        "n_converted": 1,
+        "n_incoming": 1,
+        "name": "PRR11",
+        "namespaces": "ENTREZGENE_ACC",
+        "query": "query_1"
+      },
+      {
+        "converted": "ENSG00000062822",
+        "description": "DNA polymerase delta 1, catalytic subunit [Source:HGNC Symbol;Acc:HGNC:9175]",
+        "incoming": "5424",
+        "n_converted": 1,
+        "n_incoming": 2,
+        "name": "POLD1",
+        "namespaces": "ENTREZGENE_ACC",
+        "query": "query_1"
+      },
+      {
+        "converted": "ENSG00000085999",
+        "description": "RAD54 like [Source:HGNC Symbol;Acc:HGNC:9826]",
+        "incoming": "8438",
+        "n_converted": 1,
+        "n_incoming": 3,
+        "name": "RAD54L",
+        "namespaces": "ENTREZGENE_ACC",
+        "query": "query_1"
+      },
+      {
+        "converted": "ENSG00000197472",
+        "description": "zinc finger protein 695 [Source:HGNC Symbol;Acc:HGNC:30954]",
+        "incoming": "57116",
+        "n_converted": 1,
+        "n_incoming": 4,
+        "name": "ZNF695",
+        "namespaces": "ENTREZGENE_ACC",
+        "query": "query_1"
+      },
+      {
+        "converted": "ENSG00000183010",
+        "description": "pyrroline-5-carboxylate reductase 1 [Source:HGNC Symbol;Acc:HGNC:9721]",
+        "incoming": "5831",
+        "n_converted": 1,
+        "n_incoming": 5,
+        "name": "PYCR1",
+        "namespaces": "ENTREZGENE_ACC",
+        "query": "query_1"
+      },
+      {
+        "converted": "ENSG00000127564",
+        "description": "protein kinase, membrane associated tyrosine/threonine 1 [Source:HGNC Symbol;Acc:HGNC:29650]",
+        "incoming": "9088",
+        "n_converted": 1,
+        "n_incoming": 6,
+        "name": "PKMYT1",
+        "namespaces": "ENTREZGENE_ACC",
+        "query": "query_1"
+      },
+      {
+        "converted": "ENSG00000278619",
+        "description": "mitochondrial rRNA methyltransferase 1 [Source:HGNC Symbol;Acc:HGNC:26202]",
+        "incoming": "79922",
+        "n_converted": 1,
+        "n_incoming": 7,
+        "name": "MRM1",
+        "namespaces": "ENTREZGENE_ACC",
+        "query": "query_1"
+      },
+      {
+        "converted": "ENSG00000077312",
+        "description": "small nuclear ribonucleoprotein polypeptide A [Source:HGNC Symbol;Acc:HGNC:11151]",
+        "incoming": "6626",
+        "n_converted": 1,
+        "n_incoming": 8,
+        "name": "SNRPA",
+        "namespaces": "ENTREZGENE_ACC",
+        "query": "query_1"
+      },
+      {
+        "converted": "ENSG00000197451",
+        "description": "heterogeneous nuclear ribonucleoprotein A/B [Source:HGNC Symbol;Acc:HGNC:5034]",
+        "incoming": "3182",
+        "n_converted": 1,
+        "n_incoming": 9,
+        "name": "HNRNPAB",
+        "namespaces": "ENTREZGENE_ACC",
+        "query": "query_1"
+      },
+      {
+        "converted": "ENSG00000111602",
+        "description": "timeless circadian regulator [Source:HGNC Symbol;Acc:HGNC:11813]",
+        "incoming": "8914",
+        "n_converted": 1,
+        "n_incoming": 10,
+        "name": "TIMELESS",
+        "namespaces": "ENTREZGENE_ACC",
+        "query": "query_1"
+      },
+      {
+        "converted": "ENSG00000101132",
+        "description": "prefoldin subunit 4 [Source:HGNC Symbol;Acc:HGNC:8868]",
+        "incoming": "5203",
+        "n_converted": 1,
+        "n_incoming": 11,
+        "name": "PFDN4",
+        "namespaces": "ENTREZGENE_ACC",
+        "query": "query_1"
+      },
+      {
+        "converted": "ENSG00000185122",
+        "description": "heat shock transcription factor 1 [Source:HGNC Symbol;Acc:HGNC:5224]",
+        "incoming": "3297",
+        "n_converted": 1,
+        "n_incoming": 12,
+        "name": "HSF1",
+        "namespaces": "ENTREZGENE_ACC",
+        "query": "query_1"
+      },
+      {
+        "converted": "ENSG00000165943",
+        "description": "modulator of apoptosis 1 [Source:HGNC Symbol;Acc:HGNC:16658]",
+        "incoming": "64112",
+        "n_converted": 1,
+        "n_incoming": 13,
+        "name": "MOAP1",
+        "namespaces": "ENTREZGENE_ACC",
+        "query": "query_1"
+      },
+      {
+        "converted": "ENSG00000137414",
+        "description": "family with sequence similarity 8 member A1 [Source:HGNC Symbol;Acc:HGNC:16372]",
+        "incoming": "51439",
+        "n_converted": 1,
+        "n_incoming": 14,
+        "name": "FAM8A1",
+        "namespaces": "ENTREZGENE_ACC",
+        "query": "query_1"
+      },
+      {
+        "converted": "ENSG00000111196",
+        "description": "mago homolog B, exon junction complex subunit [Source:HGNC Symbol;Acc:HGNC:25504]",
+        "incoming": "55110",
+        "n_converted": 1,
+        "n_incoming": 15,
+        "name": "MAGOHB",
+        "namespaces": "ENTREZGENE_ACC",
+        "query": "query_1"
+      },
+      {
+        "converted": "ENSG00000167107",
+        "description": "acyl-CoA synthetase family member 2 [Source:HGNC Symbol;Acc:HGNC:26101]",
+        "incoming": "80221",
+        "n_converted": 1,
+        "n_incoming": 16,
+        "name": "ACSF2",
+        "namespaces": "ENTREZGENE_ACC",
+        "query": "query_1"
+      },
+      {
+        "converted": "ENSG00000184216",
+        "description": "interleukin 1 receptor associated kinase 1 [Source:HGNC Symbol;Acc:HGNC:6112]",
+        "incoming": "3654",
+        "n_converted": 1,
+        "n_incoming": 17,
+        "name": "IRAK1",
+        "namespaces": "ENTREZGENE_ACC",
+        "query": "query_1"
+      },
+      {
+        "converted": "ENSG00000148848",
+        "description": "ADAM metallopeptidase domain 12 [Source:HGNC Symbol;Acc:HGNC:190]",
+        "incoming": "8038",
+        "n_converted": 1,
+        "n_incoming": 18,
+        "name": "ADAM12",
+        "namespaces": "ENTREZGENE_ACC",
+        "query": "query_1"
+      },
+      {
+        "converted": "ENSG00000184226",
+        "description": "protocadherin 9 [Source:HGNC Symbol;Acc:HGNC:8661]",
+        "incoming": "5101",
+        "n_converted": 1,
+        "n_incoming": 19,
+        "name": "PCDH9",
+        "namespaces": "ENTREZGENE_ACC",
+        "query": "query_1"
+      },
+      {
+        "converted": "ENSG00000139618",
+        "description": "BRCA2 DNA repair associated [Source:HGNC Symbol;Acc:HGNC:1101]",
+        "incoming": "675",
+        "n_converted": 1,
+        "n_incoming": 20,
+        "name": "BRCA2",
+        "namespaces": "ENTREZGENE_ACC",
+        "query": "query_1"
+      },
+      {
+        "converted": "ENSG00000166971",
+        "description": "AKT interacting protein [Source:HGNC Symbol;Acc:HGNC:16710]",
+        "incoming": "64400",
+        "n_converted": 1,
+        "n_incoming": 21,
+        "name": "AKTIP",
+        "namespaces": "ENTREZGENE_ACC",
+        "query": "query_1"
+      },
+      {
+        "converted": "ENSG00000079999",
+        "description": "kelch like ECH associated protein 1 [Source:HGNC Symbol;Acc:HGNC:23177]",
+        "incoming": "9817",
+        "n_converted": 1,
+        "n_incoming": 22,
+        "name": "KEAP1",
+        "namespaces": "ENTREZGENE_ACC",
+        "query": "query_1"
+      },
+      {
+        "converted": "ENSG00000115993",
+        "description": "trafficking kinesin protein 2 [Source:HGNC Symbol;Acc:HGNC:13206]",
+        "incoming": "66008",
+        "n_converted": 1,
+        "n_incoming": 23,
+        "name": "TRAK2",
+        "namespaces": "ENTREZGENE_ACC",
+        "query": "query_1"
+      },
+      {
+        "converted": "ENSG00000100297",
+        "description": "minichromosome maintenance complex component 5 [Source:HGNC Symbol;Acc:HGNC:6948]",
+        "incoming": "4174",
+        "n_converted": 1,
+        "n_incoming": 24,
+        "name": "MCM5",
+        "namespaces": "ENTREZGENE_ACC",
+        "query": "query_1"
+      },
+      {
+        "converted": "ENSG00000130816",
+        "description": "DNA methyltransferase 1 [Source:HGNC Symbol;Acc:HGNC:2976]",
+        "incoming": "1786",
+        "n_converted": 1,
+        "n_incoming": 25,
+        "name": "DNMT1",
+        "namespaces": "ENTREZGENE_ACC",
+        "query": "query_1"
+      }
+    ],
+    "meta": {}
+  }
+}

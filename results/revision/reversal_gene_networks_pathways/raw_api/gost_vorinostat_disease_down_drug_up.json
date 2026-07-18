@@ -1,0 +1,3196 @@
+{
+  "url": "https://biit.cs.ut.ee/gprofiler/api/gost/profile/",
+  "request_sha256": "4591b11cc527760f3c4cdb5dbb6460ff4afca660fffffd0594600852498dad06",
+  "response_headers": {
+    "date": "Sat, 18 Jul 2026 12:14:12 GMT",
+    "content-type": "application/json",
+    "content-length": "28113",
+    "vary": "Accept-Encoding",
+    "access-control-allow-origin": "*",
+    "x-frame-options": "SAMEORIGIN",
+    "set-cookie": "X-Session-ID=815ca80a-40f6-4907-9044-551e36de1110; Path=/; HttpOnly; Secure; SameSite=Strict; Secure; HttpOnly",
+    "strict-transport-security": "max-age=31536000; preload",
+    "x-content-type-options": "nosniff",
+    "x-xss-protection": "1; mode=block",
+    "x-rate-limit-limit": "1000",
+    "x-rate-limit-remaining": "988",
+    "content-security-policy": "report-uri https://csp.hpc.ut.ee/log; form-action 'self'; frame-ancestors 'self';",
+    "referrer-policy": "strict-origin-when-cross-origin",
+    "connection": "close"
+  },
+  "response": {
+    "result": [
+      {
+        "description": "\"Any process that results in a change in state or activity of a cell or an organism (in terms of movement, secretion, enzyme production, gene expression, etc.) as a result of a stimulus arising within the organism.\" [GOC:sm]",
+        "effective_domain_size": 11154,
+        "goshv": 13580,
+        "intersection_size": 24,
+        "intersections": [
+          [],
+          [],
+          [],
+          [
+            "ISS",
+            "IEA"
+          ],
+          [],
+          [
+            "IEA"
+          ],
+          [],
+          [
+            "IEA"
+          ],
+          [],
+          [
+            "IEA"
+          ],
+          [],
+          [
+            "ISS"
+          ],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [
+            "IMP"
+          ],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [
+            "IEA"
+          ],
+          [],
+          [
+            "IDA"
+          ],
+          [
+            "TAS",
+            "IEA"
+          ],
+          [],
+          [
+            "IBA"
+          ],
+          [
+            "IEA"
+          ],
+          [
+            "IMP",
+            "ISS",
+            "IBA",
+            "IEA"
+          ],
+          [],
+          [],
+          [],
+          [],
+          [
+            "IDA",
+            "ISS",
+            "IEA"
+          ],
+          [],
+          [],
+          [],
+          [
+            "IDA",
+            "IEA"
+          ],
+          [],
+          [],
+          [
+            "IBA"
+          ],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [
+            "IEA"
+          ],
+          [],
+          [
+            "IMP"
+          ],
+          [
+            "ISS",
+            "IBA",
+            "IEA"
+          ],
+          [
+            "TAS",
+            "IEA"
+          ],
+          [],
+          [],
+          [
+            "ISS"
+          ],
+          [],
+          [],
+          [],
+          [
+            "IDA"
+          ],
+          [
+            "ISS",
+            "IBA",
+            "IEA"
+          ],
+          [
+            "ISS",
+            "IEA"
+          ],
+          [],
+          [],
+          [
+            "IEA"
+          ],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          []
+        ],
+        "name": "response to endogenous stimulus",
+        "native": "GO:0009719",
+        "p_value": 0.001384147139785732,
+        "parents": [
+          "GO:0050896"
+        ],
+        "precision": 0.3,
+        "query": "query_1",
+        "query_size": 80,
+        "recall": 0.020100502512562814,
+        "significant": true,
+        "source": "GO:BP",
+        "term_size": 1194,
+        "source_order": 3457,
+        "group_id": 8
+      },
+      {
+        "description": "\"Any process that results in a change in state or activity of a cell or an organism (in terms of movement, secretion, enzyme production, gene expression, etc.) as a result of a hormone stimulus.\" [GOC:jl]",
+        "effective_domain_size": 11154,
+        "goshv": 13586,
+        "intersection_size": 19,
+        "intersections": [
+          [],
+          [],
+          [],
+          [
+            "ISS",
+            "IEA"
+          ],
+          [],
+          [
+            "IEA"
+          ],
+          [],
+          [
+            "IEA"
+          ],
+          [],
+          [
+            "IEA"
+          ],
+          [],
+          [
+            "ISS"
+          ],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [
+            "IEA"
+          ],
+          [],
+          [],
+          [],
+          [],
+          [
+            "IBA"
+          ],
+          [
+            "IEA"
+          ],
+          [
+            "ISS",
+            "IBA",
+            "IEA"
+          ],
+          [],
+          [],
+          [],
+          [],
+          [
+            "IDA"
+          ],
+          [],
+          [],
+          [],
+          [
+            "IEA"
+          ],
+          [],
+          [],
+          [
+            "IBA"
+          ],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [
+            "IMP"
+          ],
+          [
+            "ISS",
+            "IBA",
+            "IEA"
+          ],
+          [
+            "IEA"
+          ],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [
+            "IDA"
+          ],
+          [
+            "ISS",
+            "IBA",
+            "IEA"
+          ],
+          [
+            "ISS",
+            "IEA"
+          ],
+          [],
+          [],
+          [
+            "IEA"
+          ],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          []
+        ],
+        "name": "response to hormone",
+        "native": "GO:0009725",
+        "p_value": 0.001384147139785732,
+        "parents": [
+          "GO:0009719",
+          "GO:0042221"
+        ],
+        "precision": 0.2375,
+        "query": "query_1",
+        "query_size": 80,
+        "recall": 0.025,
+        "significant": true,
+        "source": "GO:BP",
+        "term_size": 760,
+        "source_order": 3463,
+        "group_id": 8
+      },
+      {
+        "description": "\"Any process that results in a change in state or activity of a cell or an organism (in terms of movement, secretion, enzyme production, gene expression, etc.) as a result of a steroid hormone stimulus.\" [GOC:go_curators]",
+        "effective_domain_size": 11154,
+        "goshv": 22100,
+        "intersection_size": 11,
+        "intersections": [
+          [],
+          [],
+          [],
+          [
+            "ISS",
+            "IEA"
+          ],
+          [],
+          [
+            "IEA"
+          ],
+          [],
+          [
+            "IEA"
+          ],
+          [],
+          [
+            "IEA"
+          ],
+          [],
+          [
+            "ISS"
+          ],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [
+            "IEA"
+          ],
+          [],
+          [],
+          [],
+          [],
+          [
+            "IBA"
+          ],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [
+            "IEA"
+          ],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [
+            "IEA"
+          ],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [
+            "IEA"
+          ],
+          [
+            "ISS",
+            "IEA"
+          ],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          []
+        ],
+        "name": "response to steroid hormone",
+        "native": "GO:0048545",
+        "p_value": 0.001384147139785732,
+        "parents": [
+          "GO:0009725",
+          "GO:0033993"
+        ],
+        "precision": 0.1375,
+        "query": "query_1",
+        "query_size": 80,
+        "recall": 0.04247104247104247,
+        "significant": true,
+        "source": "GO:BP",
+        "term_size": 259,
+        "source_order": 11977,
+        "group_id": 8
+      },
+      {
+        "description": "\"Any process that results in a change in state or activity of a cell or an organism (in terms of movement, secretion, enzyme production, gene expression, etc.) as a result of a corticotropin-releasing hormone stimulus. Corticotropin-releasing hormone is a peptide hormone involved in the stress response.\" [PMID:11027914, PMID:15134857, Wikipedia:Corticotropin-releasing_hormone]",
+        "effective_domain_size": 11154,
+        "goshv": 20142,
+        "intersection_size": 3,
+        "intersections": [
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [
+            "ISS",
+            "IBA",
+            "IEA"
+          ],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [
+            "ISS",
+            "IBA",
+            "IEA"
+          ],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [
+            "ISS",
+            "IBA"
+          ],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          []
+        ],
+        "name": "response to corticotropin-releasing hormone",
+        "native": "GO:0043435",
+        "p_value": 0.001384147139785732,
+        "parents": [
+          "GO:0043434"
+        ],
+        "precision": 0.0375,
+        "query": "query_1",
+        "query_size": 80,
+        "recall": 0.6,
+        "significant": true,
+        "source": "GO:BP",
+        "term_size": 5,
+        "source_order": 10019,
+        "group_id": 9
+      },
+      {
+        "description": "\"Any process that results in a change in state or activity of a cell (in terms of movement, secretion, enzyme production, gene expression, etc.) as a result of a corticotropin-releasing hormone stimulus. Corticotropin-releasing hormone is a peptide hormone involved in the stress response.\" [GOC:mah]",
+        "effective_domain_size": 11154,
+        "goshv": 25615,
+        "intersection_size": 3,
+        "intersections": [
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [
+            "ISS",
+            "IBA",
+            "IEA"
+          ],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [
+            "ISS",
+            "IBA",
+            "IEA"
+          ],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [
+            "ISS",
+            "IBA"
+          ],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          []
+        ],
+        "name": "cellular response to corticotropin-releasing hormone stimulus",
+        "native": "GO:0071376",
+        "p_value": 0.001384147139785732,
+        "parents": [
+          "GO:0043435",
+          "GO:0071375"
+        ],
+        "precision": 0.0375,
+        "query": "query_1",
+        "query_size": 80,
+        "recall": 0.6,
+        "significant": true,
+        "source": "GO:BP",
+        "term_size": 5,
+        "source_order": 15492,
+        "group_id": 9
+      },
+      {
+        "description": "\"Any process that results in a change in state or activity of a cell or an organism (in terms of movement, secretion, enzyme production, gene expression, etc.) as a result of a chemical stimulus.\" [GOC:jl]",
+        "effective_domain_size": 11154,
+        "goshv": 19523,
+        "intersection_size": 37,
+        "intersections": [
+          [],
+          [
+            "ISS"
+          ],
+          [
+            "TAS",
+            "IEA"
+          ],
+          [
+            "ISS",
+            "IEA"
+          ],
+          [
+            "IEA"
+          ],
+          [
+            "IEA"
+          ],
+          [],
+          [
+            "IEA"
+          ],
+          [],
+          [
+            "IEA"
+          ],
+          [],
+          [
+            "ISS"
+          ],
+          [],
+          [
+            "ISS",
+            "IEA"
+          ],
+          [],
+          [
+            "IDA"
+          ],
+          [],
+          [
+            "IEA"
+          ],
+          [],
+          [],
+          [],
+          [
+            "IEA"
+          ],
+          [
+            "IDA"
+          ],
+          [],
+          [],
+          [
+            "IEA"
+          ],
+          [],
+          [
+            "IDA",
+            "IEA"
+          ],
+          [],
+          [],
+          [
+            "IBA"
+          ],
+          [
+            "IEA"
+          ],
+          [
+            "IMP",
+            "ISS",
+            "IBA",
+            "IEA"
+          ],
+          [],
+          [],
+          [],
+          [],
+          [
+            "IDA"
+          ],
+          [
+            "IEA"
+          ],
+          [],
+          [],
+          [
+            "IDA",
+            "IEA"
+          ],
+          [],
+          [],
+          [
+            "IBA"
+          ],
+          [
+            "IDA"
+          ],
+          [
+            "IDA",
+            "IBA",
+            "IEA"
+          ],
+          [],
+          [
+            "IEA"
+          ],
+          [],
+          [],
+          [],
+          [],
+          [
+            "IDA"
+          ],
+          [],
+          [
+            "IDA"
+          ],
+          [],
+          [],
+          [
+            "IMP"
+          ],
+          [
+            "ISS",
+            "IBA",
+            "IEA"
+          ],
+          [
+            "TAS",
+            "IEA"
+          ],
+          [],
+          [
+            "IC"
+          ],
+          [
+            "IDA",
+            "IBA"
+          ],
+          [],
+          [],
+          [],
+          [
+            "IDA"
+          ],
+          [
+            "ISS",
+            "IBA",
+            "IEA"
+          ],
+          [
+            "ISS",
+            "IEA"
+          ],
+          [],
+          [],
+          [
+            "IEA"
+          ],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [
+            "IDA"
+          ],
+          []
+        ],
+        "name": "response to chemical",
+        "native": "GO:0042221",
+        "p_value": 0.006783968657364408,
+        "parents": [
+          "GO:0050896"
+        ],
+        "precision": 0.4625,
+        "query": "query_1",
+        "query_size": 80,
+        "recall": 0.013449654671028717,
+        "significant": true,
+        "source": "GO:BP",
+        "term_size": 2751,
+        "source_order": 9400,
+        "group_id": 8
+      },
+      {
+        "description": "\"Any process that results in a change in state or activity of a cell (in terms of movement, secretion, enzyme production, gene expression, etc.) as a result of a stimulus arising within the organism.\" [GOC:mah]",
+        "effective_domain_size": 11154,
+        "goshv": 25713,
+        "intersection_size": 19,
+        "intersections": [
+          [],
+          [],
+          [],
+          [
+            "ISS",
+            "IEA"
+          ],
+          [],
+          [
+            "IEA"
+          ],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [
+            "ISS"
+          ],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [
+            "IMP"
+          ],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [
+            "IEA"
+          ],
+          [],
+          [
+            "IDA"
+          ],
+          [
+            "TAS",
+            "IEA"
+          ],
+          [],
+          [
+            "IBA"
+          ],
+          [],
+          [
+            "IMP",
+            "ISS",
+            "IBA",
+            "IEA"
+          ],
+          [],
+          [],
+          [],
+          [],
+          [
+            "ISS",
+            "IEA"
+          ],
+          [],
+          [],
+          [],
+          [
+            "IDA",
+            "IEA"
+          ],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [
+            "IEA"
+          ],
+          [],
+          [
+            "IMP"
+          ],
+          [
+            "ISS",
+            "IBA",
+            "IEA"
+          ],
+          [],
+          [],
+          [],
+          [
+            "ISS"
+          ],
+          [],
+          [],
+          [],
+          [
+            "IDA"
+          ],
+          [
+            "ISS",
+            "IBA",
+            "IEA"
+          ],
+          [
+            "ISS",
+            "IEA"
+          ],
+          [],
+          [],
+          [
+            "IEA"
+          ],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          []
+        ],
+        "name": "cellular response to endogenous stimulus",
+        "native": "GO:0071495",
+        "p_value": 0.014461212144566072,
+        "parents": [
+          "GO:0009719"
+        ],
+        "precision": 0.2375,
+        "query": "query_1",
+        "query_size": 80,
+        "recall": 0.019076305220883535,
+        "significant": true,
+        "source": "GO:BP",
+        "term_size": 996,
+        "source_order": 15590,
+        "group_id": 8
+      },
+      {
+        "description": "\"Any process that results in a change in state or activity of a cell or an organism (in terms of movement, secretion, enzyme production, gene expression, etc.) as a result of oxidative stress, a state often resulting from exposure to high levels of reactive oxygen species, e.g. superoxide anions, hydrogen peroxide (H2O2), and hydroxyl radicals.\" [GOC:jl, PMID:12115731]",
+        "effective_domain_size": 11154,
+        "goshv": 12594,
+        "intersection_size": 10,
+        "intersections": [
+          [],
+          [
+            "ISS"
+          ],
+          [
+            "TAS",
+            "IEA"
+          ],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [
+            "IEA"
+          ],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [
+            "IDA"
+          ],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [
+            "IDA"
+          ],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [
+            "IDA"
+          ],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [
+            "IEA"
+          ],
+          [
+            "IDA",
+            "IEA"
+          ],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [
+            "IDA"
+          ],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [
+            "IEA"
+          ]
+        ],
+        "name": "response to oxidative stress",
+        "native": "GO:0006979",
+        "p_value": 0.014461212144566072,
+        "parents": [
+          "GO:0006950"
+        ],
+        "precision": 0.125,
+        "query": "query_1",
+        "query_size": 80,
+        "recall": 0.033112582781456956,
+        "significant": true,
+        "source": "GO:BP",
+        "term_size": 302,
+        "source_order": 2471,
+        "group_id": 10
+      },
+      {
+        "description": "\"Any process that results in a change in state or activity of a cell or an organism (in terms of movement, secretion, enzyme production, gene expression, etc.) as a result of a glucocorticoid stimulus. Glucocorticoids are hormonal C21 corticosteroids synthesized from cholesterol with the ability to bind with the cortisol receptor and trigger similar effects. Glucocorticoids act primarily on carbohydrate and protein metabolism, and have anti-inflammatory effects.\" [GOC:ai, PMID:9884123]",
+        "effective_domain_size": 11154,
+        "goshv": 22900,
+        "intersection_size": 6,
+        "intersections": [
+          [],
+          [],
+          [],
+          [],
+          [],
+          [
+            "IEA"
+          ],
+          [],
+          [
+            "IEA"
+          ],
+          [],
+          [
+            "IEA"
+          ],
+          [],
+          [
+            "ISS"
+          ],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [
+            "IEA"
+          ],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [
+            "IEA"
+          ],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          []
+        ],
+        "name": "response to glucocorticoid",
+        "native": "GO:0051384",
+        "p_value": 0.014479586377592363,
+        "parents": [
+          "GO:0031960"
+        ],
+        "precision": 0.075,
+        "query": "query_1",
+        "query_size": 80,
+        "recall": 0.061855670103092786,
+        "significant": true,
+        "source": "GO:BP",
+        "term_size": 97,
+        "source_order": 12777,
+        "group_id": 8
+      },
+      {
+        "description": "\"A molecular function regulator that reduces a catalytic activity.\" [GOC:ai, GOC:ebc]",
+        "effective_domain_size": 11154,
+        "goshv": 1092,
+        "intersection_size": 9,
+        "intersections": [
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [
+            "IDA",
+            "IBA"
+          ],
+          [
+            "IMP",
+            "IEA"
+          ],
+          [],
+          [
+            "NAS"
+          ],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [
+            "IEA"
+          ],
+          [
+            "IDA",
+            "IBA",
+            "TAS",
+            "IEA"
+          ],
+          [],
+          [],
+          [],
+          [],
+          [
+            "IBA",
+            "TAS",
+            "IEA"
+          ],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [
+            "IDA",
+            "IEA"
+          ],
+          [],
+          [],
+          [],
+          [
+            "IDA",
+            "IEA"
+          ],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [
+            "IEA"
+          ]
+        ],
+        "name": "enzyme inhibitor activity",
+        "native": "GO:0004857",
+        "p_value": 0.022231263749111083,
+        "parents": [
+          "GO:0030234",
+          "GO:0140678"
+        ],
+        "precision": 0.1125,
+        "query": "query_1",
+        "query_size": 80,
+        "recall": 0.030821917808219176,
+        "significant": true,
+        "source": "GO:MF",
+        "term_size": 292,
+        "source_order": 1092,
+        "group_id": 3
+      },
+      {
+        "description": "\"Binding to a nuclear glucocorticoid receptor.\" [GOC:bf]",
+        "effective_domain_size": 11154,
+        "goshv": 4746,
+        "intersection_size": 3,
+        "intersections": [
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [
+            "IBA"
+          ],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [
+            "IBA",
+            "IEA"
+          ],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [
+            "IBA"
+          ],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          []
+        ],
+        "name": "nuclear glucocorticoid receptor binding",
+        "native": "GO:0035259",
+        "p_value": 0.022231263749111083,
+        "parents": [
+          "GO:0016922"
+        ],
+        "precision": 0.0375,
+        "query": "query_1",
+        "query_size": 80,
+        "recall": 0.25,
+        "significant": true,
+        "source": "GO:MF",
+        "term_size": 12,
+        "source_order": 4746,
+        "group_id": 4
+      },
+      {
+        "description": "\"Binds to and stops, prevents or reduces the activity of metalloendopeptidases, enzymes that catalyze the hydrolysis of nonterminal peptide bonds in a polypeptide chain and contain a chelated metal ion at their active sites which is essential to their catalytic activity.\" [GOC:ai]",
+        "effective_domain_size": 11154,
+        "goshv": 1564,
+        "intersection_size": 3,
+        "intersections": [
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [
+            "NAS"
+          ],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [
+            "IDA",
+            "TAS",
+            "IEA"
+          ],
+          [],
+          [],
+          [],
+          [],
+          [
+            "IBA",
+            "TAS",
+            "IEA"
+          ],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          []
+        ],
+        "name": "metalloendopeptidase inhibitor activity",
+        "native": "GO:0008191",
+        "p_value": 0.022231263749111083,
+        "parents": [
+          "GO:0004866"
+        ],
+        "precision": 0.0375,
+        "query": "query_1",
+        "query_size": 80,
+        "recall": 0.21428571428571427,
+        "significant": true,
+        "source": "GO:MF",
+        "term_size": 14,
+        "source_order": 1564,
+        "group_id": 5
+      },
+      {
+        "description": "\"Binding to a protein kinase A.\" [GOC:ai]",
+        "effective_domain_size": 11154,
+        "goshv": 7285,
+        "intersection_size": 4,
+        "intersections": [
+          [],
+          [],
+          [],
+          [],
+          [
+            "TAS",
+            "IEA"
+          ],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [
+            "IPI",
+            "IBA"
+          ],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [
+            "IMP"
+          ],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [
+            "IBA"
+          ],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          []
+        ],
+        "name": "protein kinase A binding",
+        "native": "GO:0051018",
+        "p_value": 0.022231263749111083,
+        "parents": [
+          "GO:0005515"
+        ],
+        "precision": 0.05,
+        "query": "query_1",
+        "query_size": 80,
+        "recall": 0.09523809523809523,
+        "significant": true,
+        "source": "GO:MF",
+        "term_size": 42,
+        "source_order": 7285,
+        "group_id": 6
+      },
+      {
+        "description": "\"Catalysis of the cleavage of a carbon-oxygen bond by elimination of water.\" [EC:4.2.1.-]",
+        "effective_domain_size": 11154,
+        "goshv": 2930,
+        "intersection_size": 4,
+        "intersections": [
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [
+            "IDA",
+            "IBA",
+            "TAS",
+            "IEA"
+          ],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [
+            "IBA",
+            "TAS",
+            "IEA"
+          ],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [
+            "IDA",
+            "IMP",
+            "IBA",
+            "IEA"
+          ],
+          [],
+          [],
+          [],
+          [],
+          [
+            "ISS",
+            "IBA"
+          ],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          []
+        ],
+        "name": "hydro-lyase activity",
+        "native": "GO:0016836",
+        "p_value": 0.022395584883976347,
+        "parents": [
+          "GO:0016835"
+        ],
+        "precision": 0.05,
+        "query": "query_1",
+        "query_size": 80,
+        "recall": 0.08888888888888889,
+        "significant": true,
+        "source": "GO:MF",
+        "term_size": 45,
+        "source_order": 2930,
+        "group_id": 1
+      },
+      {
+        "description": "\"Antagonizes ribosome-mediated translation of mRNA into a polypeptide.\" [GOC:ai, GOC:clt]",
+        "effective_domain_size": 11154,
+        "goshv": 3631,
+        "intersection_size": 3,
+        "intersections": [
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [
+            "IDA",
+            "IBA",
+            "IEA"
+          ],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [
+            "EXP"
+          ],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [
+            "IDA",
+            "ISS",
+            "IEA"
+          ],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          []
+        ],
+        "name": "translation repressor activity",
+        "native": "GO:0030371",
+        "p_value": 0.023677681466126217,
+        "parents": [
+          "GO:0045182"
+        ],
+        "precision": 0.0375,
+        "query": "query_1",
+        "query_size": 80,
+        "recall": 0.15,
+        "significant": true,
+        "source": "GO:MF",
+        "term_size": 20,
+        "source_order": 3631,
+        "group_id": 7
+      },
+      {
+        "description": "\"A DNA-binding transcription factor activity regulated by binding to a ligand and that modulates the transcription of specific genes and gene sets. Examples include the lac and trp repressors in E.coli and steroid hormone receptors.\" [GOC:dos, PMID:25568920, PMID:8735275]",
+        "effective_domain_size": 11154,
+        "goshv": 8374,
+        "intersection_size": 4,
+        "intersections": [
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [
+            "IBA",
+            "TAS"
+          ],
+          [],
+          [
+            "TAS",
+            "IEA"
+          ],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [
+            "TAS",
+            "IEA"
+          ],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [
+            "TAS",
+            "IEA"
+          ],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          []
+        ],
+        "name": "ligand-modulated transcription factor activity",
+        "native": "GO:0098531",
+        "p_value": 0.028293492390303262,
+        "parents": [
+          "GO:0003700"
+        ],
+        "precision": 0.05,
+        "query": "query_1",
+        "query_size": 80,
+        "recall": 0.07407407407407407,
+        "significant": true,
+        "source": "GO:MF",
+        "term_size": 54,
+        "source_order": 8374,
+        "group_id": 2
+      },
+      {
+        "description": "\"A DNA-binding transcription factor activity regulated by binding to a ligand that modulates the transcription of specific gene sets transcribed by RNA polymerase II. Nuclear receptor ligands are usually lipid-based (such as a steroid hormone) and the binding of the ligand to its receptor often occurs in the cytosol, which leads to its translocation to the nucleus.\" [GOC:txnOH-2018, PMID:23457262]",
+        "effective_domain_size": 11154,
+        "goshv": 1108,
+        "intersection_size": 4,
+        "intersections": [
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [
+            "IBA",
+            "TAS"
+          ],
+          [],
+          [
+            "TAS",
+            "IEA"
+          ],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [
+            "TAS",
+            "IEA"
+          ],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [
+            "TAS",
+            "IEA"
+          ],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          []
+        ],
+        "name": "nuclear receptor activity",
+        "native": "GO:0004879",
+        "p_value": 0.028293492390303262,
+        "parents": [
+          "GO:0000981",
+          "GO:0038023",
+          "GO:0098531"
+        ],
+        "precision": 0.05,
+        "query": "query_1",
+        "query_size": 80,
+        "recall": 0.07547169811320754,
+        "significant": true,
+        "source": "GO:MF",
+        "term_size": 53,
+        "source_order": 1108,
+        "group_id": 2
+      },
+      {
+        "description": "\"Any process that results in a change in state or activity of a cell or an organism (in terms of movement, secretion, enzyme production, gene expression, etc.) as a result of a corticosteroid hormone stimulus. A corticosteroid is a steroid hormone that is produced in the adrenal cortex. Corticosteroids are involved in a wide range of physiologic systems such as stress response, immune response and regulation of inflammation, carbohydrate metabolism, protein catabolism, blood electrolyte levels, and behavior. They include glucocorticoids and mineralocorticoids.\" [GOC:mah, PMID:11027914]",
+        "effective_domain_size": 11154,
+        "goshv": 16962,
+        "intersection_size": 6,
+        "intersections": [
+          [],
+          [],
+          [],
+          [],
+          [],
+          [
+            "IEA"
+          ],
+          [],
+          [
+            "IEA"
+          ],
+          [],
+          [
+            "IEA"
+          ],
+          [],
+          [
+            "ISS"
+          ],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [
+            "IEA"
+          ],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [
+            "IEA"
+          ],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          []
+        ],
+        "name": "response to corticosteroid",
+        "native": "GO:0031960",
+        "p_value": 0.03042563263649328,
+        "parents": [
+          "GO:0048545"
+        ],
+        "precision": 0.075,
+        "query": "query_1",
+        "query_size": 80,
+        "recall": 0.05309734513274336,
+        "significant": true,
+        "source": "GO:BP",
+        "term_size": 113,
+        "source_order": 6839,
+        "group_id": 8
+      },
+      {
+        "description": "\"Any process that results in a change in state or activity of a cell (in terms of movement, secretion, enzyme production, gene expression, etc.) as a result of a hormone stimulus.\" [GOC:mah]",
+        "effective_domain_size": 11154,
+        "goshv": 17478,
+        "intersection_size": 13,
+        "intersections": [
+          [],
+          [],
+          [],
+          [
+            "ISS",
+            "IEA"
+          ],
+          [],
+          [
+            "IEA"
+          ],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [
+            "ISS"
+          ],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [
+            "IEA"
+          ],
+          [],
+          [],
+          [],
+          [],
+          [
+            "IBA"
+          ],
+          [],
+          [
+            "ISS",
+            "IBA",
+            "IEA"
+          ],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [
+            "IEA"
+          ],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [
+            "IMP"
+          ],
+          [
+            "ISS",
+            "IBA",
+            "IEA"
+          ],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [
+            "IDA"
+          ],
+          [
+            "ISS",
+            "IBA",
+            "IEA"
+          ],
+          [
+            "ISS",
+            "IEA"
+          ],
+          [],
+          [],
+          [
+            "IEA"
+          ],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          []
+        ],
+        "name": "cellular response to hormone stimulus",
+        "native": "GO:0032870",
+        "p_value": 0.031086050145827927,
+        "parents": [
+          "GO:0009725",
+          "GO:0070887",
+          "GO:0071495"
+        ],
+        "precision": 0.1625,
+        "query": "query_1",
+        "query_size": 80,
+        "recall": 0.023008849557522124,
+        "significant": true,
+        "source": "GO:BP",
+        "term_size": 565,
+        "source_order": 7355,
+        "group_id": 8
+      },
+      {
+        "description": "\"Any process that results in a change in state or activity of a cell or an organism (in terms of movement, secretion, enzyme production, gene expression, etc.) as a result of a lipid stimulus.\" [GOC:sl]",
+        "effective_domain_size": 11154,
+        "goshv": 17934,
+        "intersection_size": 15,
+        "intersections": [
+          [],
+          [],
+          [
+            "TAS"
+          ],
+          [
+            "ISS",
+            "IEA"
+          ],
+          [
+            "IEA"
+          ],
+          [
+            "IEA"
+          ],
+          [],
+          [
+            "IEA"
+          ],
+          [],
+          [
+            "IEA"
+          ],
+          [],
+          [
+            "ISS"
+          ],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [
+            "IDA"
+          ],
+          [],
+          [],
+          [
+            "IEA"
+          ],
+          [],
+          [],
+          [],
+          [],
+          [
+            "IBA"
+          ],
+          [],
+          [
+            "ISS",
+            "IEA"
+          ],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [
+            "IEA"
+          ],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [
+            "IEA"
+          ],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [
+            "IEA"
+          ],
+          [
+            "ISS",
+            "IEA"
+          ],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          []
+        ],
+        "name": "response to lipid",
+        "native": "GO:0033993",
+        "p_value": 0.03228174306495509,
+        "parents": [
+          "GO:0042221"
+        ],
+        "precision": 0.1875,
+        "query": "query_1",
+        "query_size": 80,
+        "recall": 0.02040816326530612,
+        "significant": true,
+        "source": "GO:BP",
+        "term_size": 735,
+        "source_order": 7811,
+        "group_id": 8
+      },
+      {
+        "description": "\"Catalysis of the breakage of a carbon-oxygen bond.\" [EC:4.2.-.-]",
+        "effective_domain_size": 11154,
+        "goshv": 2929,
+        "intersection_size": 4,
+        "intersections": [
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [
+            "IDA",
+            "IBA",
+            "TAS",
+            "IEA"
+          ],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [
+            "IBA",
+            "TAS",
+            "IEA"
+          ],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [
+            "IDA",
+            "IMP",
+            "IBA",
+            "IEA"
+          ],
+          [],
+          [],
+          [],
+          [],
+          [
+            "ISS",
+            "IBA"
+          ],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          []
+        ],
+        "name": "carbon-oxygen lyase activity",
+        "native": "GO:0016835",
+        "p_value": 0.039955205485708634,
+        "parents": [
+          "GO:0016829"
+        ],
+        "precision": 0.05,
+        "query": "query_1",
+        "query_size": 80,
+        "recall": 0.06557377049180328,
+        "significant": true,
+        "source": "GO:MF",
+        "term_size": 61,
+        "source_order": 2929,
+        "group_id": 1
+      }
+    ],
+    "meta": {
+      "query_metadata": {
+        "queries": {
+          "query_1": [
+            "482",
+            "10516",
+            "2878",
+            "6943",
+            "9590",
+            "2354",
+            "2788",
+            "5730",
+            "788",
+            "210",
+            "23673",
+            "11170",
+            "81558",
+            "3777",
+            "55422",
+            "388",
+            "9397",
+            "5577",
+            "1028",
+            "7123",
+            "1285",
+            "283537",
+            "26273",
+            "9867",
+            "9104",
+            "842",
+            "11080",
+            "3082",
+            "8425",
+            "26112",
+            "4306",
+            "3030",
+            "3164",
+            "84263",
+            "8504",
+            "25901",
+            "10003",
+            "10370",
+            "5997",
+            "8434",
+            "400961",
+            "2353",
+            "219654",
+            "6643",
+            "7078",
+            "361",
+            "3590",
+            "4675",
+            "4783",
+            "4616",
+            "23051",
+            "11034",
+            "23345",
+            "48",
+            "10810",
+            "316",
+            "2719",
+            "64344",
+            "79746",
+            "4929",
+            "10628",
+            "64112",
+            "51439",
+            "5906",
+            "80221",
+            "154661",
+            "57030",
+            "4303",
+            "8013",
+            "57658",
+            "57406",
+            "5101",
+            "1979",
+            "64400",
+            "63876",
+            "55616",
+            "55852",
+            "66008",
+            "10235",
+            "1827"
+          ]
+        },
+        "organism": "hsapiens",
+        "all_results": false,
+        "ordered": false,
+        "no_iea": false,
+        "sources": [
+          "GO:MF",
+          "GO:CC",
+          "GO:BP",
+          "KEGG",
+          "REAC"
+        ],
+        "combined": false,
+        "aresolve": {},
+        "numeric_ns": "ENTREZGENE_ACC",
+        "domain_scope": "custom",
+        "measure_underrepresentation": false,
+        "significance_threshold_method": "fdr",
+        "user_threshold": 0.05,
+        "no_evidences": false,
+        "highlight": null
+      },
+      "result_metadata": {
+        "GO:MF": {
+          "domain_size": 20208,
+          "number_of_terms": 10123,
+          "threshold": null
+        },
+        "GO:CC": {
+          "domain_size": 22155,
+          "number_of_terms": 4069,
+          "threshold": null
+        },
+        "GO:BP": {
+          "domain_size": 20972,
+          "number_of_terms": 24546,
+          "threshold": null
+        },
+        "KEGG": {
+          "domain_size": 8716,
+          "number_of_terms": 586,
+          "threshold": null
+        },
+        "REAC": {
+          "domain_size": 11056,
+          "number_of_terms": 2849,
+          "threshold": null
+        }
+      },
+      "genes_metadata": {
+        "failed": [],
+        "ambiguous": {},
+        "duplicates": [],
+        "query": {
+          "query_1": {
+            "mapping": {
+              "482": [
+                "ENSG00000129244"
+              ],
+              "10516": [
+                "ENSG00000140092"
+              ],
+              "2878": [
+                "ENSG00000211445"
+              ],
+              "6943": [
+                "ENSG00000118526"
+              ],
+              "9590": [
+                "ENSG00000131016"
+              ],
+              "2354": [
+                "ENSG00000125740"
+              ],
+              "2788": [
+                "ENSG00000176533"
+              ],
+              "5730": [
+                "ENSG00000107317"
+              ],
+              "788": [
+                "ENSG00000178537"
+              ],
+              "210": [
+                "ENSG00000148218"
+              ],
+              "23673": [
+                "ENSG00000117758"
+              ],
+              "11170": [
+                "ENSG00000168309"
+              ],
+              "81558": [
+                "ENSG00000121104"
+              ],
+              "3777": [
+                "ENSG00000171303"
+              ],
+              "55422": [
+                "ENSG00000130844"
+              ],
+              "388": [
+                "ENSG00000143878"
+              ],
+              "9397": [
+                "ENSG00000152465"
+              ],
+              "5577": [
+                "ENSG00000005249"
+              ],
+              "1028": [
+                "ENSG00000129757"
+              ],
+              "7123": [
+                "ENSG00000163815"
+              ],
+              "1285": [
+                "ENSG00000169031"
+              ],
+              "283537": [
+                "ENSG00000139508"
+              ],
+              "26273": [
+                "ENSG00000110429"
+              ],
+              "9867": [
+                "ENSG00000198961"
+              ],
+              "9104": [
+                "ENSG00000130988"
+              ],
+              "842": [
+                "ENSG00000132906"
+              ],
+              "11080": [
+                "ENSG00000162616"
+              ],
+              "3082": [
+                "ENSG00000019991"
+              ],
+              "8425": [
+                "ENSG00000090006"
+              ],
+              "26112": [
+                "ENSG00000198624"
+              ],
+              "4306": [
+                "ENSG00000151623"
+              ],
+              "3030": [
+                "ENSG00000084754"
+              ],
+              "3164": [
+                "ENSG00000123358"
+              ],
+              "84263": [
+                "ENSG00000119471"
+              ],
+              "8504": [
+                "ENSG00000034693"
+              ],
+              "25901": [
+                "ENSG00000024862"
+              ],
+              "10003": [
+                "ENSG00000077616"
+              ],
+              "10370": [
+                "ENSG00000164442"
+              ],
+              "5997": [
+                "ENSG00000116741"
+              ],
+              "8434": [
+                "ENSG00000122707"
+              ],
+              "400961": [
+                "ENSG00000124374"
+              ],
+              "2353": [
+                "ENSG00000170345"
+              ],
+              "219654": [
+                "ENSG00000165424"
+              ],
+              "6643": [
+                "ENSG00000205302"
+              ],
+              "7078": [
+                "ENSG00000100234"
+              ],
+              "361": [
+                "ENSG00000171885"
+              ],
+              "3590": [
+                "ENSG00000137070"
+              ],
+              "4675": [
+                "ENSG00000186310"
+              ],
+              "4783": [
+                "ENSG00000165030"
+              ],
+              "4616": [
+                "ENSG00000099860"
+              ],
+              "23051": [
+                "ENSG00000174306"
+              ],
+              "11034": [
+                "ENSG00000125868"
+              ],
+              "23345": [
+                "ENSG00000131018"
+              ],
+              "48": [
+                "ENSG00000122729"
+              ],
+              "10810": [
+                "ENSG00000132970"
+              ],
+              "316": [
+                "ENSG00000138356"
+              ],
+              "2719": [
+                "ENSG00000147257"
+              ],
+              "64344": [
+                "ENSG00000124440"
+              ],
+              "79746": [
+                "ENSG00000134463"
+              ],
+              "4929": [
+                "ENSG00000153234"
+              ],
+              "10628": [
+                "ENSG00000265972"
+              ],
+              "64112": [
+                "ENSG00000165943"
+              ],
+              "51439": [
+                "ENSG00000137414"
+              ],
+              "5906": [
+                "ENSG00000116473"
+              ],
+              "80221": [
+                "ENSG00000167107"
+              ],
+              "154661": [
+                "ENSG00000105784"
+              ],
+              "57030": [
+                "ENSG00000104888"
+              ],
+              "4303": [
+                "ENSG00000184481"
+              ],
+              "8013": [
+                "ENSG00000119508"
+              ],
+              "57658": [
+                "ENSG00000012822"
+              ],
+              "57406": [
+                "ENSG00000163686"
+              ],
+              "5101": [
+                "ENSG00000184226"
+              ],
+              "1979": [
+                "ENSG00000148730"
+              ],
+              "64400": [
+                "ENSG00000166971"
+              ],
+              "63876": [
+                "ENSG00000165495"
+              ],
+              "55616": [
+                "ENSG00000088280"
+              ],
+              "55852": [
+                "ENSG00000136478"
+              ],
+              "66008": [
+                "ENSG00000115993"
+              ],
+              "10235": [
+                "ENSG00000068831"
+              ],
+              "1827": [
+                "ENSG00000159200"
+              ]
+            },
+            "ensgs": [
+              "ENSG00000129244",
+              "ENSG00000140092",
+              "ENSG00000211445",
+              "ENSG00000118526",
+              "ENSG00000131016",
+              "ENSG00000125740",
+              "ENSG00000176533",
+              "ENSG00000107317",
+              "ENSG00000178537",
+              "ENSG00000148218",
+              "ENSG00000117758",
+              "ENSG00000168309",
+              "ENSG00000121104",
+              "ENSG00000171303",
+              "ENSG00000130844",
+              "ENSG00000143878",
+              "ENSG00000152465",
+              "ENSG00000005249",
+              "ENSG00000129757",
+              "ENSG00000163815",
+              "ENSG00000169031",
+              "ENSG00000139508",
+              "ENSG00000110429",
+              "ENSG00000198961",
+              "ENSG00000130988",
+              "ENSG00000132906",
+              "ENSG00000162616",
+              "ENSG00000019991",
+              "ENSG00000090006",
+              "ENSG00000198624",
+              "ENSG00000151623",
+              "ENSG00000084754",
+              "ENSG00000123358",
+              "ENSG00000119471",
+              "ENSG00000034693",
+              "ENSG00000024862",
+              "ENSG00000077616",
+              "ENSG00000164442",
+              "ENSG00000116741",
+              "ENSG00000122707",
+              "ENSG00000124374",
+              "ENSG00000170345",
+              "ENSG00000165424",
+              "ENSG00000205302",
+              "ENSG00000100234",
+              "ENSG00000171885",
+              "ENSG00000137070",
+              "ENSG00000186310",
+              "ENSG00000165030",
+              "ENSG00000099860",
+              "ENSG00000174306",
+              "ENSG00000125868",
+              "ENSG00000131018",
+              "ENSG00000122729",
+              "ENSG00000132970",
+              "ENSG00000138356",
+              "ENSG00000147257",
+              "ENSG00000124440",
+              "ENSG00000134463",
+              "ENSG00000153234",
+              "ENSG00000265972",
+              "ENSG00000165943",
+              "ENSG00000137414",
+              "ENSG00000116473",
+              "ENSG00000167107",
+              "ENSG00000105784",
+              "ENSG00000104888",
+              "ENSG00000184481",
+              "ENSG00000119508",
+              "ENSG00000012822",
+              "ENSG00000163686",
+              "ENSG00000184226",
+              "ENSG00000148730",
+              "ENSG00000166971",
+              "ENSG00000165495",
+              "ENSG00000088280",
+              "ENSG00000136478",
+              "ENSG00000115993",
+              "ENSG00000068831",
+              "ENSG00000159200"
+            ]
+          }
+        }
+      },
+      "timestamp": "2026-07-18T12:14:12.261121+00:00",
+      "version": "e114_eg62_p19_27110d83"
+    }
+  }
+}

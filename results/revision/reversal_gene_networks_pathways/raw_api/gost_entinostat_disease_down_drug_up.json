@@ -1,0 +1,4399 @@
+{
+  "url": "https://biit.cs.ut.ee/gprofiler/api/gost/profile/",
+  "request_sha256": "482dbc1f7643b17deb48040fadf1dfa0bb483c4b4d33c3c48f68798bb98448c7",
+  "response_headers": {
+    "date": "Sat, 18 Jul 2026 12:14:03 GMT",
+    "content-type": "application/json",
+    "content-length": "35103",
+    "vary": "Accept-Encoding",
+    "access-control-allow-origin": "*",
+    "x-frame-options": "SAMEORIGIN",
+    "set-cookie": "X-Session-ID=27369590-76ae-4cc3-a0a7-0a20423bd692; Path=/; HttpOnly; Secure; SameSite=Strict; Secure; HttpOnly",
+    "strict-transport-security": "max-age=31536000; preload",
+    "x-content-type-options": "nosniff",
+    "x-xss-protection": "1; mode=block",
+    "x-rate-limit-limit": "1000",
+    "x-rate-limit-remaining": "992",
+    "content-security-policy": "report-uri https://csp.hpc.ut.ee/log; form-action 'self'; frame-ancestors 'self';",
+    "referrer-policy": "strict-origin-when-cross-origin",
+    "connection": "close"
+  },
+  "response": {
+    "result": [
+      {
+        "description": "\"Assembly of the extracellular matrix fibers that enables the matrix to recoil after transient stretching.\" [GOC:jid, PMID:10841810, PMID:12615674]",
+        "effective_domain_size": 11154,
+        "goshv": 21885,
+        "intersection_size": 4,
+        "intersections": [
+          [],
+          [],
+          [],
+          [],
+          [
+            "IMP",
+            "ISS",
+            "IBA"
+          ],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [
+            "ISS"
+          ],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [
+            "IMP"
+          ],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [
+            "IMP"
+          ],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          []
+        ],
+        "name": "elastic fiber assembly",
+        "native": "GO:0048251",
+        "p_value": 0.001825588959652319,
+        "parents": [
+          "GO:0085029",
+          "GO:0097435"
+        ],
+        "precision": 0.04938271604938271,
+        "query": "query_1",
+        "query_size": 81,
+        "recall": 0.36363636363636365,
+        "significant": true,
+        "source": "GO:BP",
+        "term_size": 11,
+        "source_order": 11762,
+        "group_id": 6
+      },
+      {
+        "description": "\"A contractile actin filament bundle that consists of short actin filaments with alternating polarity, cross-linked by alpha-actinin and possibly other actin bundling proteins, and with myosin present in a periodic distribution along the fiber.\" [PMID:16651381]",
+        "effective_domain_size": 11154,
+        "goshv": 34820,
+        "intersection_size": 5,
+        "intersections": [
+          [],
+          [],
+          [
+            "IDA"
+          ],
+          [],
+          [],
+          [
+            "IDA",
+            "IBA",
+            "IEA"
+          ],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [
+            "IDA",
+            "IEA"
+          ],
+          [],
+          [
+            "IDA",
+            "IBA",
+            "IEA"
+          ],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [
+            "IBA"
+          ],
+          [],
+          [],
+          [],
+          [],
+          []
+        ],
+        "name": "stress fiber",
+        "native": "GO:0001725",
+        "p_value": 0.007744240755365739,
+        "parents": [
+          "GO:0042641",
+          "GO:0097517"
+        ],
+        "precision": 0.06172839506172839,
+        "query": "query_1",
+        "query_size": 81,
+        "recall": 0.07575757575757576,
+        "significant": true,
+        "source": "GO:CC",
+        "term_size": 66,
+        "source_order": 151,
+        "group_id": 2
+      },
+      {
+        "description": "\"An actin filament bundle in which the filaments are loosely packed (approximately 30-60 nm apart) and arranged with opposing polarities; the loose packing allows myosin (usually myosin-II) to enter the bundle.\" [GOC:cjm, GOC:mah, ISBN:0815316194]",
+        "effective_domain_size": 11154,
+        "goshv": 37637,
+        "intersection_size": 5,
+        "intersections": [
+          [],
+          [],
+          [
+            "IDA"
+          ],
+          [],
+          [],
+          [
+            "IDA",
+            "IBA",
+            "IEA"
+          ],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [
+            "IDA",
+            "IEA"
+          ],
+          [],
+          [
+            "IDA",
+            "IBA",
+            "IEA"
+          ],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [
+            "IBA"
+          ],
+          [],
+          [],
+          [],
+          [],
+          []
+        ],
+        "name": "contractile actin filament bundle",
+        "native": "GO:0097517",
+        "p_value": 0.007744240755365739,
+        "parents": [
+          "GO:0032432"
+        ],
+        "precision": 0.06172839506172839,
+        "query": "query_1",
+        "query_size": 81,
+        "recall": 0.07575757575757576,
+        "significant": true,
+        "source": "GO:CC",
+        "term_size": 66,
+        "source_order": 2968,
+        "group_id": 2
+      },
+      {
+        "description": "\"A cell junction that mechanically attaches a cell (and its cytoskeleton) to neighboring cells or to the extracellular matrix.\" [ISBN:0815332181]",
+        "effective_domain_size": 11154,
+        "goshv": 37043,
+        "intersection_size": 16,
+        "intersections": [
+          [],
+          [
+            "HDA"
+          ],
+          [
+            "IDA",
+            "IEA"
+          ],
+          [],
+          [],
+          [
+            "IDA",
+            "IEA"
+          ],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [
+            "HDA"
+          ],
+          [
+            "IDA",
+            "IBA",
+            "IEA"
+          ],
+          [],
+          [
+            "ISS"
+          ],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [
+            "IDA",
+            "HDA",
+            "IBA",
+            "IEA"
+          ],
+          [],
+          [],
+          [
+            "IDA",
+            "HDA",
+            "IEA"
+          ],
+          [],
+          [],
+          [],
+          [
+            "HDA",
+            "IEA"
+          ],
+          [],
+          [
+            "IBA",
+            "IEA"
+          ],
+          [
+            "IEA"
+          ],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [
+            "IDA"
+          ],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [
+            "HDA"
+          ],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [
+            "IDA",
+            "IBA",
+            "IEA"
+          ],
+          [],
+          [
+            "IEA"
+          ],
+          [],
+          [
+            "IEA"
+          ],
+          [],
+          [],
+          []
+        ],
+        "name": "anchoring junction",
+        "native": "GO:0070161",
+        "p_value": 0.007744240755365739,
+        "parents": [
+          "GO:0030054"
+        ],
+        "precision": 0.19753086419753085,
+        "query": "query_1",
+        "query_size": 81,
+        "recall": 0.0221606648199446,
+        "significant": true,
+        "source": "GO:CC",
+        "term_size": 722,
+        "source_order": 2374,
+        "group_id": 3
+      },
+      {
+        "description": "\"The broad region around and including the plasma membrane of a cell, encompassing the cell cortex (inside the cell), the plasma membrane, and any external encapsulating structures.\" [GOC:pdt]",
+        "effective_domain_size": 11154,
+        "goshv": 37393,
+        "intersection_size": 45,
+        "intersections": [
+          [],
+          [
+            "IDA",
+            "IEA"
+          ],
+          [
+            "IDA",
+            "IBA",
+            "TAS",
+            "IEA"
+          ],
+          [
+            "TAS",
+            "IEA"
+          ],
+          [
+            "ISS",
+            "TAS",
+            "IEA"
+          ],
+          [
+            "IDA",
+            "IEA"
+          ],
+          [
+            "IBA",
+            "IEA"
+          ],
+          [
+            "IDA"
+          ],
+          [
+            "IEA"
+          ],
+          [],
+          [],
+          [
+            "ISS"
+          ],
+          [
+            "IDA",
+            "ISS",
+            "IEA"
+          ],
+          [],
+          [
+            "IDA",
+            "IEA"
+          ],
+          [
+            "IC",
+            "IEA"
+          ],
+          [
+            "IDA"
+          ],
+          [
+            "IDA",
+            "IBA",
+            "TAS",
+            "IEA"
+          ],
+          [
+            "IDA",
+            "IBA",
+            "IEA"
+          ],
+          [
+            "ISS",
+            "IBA",
+            "IEA"
+          ],
+          [
+            "ISS",
+            "TAS",
+            "NAS",
+            "IEA"
+          ],
+          [],
+          [
+            "IDA",
+            "IPI",
+            "ISS",
+            "IBA",
+            "TAS",
+            "NAS",
+            "IEA"
+          ],
+          [],
+          [
+            "ISO",
+            "NAS",
+            "IEA"
+          ],
+          [],
+          [
+            "IMP",
+            "TAS",
+            "IEA"
+          ],
+          [
+            "IEA"
+          ],
+          [
+            "IBA",
+            "TAS",
+            "IEA"
+          ],
+          [],
+          [
+            "IDA",
+            "IBA"
+          ],
+          [
+            "IDA",
+            "IBA",
+            "TAS",
+            "IEA"
+          ],
+          [],
+          [
+            "IDA"
+          ],
+          [
+            "IDA",
+            "IBA",
+            "TAS",
+            "IEA"
+          ],
+          [
+            "IBA"
+          ],
+          [
+            "IDA",
+            "IBA",
+            "IEA"
+          ],
+          [],
+          [],
+          [
+            "IDA",
+            "IBA",
+            "TAS",
+            "IEA"
+          ],
+          [],
+          [
+            "IDA",
+            "TAS",
+            "IEA"
+          ],
+          [],
+          [],
+          [
+            "IDA",
+            "ISS",
+            "TAS",
+            "IEA"
+          ],
+          [
+            "IDA",
+            "IBA",
+            "TAS",
+            "IEA"
+          ],
+          [
+            "TAS"
+          ],
+          [
+            "IEA"
+          ],
+          [],
+          [],
+          [],
+          [],
+          [
+            "IDA",
+            "IBA",
+            "IEA"
+          ],
+          [],
+          [],
+          [
+            "IDA"
+          ],
+          [],
+          [],
+          [
+            "IDA"
+          ],
+          [],
+          [],
+          [
+            "IEA"
+          ],
+          [],
+          [],
+          [
+            "IDA",
+            "ISS",
+            "TAS",
+            "IEA"
+          ],
+          [],
+          [],
+          [
+            "IDA",
+            "ISS",
+            "IBA",
+            "TAS",
+            "IEA"
+          ],
+          [],
+          [],
+          [],
+          [],
+          [
+            "IDA",
+            "IBA",
+            "TAS",
+            "IEA"
+          ],
+          [],
+          [
+            "IDA",
+            "IBA",
+            "TAS",
+            "IEA"
+          ],
+          [
+            "IDA"
+          ],
+          [],
+          [
+            "TAS",
+            "IEA"
+          ],
+          [],
+          [],
+          [
+            "IDA",
+            "IC",
+            "IEA"
+          ]
+        ],
+        "name": "cell periphery",
+        "native": "GO:0071944",
+        "p_value": 0.007744240755365739,
+        "parents": [
+          "GO:0110165"
+        ],
+        "precision": 0.5555555555555556,
+        "query": "query_1",
+        "query_size": 81,
+        "recall": 0.011544381734222679,
+        "significant": true,
+        "source": "GO:CC",
+        "term_size": 3898,
+        "source_order": 2724,
+        "group_id": 4
+      },
+      {
+        "description": "\"Any complex of actin, myosin, and accessory proteins.\" [GOC:go_curators]",
+        "effective_domain_size": 11154,
+        "goshv": 36448,
+        "intersection_size": 5,
+        "intersections": [
+          [],
+          [],
+          [
+            "IDA"
+          ],
+          [],
+          [],
+          [
+            "IDA",
+            "IBA",
+            "IEA"
+          ],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [
+            "IDA",
+            "IEA"
+          ],
+          [],
+          [
+            "IDA",
+            "IBA",
+            "IEA"
+          ],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [
+            "IBA"
+          ],
+          [],
+          [],
+          [],
+          [],
+          []
+        ],
+        "name": "actomyosin",
+        "native": "GO:0042641",
+        "p_value": 0.00781284815112422,
+        "parents": [
+          "GO:0015629",
+          "GO:0110165"
+        ],
+        "precision": 0.06172839506172839,
+        "query": "query_1",
+        "query_size": 81,
+        "recall": 0.06944444444444445,
+        "significant": true,
+        "source": "GO:CC",
+        "term_size": 72,
+        "source_order": 1779,
+        "group_id": 2
+      },
+      {
+        "description": "\"An assembly of actin filaments that are on the same axis but may be oriented with the same or opposite polarities and may be packed with different levels of tightness.\" [GOC:mah]",
+        "effective_domain_size": 11154,
+        "goshv": 35939,
+        "intersection_size": 5,
+        "intersections": [
+          [],
+          [],
+          [
+            "IDA"
+          ],
+          [],
+          [],
+          [
+            "IDA",
+            "IBA",
+            "IEA"
+          ],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [
+            "IDA",
+            "IEA"
+          ],
+          [],
+          [
+            "IDA",
+            "IBA",
+            "IEA"
+          ],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [
+            "IBA"
+          ],
+          [],
+          [],
+          [],
+          [],
+          []
+        ],
+        "name": "actin filament bundle",
+        "native": "GO:0032432",
+        "p_value": 0.00781284815112422,
+        "parents": [
+          "GO:0015629",
+          "GO:0110165"
+        ],
+        "precision": 0.06172839506172839,
+        "query": "query_1",
+        "query_size": 81,
+        "recall": 0.06944444444444445,
+        "significant": true,
+        "source": "GO:CC",
+        "term_size": 72,
+        "source_order": 1270,
+        "group_id": 2
+      },
+      {
+        "description": "Tyrosine metabolism",
+        "effective_domain_size": 11154,
+        "goshv": 38780,
+        "intersection_size": 4,
+        "intersections": [
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [
+            "KEGG"
+          ],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [
+            "KEGG"
+          ],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [
+            "KEGG"
+          ],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [
+            "KEGG"
+          ],
+          [],
+          [],
+          [],
+          [],
+          [],
+          []
+        ],
+        "name": "Tyrosine metabolism",
+        "native": "KEGG:00350",
+        "p_value": 0.008604277320985393,
+        "parents": [
+          "KEGG:00000"
+        ],
+        "precision": 0.04938271604938271,
+        "query": "query_1",
+        "query_size": 81,
+        "recall": 0.12903225806451613,
+        "significant": true,
+        "source": "KEGG",
+        "term_size": 31,
+        "source_order": 42,
+        "group_id": 10
+      },
+      {
+        "description": "\"A cell-substrate junction that anchors the cell to the extracellular matrix and that forms a point of termination of actin filaments. In insects focal adhesion has also been referred to as hemi-adherens junction (HAJ).\" [GOC:aruk, GOC:bc, ISBN:0124325653, ISBN:0815316208, PMID:10419689, PMID:12191915, PMID:15246682, PMID:1643657, PMID:16805308, PMID:19197329, PMID:23033047, PMID:26923917, PMID:28796323, PMID:8314002]",
+        "effective_domain_size": 11154,
+        "goshv": 35107,
+        "intersection_size": 10,
+        "intersections": [
+          [],
+          [
+            "HDA"
+          ],
+          [
+            "IEA"
+          ],
+          [],
+          [],
+          [
+            "IDA",
+            "IEA"
+          ],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [
+            "HDA"
+          ],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [
+            "IDA",
+            "HDA",
+            "IBA",
+            "IEA"
+          ],
+          [],
+          [],
+          [
+            "IDA",
+            "HDA",
+            "IEA"
+          ],
+          [],
+          [],
+          [],
+          [
+            "HDA"
+          ],
+          [],
+          [],
+          [
+            "IEA"
+          ],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [
+            "HDA"
+          ],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [
+            "IDA",
+            "IBA",
+            "IEA"
+          ],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          []
+        ],
+        "name": "focal adhesion",
+        "native": "GO:0005925",
+        "p_value": 0.01293013785225689,
+        "parents": [
+          "GO:0030055"
+        ],
+        "precision": 0.12345679012345678,
+        "query": "query_1",
+        "query_size": 81,
+        "recall": 0.02702702702702703,
+        "significant": true,
+        "source": "GO:CC",
+        "term_size": 370,
+        "source_order": 438,
+        "group_id": 3
+      },
+      {
+        "description": "\"A cell junction that forms a connection between a cell and the extracellular matrix.\" [GOC:aruk, GOC:bc, GOC:hb, GOC:mah, PMID:10419689, PMID:1643657, PMID:16805308, PMID:26923917, PMID:8314002]",
+        "effective_domain_size": 11154,
+        "goshv": 35514,
+        "intersection_size": 10,
+        "intersections": [
+          [],
+          [
+            "HDA"
+          ],
+          [
+            "IEA"
+          ],
+          [],
+          [],
+          [
+            "IDA",
+            "IEA"
+          ],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [
+            "HDA"
+          ],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [
+            "IDA",
+            "HDA",
+            "IBA",
+            "IEA"
+          ],
+          [],
+          [],
+          [
+            "IDA",
+            "HDA",
+            "IEA"
+          ],
+          [],
+          [],
+          [],
+          [
+            "HDA"
+          ],
+          [],
+          [],
+          [
+            "IEA"
+          ],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [
+            "HDA"
+          ],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [
+            "IDA",
+            "IBA",
+            "IEA"
+          ],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          []
+        ],
+        "name": "cell-substrate junction",
+        "native": "GO:0030055",
+        "p_value": 0.013127970306982168,
+        "parents": [
+          "GO:0070161"
+        ],
+        "precision": 0.12345679012345678,
+        "query": "query_1",
+        "query_size": 81,
+        "recall": 0.026525198938992044,
+        "significant": true,
+        "source": "GO:CC",
+        "term_size": 377,
+        "source_order": 845,
+        "group_id": 3
+      },
+      {
+        "description": "Phase I - Functionalization of compounds",
+        "effective_domain_size": 11154,
+        "goshv": 41130,
+        "intersection_size": 6,
+        "intersections": [
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [
+            "REAC"
+          ],
+          [],
+          [
+            "REAC"
+          ],
+          [],
+          [
+            "REAC"
+          ],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [
+            "REAC"
+          ],
+          [
+            "REAC"
+          ],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [
+            "REAC"
+          ],
+          [],
+          [],
+          [],
+          [],
+          [],
+          []
+        ],
+        "name": "Phase I - Functionalization of compounds",
+        "native": "REAC:R-HSA-211945",
+        "p_value": 0.013147506711965126,
+        "parents": [
+          "REAC:R-HSA-211859"
+        ],
+        "precision": 0.07407407407407407,
+        "query": "query_1",
+        "query_size": 81,
+        "recall": 0.06896551724137931,
+        "significant": true,
+        "source": "REAC",
+        "term_size": 87,
+        "source_order": 1806,
+        "group_id": 11
+      },
+      {
+        "description": "\"The non-collagenous component of interstitial extracellular matrices, including glycoprotein like fibronectin and elastin.\" [PMID:21123617, PMID:25701227, PMID:33605520, PMID:39223427]",
+        "effective_domain_size": 11154,
+        "goshv": 38139,
+        "intersection_size": 3,
+        "intersections": [
+          [],
+          [],
+          [],
+          [],
+          [
+            "ISS"
+          ],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [
+            "ISS",
+            "IEA"
+          ],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [
+            "ISO"
+          ],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          []
+        ],
+        "name": "non-collagenous component of interstitial matrix",
+        "native": "GO:0140149",
+        "p_value": 0.0211391053135771,
+        "parents": [
+          "GO:0030312",
+          "GO:0140151"
+        ],
+        "precision": 0.037037037037037035,
+        "query": "query_1",
+        "query_size": 81,
+        "recall": 0.12,
+        "significant": true,
+        "source": "GO:CC",
+        "term_size": 25,
+        "source_order": 3470,
+        "group_id": 5
+      },
+      {
+        "description": "\"A cellular component that forms a specialized region of connection between two or more cells, or between a cell and the extracellular matrix, or between two membrane-bound components of a cell, such as flagella.\" [GOC:aruk, GOC:bc, GOC:mah, ISBN:0198506732, PMID:26820516, PMID:28096264]",
+        "effective_domain_size": 11154,
+        "goshv": 35513,
+        "intersection_size": 25,
+        "intersections": [
+          [],
+          [
+            "HDA",
+            "IEA"
+          ],
+          [
+            "IDA",
+            "IEA"
+          ],
+          [],
+          [],
+          [
+            "IDA",
+            "ISS",
+            "IBA",
+            "IEA"
+          ],
+          [],
+          [],
+          [
+            "IEA"
+          ],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [
+            "ISS",
+            "IEA"
+          ],
+          [],
+          [],
+          [
+            "HDA",
+            "IEA"
+          ],
+          [
+            "IDA",
+            "IBA",
+            "IEA"
+          ],
+          [
+            "IEA"
+          ],
+          [
+            "ISS"
+          ],
+          [
+            "IEA"
+          ],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [
+            "IDA",
+            "HDA",
+            "IBA",
+            "IEA"
+          ],
+          [],
+          [],
+          [
+            "IDA",
+            "HDA",
+            "ISS",
+            "IEA"
+          ],
+          [],
+          [],
+          [],
+          [
+            "HDA",
+            "IEA"
+          ],
+          [
+            "IBA"
+          ],
+          [
+            "IBA",
+            "IEA"
+          ],
+          [
+            "IEA"
+          ],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [
+            "IDA"
+          ],
+          [],
+          [
+            "IEA"
+          ],
+          [],
+          [],
+          [],
+          [],
+          [
+            "IEA"
+          ],
+          [],
+          [],
+          [
+            "HDA"
+          ],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [
+            "IEA"
+          ],
+          [],
+          [],
+          [],
+          [
+            "IEA"
+          ],
+          [
+            "IDA",
+            "IBA",
+            "IEA"
+          ],
+          [],
+          [
+            "IBA",
+            "TAS",
+            "IEA"
+          ],
+          [],
+          [
+            "IEA"
+          ],
+          [],
+          [],
+          []
+        ],
+        "name": "cell junction",
+        "native": "GO:0030054",
+        "p_value": 0.0211391053135771,
+        "parents": [
+          "GO:0110165"
+        ],
+        "precision": 0.30864197530864196,
+        "query": "query_1",
+        "query_size": 81,
+        "recall": 0.013789299503585218,
+        "significant": true,
+        "source": "GO:CC",
+        "term_size": 1813,
+        "source_order": 844,
+        "group_id": 3
+      },
+      {
+        "description": "\"The space external to the outermost structure of a cell. For cells without external protective or external encapsulating structures this refers to space outside of the plasma membrane. This term covers the host cell environment outside an intracellular parasite.\" [GOC:go_curators]",
+        "effective_domain_size": 11154,
+        "goshv": 34863,
+        "intersection_size": 34,
+        "intersections": [
+          [],
+          [],
+          [
+            "IEA"
+          ],
+          [
+            "IDA",
+            "HDA",
+            "TAS"
+          ],
+          [
+            "HDA",
+            "TAS",
+            "IEA"
+          ],
+          [],
+          [
+            "IEA"
+          ],
+          [],
+          [
+            "TAS",
+            "IEA"
+          ],
+          [],
+          [
+            "IDA",
+            "HDA",
+            "IBA",
+            "TAS",
+            "IEA"
+          ],
+          [],
+          [
+            "HDA",
+            "TAS",
+            "IEA"
+          ],
+          [
+            "HDA"
+          ],
+          [
+            "HDA"
+          ],
+          [
+            "HDA"
+          ],
+          [],
+          [
+            "HDA"
+          ],
+          [
+            "HDA"
+          ],
+          [
+            "HDA"
+          ],
+          [],
+          [
+            "HDA"
+          ],
+          [
+            "IEA"
+          ],
+          [
+            "IDA",
+            "HDA",
+            "IBA",
+            "IEA"
+          ],
+          [
+            "HDA",
+            "IBA",
+            "IEA"
+          ],
+          [],
+          [
+            "IDA",
+            "HDA",
+            "TAS",
+            "IEA"
+          ],
+          [],
+          [],
+          [
+            "IDA",
+            "TAS",
+            "IEA"
+          ],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [
+            "HDA"
+          ],
+          [],
+          [
+            "TAS"
+          ],
+          [
+            "HDA"
+          ],
+          [],
+          [],
+          [],
+          [
+            "IBA",
+            "TAS",
+            "NAS",
+            "IEA"
+          ],
+          [
+            "HDA"
+          ],
+          [],
+          [],
+          [],
+          [
+            "IDA",
+            "HDA",
+            "TAS"
+          ],
+          [],
+          [],
+          [
+            "IDA",
+            "IBA",
+            "TAS",
+            "IEA"
+          ],
+          [],
+          [],
+          [
+            "IDA",
+            "IBA",
+            "IEA"
+          ],
+          [
+            "ISS"
+          ],
+          [],
+          [],
+          [
+            "HDA",
+            "IBA",
+            "TAS",
+            "IEA"
+          ],
+          [],
+          [
+            "HDA"
+          ],
+          [],
+          [],
+          [],
+          [],
+          [
+            "IBA",
+            "TAS",
+            "IEA"
+          ],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [
+            "HDA",
+            "NAS",
+            "IEA"
+          ],
+          [
+            "HDA"
+          ],
+          [
+            "IEA"
+          ]
+        ],
+        "name": "extracellular region",
+        "native": "GO:0005576",
+        "p_value": 0.02559537262665927,
+        "parents": [
+          "GO:0110165"
+        ],
+        "precision": 0.41975308641975306,
+        "query": "query_1",
+        "query_size": 81,
+        "recall": 0.011838440111420613,
+        "significant": true,
+        "source": "GO:CC",
+        "term_size": 2872,
+        "source_order": 194,
+        "group_id": 1
+      },
+      {
+        "description": "\"The membrane surrounding a cell that separates the cell from its external environment. It consists of a phospholipid bilayer and associated proteins.\" [ISBN:0716731363]",
+        "effective_domain_size": 11154,
+        "goshv": 35078,
+        "intersection_size": 40,
+        "intersections": [
+          [],
+          [
+            "IDA"
+          ],
+          [
+            "IDA",
+            "IBA",
+            "TAS",
+            "IEA"
+          ],
+          [
+            "TAS",
+            "IEA"
+          ],
+          [],
+          [
+            "IDA",
+            "IEA"
+          ],
+          [
+            "IBA",
+            "IEA"
+          ],
+          [
+            "IDA"
+          ],
+          [
+            "IEA"
+          ],
+          [],
+          [],
+          [
+            "ISS"
+          ],
+          [],
+          [],
+          [
+            "IDA",
+            "IEA"
+          ],
+          [
+            "IC",
+            "IEA"
+          ],
+          [
+            "IDA"
+          ],
+          [
+            "IDA",
+            "IBA",
+            "TAS",
+            "IEA"
+          ],
+          [
+            "IDA",
+            "IBA",
+            "IEA"
+          ],
+          [
+            "ISS",
+            "IBA",
+            "IEA"
+          ],
+          [
+            "ISS",
+            "TAS",
+            "NAS",
+            "IEA"
+          ],
+          [],
+          [
+            "IDA",
+            "IPI",
+            "ISS",
+            "IBA",
+            "TAS",
+            "NAS",
+            "IEA"
+          ],
+          [],
+          [],
+          [],
+          [],
+          [
+            "IEA"
+          ],
+          [
+            "IBA",
+            "TAS",
+            "IEA"
+          ],
+          [],
+          [
+            "IDA",
+            "IBA"
+          ],
+          [
+            "IDA",
+            "IBA",
+            "TAS",
+            "IEA"
+          ],
+          [],
+          [
+            "IDA"
+          ],
+          [
+            "IDA",
+            "IBA",
+            "TAS",
+            "IEA"
+          ],
+          [
+            "IBA"
+          ],
+          [
+            "IDA",
+            "IBA",
+            "IEA"
+          ],
+          [],
+          [],
+          [
+            "IDA",
+            "IBA",
+            "TAS",
+            "IEA"
+          ],
+          [],
+          [
+            "IDA",
+            "TAS",
+            "IEA"
+          ],
+          [],
+          [],
+          [
+            "IDA",
+            "ISS",
+            "TAS",
+            "IEA"
+          ],
+          [
+            "IDA",
+            "IBA",
+            "TAS",
+            "IEA"
+          ],
+          [
+            "TAS"
+          ],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [
+            "IDA",
+            "IBA",
+            "IEA"
+          ],
+          [],
+          [],
+          [
+            "IDA"
+          ],
+          [],
+          [],
+          [
+            "IDA"
+          ],
+          [],
+          [],
+          [
+            "IEA"
+          ],
+          [],
+          [],
+          [
+            "IDA",
+            "ISS",
+            "TAS",
+            "IEA"
+          ],
+          [],
+          [],
+          [
+            "IDA",
+            "ISS",
+            "IBA",
+            "TAS",
+            "IEA"
+          ],
+          [],
+          [],
+          [],
+          [],
+          [
+            "IDA",
+            "IBA",
+            "TAS",
+            "IEA"
+          ],
+          [],
+          [
+            "IDA",
+            "IBA",
+            "TAS",
+            "IEA"
+          ],
+          [
+            "IDA"
+          ],
+          [],
+          [
+            "TAS",
+            "IEA"
+          ],
+          [],
+          [],
+          [
+            "IDA",
+            "IC",
+            "IEA"
+          ]
+        ],
+        "name": "plasma membrane",
+        "native": "GO:0005886",
+        "p_value": 0.02979436321449156,
+        "parents": [
+          "GO:0016020",
+          "GO:0071944"
+        ],
+        "precision": 0.49382716049382713,
+        "query": "query_1",
+        "query_size": 81,
+        "recall": 0.010967918837400604,
+        "significant": true,
+        "source": "GO:CC",
+        "term_size": 3647,
+        "source_order": 409,
+        "group_id": 4
+      },
+      {
+        "description": "\"Blood vessel formation when new vessels emerge from the proliferation of pre-existing blood vessels.\" [ISBN:0878932453]",
+        "effective_domain_size": 11154,
+        "goshv": 10441,
+        "intersection_size": 12,
+        "intersections": [
+          [],
+          [],
+          [
+            "IDA",
+            "IMP",
+            "ISS",
+            "IBA",
+            "IEA"
+          ],
+          [],
+          [],
+          [],
+          [
+            "IMP"
+          ],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [
+            "IEA"
+          ],
+          [],
+          [
+            "ISS",
+            "IEA"
+          ],
+          [],
+          [],
+          [],
+          [],
+          [
+            "ISS",
+            "IEA"
+          ],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [
+            "IDA"
+          ],
+          [],
+          [
+            "IMP"
+          ],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [
+            "NAS"
+          ],
+          [],
+          [
+            "IEA"
+          ],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [
+            "IBA",
+            "IEA"
+          ],
+          [],
+          [],
+          [],
+          [
+            "ISS",
+            "IEA"
+          ],
+          [],
+          [],
+          [],
+          [
+            "IEP"
+          ]
+        ],
+        "name": "angiogenesis",
+        "native": "GO:0001525",
+        "p_value": 0.04521389209898089,
+        "parents": [
+          "GO:0048514",
+          "GO:0048646"
+        ],
+        "precision": 0.14814814814814814,
+        "query": "query_1",
+        "query_size": 81,
+        "recall": 0.02608695652173913,
+        "significant": true,
+        "source": "GO:BP",
+        "term_size": 460,
+        "source_order": 318,
+        "group_id": 8
+      },
+      {
+        "description": "\"A process that is carried out at the cellular level which results in the assembly, arrangement of constituent parts, or disassembly of a supramolecular fiber, a polymer consisting of an indefinite number of protein or protein complex subunits that have polymerised to form a fiber-shaped structure.\" [GOC:pr]",
+        "effective_domain_size": 11154,
+        "goshv": 27554,
+        "intersection_size": 14,
+        "intersections": [
+          [],
+          [],
+          [],
+          [],
+          [
+            "IMP",
+            "ISS",
+            "IBA"
+          ],
+          [
+            "ISS",
+            "IBA"
+          ],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [
+            "ISS"
+          ],
+          [],
+          [],
+          [],
+          [],
+          [
+            "IBA"
+          ],
+          [
+            "IMP",
+            "IBA"
+          ],
+          [],
+          [],
+          [
+            "IBA",
+            "TAS"
+          ],
+          [],
+          [],
+          [
+            "IMP"
+          ],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [
+            "IMP",
+            "IBA"
+          ],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [
+            "IBA",
+            "IEA"
+          ],
+          [],
+          [
+            "IMP",
+            "ISS"
+          ],
+          [],
+          [],
+          [],
+          [],
+          [
+            "IDA",
+            "IBA",
+            "TAS",
+            "IEA"
+          ],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [
+            "IEA"
+          ],
+          [
+            "IMP",
+            "IBA"
+          ],
+          [],
+          [
+            "ISS",
+            "IBA"
+          ],
+          [],
+          [],
+          [],
+          [],
+          []
+        ],
+        "name": "supramolecular fiber organization",
+        "native": "GO:0097435",
+        "p_value": 0.04521389209898089,
+        "parents": [
+          "GO:0016043"
+        ],
+        "precision": 0.1728395061728395,
+        "query": "query_1",
+        "query_size": 81,
+        "recall": 0.023064250411861616,
+        "significant": true,
+        "source": "GO:BP",
+        "term_size": 607,
+        "source_order": 17431,
+        "group_id": 6
+      },
+      {
+        "description": "\"Any process involved in the controlled self-propelled movement of a cell that results in translocation of the cell from one place to another.\" [GOC:dgh, GOC:dph, GOC:isa_complete, GOC:mlg]",
+        "effective_domain_size": 11154,
+        "goshv": 22383,
+        "intersection_size": 22,
+        "intersections": [
+          [],
+          [
+            "IEA"
+          ],
+          [
+            "IDA",
+            "IMP",
+            "IBA"
+          ],
+          [],
+          [],
+          [
+            "IMP"
+          ],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [
+            "IDA",
+            "IMP",
+            "IGI"
+          ],
+          [],
+          [
+            "IDA"
+          ],
+          [],
+          [],
+          [
+            "IEA"
+          ],
+          [],
+          [
+            "ISO"
+          ],
+          [],
+          [],
+          [],
+          [],
+          [
+            "IEA"
+          ],
+          [
+            "IEA"
+          ],
+          [
+            "IMP",
+            "IEA"
+          ],
+          [
+            "IMP"
+          ],
+          [
+            "ISS",
+            "IEA"
+          ],
+          [],
+          [
+            "IEA"
+          ],
+          [],
+          [],
+          [],
+          [
+            "IDA"
+          ],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [
+            "IEA"
+          ],
+          [],
+          [],
+          [
+            "IMP"
+          ],
+          [],
+          [],
+          [
+            "IBA",
+            "IEA"
+          ],
+          [],
+          [],
+          [
+            "IEA"
+          ],
+          [],
+          [],
+          [],
+          [
+            "IMP"
+          ],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [
+            "ISS",
+            "IBA"
+          ],
+          [],
+          [],
+          [],
+          [],
+          [
+            "IDA",
+            "ISS",
+            "IEA"
+          ],
+          [
+            "IMP",
+            "IEA"
+          ],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          []
+        ],
+        "name": "cell motility",
+        "native": "GO:0048870",
+        "p_value": 0.04521389209898089,
+        "parents": [
+          "GO:0009987"
+        ],
+        "precision": 0.2716049382716049,
+        "query": "query_1",
+        "query_size": 81,
+        "recall": 0.01680672268907563,
+        "significant": true,
+        "source": "GO:BP",
+        "term_size": 1309,
+        "source_order": 12260,
+        "group_id": 7
+      },
+      {
+        "description": "\"A process that is carried out at the cellular level which results in the assembly, arrangement of constituent parts, or disassembly of cytoskeletal structures comprising actin filaments and their associated proteins.\" [GOC:dph, GOC:jl, GOC:mah]",
+        "effective_domain_size": 11154,
+        "goshv": 16348,
+        "intersection_size": 13,
+        "intersections": [
+          [],
+          [],
+          [],
+          [],
+          [],
+          [
+            "IMP",
+            "ISS",
+            "IBA"
+          ],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [
+            "IBA"
+          ],
+          [],
+          [],
+          [],
+          [
+            "IBA",
+            "TAS",
+            "IEA"
+          ],
+          [],
+          [],
+          [
+            "ISS"
+          ],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [
+            "IEA"
+          ],
+          [],
+          [
+            "IMP",
+            "IBA",
+            "IEA"
+          ],
+          [],
+          [],
+          [],
+          [],
+          [
+            "IBA"
+          ],
+          [],
+          [],
+          [
+            "IBA",
+            "IEA"
+          ],
+          [],
+          [
+            "ISS",
+            "IBA"
+          ],
+          [],
+          [],
+          [],
+          [],
+          [
+            "IDA",
+            "IBA",
+            "TAS",
+            "IEA"
+          ],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [
+            "ISS",
+            "IEA"
+          ],
+          [
+            "IMP",
+            "IBA"
+          ],
+          [],
+          [
+            "ISS",
+            "IBA"
+          ],
+          [],
+          [],
+          [],
+          [],
+          []
+        ],
+        "name": "actin cytoskeleton organization",
+        "native": "GO:0030036",
+        "p_value": 0.04521389209898089,
+        "parents": [
+          "GO:0007010",
+          "GO:0030029"
+        ],
+        "precision": 0.16049382716049382,
+        "query": "query_1",
+        "query_size": 81,
+        "recall": 0.02411873840445269,
+        "significant": true,
+        "source": "GO:BP",
+        "term_size": 539,
+        "source_order": 6225,
+        "group_id": 9
+      },
+      {
+        "description": "\"The controlled self-propelled movement of a cell from one site to a destination guided by molecular cues.\" [GOC:cjm, GOC:dph, GOC:ems, GOC:pf, Wikipedia:Cell_migration]",
+        "effective_domain_size": 11154,
+        "goshv": 15100,
+        "intersection_size": 21,
+        "intersections": [
+          [],
+          [
+            "IEA"
+          ],
+          [
+            "IDA",
+            "IMP",
+            "IBA"
+          ],
+          [],
+          [],
+          [
+            "IMP"
+          ],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [
+            "IDA",
+            "IMP",
+            "IGI"
+          ],
+          [],
+          [
+            "IDA"
+          ],
+          [],
+          [],
+          [
+            "IEA"
+          ],
+          [],
+          [
+            "ISO"
+          ],
+          [],
+          [],
+          [],
+          [],
+          [
+            "IEA"
+          ],
+          [
+            "IEA"
+          ],
+          [
+            "IMP",
+            "IEA"
+          ],
+          [
+            "IMP"
+          ],
+          [
+            "ISS",
+            "IEA"
+          ],
+          [],
+          [
+            "IEA"
+          ],
+          [],
+          [],
+          [],
+          [
+            "IDA"
+          ],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [
+            "IMP"
+          ],
+          [],
+          [],
+          [
+            "IBA",
+            "IEA"
+          ],
+          [],
+          [],
+          [
+            "IEA"
+          ],
+          [],
+          [],
+          [],
+          [
+            "IMP"
+          ],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [
+            "ISS",
+            "IBA"
+          ],
+          [],
+          [],
+          [],
+          [],
+          [
+            "IDA",
+            "ISS",
+            "IEA"
+          ],
+          [
+            "IMP",
+            "IEA"
+          ],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          []
+        ],
+        "name": "cell migration",
+        "native": "GO:0016477",
+        "p_value": 0.04521389209898089,
+        "parents": [
+          "GO:0048870"
+        ],
+        "precision": 0.25925925925925924,
+        "query": "query_1",
+        "query_size": 81,
+        "recall": 0.017326732673267328,
+        "significant": true,
+        "source": "GO:BP",
+        "term_size": 1212,
+        "source_order": 4977,
+        "group_id": 7
+      },
+      {
+        "description": "\"The aggregation, arrangement and bonding together of the extracellular matrix.\" [GOC:jl]",
+        "effective_domain_size": 11154,
+        "goshv": 26812,
+        "intersection_size": 4,
+        "intersections": [
+          [],
+          [],
+          [],
+          [],
+          [
+            "IMP",
+            "ISS",
+            "IBA"
+          ],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [
+            "ISS"
+          ],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [
+            "IMP"
+          ],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [
+            "IMP"
+          ],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          []
+        ],
+        "name": "extracellular matrix assembly",
+        "native": "GO:0085029",
+        "p_value": 0.04521389209898089,
+        "parents": [
+          "GO:0022607",
+          "GO:0030198"
+        ],
+        "precision": 0.04938271604938271,
+        "query": "query_1",
+        "query_size": 81,
+        "recall": 0.10810810810810811,
+        "significant": true,
+        "source": "GO:BP",
+        "term_size": 37,
+        "source_order": 16689,
+        "group_id": 6
+      },
+      {
+        "description": "\"That part of a multicellular organism outside the cells proper, usually taken to be outside the plasma membranes, and occupied by fluid.\" [ISBN:0198547684]",
+        "effective_domain_size": 11154,
+        "goshv": 34896,
+        "intersection_size": 29,
+        "intersections": [
+          [],
+          [],
+          [],
+          [
+            "IDA",
+            "HDA"
+          ],
+          [
+            "HDA"
+          ],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [
+            "IDA",
+            "HDA",
+            "IBA"
+          ],
+          [],
+          [
+            "HDA"
+          ],
+          [
+            "HDA"
+          ],
+          [
+            "HDA"
+          ],
+          [
+            "HDA"
+          ],
+          [],
+          [
+            "HDA"
+          ],
+          [
+            "HDA"
+          ],
+          [
+            "HDA"
+          ],
+          [],
+          [
+            "HDA"
+          ],
+          [],
+          [
+            "IDA",
+            "HDA",
+            "IBA",
+            "IEA"
+          ],
+          [
+            "HDA",
+            "IBA",
+            "IEA"
+          ],
+          [],
+          [
+            "IDA",
+            "HDA"
+          ],
+          [],
+          [],
+          [
+            "IDA",
+            "IEA"
+          ],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [
+            "HDA"
+          ],
+          [],
+          [
+            "TAS"
+          ],
+          [
+            "HDA"
+          ],
+          [],
+          [],
+          [],
+          [
+            "IBA"
+          ],
+          [
+            "HDA"
+          ],
+          [],
+          [],
+          [],
+          [
+            "IDA",
+            "HDA"
+          ],
+          [],
+          [],
+          [
+            "IDA",
+            "IBA",
+            "IEA"
+          ],
+          [],
+          [],
+          [
+            "IDA",
+            "IBA",
+            "IEA"
+          ],
+          [
+            "ISS"
+          ],
+          [],
+          [],
+          [
+            "HDA",
+            "IBA"
+          ],
+          [],
+          [
+            "HDA"
+          ],
+          [],
+          [],
+          [],
+          [],
+          [
+            "IBA"
+          ],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [
+            "HDA"
+          ],
+          [
+            "HDA"
+          ],
+          []
+        ],
+        "name": "extracellular space",
+        "native": "GO:0005615",
+        "p_value": 0.04768330040636211,
+        "parents": [
+          "GO:0005576",
+          "GO:0110165"
+        ],
+        "precision": 0.35802469135802467,
+        "query": "query_1",
+        "query_size": 81,
+        "recall": 0.012058212058212059,
+        "significant": true,
+        "source": "GO:CC",
+        "term_size": 2405,
+        "source_order": 227,
+        "group_id": 1
+      },
+      {
+        "description": "\"A vesicle that is released into the extracellular region by fusion of the limiting endosomal membrane of a multivesicular body with the plasma membrane. Extracellular exosomes, also simply called exosomes, have a diameter of about 40-100 nm.\" [GOC:BHF, GOC:mah, GOC:vesicles, PMID:15908444, PMID:17641064, PMID:19442504, PMID:19498381, PMID:22418571, PMID:24009894]",
+        "effective_domain_size": 11154,
+        "goshv": 37021,
+        "intersection_size": 22,
+        "intersections": [
+          [],
+          [],
+          [],
+          [
+            "IDA",
+            "HDA"
+          ],
+          [
+            "HDA"
+          ],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [
+            "HDA"
+          ],
+          [],
+          [],
+          [
+            "HDA"
+          ],
+          [
+            "HDA"
+          ],
+          [
+            "HDA"
+          ],
+          [],
+          [
+            "HDA"
+          ],
+          [
+            "HDA"
+          ],
+          [
+            "HDA"
+          ],
+          [],
+          [
+            "HDA"
+          ],
+          [],
+          [
+            "HDA"
+          ],
+          [
+            "HDA"
+          ],
+          [],
+          [
+            "HDA"
+          ],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [
+            "HDA"
+          ],
+          [],
+          [
+            "TAS"
+          ],
+          [
+            "HDA"
+          ],
+          [],
+          [],
+          [],
+          [],
+          [
+            "HDA"
+          ],
+          [],
+          [],
+          [],
+          [
+            "HDA"
+          ],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [
+            "HDA"
+          ],
+          [],
+          [
+            "HDA"
+          ],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [
+            "HDA"
+          ],
+          [
+            "HDA"
+          ],
+          []
+        ],
+        "name": "extracellular exosome",
+        "native": "GO:0070062",
+        "p_value": 0.0492359420422557,
+        "parents": [
+          "GO:0005615",
+          "GO:1903561"
+        ],
+        "precision": 0.2716049382716049,
+        "query": "query_1",
+        "query_size": 81,
+        "recall": 0.013373860182370821,
+        "significant": true,
+        "source": "GO:CC",
+        "term_size": 1645,
+        "source_order": 2352,
+        "group_id": 1
+      },
+      {
+        "description": "\"Organized structure of distinctive morphology and function, occurring outside the cell. Includes, for example, extracellular membrane vesicles (EMVs) and the cellulosomes of anaerobic bacteria and fungi.\" [GOC:jl, PMID:9914479]",
+        "effective_domain_size": 11154,
+        "goshv": 36513,
+        "intersection_size": 22,
+        "intersections": [
+          [],
+          [],
+          [],
+          [
+            "IDA",
+            "HDA"
+          ],
+          [
+            "HDA"
+          ],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [
+            "HDA"
+          ],
+          [],
+          [],
+          [
+            "HDA"
+          ],
+          [
+            "HDA"
+          ],
+          [
+            "HDA"
+          ],
+          [],
+          [
+            "HDA"
+          ],
+          [
+            "HDA"
+          ],
+          [
+            "HDA"
+          ],
+          [],
+          [
+            "HDA"
+          ],
+          [],
+          [
+            "HDA"
+          ],
+          [
+            "HDA"
+          ],
+          [],
+          [
+            "HDA"
+          ],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [
+            "HDA"
+          ],
+          [],
+          [
+            "TAS"
+          ],
+          [
+            "HDA"
+          ],
+          [],
+          [],
+          [],
+          [],
+          [
+            "HDA"
+          ],
+          [],
+          [],
+          [],
+          [
+            "HDA"
+          ],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [
+            "HDA"
+          ],
+          [],
+          [
+            "HDA"
+          ],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [
+            "HDA"
+          ],
+          [
+            "HDA"
+          ],
+          []
+        ],
+        "name": "extracellular organelle",
+        "native": "GO:0043230",
+        "p_value": 0.0492359420422557,
+        "parents": [
+          "GO:0005576",
+          "GO:0043226"
+        ],
+        "precision": 0.2716049382716049,
+        "query": "query_1",
+        "query_size": 81,
+        "recall": 0.013221153846153846,
+        "significant": true,
+        "source": "GO:CC",
+        "term_size": 1664,
+        "source_order": 1844,
+        "group_id": 1
+      },
+      {
+        "description": "\"Organized structure of distinctive morphology and function, bounded by a lipid bilayer membrane and occurring outside the cell.\" [GOC:isa_complete]",
+        "effective_domain_size": 11154,
+        "goshv": 37001,
+        "intersection_size": 22,
+        "intersections": [
+          [],
+          [],
+          [],
+          [
+            "IDA",
+            "HDA"
+          ],
+          [
+            "HDA"
+          ],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [
+            "HDA"
+          ],
+          [],
+          [],
+          [
+            "HDA"
+          ],
+          [
+            "HDA"
+          ],
+          [
+            "HDA"
+          ],
+          [],
+          [
+            "HDA"
+          ],
+          [
+            "HDA"
+          ],
+          [
+            "HDA"
+          ],
+          [],
+          [
+            "HDA"
+          ],
+          [],
+          [
+            "HDA"
+          ],
+          [
+            "HDA"
+          ],
+          [],
+          [
+            "HDA"
+          ],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [
+            "HDA"
+          ],
+          [],
+          [
+            "TAS"
+          ],
+          [
+            "HDA"
+          ],
+          [],
+          [],
+          [],
+          [],
+          [
+            "HDA"
+          ],
+          [],
+          [],
+          [],
+          [
+            "HDA"
+          ],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [
+            "HDA"
+          ],
+          [],
+          [
+            "HDA"
+          ],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [
+            "HDA"
+          ],
+          [
+            "HDA"
+          ],
+          []
+        ],
+        "name": "extracellular membrane-bounded organelle",
+        "native": "GO:0065010",
+        "p_value": 0.0492359420422557,
+        "parents": [
+          "GO:0043227",
+          "GO:0043230"
+        ],
+        "precision": 0.2716049382716049,
+        "query": "query_1",
+        "query_size": 81,
+        "recall": 0.013221153846153846,
+        "significant": true,
+        "source": "GO:CC",
+        "term_size": 1664,
+        "source_order": 2332,
+        "group_id": 1
+      },
+      {
+        "description": "\"Any vesicle that is part of the extracellular region.\" [GO_REF:0000064, GOC:pm, GOC:TermGenie, PMID:24769233]",
+        "effective_domain_size": 11154,
+        "goshv": 38367,
+        "intersection_size": 22,
+        "intersections": [
+          [],
+          [],
+          [],
+          [
+            "IDA",
+            "HDA"
+          ],
+          [
+            "HDA"
+          ],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [
+            "HDA"
+          ],
+          [],
+          [],
+          [
+            "HDA"
+          ],
+          [
+            "HDA"
+          ],
+          [
+            "HDA"
+          ],
+          [],
+          [
+            "HDA"
+          ],
+          [
+            "HDA"
+          ],
+          [
+            "HDA"
+          ],
+          [],
+          [
+            "HDA"
+          ],
+          [],
+          [
+            "HDA"
+          ],
+          [
+            "HDA"
+          ],
+          [],
+          [
+            "HDA"
+          ],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [
+            "HDA"
+          ],
+          [],
+          [
+            "TAS"
+          ],
+          [
+            "HDA"
+          ],
+          [],
+          [],
+          [],
+          [],
+          [
+            "HDA"
+          ],
+          [],
+          [],
+          [],
+          [
+            "HDA"
+          ],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [
+            "HDA"
+          ],
+          [],
+          [
+            "HDA"
+          ],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [
+            "HDA"
+          ],
+          [
+            "HDA"
+          ],
+          []
+        ],
+        "name": "extracellular vesicle",
+        "native": "GO:1903561",
+        "p_value": 0.0492359420422557,
+        "parents": [
+          "GO:0031982",
+          "GO:0065010"
+        ],
+        "precision": 0.2716049382716049,
+        "query": "query_1",
+        "query_size": 81,
+        "recall": 0.013221153846153846,
+        "significant": true,
+        "source": "GO:CC",
+        "term_size": 1664,
+        "source_order": 3698,
+        "group_id": 1
+      }
+    ],
+    "meta": {
+      "query_metadata": {
+        "queries": {
+          "query_1": [
+            "5166",
+            "9590",
+            "7010",
+            "7512",
+            "10516",
+            "11170",
+            "3953",
+            "125",
+            "91851",
+            "1066",
+            "2878",
+            "66002",
+            "8425",
+            "316",
+            "5577",
+            "4883",
+            "687",
+            "388",
+            "1674",
+            "2823",
+            "5348",
+            "10810",
+            "7048",
+            "5730",
+            "7148",
+            "4783",
+            "2202",
+            "55679",
+            "2840",
+            "90865",
+            "8622",
+            "23022",
+            "1910",
+            "22998",
+            "9079",
+            "23114",
+            "11037",
+            "8777",
+            "9754",
+            "10957",
+            "10894",
+            "256949",
+            "79971",
+            "4629",
+            "2354",
+            "5997",
+            "364",
+            "2157",
+            "11034",
+            "1831",
+            "8630",
+            "2651",
+            "3043",
+            "5354",
+            "6663",
+            "5648",
+            "2273",
+            "4303",
+            "5126",
+            "5740",
+            "4128",
+            "1843",
+            "60676",
+            "60468",
+            "57134",
+            "55576",
+            "10983",
+            "2034",
+            "2719",
+            "6863",
+            "1827",
+            "63876",
+            "3290",
+            "1901",
+            "55616",
+            "8639",
+            "11346",
+            "6943",
+            "57716",
+            "6462",
+            "283537",
+            "51705"
+          ]
+        },
+        "organism": "hsapiens",
+        "all_results": false,
+        "ordered": false,
+        "no_iea": false,
+        "sources": [
+          "GO:MF",
+          "GO:CC",
+          "GO:BP",
+          "KEGG",
+          "REAC"
+        ],
+        "combined": false,
+        "aresolve": {},
+        "numeric_ns": "ENTREZGENE_ACC",
+        "domain_scope": "custom",
+        "measure_underrepresentation": false,
+        "significance_threshold_method": "fdr",
+        "user_threshold": 0.05,
+        "no_evidences": false,
+        "highlight": null
+      },
+      "result_metadata": {
+        "GO:MF": {
+          "domain_size": 20208,
+          "number_of_terms": 10123,
+          "threshold": null
+        },
+        "GO:CC": {
+          "domain_size": 22155,
+          "number_of_terms": 4069,
+          "threshold": null
+        },
+        "GO:BP": {
+          "domain_size": 20972,
+          "number_of_terms": 24546,
+          "threshold": null
+        },
+        "KEGG": {
+          "domain_size": 8716,
+          "number_of_terms": 586,
+          "threshold": null
+        },
+        "REAC": {
+          "domain_size": 11056,
+          "number_of_terms": 2849,
+          "threshold": null
+        }
+      },
+      "genes_metadata": {
+        "failed": [],
+        "ambiguous": {
+          "8622": [
+            {
+              "gene_id": "ENSG00000113231",
+              "description": "phosphodiesterase 8B [Source:HGNC Symbol;Acc:HGNC:8794]",
+              "number_of_go_annotations": 207
+            },
+            {
+              "gene_id": "ENSG00000284762",
+              "description": "phosphodiesterase 8B [Source:NCBI gene (formerly Entrezgene);Acc:8622]",
+              "number_of_go_annotations": 55
+            }
+          ]
+        },
+        "duplicates": [],
+        "query": {
+          "query_1": {
+            "mapping": {
+              "5166": [
+                "ENSG00000004799"
+              ],
+              "9590": [
+                "ENSG00000131016"
+              ],
+              "7010": [
+                "ENSG00000120156"
+              ],
+              "7512": [
+                "ENSG00000122121"
+              ],
+              "10516": [
+                "ENSG00000140092"
+              ],
+              "11170": [
+                "ENSG00000168309"
+              ],
+              "3953": [
+                "ENSG00000116678"
+              ],
+              "125": [
+                "ENSG00000196616"
+              ],
+              "91851": [
+                "ENSG00000101938"
+              ],
+              "1066": [
+                "ENSG00000198848"
+              ],
+              "2878": [
+                "ENSG00000211445"
+              ],
+              "66002": [
+                "ENSG00000186204"
+              ],
+              "8425": [
+                "ENSG00000090006"
+              ],
+              "316": [
+                "ENSG00000138356"
+              ],
+              "5577": [
+                "ENSG00000005249"
+              ],
+              "4883": [
+                "ENSG00000113389"
+              ],
+              "687": [
+                "ENSG00000119138"
+              ],
+              "388": [
+                "ENSG00000143878"
+              ],
+              "1674": [
+                "ENSG00000175084"
+              ],
+              "2823": [
+                "ENSG00000150625"
+              ],
+              "5348": [
+                "ENSG00000266964"
+              ],
+              "10810": [
+                "ENSG00000132970"
+              ],
+              "7048": [
+                "ENSG00000163513"
+              ],
+              "5730": [
+                "ENSG00000107317"
+              ],
+              "7148": [
+                "ENSG00000168477"
+              ],
+              "4783": [
+                "ENSG00000165030"
+              ],
+              "2202": [
+                "ENSG00000115380"
+              ],
+              "55679": [
+                "ENSG00000072163"
+              ],
+              "2840": [
+                "ENSG00000144230"
+              ],
+              "90865": [
+                "ENSG00000137033"
+              ],
+              "23022": [
+                "ENSG00000129116"
+              ],
+              "1910": [
+                "ENSG00000136160"
+              ],
+              "22998": [
+                "ENSG00000064042"
+              ],
+              "9079": [
+                "ENSG00000169744"
+              ],
+              "23114": [
+                "ENSG00000163531"
+              ],
+              "11037": [
+                "ENSG00000243244"
+              ],
+              "8777": [
+                "ENSG00000107186"
+              ],
+              "9754": [
+                "ENSG00000130052"
+              ],
+              "10957": [
+                "ENSG00000146278"
+              ],
+              "10894": [
+                "ENSG00000133800"
+              ],
+              "256949": [
+                "ENSG00000186994"
+              ],
+              "79971": [
+                "ENSG00000116729"
+              ],
+              "4629": [
+                "ENSG00000133392"
+              ],
+              "2354": [
+                "ENSG00000125740"
+              ],
+              "5997": [
+                "ENSG00000116741"
+              ],
+              "364": [
+                "ENSG00000165269"
+              ],
+              "2157": [
+                "ENSG00000185010"
+              ],
+              "11034": [
+                "ENSG00000125868"
+              ],
+              "1831": [
+                "ENSG00000157514"
+              ],
+              "8630": [
+                "ENSG00000025423"
+              ],
+              "2651": [
+                "ENSG00000111846"
+              ],
+              "3043": [
+                "ENSG00000244734"
+              ],
+              "5354": [
+                "ENSG00000123560"
+              ],
+              "6663": [
+                "ENSG00000100146"
+              ],
+              "5648": [
+                "ENSG00000127241"
+              ],
+              "2273": [
+                "ENSG00000022267"
+              ],
+              "4303": [
+                "ENSG00000184481"
+              ],
+              "5126": [
+                "ENSG00000125851"
+              ],
+              "5740": [
+                "ENSG00000124212"
+              ],
+              "4128": [
+                "ENSG00000189221"
+              ],
+              "1843": [
+                "ENSG00000120129"
+              ],
+              "60676": [
+                "ENSG00000116183"
+              ],
+              "60468": [
+                "ENSG00000112182"
+              ],
+              "57134": [
+                "ENSG00000117643"
+              ],
+              "55576": [
+                "ENSG00000136011"
+              ],
+              "10983": [
+                "ENSG00000118816"
+              ],
+              "2034": [
+                "ENSG00000116016"
+              ],
+              "2719": [
+                "ENSG00000147257"
+              ],
+              "6863": [
+                "ENSG00000006128"
+              ],
+              "1827": [
+                "ENSG00000159200"
+              ],
+              "63876": [
+                "ENSG00000165495"
+              ],
+              "3290": [
+                "ENSG00000117594"
+              ],
+              "1901": [
+                "ENSG00000170989"
+              ],
+              "55616": [
+                "ENSG00000088280"
+              ],
+              "8639": [
+                "ENSG00000131471"
+              ],
+              "11346": [
+                "ENSG00000171992"
+              ],
+              "6943": [
+                "ENSG00000118526"
+              ],
+              "57716": [
+                "ENSG00000105227"
+              ],
+              "6462": [
+                "ENSG00000129214"
+              ],
+              "283537": [
+                "ENSG00000139508"
+              ],
+              "51705": [
+                "ENSG00000164035"
+              ]
+            },
+            "ensgs": [
+              "ENSG00000004799",
+              "ENSG00000131016",
+              "ENSG00000120156",
+              "ENSG00000122121",
+              "ENSG00000140092",
+              "ENSG00000168309",
+              "ENSG00000116678",
+              "ENSG00000196616",
+              "ENSG00000101938",
+              "ENSG00000198848",
+              "ENSG00000211445",
+              "ENSG00000186204",
+              "ENSG00000090006",
+              "ENSG00000138356",
+              "ENSG00000005249",
+              "ENSG00000113389",
+              "ENSG00000119138",
+              "ENSG00000143878",
+              "ENSG00000175084",
+              "ENSG00000150625",
+              "ENSG00000266964",
+              "ENSG00000132970",
+              "ENSG00000163513",
+              "ENSG00000107317",
+              "ENSG00000168477",
+              "ENSG00000165030",
+              "ENSG00000115380",
+              "ENSG00000072163",
+              "ENSG00000144230",
+              "ENSG00000137033",
+              "ENSG00000129116",
+              "ENSG00000136160",
+              "ENSG00000064042",
+              "ENSG00000169744",
+              "ENSG00000163531",
+              "ENSG00000243244",
+              "ENSG00000107186",
+              "ENSG00000130052",
+              "ENSG00000146278",
+              "ENSG00000133800",
+              "ENSG00000186994",
+              "ENSG00000116729",
+              "ENSG00000133392",
+              "ENSG00000125740",
+              "ENSG00000116741",
+              "ENSG00000165269",
+              "ENSG00000185010",
+              "ENSG00000125868",
+              "ENSG00000157514",
+              "ENSG00000025423",
+              "ENSG00000111846",
+              "ENSG00000244734",
+              "ENSG00000123560",
+              "ENSG00000100146",
+              "ENSG00000127241",
+              "ENSG00000022267",
+              "ENSG00000184481",
+              "ENSG00000125851",
+              "ENSG00000124212",
+              "ENSG00000189221",
+              "ENSG00000120129",
+              "ENSG00000116183",
+              "ENSG00000112182",
+              "ENSG00000117643",
+              "ENSG00000136011",
+              "ENSG00000118816",
+              "ENSG00000116016",
+              "ENSG00000147257",
+              "ENSG00000006128",
+              "ENSG00000159200",
+              "ENSG00000165495",
+              "ENSG00000117594",
+              "ENSG00000170989",
+              "ENSG00000088280",
+              "ENSG00000131471",
+              "ENSG00000171992",
+              "ENSG00000118526",
+              "ENSG00000105227",
+              "ENSG00000129214",
+              "ENSG00000139508",
+              "ENSG00000164035"
+            ]
+          }
+        }
+      },
+      "timestamp": "2026-07-18T12:14:03.414396+00:00",
+      "version": "e114_eg62_p19_27110d83"
+    }
+  }
+}

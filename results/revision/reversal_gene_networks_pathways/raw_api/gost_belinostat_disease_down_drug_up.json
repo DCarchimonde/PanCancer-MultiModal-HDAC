@@ -1,0 +1,1933 @@
+{
+  "url": "https://biit.cs.ut.ee/gprofiler/api/gost/profile/",
+  "request_sha256": "4afaf0c242f00b3f606b15cff97055695d9c45ebf75b388c5a00e94a2491d187",
+  "response_headers": {
+    "date": "Sat, 18 Jul 2026 12:13:54 GMT",
+    "content-type": "application/json",
+    "content-length": "15992",
+    "vary": "Accept-Encoding",
+    "access-control-allow-origin": "*",
+    "x-frame-options": "SAMEORIGIN",
+    "set-cookie": "X-Session-ID=3aabff64-b721-40b2-ab55-95ac2c2a8c41; Path=/; HttpOnly; Secure; SameSite=Strict; Secure; HttpOnly",
+    "strict-transport-security": "max-age=31536000; preload",
+    "x-content-type-options": "nosniff",
+    "x-xss-protection": "1; mode=block",
+    "x-rate-limit-limit": "1000",
+    "x-rate-limit-remaining": "993",
+    "content-security-policy": "report-uri https://csp.hpc.ut.ee/log; form-action 'self'; frame-ancestors 'self';",
+    "referrer-policy": "strict-origin-when-cross-origin",
+    "connection": "close"
+  },
+  "response": {
+    "result": [
+      {
+        "description": "\"Any process that results in a change in state or activity of a cell or an organism (in terms of movement, secretion, enzyme production, gene expression, etc.) as a result of a hormone stimulus.\" [GOC:jl]",
+        "effective_domain_size": 11154,
+        "goshv": 13586,
+        "intersection_size": 24,
+        "intersections": [
+          [],
+          [],
+          [
+            "ISS",
+            "IBA",
+            "IEA"
+          ],
+          [
+            "IEA"
+          ],
+          [],
+          [],
+          [],
+          [],
+          [
+            "ISS"
+          ],
+          [
+            "IEA"
+          ],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [
+            "IEA"
+          ],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [
+            "IEA"
+          ],
+          [],
+          [],
+          [
+            "IBA"
+          ],
+          [],
+          [
+            "IDA"
+          ],
+          [],
+          [
+            "IEA"
+          ],
+          [
+            "ISS",
+            "IEA"
+          ],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [
+            "IDA"
+          ],
+          [
+            "IEA"
+          ],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [
+            "IMP",
+            "IBA",
+            "IEA"
+          ],
+          [
+            "IBA"
+          ],
+          [
+            "IEA"
+          ],
+          [],
+          [],
+          [],
+          [],
+          [
+            "ISS",
+            "IBA",
+            "IEA"
+          ],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [
+            "ISS",
+            "IEA"
+          ],
+          [
+            "IDA",
+            "IEA"
+          ],
+          [],
+          [],
+          [],
+          [],
+          [
+            "IEA"
+          ],
+          [],
+          [
+            "IEA"
+          ],
+          [],
+          [],
+          [
+            "IBA"
+          ],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [
+            "IEA"
+          ],
+          [],
+          [],
+          [],
+          [
+            "IEA"
+          ],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [
+            "IDA"
+          ],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          []
+        ],
+        "name": "response to hormone",
+        "native": "GO:0009725",
+        "p_value": 0.0002712760044514081,
+        "parents": [
+          "GO:0009719",
+          "GO:0042221"
+        ],
+        "precision": 0.22857142857142856,
+        "query": "query_1",
+        "query_size": 105,
+        "recall": 0.031578947368421054,
+        "significant": true,
+        "source": "GO:BP",
+        "term_size": 760,
+        "source_order": 3463,
+        "group_id": 1
+      },
+      {
+        "description": "\"Any process that results in a change in state or activity of a cell or an organism (in terms of movement, secretion, enzyme production, gene expression, etc.) as a result of a chemical stimulus.\" [GOC:jl]",
+        "effective_domain_size": 11154,
+        "goshv": 19523,
+        "intersection_size": 48,
+        "intersections": [
+          [],
+          [],
+          [
+            "ISS",
+            "IBA",
+            "IEA"
+          ],
+          [
+            "IEA"
+          ],
+          [
+            "ISS"
+          ],
+          [],
+          [],
+          [],
+          [
+            "ISS"
+          ],
+          [
+            "IEA"
+          ],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [
+            "IEA"
+          ],
+          [],
+          [],
+          [
+            "IDA"
+          ],
+          [],
+          [],
+          [
+            "ISS",
+            "IEA"
+          ],
+          [
+            "IEA"
+          ],
+          [
+            "IEA"
+          ],
+          [
+            "IEA"
+          ],
+          [],
+          [
+            "IBA"
+          ],
+          [
+            "IDA"
+          ],
+          [
+            "IDA",
+            "IMP"
+          ],
+          [],
+          [
+            "IEA"
+          ],
+          [
+            "ISS",
+            "IEA"
+          ],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [
+            "IDA"
+          ],
+          [],
+          [
+            "IDA"
+          ],
+          [
+            "IMP",
+            "IEA"
+          ],
+          [],
+          [
+            "IEA"
+          ],
+          [],
+          [],
+          [],
+          [
+            "IMP",
+            "IBA",
+            "IEA"
+          ],
+          [
+            "IBA"
+          ],
+          [
+            "TAS",
+            "IEA"
+          ],
+          [
+            "IEA"
+          ],
+          [
+            "IEA"
+          ],
+          [
+            "IDA",
+            "IBA",
+            "IEA"
+          ],
+          [],
+          [
+            "ISS",
+            "IBA",
+            "IEA"
+          ],
+          [
+            "IDA"
+          ],
+          [
+            "ISS",
+            "IEA"
+          ],
+          [],
+          [],
+          [],
+          [],
+          [
+            "ISS",
+            "IEA"
+          ],
+          [
+            "IDA",
+            "ISS",
+            "NAS",
+            "IEA"
+          ],
+          [],
+          [],
+          [],
+          [],
+          [
+            "IDA",
+            "IEA"
+          ],
+          [
+            "IDA",
+            "IBA"
+          ],
+          [
+            "IDA",
+            "IMP",
+            "IEA"
+          ],
+          [
+            "IBA"
+          ],
+          [
+            "IDA",
+            "IEA"
+          ],
+          [
+            "IBA"
+          ],
+          [],
+          [],
+          [
+            "IDA",
+            "IMP",
+            "IGI",
+            "TAS"
+          ],
+          [],
+          [
+            "TAS",
+            "IEA"
+          ],
+          [
+            "IEA"
+          ],
+          [],
+          [
+            "ISS",
+            "IEA"
+          ],
+          [
+            "ISS",
+            "IEA"
+          ],
+          [
+            "IEA"
+          ],
+          [],
+          [],
+          [
+            "IDA",
+            "IEA"
+          ],
+          [],
+          [
+            "IDA"
+          ],
+          [],
+          [
+            "ISS"
+          ],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [
+            "IEA"
+          ],
+          [
+            "IDA"
+          ],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          []
+        ],
+        "name": "response to chemical",
+        "native": "GO:0042221",
+        "p_value": 0.002494139096488004,
+        "parents": [
+          "GO:0050896"
+        ],
+        "precision": 0.45714285714285713,
+        "query": "query_1",
+        "query_size": 105,
+        "recall": 0.017448200654307525,
+        "significant": true,
+        "source": "GO:BP",
+        "term_size": 2751,
+        "source_order": 9400,
+        "group_id": 1
+      },
+      {
+        "description": "\"Any process that results in a change in state or activity of a cell (in terms of movement, secretion, enzyme production, gene expression, etc.) as a result of a chemical stimulus.\" [GOC:mah]",
+        "effective_domain_size": 11154,
+        "goshv": 25354,
+        "intersection_size": 34,
+        "intersections": [
+          [],
+          [],
+          [
+            "ISS",
+            "IBA",
+            "IEA"
+          ],
+          [],
+          [
+            "ISS"
+          ],
+          [],
+          [],
+          [],
+          [
+            "ISS"
+          ],
+          [
+            "IEA"
+          ],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [
+            "IEA"
+          ],
+          [],
+          [],
+          [
+            "IDA"
+          ],
+          [],
+          [],
+          [
+            "ISS",
+            "IEA"
+          ],
+          [],
+          [
+            "IEA"
+          ],
+          [],
+          [],
+          [
+            "IBA"
+          ],
+          [],
+          [
+            "IDA",
+            "IMP"
+          ],
+          [],
+          [
+            "IEA"
+          ],
+          [
+            "ISS",
+            "IEA"
+          ],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [
+            "IDA"
+          ],
+          [],
+          [
+            "IDA"
+          ],
+          [
+            "IMP",
+            "IEA"
+          ],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [
+            "IMP",
+            "IBA",
+            "IEA"
+          ],
+          [
+            "IBA"
+          ],
+          [],
+          [
+            "IEA"
+          ],
+          [],
+          [],
+          [],
+          [
+            "ISS",
+            "IBA",
+            "IEA"
+          ],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [
+            "ISS",
+            "IEA"
+          ],
+          [
+            "IDA",
+            "ISS",
+            "IEA"
+          ],
+          [],
+          [],
+          [],
+          [],
+          [
+            "IEA"
+          ],
+          [],
+          [
+            "IDA",
+            "IEA"
+          ],
+          [],
+          [
+            "IDA",
+            "IEA"
+          ],
+          [],
+          [],
+          [],
+          [
+            "TAS"
+          ],
+          [],
+          [
+            "TAS"
+          ],
+          [
+            "IEA"
+          ],
+          [],
+          [
+            "ISS",
+            "IEA"
+          ],
+          [
+            "ISS",
+            "IEA"
+          ],
+          [
+            "IEA"
+          ],
+          [],
+          [],
+          [
+            "IDA"
+          ],
+          [],
+          [
+            "IDA"
+          ],
+          [],
+          [
+            "ISS"
+          ],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [
+            "IDA"
+          ],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          []
+        ],
+        "name": "cellular response to chemical stimulus",
+        "native": "GO:0070887",
+        "p_value": 0.012181636201230918,
+        "parents": [
+          "GO:0042221",
+          "GO:0051716"
+        ],
+        "precision": 0.3238095238095238,
+        "query": "query_1",
+        "query_size": 105,
+        "recall": 0.019428571428571427,
+        "significant": true,
+        "source": "GO:BP",
+        "term_size": 1750,
+        "source_order": 15231,
+        "group_id": 1
+      },
+      {
+        "description": "\"Any process that results in a change in state or activity of a cell (in terms of movement, secretion, enzyme production, gene expression, etc.) as a result of a hormone stimulus.\" [GOC:mah]",
+        "effective_domain_size": 11154,
+        "goshv": 17478,
+        "intersection_size": 17,
+        "intersections": [
+          [],
+          [],
+          [
+            "ISS",
+            "IBA",
+            "IEA"
+          ],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [
+            "ISS"
+          ],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [
+            "IEA"
+          ],
+          [],
+          [],
+          [
+            "IBA"
+          ],
+          [],
+          [
+            "IDA"
+          ],
+          [],
+          [
+            "IEA"
+          ],
+          [
+            "ISS",
+            "IEA"
+          ],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [
+            "IMP",
+            "IBA",
+            "IEA"
+          ],
+          [
+            "IBA"
+          ],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [
+            "ISS",
+            "IBA",
+            "IEA"
+          ],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [
+            "ISS",
+            "IEA"
+          ],
+          [
+            "IDA",
+            "IEA"
+          ],
+          [],
+          [],
+          [],
+          [],
+          [
+            "IEA"
+          ],
+          [],
+          [
+            "IEA"
+          ],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [
+            "IEA"
+          ],
+          [],
+          [],
+          [],
+          [
+            "IEA"
+          ],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [
+            "IDA"
+          ],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          []
+        ],
+        "name": "cellular response to hormone stimulus",
+        "native": "GO:0032870",
+        "p_value": 0.012181636201230918,
+        "parents": [
+          "GO:0009725",
+          "GO:0070887",
+          "GO:0071495"
+        ],
+        "precision": 0.1619047619047619,
+        "query": "query_1",
+        "query_size": 105,
+        "recall": 0.03008849557522124,
+        "significant": true,
+        "source": "GO:BP",
+        "term_size": 565,
+        "source_order": 7355,
+        "group_id": 1
+      },
+      {
+        "description": "\"Any process that results in a change in state or activity of a cell or an organism (in terms of movement, secretion, enzyme production, gene expression, etc.) as a result of a steroid hormone stimulus.\" [GOC:go_curators]",
+        "effective_domain_size": 11154,
+        "goshv": 22100,
+        "intersection_size": 11,
+        "intersections": [
+          [],
+          [],
+          [
+            "IEA"
+          ],
+          [
+            "IEA"
+          ],
+          [],
+          [],
+          [],
+          [],
+          [
+            "ISS"
+          ],
+          [
+            "IEA"
+          ],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [
+            "IEA"
+          ],
+          [],
+          [],
+          [
+            "IBA"
+          ],
+          [],
+          [
+            "IDA"
+          ],
+          [],
+          [
+            "IEA"
+          ],
+          [
+            "ISS",
+            "IEA"
+          ],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [
+            "IEA"
+          ],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [
+            "ISS",
+            "IEA"
+          ],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          []
+        ],
+        "name": "response to steroid hormone",
+        "native": "GO:0048545",
+        "p_value": 0.013416304864845168,
+        "parents": [
+          "GO:0009725",
+          "GO:0033993"
+        ],
+        "precision": 0.10476190476190476,
+        "query": "query_1",
+        "query_size": 105,
+        "recall": 0.04247104247104247,
+        "significant": true,
+        "source": "GO:BP",
+        "term_size": 259,
+        "source_order": 11977,
+        "group_id": 1
+      },
+      {
+        "description": "\"Any process that results in a change in state or activity of a cell or an organism (in terms of movement, secretion, enzyme production, gene expression, etc.) as a result of a stimulus arising within the organism.\" [GOC:sm]",
+        "effective_domain_size": 11154,
+        "goshv": 13580,
+        "intersection_size": 26,
+        "intersections": [
+          [],
+          [],
+          [
+            "ISS",
+            "IBA",
+            "IEA"
+          ],
+          [
+            "IEA"
+          ],
+          [],
+          [],
+          [],
+          [],
+          [
+            "ISS"
+          ],
+          [
+            "IEA"
+          ],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [
+            "IEA"
+          ],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [
+            "IEA"
+          ],
+          [],
+          [],
+          [
+            "IBA"
+          ],
+          [],
+          [
+            "IDA"
+          ],
+          [],
+          [
+            "IEA"
+          ],
+          [
+            "ISS",
+            "IEA"
+          ],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [
+            "IDA",
+            "ISS",
+            "IEA"
+          ],
+          [
+            "IEA"
+          ],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [
+            "IMP",
+            "IBA",
+            "IEA"
+          ],
+          [
+            "IBA"
+          ],
+          [
+            "TAS",
+            "IEA"
+          ],
+          [],
+          [],
+          [],
+          [],
+          [
+            "ISS",
+            "IBA",
+            "IEA"
+          ],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [
+            "ISS",
+            "IEA"
+          ],
+          [
+            "IDA",
+            "IEA"
+          ],
+          [],
+          [],
+          [],
+          [],
+          [
+            "IBA",
+            "IEA"
+          ],
+          [],
+          [
+            "IDA",
+            "IEA"
+          ],
+          [],
+          [],
+          [
+            "IBA"
+          ],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [
+            "IEA"
+          ],
+          [],
+          [],
+          [],
+          [
+            "IEA"
+          ],
+          [],
+          [],
+          [
+            "IDA"
+          ],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [
+            "IDA"
+          ],
+          [],
+          [],
+          [],
+          [
+            "IDA"
+          ],
+          [],
+          [],
+          []
+        ],
+        "name": "response to endogenous stimulus",
+        "native": "GO:0009719",
+        "p_value": 0.013416304864845168,
+        "parents": [
+          "GO:0050896"
+        ],
+        "precision": 0.24761904761904763,
+        "query": "query_1",
+        "query_size": 105,
+        "recall": 0.021775544388609715,
+        "significant": true,
+        "source": "GO:BP",
+        "term_size": 1194,
+        "source_order": 3457,
+        "group_id": 1
+      },
+      {
+        "description": "\"Any process that increases the frequency, rate or extent of the directed movement of sodium ions (Na+) into, out of or within a cell, or between cells, by means of some agent such as a transporter or pore.\" [GOC:dph, GOC:tb]",
+        "effective_domain_size": 11154,
+        "goshv": 14308,
+        "intersection_size": 4,
+        "intersections": [
+          [],
+          [
+            "IDA"
+          ],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [
+            "IDA",
+            "IMP"
+          ],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [
+            "IDA"
+          ],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [],
+          [
+            "IEA"
+          ],
+          []
+        ],
+        "name": "positive regulation of sodium ion transport",
+        "native": "GO:0010765",
+        "p_value": 0.04009483596923387,
+        "parents": [
+          "GO:0002028",
+          "GO:0006814",
+          "GO:0043270"
+        ],
+        "precision": 0.0380952380952381,
+        "query": "query_1",
+        "query_size": 105,
+        "recall": 0.14814814814814814,
+        "significant": true,
+        "source": "GO:BP",
+        "term_size": 27,
+        "source_order": 4185,
+        "group_id": 2
+      }
+    ],
+    "meta": {
+      "query_metadata": {
+        "queries": {
+          "query_1": [
+            "9104",
+            "482",
+            "8013",
+            "5730",
+            "10516",
+            "11080",
+            "55422",
+            "788",
+            "11170",
+            "210",
+            "2788",
+            "23500",
+            "4616",
+            "400961",
+            "6450",
+            "29953",
+            "81558",
+            "7832",
+            "27115",
+            "23673",
+            "217",
+            "23114",
+            "1285",
+            "4354",
+            "55328",
+            "842",
+            "5997",
+            "140597",
+            "4306",
+            "361",
+            "7538",
+            "4129",
+            "2354",
+            "6943",
+            "57030",
+            "5333",
+            "154661",
+            "6563",
+            "126393",
+            "316",
+            "7512",
+            "10370",
+            "1910",
+            "60676",
+            "5577",
+            "6304",
+            "4329",
+            "9397",
+            "5166",
+            "1583",
+            "10628",
+            "283537",
+            "9590",
+            "3590",
+            "25901",
+            "4929",
+            "26273",
+            "90865",
+            "10003",
+            "23345",
+            "30820",
+            "57716",
+            "57658",
+            "55022",
+            "11341",
+            "10566",
+            "7957",
+            "55800",
+            "4916",
+            "4121",
+            "5156",
+            "57134",
+            "2948",
+            "7078",
+            "57515",
+            "2823",
+            "5243",
+            "84263",
+            "2052",
+            "7010",
+            "63876",
+            "3777",
+            "6332",
+            "1979",
+            "55852",
+            "54810",
+            "3082",
+            "55576",
+            "10235",
+            "8504",
+            "66002",
+            "9077",
+            "2051",
+            "23051",
+            "5648",
+            "762",
+            "6327",
+            "4303",
+            "51646",
+            "11034",
+            "5104",
+            "653",
+            "9452",
+            "1272",
+            "26959"
+          ]
+        },
+        "organism": "hsapiens",
+        "all_results": false,
+        "ordered": false,
+        "no_iea": false,
+        "sources": [
+          "GO:MF",
+          "GO:CC",
+          "GO:BP",
+          "KEGG",
+          "REAC"
+        ],
+        "combined": false,
+        "aresolve": {},
+        "numeric_ns": "ENTREZGENE_ACC",
+        "domain_scope": "custom",
+        "measure_underrepresentation": false,
+        "significance_threshold_method": "fdr",
+        "user_threshold": 0.05,
+        "no_evidences": false,
+        "highlight": null
+      },
+      "result_metadata": {
+        "GO:MF": {
+          "domain_size": 20208,
+          "number_of_terms": 10123,
+          "threshold": null
+        },
+        "GO:CC": {
+          "domain_size": 22155,
+          "number_of_terms": 4069,
+          "threshold": null
+        },
+        "GO:BP": {
+          "domain_size": 20972,
+          "number_of_terms": 24546,
+          "threshold": null
+        },
+        "KEGG": {
+          "domain_size": 8716,
+          "number_of_terms": 586,
+          "threshold": null
+        },
+        "REAC": {
+          "domain_size": 11056,
+          "number_of_terms": 2849,
+          "threshold": null
+        }
+      },
+      "genes_metadata": {
+        "failed": [],
+        "ambiguous": {},
+        "duplicates": [],
+        "query": {
+          "query_1": {
+            "mapping": {
+              "9104": [
+                "ENSG00000130988"
+              ],
+              "482": [
+                "ENSG00000129244"
+              ],
+              "8013": [
+                "ENSG00000119508"
+              ],
+              "5730": [
+                "ENSG00000107317"
+              ],
+              "10516": [
+                "ENSG00000140092"
+              ],
+              "11080": [
+                "ENSG00000162616"
+              ],
+              "55422": [
+                "ENSG00000130844"
+              ],
+              "788": [
+                "ENSG00000178537"
+              ],
+              "11170": [
+                "ENSG00000168309"
+              ],
+              "210": [
+                "ENSG00000148218"
+              ],
+              "2788": [
+                "ENSG00000176533"
+              ],
+              "23500": [
+                "ENSG00000146122"
+              ],
+              "4616": [
+                "ENSG00000099860"
+              ],
+              "400961": [
+                "ENSG00000124374"
+              ],
+              "6450": [
+                "ENSG00000185437"
+              ],
+              "29953": [
+                "ENSG00000072657"
+              ],
+              "81558": [
+                "ENSG00000121104"
+              ],
+              "7832": [
+                "ENSG00000159388"
+              ],
+              "27115": [
+                "ENSG00000171408"
+              ],
+              "23673": [
+                "ENSG00000117758"
+              ],
+              "217": [
+                "ENSG00000111275"
+              ],
+              "23114": [
+                "ENSG00000163531"
+              ],
+              "1285": [
+                "ENSG00000169031"
+              ],
+              "4354": [
+                "ENSG00000130830"
+              ],
+              "55328": [
+                "ENSG00000184719"
+              ],
+              "842": [
+                "ENSG00000132906"
+              ],
+              "5997": [
+                "ENSG00000116741"
+              ],
+              "140597": [
+                "ENSG00000184905"
+              ],
+              "4306": [
+                "ENSG00000151623"
+              ],
+              "361": [
+                "ENSG00000171885"
+              ],
+              "7538": [
+                "ENSG00000128016"
+              ],
+              "4129": [
+                "ENSG00000069535"
+              ],
+              "2354": [
+                "ENSG00000125740"
+              ],
+              "6943": [
+                "ENSG00000118526"
+              ],
+              "57030": [
+                "ENSG00000104888"
+              ],
+              "5333": [
+                "ENSG00000187091"
+              ],
+              "154661": [
+                "ENSG00000105784"
+              ],
+              "6563": [
+                "ENSG00000141469"
+              ],
+              "126393": [
+                "ENSG00000004776"
+              ],
+              "316": [
+                "ENSG00000138356"
+              ],
+              "7512": [
+                "ENSG00000122121"
+              ],
+              "10370": [
+                "ENSG00000164442"
+              ],
+              "1910": [
+                "ENSG00000136160"
+              ],
+              "60676": [
+                "ENSG00000116183"
+              ],
+              "5577": [
+                "ENSG00000005249"
+              ],
+              "6304": [
+                "ENSG00000182568"
+              ],
+              "4329": [
+                "ENSG00000119711"
+              ],
+              "9397": [
+                "ENSG00000152465"
+              ],
+              "5166": [
+                "ENSG00000004799"
+              ],
+              "1583": [
+                "ENSG00000140459"
+              ],
+              "10628": [
+                "ENSG00000265972"
+              ],
+              "283537": [
+                "ENSG00000139508"
+              ],
+              "9590": [
+                "ENSG00000131016"
+              ],
+              "3590": [
+                "ENSG00000137070"
+              ],
+              "25901": [
+                "ENSG00000024862"
+              ],
+              "4929": [
+                "ENSG00000153234"
+              ],
+              "26273": [
+                "ENSG00000110429"
+              ],
+              "90865": [
+                "ENSG00000137033"
+              ],
+              "10003": [
+                "ENSG00000077616"
+              ],
+              "23345": [
+                "ENSG00000131018"
+              ],
+              "30820": [
+                "ENSG00000182132"
+              ],
+              "57716": [
+                "ENSG00000105227"
+              ],
+              "57658": [
+                "ENSG00000012822"
+              ],
+              "55022": [
+                "ENSG00000153823"
+              ],
+              "11341": [
+                "ENSG00000164106"
+              ],
+              "10566": [
+                "ENSG00000111254"
+              ],
+              "7957": [
+                "ENSG00000112425"
+              ],
+              "55800": [
+                "ENSG00000166257"
+              ],
+              "4916": [
+                "ENSG00000140538"
+              ],
+              "4121": [
+                "ENSG00000111885"
+              ],
+              "5156": [
+                "ENSG00000134853"
+              ],
+              "57134": [
+                "ENSG00000117643"
+              ],
+              "2948": [
+                "ENSG00000168765"
+              ],
+              "7078": [
+                "ENSG00000100234"
+              ],
+              "57515": [
+                "ENSG00000111897"
+              ],
+              "2823": [
+                "ENSG00000150625"
+              ],
+              "5243": [
+                "ENSG00000085563"
+              ],
+              "84263": [
+                "ENSG00000119471"
+              ],
+              "2052": [
+                "ENSG00000143819"
+              ],
+              "7010": [
+                "ENSG00000120156"
+              ],
+              "63876": [
+                "ENSG00000165495"
+              ],
+              "3777": [
+                "ENSG00000171303"
+              ],
+              "6332": [
+                "ENSG00000136546"
+              ],
+              "1979": [
+                "ENSG00000148730"
+              ],
+              "55852": [
+                "ENSG00000136478"
+              ],
+              "54810": [
+                "ENSG00000137960"
+              ],
+              "3082": [
+                "ENSG00000019991"
+              ],
+              "55576": [
+                "ENSG00000136011"
+              ],
+              "10235": [
+                "ENSG00000068831"
+              ],
+              "8504": [
+                "ENSG00000034693"
+              ],
+              "66002": [
+                "ENSG00000186204"
+              ],
+              "9077": [
+                "ENSG00000162595"
+              ],
+              "2051": [
+                "ENSG00000106123"
+              ],
+              "23051": [
+                "ENSG00000174306"
+              ],
+              "5648": [
+                "ENSG00000127241"
+              ],
+              "762": [
+                "ENSG00000167434"
+              ],
+              "6327": [
+                "ENSG00000149575"
+              ],
+              "4303": [
+                "ENSG00000184481"
+              ],
+              "51646": [
+                "ENSG00000119801"
+              ],
+              "11034": [
+                "ENSG00000125868"
+              ],
+              "5104": [
+                "ENSG00000188488"
+              ],
+              "653": [
+                "ENSG00000112175"
+              ],
+              "9452": [
+                "ENSG00000078596"
+              ],
+              "1272": [
+                "ENSG00000018236"
+              ],
+              "26959": [
+                "ENSG00000105856"
+              ]
+            },
+            "ensgs": [
+              "ENSG00000130988",
+              "ENSG00000129244",
+              "ENSG00000119508",
+              "ENSG00000107317",
+              "ENSG00000140092",
+              "ENSG00000162616",
+              "ENSG00000130844",
+              "ENSG00000178537",
+              "ENSG00000168309",
+              "ENSG00000148218",
+              "ENSG00000176533",
+              "ENSG00000146122",
+              "ENSG00000099860",
+              "ENSG00000124374",
+              "ENSG00000185437",
+              "ENSG00000072657",
+              "ENSG00000121104",
+              "ENSG00000159388",
+              "ENSG00000171408",
+              "ENSG00000117758",
+              "ENSG00000111275",
+              "ENSG00000163531",
+              "ENSG00000169031",
+              "ENSG00000130830",
+              "ENSG00000184719",
+              "ENSG00000132906",
+              "ENSG00000116741",
+              "ENSG00000184905",
+              "ENSG00000151623",
+              "ENSG00000171885",
+              "ENSG00000128016",
+              "ENSG00000069535",
+              "ENSG00000125740",
+              "ENSG00000118526",
+              "ENSG00000104888",
+              "ENSG00000187091",
+              "ENSG00000105784",
+              "ENSG00000141469",
+              "ENSG00000004776",
+              "ENSG00000138356",
+              "ENSG00000122121",
+              "ENSG00000164442",
+              "ENSG00000136160",
+              "ENSG00000116183",
+              "ENSG00000005249",
+              "ENSG00000182568",
+              "ENSG00000119711",
+              "ENSG00000152465",
+              "ENSG00000004799",
+              "ENSG00000140459",
+              "ENSG00000265972",
+              "ENSG00000139508",
+              "ENSG00000131016",
+              "ENSG00000137070",
+              "ENSG00000024862",
+              "ENSG00000153234",
+              "ENSG00000110429",
+              "ENSG00000137033",
+              "ENSG00000077616",
+              "ENSG00000131018",
+              "ENSG00000182132",
+              "ENSG00000105227",
+              "ENSG00000012822",
+              "ENSG00000153823",
+              "ENSG00000164106",
+              "ENSG00000111254",
+              "ENSG00000112425",
+              "ENSG00000166257",
+              "ENSG00000140538",
+              "ENSG00000111885",
+              "ENSG00000134853",
+              "ENSG00000117643",
+              "ENSG00000168765",
+              "ENSG00000100234",
+              "ENSG00000111897",
+              "ENSG00000150625",
+              "ENSG00000085563",
+              "ENSG00000119471",
+              "ENSG00000143819",
+              "ENSG00000120156",
+              "ENSG00000165495",
+              "ENSG00000171303",
+              "ENSG00000136546",
+              "ENSG00000148730",
+              "ENSG00000136478",
+              "ENSG00000137960",
+              "ENSG00000019991",
+              "ENSG00000136011",
+              "ENSG00000068831",
+              "ENSG00000034693",
+              "ENSG00000186204",
+              "ENSG00000162595",
+              "ENSG00000106123",
+              "ENSG00000174306",
+              "ENSG00000127241",
+              "ENSG00000167434",
+              "ENSG00000149575",
+              "ENSG00000184481",
+              "ENSG00000119801",
+              "ENSG00000125868",
+              "ENSG00000188488",
+              "ENSG00000112175",
+              "ENSG00000078596",
+              "ENSG00000018236",
+              "ENSG00000105856"
+            ]
+          }
+        }
+      },
+      "timestamp": "2026-07-18T12:13:54.567682+00:00",
+      "version": "e114_eg62_p19_27110d83"
+    }
+  }
+}
