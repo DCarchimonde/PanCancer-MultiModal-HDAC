@@ -1,0 +1,51 @@
+name: Hydrate E3 docking structure inputs
+
+on:
+  push:
+    branches:
+      - major-revision-2026
+    paths:
+      - revision/requests/e3_structure_inputs.json
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: e3-structure-inputs-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  hydrate-structures:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      PYTHONHASHSEED: "0"
+    steps:
+      - name: Check out the request branch
+        uses: actions/checkout@v5
+        with:
+          ref: ${{ github.ref_name }}
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+
+      - name: Hydrate and audit official RCSB inputs
+        run: python scripts/hydrate_e3_structure_inputs.py
+
+      - name: Commit the validated structure bundle
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add results/revision/docking_controls/source_structures
+          if git diff --cached --quiet; then
+            echo "The validated E3 structure bundle is already current."
+            exit 0
+          fi
+          git commit -m "data: hydrate audited E3 structure inputs"
+          git pull --rebase origin "${GITHUB_REF_NAME}"
+          git push origin "HEAD:${GITHUB_REF_NAME}"
