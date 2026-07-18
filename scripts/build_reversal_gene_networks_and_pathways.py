@@ -87,6 +87,22 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--api-retries", type=int, default=3)
     parser.add_argument("--api-delay-seconds", type=float, default=0.5)
     parser.add_argument("--refresh-api", action="store_true")
+    parser.add_argument(
+        "--export-api-bundle-only",
+        action="store_true",
+        help=(
+            "Write a compact, deterministic request bundle for remote API-cache "
+            "hydration and exit before making any network request."
+        ),
+    )
+    parser.add_argument(
+        "--api-bundle-path",
+        type=Path,
+        default=Path(
+            "results/revision/reversal_gene_networks_pathways/"
+            "network_api_request_bundle.json"
+        ),
+    )
     parser.add_argument("--max-representative-terms", type=int, default=5)
     parser.add_argument("--representative-min-term-size", type=int, default=10)
     parser.add_argument("--representative-max-term-size", type=int, default=2_000)
@@ -406,6 +422,70 @@ def gene_sets(consensus: pd.DataFrame) -> dict[tuple[str, str], list[str]]:
                 subset["reversal_pattern"] == direction, "gene_id"
             ].astype(str).tolist()
     return sets
+
+
+def write_api_request_bundle(
+    consensus: pd.DataFrame,
+    background: list[str],
+    sets: dict[tuple[str, str], list[str]],
+    args: argparse.Namespace,
+    consensus_path: Path,
+    freeze_path: Path,
+    upstream_manifest_path: Path,
+) -> tuple[Path, str]:
+    selected = consensus.loc[consensus["selected_network_gene"]].copy()
+    selected = selected.sort_values(
+        ["candidate", "consensus_rank", "gene_id"], kind="stable"
+    )
+    # DataFrame.to_json converts NumPy scalars and missing values into portable
+    # JSON values without relying on a permissive ``default=str`` fallback.
+    selected_records = json.loads(
+        selected.to_json(orient="records", date_format="iso", double_precision=15)
+    )
+    bundle = {
+        "schema_version": 1,
+        "analysis_stage": "frozen_reversal_gene_networks_and_pathways",
+        "candidate_order": CANDIDATE_ORDER,
+        "gene_set_scopes": GENE_SET_SCOPES,
+        "enrichment_sources": ENRICHMENT_SOURCES,
+        "analysis_parameters": {
+            "gprofiler_base": args.gprofiler_base,
+            "string_base": args.string_base,
+            "string_species": 9606,
+            "string_required_score": args.required_score,
+            "string_network_types": ["physical", "functional"],
+            "string_added_nodes": 0,
+            "enrichment_user_threshold": 0.05,
+            "enrichment_significance_threshold_method": "fdr",
+            "enrichment_domain_scope": "custom",
+        },
+        "custom_background_gene_ids": background,
+        "selected_consensus_records": selected_records,
+        "selected_genes_per_candidate": {
+            candidate: len(sets[(candidate, "all_selected")])
+            for candidate in CANDIDATE_ORDER
+        },
+        "input_sha256": {
+            "candidate_reversal_gene_consensus": sha256_file(consensus_path),
+            "frozen_candidate_manifest": sha256_file(freeze_path),
+            "upstream_manifest": (
+                sha256_file(upstream_manifest_path)
+                if upstream_manifest_path.is_file()
+                else None
+            ),
+        },
+        "evidence_note": (
+            "The request bundle contains frozen reversal-associated gene sets "
+            "and the measured-gene background. It contains no drug-target or "
+            "direct-binding assertions."
+        ),
+    }
+    encoded = (json.dumps(bundle, indent=2, ensure_ascii=False) + "\n").encode(
+        "utf-8"
+    )
+    args.api_bundle_path.parent.mkdir(parents=True, exist_ok=True)
+    args.api_bundle_path.write_bytes(encoded)
+    return args.api_bundle_path, hashlib.sha256(encoded).hexdigest()
 
 
 def intersection_values(result: dict[str, Any]) -> list[str]:
@@ -1181,6 +1261,23 @@ def main() -> None:
         for candidate in CANDIDATE_ORDER
         for gene in sets[(candidate, "all_selected")]
     )
+    if args.export_api_bundle_only:
+        bundle_path, bundle_sha256 = write_api_request_bundle(
+            consensus,
+            background,
+            sets,
+            args,
+            consensus_path,
+            freeze_path,
+            upstream_manifest_path,
+        )
+        print("===== NETWORK API REQUEST BUNDLE =====")
+        print(f"path: {bundle_path}")
+        print(f"sha256: {bundle_sha256}")
+        print(f"background_genes: {len(background)}")
+        print(f"selected_union_genes: {len(selected_union)}")
+        print("NETWORK API REQUEST BUNDLE: EXPORTED")
+        return
     mapping, convert_metadata = map_gene_ids(selected_union, args, raw_dir)
     selected_with_mapping = consensus.loc[
         consensus["selected_network_gene"], ["candidate", "gene_id"]
@@ -1331,10 +1428,25 @@ def main() -> None:
             "analysis with custom measured gene background and Benjamini-Hochberg FDR."
         ),
         "gprofiler_api": args.gprofiler_base,
+        "api_response_mode": (
+            "validated_remote_cache"
+            if (raw_dir / "network_api_cache_manifest.json").is_file()
+            else "local_cache_or_live_request"
+        ),
         "http_transport_policy": (
-            "Use environment proxy first; on a Squid-generated HTTP 502/503/504 "
-            "or URL transport failure, retry the identical HTTPS request directly "
-            "with environment proxies disabled."
+            "Verify cached responses against the SHA-256 of the exact endpoint "
+            "and payload before use. If a response is absent, use the environment "
+            "proxy first and retry transport failures directly with proxies disabled."
+        ),
+        "network_api_request_bundle_sha256": (
+            sha256_file(args.api_bundle_path)
+            if args.api_bundle_path.is_file()
+            else None
+        ),
+        "network_api_cache_manifest_sha256": (
+            sha256_file(raw_dir / "network_api_cache_manifest.json")
+            if (raw_dir / "network_api_cache_manifest.json").is_file()
+            else None
         ),
         "gprofiler_response_versions": gprofiler_versions,
         "representative_term_policy": {
