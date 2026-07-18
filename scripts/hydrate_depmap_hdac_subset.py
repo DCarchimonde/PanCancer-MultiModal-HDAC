@@ -1,11 +1,13 @@
 #!/usr/bin/env python3
-"""Fetch an exact DepMap release and export a small, auditable HDAC subset.
+"""Export a small, auditable HDAC subset from an exact DepMap release.
 
-This script is intended for GitHub Actions.  It obtains the official DepMap
-bulk-download manifest, selects an exact release and exact source files,
-verifies the source MD5 hashes when supplied, and commits only the requested
-HDAC gene-effect columns plus matching model metadata.  Signed source URLs are
-never persisted.
+The preferred automated path obtains the official DepMap bulk-download
+manifest, selects an exact release and exact source files, and verifies source
+MD5 hashes when supplied.  A local-input path is also supported for files
+downloaded interactively from the exact release page when the portal blocks
+non-browser downloads.  Both paths export only the requested HDAC gene-effect
+columns plus matching model metadata; signed URLs and raw bulk files are never
+persisted in revision outputs.
 """
 
 from __future__ import annotations
@@ -80,6 +82,22 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--manifest-timeout", type=int, default=120)
     parser.add_argument("--download-timeout", type=int, default=900)
     parser.add_argument("--retries", type=int, default=4)
+    parser.add_argument(
+        "--gene-effect",
+        type=Path,
+        help=(
+            "Local CRISPRGeneEffect.csv downloaded from the frozen release page. "
+            "Must be supplied together with --model-metadata."
+        ),
+    )
+    parser.add_argument(
+        "--model-metadata",
+        type=Path,
+        help=(
+            "Local Model.csv/Models.csv downloaded from the frozen release page. "
+            "Must be supplied together with --gene-effect."
+        ),
+    )
     return parser.parse_args()
 
 
@@ -380,6 +398,32 @@ def source_record(row: dict[str, str], download: dict[str, Any]) -> dict[str, An
     }
 
 
+def local_source_record(path: Path, *, release: str, expected_name: str) -> dict[str, Any]:
+    """Record a browser-downloaded input without claiming official-MD5 verification."""
+    size = path.stat().st_size
+    if size <= 0:
+        raise RuntimeError(f"Local DepMap source file is empty: {path}")
+    md5 = hashlib.md5(usedforsecurity=False)
+    with path.open("rb") as handle:
+        for chunk in iter(lambda: handle.read(8 * 1024 * 1024), b""):
+            md5.update(chunk)
+    return {
+        "release": release,
+        "filename": path.name,
+        "expected_filename": expected_name,
+        "source_mode": "local_browser_download",
+        "bytes": size,
+        "md5": md5.hexdigest(),
+        "sha256": sha256_file(path),
+        "official_md5": None,
+        "verification_note": (
+            "Release and filename were frozen before download; CSV schema, row count, "
+            "model join, and content hashes were verified locally. The official manifest "
+            "MD5 was unavailable because the portal blocked automated manifest access."
+        ),
+    }
+
+
 def main() -> None:
     args = parse_args()
     request_raw = args.request.read_bytes()
@@ -394,45 +438,44 @@ def main() -> None:
     if manifest_url != "https://depmap.org/portal/api/download/files":
         raise RuntimeError(f"Unexpected DepMap source manifest URL: {manifest_url}")
 
-    manifest_raw, manifest_headers = request_bytes(
-        manifest_url,
-        timeout=args.manifest_timeout,
-        retries=args.retries,
-        accept="text/csv,text/plain;q=0.9,*/*;q=0.1",
-    )
-    rows = parse_download_manifest(manifest_raw)
-    gene_row = unique_source_row(
-        rows,
-        release=release,
-        filenames=[str(request["gene_effect_filename"])],
-        label="CRISPR gene-effect source",
-    )
-    model_row = unique_source_row(
-        rows,
-        release=release,
-        filenames=[str(value) for value in request["model_metadata_filenames"]],
-        label="model metadata source",
-    )
+    local_flags = (args.gene_effect is not None, args.model_metadata is not None)
+    if any(local_flags) and not all(local_flags):
+        raise RuntimeError(
+            "Local-input mode requires both --gene-effect and --model-metadata"
+        )
 
-    print(f"official release: {release}")
-    print(f"gene-effect file: {gene_row['filename']}")
-    print(f"model metadata file: {model_row['filename']}")
-    with tempfile.TemporaryDirectory(prefix="depmap-hdac-") as temporary:
-        temporary_dir = Path(temporary)
-        gene_path = temporary_dir / gene_row["filename"]
-        model_path = temporary_dir / model_row["filename"]
-        gene_download = download_file(
-            gene_row,
-            gene_path,
-            timeout=args.download_timeout,
-            retries=args.retries,
+    manifest_raw: bytes | None = None
+    manifest_headers: dict[str, str] = {}
+    if all(local_flags):
+        gene_path = args.gene_effect.expanduser().resolve()
+        model_path = args.model_metadata.expanduser().resolve()
+        missing = [str(path) for path in (gene_path, model_path) if not path.is_file()]
+        if missing:
+            raise FileNotFoundError(f"Missing local DepMap input(s): {missing}")
+        expected_gene_name = str(request["gene_effect_filename"])
+        expected_model_names = [
+            str(value) for value in request["model_metadata_filenames"]
+        ]
+        if gene_path.name != expected_gene_name:
+            raise RuntimeError(
+                f"Expected local gene-effect filename {expected_gene_name!r}; "
+                f"observed={gene_path.name!r}"
+            )
+        if model_path.name not in expected_model_names:
+            raise RuntimeError(
+                f"Expected local model metadata filename in {expected_model_names!r}; "
+                f"observed={model_path.name!r}"
+            )
+        source_mode = "local_browser_download"
+        gene_source = local_source_record(
+            gene_path, release=release, expected_name=expected_gene_name
         )
-        model_download = download_file(
-            model_row,
-            model_path,
-            timeout=args.download_timeout,
-            retries=args.retries,
+        model_source = local_source_record(
+            model_path, release=release, expected_name=model_path.name
         )
+        print(f"frozen release: {release}")
+        print(f"local gene-effect file: {gene_path}")
+        print(f"local model metadata file: {model_path}")
         subset = export_subsets(
             gene_path,
             model_path,
@@ -441,22 +484,75 @@ def main() -> None:
             genes,
             int(request.get("minimum_gene_effect_rows", 500)),
         )
+    else:
+        source_mode = "official_manifest_download"
+        manifest_raw, manifest_headers = request_bytes(
+            manifest_url,
+            timeout=args.manifest_timeout,
+            retries=args.retries,
+            accept="text/csv,text/plain;q=0.9,*/*;q=0.1",
+        )
+        rows = parse_download_manifest(manifest_raw)
+        gene_row = unique_source_row(
+            rows,
+            release=release,
+            filenames=[str(request["gene_effect_filename"])],
+            label="CRISPR gene-effect source",
+        )
+        model_row = unique_source_row(
+            rows,
+            release=release,
+            filenames=[str(value) for value in request["model_metadata_filenames"]],
+            label="model metadata source",
+        )
+        print(f"official release: {release}")
+        print(f"gene-effect file: {gene_row['filename']}")
+        print(f"model metadata file: {model_row['filename']}")
+        with tempfile.TemporaryDirectory(prefix="depmap-hdac-") as temporary:
+            temporary_dir = Path(temporary)
+            gene_path = temporary_dir / gene_row["filename"]
+            model_path = temporary_dir / model_row["filename"]
+            gene_download = download_file(
+                gene_row,
+                gene_path,
+                timeout=args.download_timeout,
+                retries=args.retries,
+            )
+            model_download = download_file(
+                model_row,
+                model_path,
+                timeout=args.download_timeout,
+                retries=args.retries,
+            )
+            gene_source = source_record(gene_row, gene_download)
+            model_source = source_record(model_row, model_download)
+            subset = export_subsets(
+                gene_path,
+                model_path,
+                args.output_dir,
+                str(request["output_release_token"]),
+                genes,
+                int(request.get("minimum_gene_effect_rows", 500)),
+            )
 
     outputs = [subset["gene_effect_output"], subset["model_output"]]
     manifest = {
         "schema_version": 1,
         "status": "passed",
-        "fetched_at_utc": datetime.now(timezone.utc).isoformat(),
+        "processed_at_utc": datetime.now(timezone.utc).isoformat(),
+        "source_mode": source_mode,
         "request_path": str(args.request),
         "request_sha256": sha256_bytes(request_raw),
         "official_manifest_url": manifest_url,
-        "official_manifest_sha256": sha256_bytes(manifest_raw),
+        "official_manifest_sha256": (
+            sha256_bytes(manifest_raw) if manifest_raw is not None else None
+        ),
         "official_manifest_content_type": manifest_headers.get("content-type"),
         "release": release,
         "genes": genes,
         "source_files": [
-            source_record(gene_row, gene_download),
-            source_record(model_row, model_download),
+            gene_source,
+            model_source,
         ],
         "subset": {
             key: value
@@ -486,6 +582,7 @@ def main() -> None:
     audit_lines = [
         "DEPMAP 26Q1 HDAC SOURCE SUBSET: PASSED",
         f"release={release}",
+        f"source_mode={source_mode}",
         f"gene_effect_rows={subset['gene_effect_rows']}",
         f"model_metadata_rows={subset['model_metadata_rows']}",
         f"join_coverage={subset['join_coverage']:.6f}",
