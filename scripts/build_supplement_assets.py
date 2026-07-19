@@ -5,6 +5,7 @@ from __future__ import annotations
 
 import math
 from pathlib import Path
+import shutil
 
 import matplotlib.pyplot as plt
 from matplotlib.backends.backend_pdf import PdfPages
@@ -152,7 +153,15 @@ def make_table(
     return "\n".join(lines) + "\n"
 
 
+GROUPED_LANDSCAPE_TABLES = {7, 8, 14, 15, 17, 18, 22}
+
+
 def write_table(number: int, text: str) -> None:
+    # These adjacent short/wide tables are grouped by the Supplement source
+    # inside a shared landscape environment.  Removing their individual
+    # wrappers prevents empty transition pages between related tables.
+    if number in GROUPED_LANDSCAPE_TABLES:
+        text = text.replace("\\begin{landscape}\n", "").replace("\\end{landscape}\n", "")
     (OUT / f"table_S{number:02d}.tex").write_text(text, encoding="utf-8")
 
 
@@ -617,12 +626,159 @@ def build_network_figure() -> None:
     save(pd.DataFrame(inventory), "network_plot_inventory")
 
 
+def build_seed_variability_figure() -> None:
+    """Show seed-level prediction--measurement coefficients without duplicating main Figure 3."""
+    data = pd.read_csv(
+        RESULTS / "measured_lincs_figures" / "predicted_measured_hiq_correlations_by_seed.csv"
+    )
+    data = data[data["metric"].isin(["signed_wtrs", "spearman_reversal"])].copy()
+    metric_order = ["signed_wtrs", "spearman_reversal"]
+    model_order = ["dual_stream", "fingerprint_mlp"]
+    metric_labels = {"signed_wtrs": "Signed wTRS", "spearman_reversal": "Spearman reversal"}
+    model_labels = {"dual_stream": "Dual stream", "fingerprint_mlp": "Fingerprint MLP"}
+    seed_colors = {1: "#4C78A8", 2: "#F58518", 3: "#54A24B"}
+
+    fig, axes = plt.subplots(1, 2, figsize=(11, 4.8), sharey=True)
+    for ax, statistic, title in zip(axes, ["pearson", "spearman"], ["Pearson coefficient", "Spearman coefficient"]):
+        positions = {}
+        for m_i, metric in enumerate(metric_order):
+            for model_i, model in enumerate(model_order):
+                positions[(metric, model)] = m_i * 3 + model_i
+            for seed in sorted(data["seed"].unique()):
+                pair = data[(data["metric"] == metric) & (data["seed"] == seed)]
+                if set(pair["model"]) == set(model_order):
+                    y = [float(pair.loc[pair["model"] == model, statistic].iloc[0]) for model in model_order]
+                    x = [positions[(metric, model)] for model in model_order]
+                    ax.plot(x, y, color=seed_colors[int(seed)], alpha=0.35, lw=1.0, zorder=1)
+        for (metric, model), x in positions.items():
+            subset = data[(data["metric"] == metric) & (data["model"] == model)]
+            for seed in sorted(subset["seed"].unique()):
+                row = subset[subset["seed"] == seed].iloc[0]
+                ax.scatter(x, row[statistic], s=48, color=seed_colors[int(seed)], edgecolor="white", lw=0.6, zorder=3)
+            ax.scatter(x, subset[statistic].mean(), marker="D", s=58, color="#222222", edgecolor="white", lw=0.7, zorder=4)
+        ticks = [positions[(metric, model)] for metric in metric_order for model in model_order]
+        labels = [f"{metric_labels[metric]}\n{model_labels[model]}" for metric in metric_order for model in model_order]
+        ax.set_xticks(ticks, labels, rotation=15, ha="right")
+        ax.set_ylim(0, 1.0)
+        ax.set_ylabel("Prediction--measurement coefficient")
+        ax.set_title(title, weight="bold")
+        ax.grid(axis="y", color="#D8D8D8", lw=0.7, alpha=0.8)
+    handles = [
+        plt.Line2D([0], [0], marker="o", color="none", markerfacecolor=seed_colors[s], markeredgecolor="white", markersize=7, label=f"Seed {s}")
+        for s in (1, 2, 3)
+    ]
+    handles.append(plt.Line2D([0], [0], marker="D", color="none", markerfacecolor="#222222", markersize=7, label="Seed mean"))
+    fig.legend(handles=handles, loc="lower center", ncol=4, frameon=False, bbox_to_anchor=(0.5, -0.01))
+    fig.suptitle("Seed-level corrected-HDAC prediction--measurement concordance", fontsize=14, weight="bold")
+    fig.tight_layout(rect=(0, 0.10, 1, 0.94))
+    fig.savefig(FIG / "predicted_measured_seed_variability.pdf", bbox_inches="tight")
+    plt.close(fig)
+
+
+def build_condition_sensitivity_figure() -> None:
+    """Visualize measured time/dose sensitivity without treating sparse conditions as trajectories."""
+    time_data = pd.read_csv(RESULTS / "measured_lincs_figures" / "candidate_time_measured_summary.csv")
+    dose_data = pd.read_csv(RESULTS / "measured_lincs_figures" / "candidate_dose_measured_summary.csv")
+    primary = ["Mocetinostat", "NCH-51", "TC-H-106", "Belinostat", "PCI-24781", "Panobinostat", "Entinostat", "Vorinostat"]
+    metrics = ["signed_wtrs", "spearman_reversal"]
+    metric_labels = {"signed_wtrs": "Signed wTRS", "spearman_reversal": "Spearman reversal"}
+    colors = dict(zip(primary, plt.get_cmap("tab10").colors[:len(primary)]))
+    time_data = time_data[(time_data["quality_set"] == "hiq") & time_data["candidate"].isin(primary) & time_data["metric"].isin(metrics)].copy()
+    dose_data = dose_data[(dose_data["quality_set"] == "hiq") & dose_data["candidate"].isin(primary) & dose_data["metric"].isin(metrics)].copy()
+    multi_dose = [c for c in primary if dose_data[dose_data["candidate"] == c]["dose_um"].nunique() > 1]
+
+    fig, axes = plt.subplots(2, 2, figsize=(12, 8.2))
+    for col, metric in enumerate(metrics):
+        ax = axes[0, col]
+        for candidate in primary:
+            sub = time_data[(time_data["metric"] == metric) & (time_data["candidate"] == candidate)].sort_values("time_h")
+            if sub.empty:
+                continue
+            ax.plot(sub["time_h"], sub["median_score"], marker="o", ms=5, lw=1.4, color=colors[candidate], label=candidate)
+        ax.axhline(0, color="#777777", lw=0.8, ls="--")
+        ax.set_xticks([6, 24, 48])
+        ax.set_xlabel("Exposure time (h)")
+        ax.set_ylabel(f"HiQ median {metric_labels[metric]}")
+        ax.set_title(f"Time strata: {metric_labels[metric]}", weight="bold")
+        ax.grid(color="#E2E2E2", lw=0.6)
+
+        ax = axes[1, col]
+        for candidate in multi_dose:
+            sub = dose_data[(dose_data["metric"] == metric) & (dose_data["candidate"] == candidate)].sort_values("dose_um")
+            ax.plot(sub["dose_um"], sub["median_score"], marker="o", ms=3.8, lw=1.2, color=colors[candidate], label=candidate)
+        ax.axhline(0, color="#777777", lw=0.8, ls="--")
+        ax.set_xscale("log")
+        ax.set_xlabel("Dose (µM; log scale)")
+        ax.set_ylabel(f"HiQ median {metric_labels[metric]}")
+        ax.set_title(f"Multi-dose rows: {metric_labels[metric]}", weight="bold")
+        ax.grid(color="#E2E2E2", lw=0.6, which="both")
+
+    handles, labels = axes[0, 0].get_legend_handles_labels()
+    fig.legend(handles, labels, loc="lower center", ncol=4, frameon=False, bbox_to_anchor=(0.5, 0.005))
+    fig.suptitle("Official HiQ measured-reversal condition sensitivity", fontsize=14, weight="bold")
+    fig.text(0.5, 0.105, "Lines connect descriptive condition strata; unequal coverage precludes causal time-course or dose-response inference.", ha="center", fontsize=9, style="italic")
+    fig.tight_layout(rect=(0, 0.15, 1, 0.95), h_pad=1.5, w_pad=1.2)
+    fig.savefig(FIG / "measured_condition_sensitivity.pdf", bbox_inches="tight")
+    plt.close(fig)
+
+
+def build_redocking_pose_diagnostics() -> None:
+    """Expose pose-level redocking variability instead of repeating the main composite panel."""
+    data = pd.read_csv(RESULTS / "docking_controls" / "redocking_4lxz" / "redocking_pose_metrics.csv")
+    methods = ["vina_standard", "ad4zn"]
+    method_labels = {"vina_standard": "Standard Vina", "ad4zn": "AutoDock4Zn"}
+    method_colors = {"vina_standard": "#4C78A8", "ad4zn": "#E45756"}
+    seed_markers = {1: "o", 2: "s", 3: "^"}
+
+    fig, axes = plt.subplots(1, 2, figsize=(11, 4.8), sharey=True)
+    for method in methods:
+        sub = data[data["method"] == method]
+        for seed in (1, 2, 3):
+            ss = sub[sub["seed"] == seed]
+            axes[0].scatter(ss["score_kcal_mol"], ss["crystal_rmsd_a"], s=42, marker=seed_markers[seed],
+                            color=method_colors[method], edgecolor="white", lw=0.5, alpha=0.85)
+            axes[1].scatter(ss["hydroxamate_zn_min_a"], ss["crystal_rmsd_a"], s=42, marker=seed_markers[seed],
+                            color=method_colors[method], edgecolor="white", lw=0.5, alpha=0.85)
+    for ax in axes:
+        ax.axhline(2.0, color="#333333", lw=1.0, ls="--", label="Prespecified 2 Å RMSD gate")
+        ax.set_ylabel("Symmetry-corrected crystal RMSD (Å)")
+        ax.grid(color="#E0E0E0", lw=0.6)
+    axes[0].set_xlabel("Docking score (kcal/mol)")
+    axes[0].set_title("Score does not uniquely determine pose recovery", weight="bold")
+    axes[1].set_xlabel("Minimum hydroxamate--Zn distance (Å)")
+    axes[1].set_title("Zn proximity does not uniquely determine pose recovery", weight="bold")
+    handles = [
+        plt.Line2D([0], [0], marker="o", color="none", markerfacecolor=method_colors[m], markersize=7, label=method_labels[m])
+        for m in methods
+    ]
+    handles.extend([
+        plt.Line2D([0], [0], marker=seed_markers[s], color="#555555", lw=0, markersize=7, label=f"Seed {s}")
+        for s in (1, 2, 3)
+    ])
+    handles.append(plt.Line2D([0], [0], color="#333333", ls="--", label="2 Å RMSD gate"))
+    fig.legend(handles=handles, loc="lower center", ncol=6, frameon=False, bbox_to_anchor=(0.5, -0.015))
+    fig.suptitle("Pose-level 4LXZ crystallographic redocking diagnostics", fontsize=14, weight="bold")
+    fig.tight_layout(rect=(0, 0.10, 1, 0.94), w_pad=1.2)
+    fig.savefig(FIG / "redocking_pose_diagnostics.pdf", bbox_inches="tight")
+    plt.close(fig)
+
+
+def build_unique_supplementary_figures() -> None:
+    source = ROOT / "figures" / "candidate_stability.pdf"
+    shutil.copy2(source, FIG / "candidate_stability_expanded_72.pdf")
+    build_seed_variability_figure()
+    build_condition_sensitivity_figure()
+    build_redocking_pose_diagnostics()
+
+
 def main() -> None:
     build_tabular_assets()
     build_network_figure()
+    build_unique_supplementary_figures()
     print("SUPPLEMENT ASSETS: PASSED")
     print(f"tables=24")
     print(f"generated_dir={OUT}")
+    print("supplementary_figures=6 unique groups")
     print(f"network_figure={FIG / 'supplementary_expanded_physical_networks.pdf'}")
 
 

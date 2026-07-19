@@ -8,7 +8,7 @@
 
 1. `01_Revised_Manuscript.pdf`：clean revised manuscript。
 2. `02_Response_to_Reviewers.pdf`：17 条意见逐点回复。
-3. `03_Additional_file_1_Supplementary_Material.pdf`：24 个 Supplementary table 主题与 6 个 Supplementary figure 组。
+3. `03_Additional_file_1_Supplementary_Material.pdf`：24 个 Supplementary table 主题与 6 个不重复的补充诊断图组。
 4. `04_Additional_file_2_Revision_Tables.xlsx`：55 sheets 的机器可读结果。
 5. `05_LaTeX_Source.zip`：主稿、Supplement、回复信的 TeX 源码及编译所需图表。
 
@@ -28,7 +28,7 @@
 - [ ] Authors' contributions 与实际贡献一致，所有作者同意。
 - [ ] Competing interests、ethics、consent 和 data availability 声明准确。
 - [ ] AI-assisted language/formatting disclosure 符合作者与期刊政策。
-- [ ] 正文标题使用：`Leakage-Aware Pan-Cancer Transcriptomic Reversal Prioritization: Measured Support and Metric-Dependent Class I HDAC Enrichment`。
+- [ ] 正文标题保持原投稿题目：`Multi-Modal Molecular Representation Learning Prioritizes Class I HDAC Inhibitors for Pan-Cancer Transcriptomic Reversal`。
 - [ ] 上传界面的 Figure/Table/Additional file 标签与文件名一致。
 - [ ] 回复信上传后抽查 17 个 Comment 标题是否全部可见。
 - [ ] CPU 型号与 RAM 保持 `not recorded`，不要根据当前机器补猜。

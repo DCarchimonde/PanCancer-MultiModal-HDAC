@@ -1,16 +1,17 @@
 # Final QA report (internal; do not upload unless requested)
 
 Evidence snapshot: `fefbf2f4fa7399983d4d4041dcb8e7e91b84d17f`  
-QA date: 2026-07-19
+QA date: 2026-07-20
 
 ## Document integrity
 
 - Revised manuscript: 36 pages; 36 bibliography entries; no blank page.
 - Response letter: 10 pages; 17/17 review-comment sections; no blank page.
-- Additional file 1: 35 pages; 24 numbered Supplementary table themes (`S1`--`S24`); 6 numbered Supplementary figure groups (`S1`--`S6`); no blank page.
+- Additional file 1: 31 pages; 24 numbered Supplementary table themes (`S1`--`S24`); 6 numbered, complementary Supplementary figure groups (`S1`--`S6`); no blank or orphan transition page.
 - Additional file 2: 55 sheets (README, index, dictionary, 52 data sheets).
 - All three PDFs opened, rendered, and were visually reviewed as page contacts and selected full-size pages.
 - All PDF fonts are embedded.
+- The nine main-figure groups and six Supplementary figure groups were checked by source-file SHA256; their intersection is empty. Supplementary figures provide seed-, condition-, expanded-stability-, network-, lineage-, or pose-level diagnostics rather than repeating main panels.
 
 ## Build and format checks
 
@@ -31,6 +32,7 @@ QA date: 2026-07-19
 - Candidate tiers and RG2833/Tianeptinaline exclusions are consistent across manuscript, Supplement, workbook, response, and README.
 - Measured reversal, networks, DepMap, docking, and GDSC null results use the specified evidence-boundary language.
 - Response figure references were checked against the final manuscript: network/pathway Figure 6, network Figure 7, DepMap Figure 8, and docking Figure 9.
+- The original submitted title is retained. Its wording claims computational prioritization, not architecture superiority, efficacy, or metric-independent enrichment; those limitations are explicit in the Abstract, Results, Discussion, and Supplement.
 
 ## Known disclosed limitations, not QA failures
 

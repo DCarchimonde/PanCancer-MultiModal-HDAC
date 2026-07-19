@@ -1,8 +1,8 @@
-# Leakage-Aware Pan-Cancer Transcriptomic Reversal Prioritization
+# Multi-Modal Molecular Representation Learning for Pan-Cancer Transcriptomic Reversal
 
 This repository contains the corrected major-revision analysis for:
 
-> **Leakage-Aware Pan-Cancer Transcriptomic Reversal Prioritization: Measured Support and Metric-Dependent Class I HDAC Enrichment**
+> **Multi-Modal Molecular Representation Learning Prioritizes Class I HDAC Inhibitors for Pan-Cancer Transcriptomic Reversal**
 
 The revision is a hypothesis-generating computational study. It separates model generalization, experimentally measured transcriptomic reversal, candidate identity, biological context, and docking sensitivity. It does **not** claim drug efficacy, clinical benefit, direct target discovery, biochemical target engagement, or superiority of the dual-stream model.
 

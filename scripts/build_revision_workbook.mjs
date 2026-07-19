@@ -3,7 +3,7 @@ import path from "node:path";
 import { SpreadsheetFile, Workbook } from "@oai/artifact-tool";
 
 const ROOT = path.resolve(process.env.PANCANCER_REVISION_ROOT || process.cwd());
-const OUT_DIR = process.env.PANCANCER_WORKBOOK_OUT || path.join(ROOT, "outputs", "276dcc8753da");
+const OUT_DIR = process.env.PANCANCER_WORKBOOK_OUT || path.join(ROOT, "outputs");
 const PREVIEW_DIR = process.env.PANCANCER_WORKBOOK_PREVIEWS || path.join(ROOT, "qa", "workbook_previews");
 
 const specs = [
@@ -179,7 +179,7 @@ for (const [sheetName, relPath, description] of specs) {
 readme.showGridLines = false;
 const readmeRows = [
   ["File", "Additional file 2: Machine-readable major-revision tables"],
-  ["Manuscript", "Leakage-Aware Pan-Cancer Transcriptomic Reversal Prioritization: Measured Support and Metric-Dependent Class I HDAC Enrichment"],
+  ["Manuscript", "Multi-Modal Molecular Representation Learning Prioritizes Class I HDAC Inhibitors for Pan-Cancer Transcriptomic Reversal"],
   ["Evidence freeze", "2026-07-19"],
   ["Evidence commit", "fefbf2f4fa7399983d4d4041dcb8e7e91b84d17f"],
   ["Submission ID", "8b1e184c-443d-4707-954c-70a65930e16f"],
