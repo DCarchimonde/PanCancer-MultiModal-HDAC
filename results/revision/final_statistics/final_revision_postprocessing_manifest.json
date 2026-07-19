@@ -1,0 +1,33 @@
+{
+  "analysis": "final_revision_cpu_postprocessing",
+  "random_seed": 20260719,
+  "bootstrap_iterations": 10000,
+  "model_retraining": false,
+  "candidate_roles_changed": false,
+  "background_gene_interpretation": {
+    "submitted_custom_entrez_ids": 11144,
+    "gprofiler_effective_domain_size": 11154,
+    "note": "The first value is the submitted measured background identifier count; the second is the service-reported mapped statistical universe."
+  },
+  "matched_non_hdac_null": {
+    "status": "not_computed",
+    "reason": "The archived official-condition outputs do not contain a condition-matched non-HDAC profile universe. The exported all-profile compound ranks are retained only as an unmatched sensitivity analysis."
+  },
+  "outputs": [
+    "derived_final/generalization_all_runs_corrected.csv",
+    "derived_final/generalization_summary_corrected.csv",
+    "derived_final/generalization_paired_corrected.csv",
+    "derived_final/predicted_measured_two_way_bootstrap.csv",
+    "derived_final/predicted_measured_leave_one_out.csv",
+    "derived_final/candidate_stability_primary_48.csv",
+    "derived_final/candidate_stability_legacy_inclusive_72.csv",
+    "derived_final/candidate_stability_primary_vs_sensitivity.csv",
+    "derived_final/formal_hdac_enrichment.csv",
+    "derived_final/corrected_hdac_holdout_30_structures.csv",
+    "derived_final/corrected_hdac_holdout_pre_post_fix.csv",
+    "derived_final/measured_all_profile_background_rank_sensitivity.csv",
+    "figures/screening_landscape_hdac_enrichment.pdf",
+    "figures/candidate_stability_primary.pdf",
+    "figures/predicted_measured_hiq_two_way.pdf"
+  ]
+}

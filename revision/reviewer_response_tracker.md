@@ -1,77 +1,62 @@
-# BMC Bioinformatics Major Revision Tracker
+# BMC Bioinformatics major-revision tracker
+
+Evidence freeze: **19 July 2026**  
+Submission ID: **8b1e184c-443d-4707-954c-70a65930e16f**
 
 Status legend:
-- **Evidence ready**: the requested analysis/data audit has been generated; manuscript and response wording remain.
-- **Pipeline ready**: code, split, and smoke tests are complete; full 4090 runs remain.
-- **Pending**: analysis or manuscript work has not yet been completed.
+
+- **Closed**: analysis, manuscript text, supplementary evidence, and point-by-point response are complete.
+- **Closed with explicit limitation**: the requested point was addressed using available public evidence, and the remaining unavailable experiment is stated rather than imputed.
 
 ## Reviewer 1
 
-1. **Dataset composition and transparency** — **Evidence ready**
-   - Generated counts for profiles, unique perturbagens, cell lines, dose/time conditions, and replicate numbers.
-   - Remaining: add a dataset-composition table and explicit replicate/QC description to Methods/Supplement.
-
-2. **Candidate/HDAC exposure in LINCS and structural analogues** — **Evidence ready (partial)**
-   - Exact metadata/SMILES membership audited for TC-H-106, RG2833, and the compound labelled Tianeptinaline.
-   - Remaining: nearest-neighbour/Tanimoto analogue analysis and manual identity verification of Tianeptinaline versus BG-1010.
-
-3. **Repeated runs, uncertainty/statistics, and network-pharmacology terminology** — **Pipeline ready (partial)**
-   - Deterministic multi-seed training and profile-level metrics are implemented and smoke-tested.
-   - Remaining: full runs, confidence intervals/statistical comparison, and replacement of “targets” with “reversal-associated genes”.
+1. **Dataset composition and transparency — Closed**
+   - 55,695 Level 5 signatures are separated from 11,445 structures, 65 cells, identifiers, times, conditions, and plate/batch-level repeated Level 5 rows.
+2. **Candidate/HDAC exposure and structural analogues — Closed**
+   - Exact membership, canonical structure, scaffold, and Morgan-neighbor exposure are reported; the corrected HDAC holdout contains 1,856 profiles from 30 structures.
+3. **Repeated runs and model comparison — Closed**
+   - Thirty-four frozen runs, SDs, paired 95% intervals, and R-squared are reported. No stable dual-stream superiority is claimed.
+4. **Network terminology — Closed**
+   - All model-derived genes are labelled reversal-associated genes; networks/pathways are complementary annotation, not direct targets or independent validation.
 
 ## Reviewer 2
 
-4. **Support the statement that pan-cancer ranking consistently prioritised the candidates** — **Pending**
-   - Remaining: across-seed/across-split rank stability, top-k frequency, tumour-level consistency, and wording calibrated to the observed stability.
-
-5. **Stronger generalisation evaluation** — **Pipeline ready**
-   - Leave-drug-out, leave-cell-line-out, scaffold split, and HDAC-class holdout are generated and verified.
-   - Remaining: full dual-stream and fingerprint-baseline training/evaluation.
-
-6. **Remove causal/mechanistic therapeutic implications** — **Pending**
-   - Remaining: systematic language audit across Abstract, Results, Discussion, figures, and captions.
-
-7. **Improve figures, captions, font sizes, and readability** — **Pending**
+5. **Justify pan-cancer ranking — Closed**
+   - Formal prespecified HDAC enrichment is significant for signed wTRS but not co-primary Spearman reversal; the conclusion is metric-dependent.
+6. **Stronger generalization — Closed**
+   - Pair, leave-drug, leave-cell-line, scaffold, corrected HDAC, strict candidate LDO, and official-condition measured LINCS analyses are reported.
+7. **Remove causal/therapeutic implications — Closed**
+   - Prediction, measured transcriptomic reversal, biological context, and structural sensitivity are separated from efficacy and target engagement.
+8. **Figure quality — Closed**
+   - Main and supplementary figures were regenerated as readable vector panels with evidence-boundary captions.
 
 ## Reviewer 3
 
-8. **Clarify novelty versus DeepCE, ChemCPA, and related multimodal work** — **Pending**
+9. **Novelty relative to DeepCE/ChemCPA — Closed**
+   - The model is described as an atom-token Transformer plus fingerprint fusion, not a bond-aware GNN or new neural primitive. Non-equivalent proxy comparisons were removed.
+10. **Performance and evaluation — Closed**
+    - Repeated leakage-aware tests do not support model superiority; all paired intervals are reported.
+11. **Minimal biological validation — Closed with explicit limitation**
+    - Official measured LINCS transcriptomic profiles were analysed with 10,000 crossed candidate-cancer bootstrap iterations. No viability/biochemical experiment is claimed.
+12. **Candidate criteria — Closed**
+    - Mocetinostat is core, NCH-51 secondary, TC-H-106 exploratory, RG2833 prediction-only, and Tianeptinaline/BG-1010 identity-conflicted and excluded.
+13. **Docking controls — Closed**
+    - 4LXZ crystallographic redocking, AutoDock4Zn, a zinc-chelation decoy, controls, three seeds, and 4BKX receptor sensitivity are reported as structural sensitivity.
+14. **GDSC null result — Closed**
+    - Entinostat surrogate R=-0.052, P=0.859 is retained only as a documented null/unavailable-direct-validation result and is not used as support.
+15. **Established HDAC biology — Closed**
+    - HDAC oncology relevance is acknowledged as established; brain penetrance is neither inferred nor used as novelty.
+16. **Reproducibility — Closed with recorded-data limitation**
+    - Architecture, normalization, parameters, seeds, software, GPU, checkpoints, epochs, and runtimes are reported. CPU model and RAM were not captured and are marked not recorded.
+17. **Figure captions and biological significance — Closed**
+    - Captions explain both biological context and evidential limits; expanded networks and wide panels are in the Supplement.
 
-9. **Repeated random seeds, confidence intervals, and statistical comparison** — **Pipeline ready**
-   - Remaining: complete full runs and aggregate results.
+## Final progress
 
-10. **Leave-drug-out, leave-cell-line-out, scaffold/external validation** — **Pipeline ready**
-   - Internal strict splits are ready; external validation will only be claimed if a suitable independent dataset is actually evaluated.
+- Reviewer comments formally closed: **17/17**
+- Required experimental packages E1/E2/E3: **complete**
+- Conditional direct external drug-sensitivity package C4: **suitable direct public data unavailable; limitation documented**
+- Mandatory cleanup package A: **complete in the synchronized revision branch**
+- Mandatory manuscript/Supplement/reply package B: **complete and cross-audited**
 
-11. **Minimal biological validation** — **Pending**
-   - Current plan: strengthen orthogonal computational evidence and state clearly that no experimental efficacy validation was performed.
-
-12. **Explain prioritisation of TC-H-106 over RG2833/others and add sensitivity analysis** — **Pending**
-
-13. **Strengthen docking controls** — **Pending**
-   - Remaining: redocking/co-crystal control and interaction comparison; MD only if feasible and methodologically justified.
-
-14. **Do not present the non-significant GDSC result as supportive validation** — **Pending (text-only, high priority)**
-
-15. **Clarify novelty given established HDAC oncology literature** — **Pending**
-
-16. **Add hyperparameter selection, architecture choice, compute cost, training time, GPU, seeds, normalisation, and uncertainty details** — **Pipeline ready (partial)**
-   - Runtime/software/GPU/parameter logging is implemented.
-   - Remaining: final values from full runs and manuscript description.
-
-17. **Improve figures and captions** — **Pending**
-
-## Current progress snapshot
-
-- Evidence generated: **2/17**
-- Pipelines ready but full 4090 runs pending: **5/17**
-- Mostly pending analysis/text/figures: **10/17**
-- Formally closed in manuscript + response letter: **0/17**
-
-The 17 comments collapse into six overlapping work packages:
-1. Data transparency and candidate exposure
-2. Strict generalisation + repeated seeds + statistics
-3. Ranking stability and TC-H-106 rationale
-4. Novelty/causal-language/GDSC/network-pharmacology revisions
-5. Docking and orthogonal biological support
-6. Figures, reproducibility details, manuscript revision, and point-by-point response
+No new wet-lab viability, biochemical, organoid, animal, or clinical experiment was performed. Measured LINCS support is experimental perturbational transcriptomics, not therapeutic-efficacy validation.
