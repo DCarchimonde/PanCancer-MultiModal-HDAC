@@ -1,38 +1,54 @@
 # Final QA report (internal; do not upload unless requested)
 
 Evidence snapshot: `fefbf2f4fa7399983d4d4041dcb8e7e91b84d17f`  
-QA date: 2026-07-20
+Final package QA date: 2026-07-20
+
+## GitHub disconnect recovery
+
+- The branch snapshot present immediately after the interrupted turn contained submission files 01--06 but did not contain the promised 07 internal assessment or 08 complete package.
+- The stale aggregate ZIP was not reused. Files 01--08 were regenerated from the corrected sources and are synchronized in the final commit.
 
 ## Document integrity
 
-- Revised manuscript: 36 pages; 36 bibliography entries; no blank page.
-- Response letter: 10 pages; 17/17 review-comment sections; no blank page.
-- Additional file 1: 31 pages; 24 numbered Supplementary table themes (`S1`--`S24`); 6 numbered, complementary Supplementary figure groups (`S1`--`S6`); no blank or orphan transition page.
-- Additional file 2: 55 sheets (README, index, dictionary, 52 data sheets).
-- All three PDFs opened, rendered, and were visually reviewed as page contacts and selected full-size pages.
-- All PDF fonts are embedded.
-- The nine main-figure groups and six Supplementary figure groups were checked by source-file SHA256; their intersection is empty. Supplementary figures provide seed-, condition-, expanded-stability-, network-, lineage-, or pose-level diagnostics rather than repeating main panels.
+- Revised manuscript: 36 pages; nine main-figure groups; 36 bibliography entries; no blank page.
+- The original uploaded TeX also contained 36 bibliography entries. The revision replaces five obsolete citations with five sources directly required by the corrected workflow; it does not reduce 38 references to 16.
+- Response letter: 10 pages; 17/17 reviewer-comment sections; no blank page; locations were rechecked after final float placement.
+- Additional file 1: 32 pages; 24 numbered Supplementary table themes (`S1`--`S24`); six complementary Supplementary figure groups (`S1`--`S6`); no blank page.
+- Additional file 2: 57 sheets (README, Sheet Index, Data Dictionary, and 54 data sheets).
+- All three PDFs were rendered page by page and visually reviewed as contact sheets plus full-size key pages.
+- Every font in all three PDFs is embedded. The two overlay-generated Helvetica instances were explicitly embedded before the final build.
+- The 13 main figure assets and six Supplementary figure assets have zero exact SHA-256 overlap. Supplementary figures provide seed-, condition-, legacy-sensitivity-, expanded-network-, lineage-, and pose-level diagnostics instead of reusing main figure files.
 
-## Build and format checks
+## Build, workbook, and container checks
 
-- Manuscript, Supplement, and response source compile successfully from the standalone source ZIP.
-- No LaTeX overfull box, undefined-control-sequence, undefined-reference, or changed-label warning remains in the final build logs.
+- Manuscript, Supplement, and response independently compile from the standalone source tree.
+- No LaTeX overfull box, undefined-control-sequence, undefined-reference, citation, or changed-label warning remains. Non-actionable underfull wrapping warnings are retained.
 - Source ZIP and XLSX ZIP containers pass integrity tests.
-- Workbook inspection found no `#REF!`, `#DIV/0!`, `#VALUE!`, or `#NAME?` errors.
-- No AutoDL or scratch absolute path occurs in the final workbook or portable source bundle.
-- No unresolved `TODO`, `TBD`, `PLACEHOLDER`, `INSERT HERE`, or `To be replaced` marker remains.
+- All 57 workbook sheets produced a nonempty visual preview.
+- Workbook search found zero `#REF!`, `#DIV/0!`, `#VALUE!`, `#NAME?`, or `#N/A` errors.
+- Workbook search found zero AutoDL or scratch absolute paths.
+- Sheet Index row/column counts use integer formatting.
+- No unresolved `TODO`, `TBD`, `PLACEHOLDER`, `INSERT HERE`, or `To be replaced` marker occurs in the portable source.
 
 ## Scientific consistency checks
 
-- Corrected holdout values consistently use 53,839 train profiles, 1,856 test profiles, and 30 test structures; the 1,565/21 pre-fix row is labeled provenance only.
+- Corrected holdout values consistently use 53,839 train profiles, 1,856 test profiles, and 30 profiled test structures; 39 annotation-defined library structures are distinguished from the 30 with matched LINCS modeling profiles.
+- The 1,565-profile/21-structure pre-fix row is labeled provenance only.
+- Formal class-enrichment ranking explicitly averages 528 equal run--cancer library percentiles per compound and metric (4 splits × 2 models × 3 seeds × 22 cancers). The cutoffs are described as fixed for the revision, not prospectively preregistered.
 - Primary stability uses 48 configurations; the 72-configuration legacy-inclusive result is sensitivity only.
-- g:Profiler values are distinguished as 11,144 submitted IDs versus 11,154 effective mapped domain.
-- The model is consistently described as chemical-structure-only and not condition aware.
+- All 5,037 g:Profiler term intersections were reconstructed from mapped-query order; Entrez intersection genes and evidence codes are separate; every count matches the service response.
+- g:Profiler values are distinguished as 11,144 submitted unique measured Entrez IDs versus an 11,154 effective service domain.
+- S23 accurately states that no wet-lab assay was performed and that the reviewer-suggested public-transcriptomic option was addressed.
+- Figure 3 identifies its black lines as OLS visual summaries, reports crossed-bootstrap intervals, and does not claim point-level error bars.
+- The model is consistently chemical-structure-only; leave-cell-line is not interpreted as learned condition specificity.
 - Model conclusions consistently reject a stable dual-stream superiority claim.
 - Candidate tiers and RG2833/Tianeptinaline exclusions are consistent across manuscript, Supplement, workbook, response, and README.
 - Measured reversal, networks, DepMap, docking, and GDSC null results use the specified evidence-boundary language.
-- Response figure references were checked against the final manuscript: network/pathway Figure 6, network Figure 7, DepMap Figure 8, and docking Figure 9.
-- The original submitted title is retained. Its wording claims computational prioritization, not architecture superiority, efficacy, or metric-independent enrichment; those limitations are explicit in the Abstract, Results, Discussion, and Supplement.
+
+## Author-locked items
+
+- The original submitted title is retained exactly. It is defensible as a computational-prioritization description because formal signed-wTRS enrichment is reported, while metric dependence and lack of architecture superiority are explicit.
+- The AI-assisted technologies declaration is unchanged from the prior package at the author's request.
 
 ## Known disclosed limitations, not QA failures
 
@@ -40,4 +56,5 @@ QA date: 2026-07-20
 - Per-cohort final TCGA tumor/normal sample counts were not preserved in the frozen analysis archive and were not guessed.
 - CPU model and RAM were not captured by the AutoDL manifests and remain `not recorded`.
 - No new wet-lab viability, biochemical, organoid, animal, or clinical experiment was performed.
-- Acceptance cannot be guaranteed; the report establishes consistency and integrity of the available evidence, not an editorial outcome.
+- Author identities, affiliations, contribution statements, grant identifiers, and policy compliance require final human confirmation.
+- Acceptance cannot be guaranteed; this report establishes consistency and integrity of the available evidence, not an editorial outcome.

@@ -1,0 +1,56 @@
+\begingroup
+\footnotesize
+\begin{table}[H]
+\centering
+\caption{4LXZ crystallographic redocking control. The prespecified RMSD gate was 2 Angstrom.}
+\label{tab:s_redock}
+\begin{tabular}{@{}lrrrrrrr@{}}
+\toprule
+Method & Seeds & Seed coverage & Cluster poses & Median score & Medoid RMSD & Zn min & Zn max \\
+\midrule
+vina\_standard & 3 & 3 & 8 & -7.290 & 4.771 & 2.348 & 3.645 \\
+ad4zn & 3 & 3 & 3 & -7.491 & 1.091 & 2.123 & 3.108 \\
+\bottomrule
+\end{tabular}
+\end{table}
+\endgroup
+\begingroup
+\scriptsize
+\begin{table}[H]
+\centering
+\caption*{Supplementary Table S22 (continued). Frozen 4LXZ control/candidate panel. Favorable score is not evidence of intended zinc geometry.}
+\begin{tabular}{@{}p{3.2cm}p{6.0cm}rrrrrrr@{}}
+\toprule
+Compound & Role & 3-seed & Poses & Cluster score & Medoid score & ZBG min & ZBG max & Nearest heteroatom \\
+\midrule
+Vorinostat & crystallographic\_positive\_control & yes & 3 & -7.491 & -7.532 & 2.123 & 3.108 & 2.123 \\
+Vorinostat O-methyl decoy & designed zinc-chelation sensitivity control & yes & 6 & -7.998 & -7.791 & 6.799 & 8.992 & 4.078 \\
+Mocetinostat & core\_candidate & yes & 7 & -11.024 & -12.289 & 12.954 & 13.872 & 2.002 \\
+NCH-51 & secondary\_candidate & yes & 8 & -8.357 & -9.094 & -- & -- & 2.448 \\
+TC-H-106 & original\_method\_sensitive\_candidate & yes & 5 & -9.674 & -9.895 & 10.442 & 13.748 & 3.858 \\
+Entinostat & reference\_control & yes & 10 & -10.703 & -11.996 & 11.852 & 13.867 & 1.918 \\
+Belinostat & class\_support\_control & yes & 3 & -9.336 & -9.383 & 8.918 & 9.525 & 2.841 \\
+\bottomrule
+\end{tabular}
+\end{table}
+\endgroup
+\begingroup
+\footnotesize
+\begin{table}[H]
+\centering
+\caption*{Supplementary Table S22 (continued). HDAC2 4LXZ versus aligned HDAC1 4BKX receptor sensitivity.}
+\begin{tabular}{@{}lrrrrrr@{}}
+\toprule
+Compound & Pose RMSD & 4LXZ score & 4BKX score & $\Delta$ score & 4LXZ nearest Zn & 4BKX nearest Zn \\
+\midrule
+Vorinostat & 8.357 & -7.491 & -8.111 & -0.620 & 2.123 & 2.324 \\
+Vorinostat O-methyl decoy & 1.872 & -7.998 & -7.767 & 0.231 & 4.078 & 2.210 \\
+Mocetinostat & 1.080 & -11.024 & -10.864 & 0.160 & 2.002 & 2.176 \\
+NCH-51 & 1.870 & -8.357 & -8.457 & -0.100 & 2.448 & 2.435 \\
+TC-H-106 & 1.508 & -9.674 & -8.886 & 0.788 & 3.858 & 3.895 \\
+Entinostat & 1.280 & -10.703 & -10.539 & 0.164 & 1.918 & 1.907 \\
+Belinostat & 8.787 & -9.336 & -7.915 & 1.421 & 2.841 & 2.140 \\
+\bottomrule
+\end{tabular}
+\end{table}
+\endgroup

@@ -22,7 +22,7 @@ Status legend:
 ## Reviewer 2
 
 5. **Justify pan-cancer ranking — Closed**
-   - Formal prespecified HDAC enrichment is significant for signed wTRS but not co-primary Spearman reversal; the conclusion is metric-dependent.
+   - Formal HDAC enrichment at fixed revision cutoffs is significant for signed wTRS but not co-primary Spearman reversal; the conclusion is metric-dependent. The ranking equally averages 24 runs across 22 cancers per compound.
 6. **Stronger generalization — Closed**
    - Pair, leave-drug, leave-cell-line, scaffold, corrected HDAC, strict candidate LDO, and official-condition measured LINCS analyses are reported.
 7. **Remove causal/therapeutic implications — Closed**

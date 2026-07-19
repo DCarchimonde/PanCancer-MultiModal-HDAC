@@ -1,0 +1,26 @@
+\begin{table}[H]
+\centering
+\caption{\textbf{Leakage-aware generalization across five frozen evaluation settings.} Values are mean (seed SD); the pair split used five seeds and all other settings used three. Correlations are means of profile-wise coefficients. The HDAC row uses the corrected annotation-defined holdout only. No split establishes consistent dual-stream superiority.}
+\label{tab:generalization}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{llrrrrrr}
+\toprule
+Split & Model & Test $n$ & MSE $\downarrow$ & MAE $\downarrow$ & $R^2$ $\uparrow$ & Pearson $r$ $\uparrow$ & Spearman $\rho$ $\uparrow$ \\
+\midrule
+Drug--cell pair & Dual stream & 8,319 & 0.882 (0.004) & 0.704 (0.003) & 0.108 (0.004) & 0.259 (0.009) & 0.237 (0.009) \\
+Drug--cell pair & Fingerprint MLP & 8,319 & 0.881 (0.001) & 0.703 (0.001) & 0.110 (0.002) & 0.263 (0.005) & 0.241 (0.005) \\
+\addlinespace[2pt]
+Leave drug out & Dual stream & 7,967 & 0.919 (0.003) & 0.717 (0.001) & 0.052 (0.003) & 0.188 (0.000) & 0.166 (0.001) \\
+Leave drug out & Fingerprint MLP & 7,967 & 0.919 (0.001) & 0.716 (0.001) & 0.052 (0.001) & 0.191 (0.003) & 0.170 (0.003) \\
+\addlinespace[2pt]
+Leave cell line out & Dual stream & 5,175 & 0.942 (0.004) & 0.714 (0.000) & 0.121 (0.003) & 0.266 (0.010) & 0.243 (0.010) \\
+Leave cell line out & Fingerprint MLP & 5,175 & 0.941 (0.007) & 0.713 (0.002) & 0.122 (0.006) & 0.272 (0.010) & 0.249 (0.010) \\
+\addlinespace[2pt]
+Scaffold split & Dual stream & 7,844 & 0.973 (0.000) & 0.738 (0.002) & 0.062 (0.000) & 0.185 (0.006) & 0.163 (0.007) \\
+Scaffold split & Fingerprint MLP & 7,844 & 0.971 (0.002) & 0.736 (0.001) & 0.064 (0.002) & 0.186 (0.001) & 0.165 (0.002) \\
+\addlinespace[2pt]
+Corrected annotation-defined HDAC & Dual stream & 1,856 & 1.326 (0.026) & 0.839 (0.005) & 0.131 (0.017) & 0.378 (0.009) & 0.345 (0.010) \\
+Corrected annotation-defined HDAC & Fingerprint MLP & 1,856 & 1.333 (0.015) & 0.841 (0.004) & 0.127 (0.010) & 0.379 (0.007) & 0.344 (0.006) \\
+\bottomrule
+\end{tabular}}
+\end{table}

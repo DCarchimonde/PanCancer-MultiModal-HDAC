@@ -1,0 +1,227 @@
+\documentclass[10pt]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[margin=0.72in]{geometry}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{tabularx}
+\usepackage{array}
+\usepackage{float}
+\usepackage{placeins}
+\usepackage{pdflscape}
+\usepackage{subcaption}
+\usepackage{xcolor}
+\usepackage{microtype}
+\usepackage{enumitem}
+\usepackage{fancyhdr}
+\usepackage[colorlinks=true,linkcolor=blue,urlcolor=blue,hypertexnames=false]{hyperref}
+\renewcommand{\thetable}{S\arabic{table}}
+\renewcommand{\thefigure}{S\arabic{figure}}
+
+\graphicspath{{figures/}}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.45em}
+\setlength{\tabcolsep}{4pt}
+\renewcommand{\arraystretch}{1.10}
+\setlength{\emergencystretch}{3em}
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{Additional file 1}
+\rhead{Major-revision supplementary material}
+\cfoot{\thepage}
+
+\begin{document}
+
+\begin{titlepage}
+\centering
+{\Large\bfseries Additional file 1\par}
+\vspace{0.35cm}
+{\LARGE\bfseries Supplementary methods, tables, and figures\par}
+\vspace{0.8cm}
+{\large Supplement to:\par}
+\vspace{0.2cm}
+{\Large\bfseries Multi-Modal Molecular Representation Learning Prioritizes Class I HDAC Inhibitors\par}
+{\Large\bfseries for Pan-Cancer Transcriptomic Reversal\par}
+\vspace{0.8cm}
+{\large Siyuan Tong, Wen Zhang, and Shiliang Ji\par}
+\vfill
+\begin{minipage}{0.88\textwidth}
+\small
+\textbf{Evidence policy.} This supplement distinguishes predicted reversal, measured LINCS transcriptomic reversal, biological context, and structural sensitivity. Measured reversal is not a viability assay; reversal-associated genes are not asserted direct drug targets; DepMap knockout effects are not compound responses; and docking is not binding validation. The 24 tables below are compact human-readable views. Full, filterable rows and source fields are supplied in Additional file 2.
+\end{minipage}
+\vfill
+{\large Evidence freeze: 19 July 2026\par}
+\end{titlepage}
+
+\tableofcontents
+\clearpage
+
+\section{Scope, corrections, and candidate policy}
+
+The revision uses three completed computational evidence packages: (E1) official-condition measured LINCS comparison and prediction--measurement concordance; (E2) biological reanalysis after candidate roles were frozen, including networks, pathways, and DepMap Public 26Q1; and (E3) controlled zinc-aware docking with crystallographic redocking, a designed zinc-chelation decoy, and receptor sensitivity. A direct external drug-sensitivity package was conditional on candidate-matched public data and was not performed because such data were unavailable for TC-H-106. No new wet-lab experiment is claimed.
+
+The candidate hierarchy was frozen before network, pathway, dependency, and docking interpretation. Mocetinostat is the core computational candidate; NCH-51 is secondary; TC-H-106 is exploratory/original-method-sensitive; RG2833 is prediction-only because no measured LINCS signature was found; and Tianeptinaline/BG-1010 is excluded from primary inference because official identifier resolution exposed a name--structure conflict. Belinostat, PCI-24781, and Panobinostat provide class support; Entinostat and Vorinostat are reference controls.
+
+The revised package removes simulated TCGA survival and stage analyses, unsupported tumor-mutation-burden conclusions, proxy DeepCE/ChemCPA claims, unsupported legacy ablation values, GDSC surrogate ``validation,'' direct-target language for reversed genes, and MMFF94 energy claims as thermodynamic evidence. A pre-correction HDAC holdout is retained only as provenance; all model inference uses the corrected annotation-defined 1,856-profile, 30-structure holdout.
+
+\section{Dataset, model scope, and leakage-aware evaluation}
+
+Table S1 separates signatures, perturbagen tokens, nominal conditions, canonical structures, and cell lines. This distinction prevents the 55,695 modeling rows from being described as unique compounds or biological replicates.
+
+\input{generated/table_S01}
+
+Both neural predictors are chemical-structure-only models. They do not receive cell-line identity, dose, or time. Their output is therefore a structure-conditioned central tendency across training conditions, not a condition-specific response. Leave-cell-line evaluation measures agreement with profiles from held-out cellular backgrounds under this formulation; it does not show that the models learned cell-specific response rules.
+
+\input{generated/table_S02}
+
+The split audit first checks signature identifiers and then distinguishes exact-structure and scaffold exposure. Zero scaffold overlap is required only for the scaffold split. The corrected annotation-defined HDAC holdout requires zero exact HDAC structure overlap; 11 scaffolds remain shared and are reported rather than mislabeled as leakage.
+
+\input{generated/table_S03}
+
+\input{generated/table_S04}
+
+\input{generated/table_S05}
+
+\input{generated/table_S06}
+
+Across generalization settings, the fingerprint MLP was slightly better on average in the pair, leave-drug, leave-cell-line, and scaffold evaluations. The corrected HDAC holdout was mixed by metric and every paired interval included zero. These tables replace all proxy state-of-the-art comparisons and do not support dual-stream superiority.
+
+\begin{landscape}
+\section{Candidate identity, condition coverage, and corrected holdout}
+
+\input{generated/table_S07}
+
+\input{generated/table_S08}
+\end{landscape}
+
+The official LINCS cell count and the HiQ-eligible official-cell count are separate fields in Table S8. This resolves the earlier ambiguity in which a single ``Cells'' column could refer to either the full official metadata or the primary HiQ analysis.
+
+\input{generated/table_S09}
+
+The correction added nine annotation-defined structures and 291 profiles. NCH-51 was removed from training and placed into the final test set. Table S10 provides the complete compound-level inventory rather than only an aggregate count.
+
+\input{generated/table_S10}
+
+\input{generated/table_S11}
+
+Only Mocetinostat and PCI-24781 satisfy strict leave-drug candidate membership. PCI-24781 significantly favored the fingerprint baseline for profile correlations; no strict candidate result favors the dual stream.
+
+\section{Measured LINCS reversal and prediction--measurement concordance}
+
+Measured profiles were aggregated hierarchically: median within candidate--dose--time--official-cell condition, median across conditions within official cell, comparison with each cancer disease vector, and summary across official cells and cancers. The HiQ stratum is primary; QC-pass and all-profile rows are sensitivity analyses.
+
+\input{generated/table_S12}
+
+The crossed bootstrap independently resampled eight candidates and 22 cancers. This is more conservative than treating 176 candidate--cancer pairs as independent. Leave-one-candidate-out and leave-one-cancer-out influence tables are in Additional file 2 and retain positive associations.
+
+\input{generated/table_S13}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.96\textwidth]{predicted_measured_seed_variability.pdf}
+\caption{\textbf{Seed-level prediction--measurement concordance.} Pearson and Spearman coefficients are shown separately for every corrected annotation-defined HDAC seed, model, and primary reversal definition. Large markers denote seed means. The figure exposes run-to-run variability that is summarized by the crossed candidate--cancer intervals in the main text; it is not a second independent validation dataset.}
+\end{figure}
+
+\begin{landscape}
+\centering
+\includegraphics[height=4.85in,keepaspectratio]{measured_condition_sensitivity.pdf}
+\captionof{figure}{\textbf{Measured LINCS time- and dose-stratum sensitivity.} HiQ pan-cancer median signed wTRS and Spearman reversal are shown by exposure time for the eight primary compounds and by dose for the four reference or class-support compounds with more than one profiled dose. Unequal cells, signatures, and condition coverage prevent causal dose--response or time-course interpretation; these panels are descriptive sensitivity checks.}
+\vspace{0.25em}
+\begin{minipage}{0.96\linewidth}
+\small
+All eight primary compounds had positive median measured reversal under signed and rank-based definitions. These are experimental expression responses, not direct drug-sensitivity, target-engagement, or efficacy measurements. The all-profile comparison against 11,445 canonical compounds in Additional file 2 is unmatched for dose, time, cell, and quality and is therefore not a condition-matched non-HDAC null.
+\end{minipage}
+\end{landscape}
+
+\begin{landscape}
+\section{Candidate stability, structural exposure, and formal class enrichment}
+The primary stability hierarchy contains 48 configurations: four generalization or distribution-shift regimes, two models, three seeds, and two primary reversal metrics. Adding the legacy reversal-only magnitude score produces 72 configurations and is explicitly sensitivity analysis. These regime labels do not imply that every named candidate is unseen under every configuration. Candidate identity and training exposure override descriptive rank; this is why the high-ranking identity-conflicted Tianeptinaline/BG-1010 row remains excluded.
+
+\input{generated/table_S14}
+
+\input{generated/table_S15}
+\end{landscape}
+
+\begin{landscape}
+\centering
+\includegraphics[width=0.96\linewidth,keepaspectratio]{candidate_stability_expanded_72.pdf}
+\captionof{figure}{\textbf{Expanded split- and metric-level candidate stability sensitivity.} The heatmap reports the full 72-configuration legacy-inclusive audit by split and reversal definition, with run-level distributions and recurrent high-rank frequencies. This expands, rather than repeats, the 48-configuration primary summary in main Figure 4. Legacy wTRS remains a sensitivity metric and does not determine candidate eligibility.}
+\end{landscape}
+
+\input{generated/table_S16}
+
+Formal testing shows that the explicitly annotated class I subset is enriched under signed wTRS at every fixed revision cutoff, but not under Spearman reversal. For each metric, compounds were ordered by the mean of 528 equally weighted library-rank percentiles (24 screening runs across four generalization regimes, two models, and three seeds, multiplied by 22 cancers). The cutoffs were fixed for the revision analysis but were not prospectively preregistered. The Results and conclusions therefore describe the enrichment as metric-dependent rather than universal. The retained original title refers to computational prioritization and does not imply model superiority, efficacy, or metric-independent enrichment. The broader annotation-defined HDAC analysis and the legacy metric are included in Additional file 2.
+
+\begin{landscape}
+\section{Frozen reversal-associated genes, pathways, and networks}
+Candidate roles were frozen before these analyses. At the 70\% primary consensus threshold, the top 200 reversal-associated genes per candidate/control were carried forward. The term ``reversal-associated'' is used because gene selection derives from the same disease--perturbation opposition used for ranking; these genes are not direct pharmacological targets.
+
+\input{generated/table_S17}
+
+\input{generated/table_S18}
+\end{landscape}
+
+\input{generated/table_S19}
+
+The g:Profiler request submitted 11,144 unique measured Entrez identifiers as the custom background. The service response reported an effective mapped statistical domain of 11,154. These values answer different questions and are both retained. For every term, the returned per-query evidence array was aligned to the mapped-query order in the frozen response; nonempty entries identify the intersecting Entrez genes, while GO evidence codes are retained in a separate machine-readable field. All 5,037 reconstructed gene intersections match the service-reported intersection sizes. Table S19 reports candidate/source scope and de-duplicates representative term names; $P$ values remain in scientific notation rather than appearing as ``0.00.'' Additional file 2 contains the complete term table and a cache/hash audit.
+
+\input{generated/table_S20}
+
+\begin{landscape}
+\centering
+\includegraphics[page=1,height=5.55in,keepaspectratio]{supplementary_expanded_physical_networks.pdf}
+\captionof{figure}{\textbf{(A) Expanded high-confidence physical STRING plotting subsets.} Mocetinostat, NCH-51, and TC-H-106 are shown with up to 45 non-isolated nodes selected by weighted degree. Leading hubs are labeled. Full 200-gene node tables and all physical/functional edges are in Additional file 2.}
+\end{landscape}
+
+\begin{landscape}
+\centering
+\includegraphics[page=2,height=5.55in,keepaspectratio]{supplementary_expanded_physical_networks.pdf}
+\captionof*{figure}{\textbf{Supplementary Figure S4 (continued), panel B. Expanded high-confidence physical STRING plotting subsets for controls.} Belinostat, Entinostat, and Vorinostat are shown under the same plotting policy. Nodes remain reversal-associated genes, not direct drug targets.}
+\end{landscape}
+
+\section{DepMap genetic-dependency context}
+
+\input{generated/table_S21}
+
+HDAC3 is the dominant pan-cancer dependency in DepMap Public 26Q1. The lineage tests are statistically significant with modest effect sizes, and pairwise HDAC correlations are weak. These results provide genetic-loss context but do not identify a candidate's pharmacological isoform, efficacy, or normal-tissue safety.
+
+\begin{landscape}
+\centering
+\includegraphics[height=5.45in,keepaspectratio]{depmap_hdac_lineage_heatmap.pdf}
+\captionof{figure}{\textbf{DepMap lineage heterogeneity.} Median class I HDAC CRISPR gene effects are shown only for lineages meeting the prespecified minimum of ten models. More negative values indicate stronger loss-of-function effect.}
+\end{landscape}
+
+\begin{landscape}
+\section{Controlled docking and receptor sensitivity}
+\input{generated/table_S22}
+
+\begin{minipage}{0.96\linewidth}
+\small
+The redocking control establishes protocol suitability only for one known cocrystal geometry under the zinc-aware potential. The O-methyl decoy demonstrates that a favorable score can coexist with an implausible prespecified zinc-binding-group distance. Several candidate poses change across 4LXZ and 4BKX. Consequently, docking is a protocol/receptor-sensitivity analysis with unresolved pose plausibility, not binding validation.
+\end{minipage}
+\end{landscape}
+
+\begin{landscape}
+\centering
+\includegraphics[width=0.96\linewidth,keepaspectratio]{redocking_pose_diagnostics.pdf}
+\captionof{figure}{\textbf{Pose-level crystallographic redocking diagnostics.} Every retained pose from seeds 1--3 is shown by docking method. Score, symmetry-corrected heavy-atom RMSD, and hydroxamate--zinc distance are displayed jointly with the prespecified 2~\AA{} RMSD gate. These pose-level diagnostics expand main Figure 9 and show why score or zinc proximity alone cannot establish a recovered binding geometry.}
+\end{landscape}
+
+\section{External drug-sensitivity availability and reproducibility}
+
+\input{generated/table_S23}
+
+The non-significant Entinostat surrogate result is retained as a null result and cannot validate TC-H-106. No direct candidate-matched public viability response was found for TC-H-106 in the frozen audit. This limitation is stated in the manuscript and response letter rather than replaced with a post hoc proxy.
+
+\input{generated/table_S24}
+
+CPU model and RAM were not captured in the frozen AutoDL manifests. They are explicitly marked unrecorded rather than inferred from the current environment. The corrected evidence snapshot is archived at repository commit \texttt{fefbf2f4fa7399983d4d4041dcb8e7e91b84d17f}; later document-only commits do not alter that frozen analysis snapshot.
+
+\section{Machine-readable companion}
+
+Additional file 2 contains the complete run-level, candidate-level, condition-level, network, pathway, DepMap, docking, sensitivity, and reproducibility tables with filters and a data dictionary. A dedicated condition-level manifest records the 83,490-row archived condition table, its schema, and why that large table is represented by auditable aggregates rather than duplicated into the formatted workbook. Repository-relative source paths are used; no AutoDL absolute paths are required to interpret the workbook. Blank fields are retained only when a measurement is not applicable or was not recorded, and the corresponding reason is supplied in a status or note column.
+
+\end{document}

@@ -1,0 +1,24 @@
+\begingroup
+\small
+\begin{table}[H]
+\centering
+\caption{Composition of the quality-controlled LINCS modeling dataset and frozen screening library. Level 5 signatures are not unique compounds or raw biological replicates.}
+\label{tab:s_dataset}
+\begin{tabular}{@{}p{0.30\textwidth}rp{0.58\textwidth}@{}}
+\toprule
+Item & Count & Interpretation \\
+\midrule
+Level 5 signatures & 55,695 & Modeling rows after quality control \\
+Signature-ID perturbagen tokens & 13,314 & Includes instance suffixes \\
+Base perturbagen identifiers & 11,527 & Normalized BRD identifiers \\
+Unique canonical structures & 11,445 & Valid RDKit structures \\
+Cell lines & 65 & Across the modeling dataset \\
+Perturbagen-token--cell combinations & 39,266 & Descriptive combinations \\
+Perturbagen-token--cell--time--dose conditions & 52,834 & Nominal conditions \\
+Additional signatures beyond nominal conditions & 2,861 & Plate/batch-level Level 5 entries \\
+Expression genes & 12,328 & Shared disease/perturbation feature space \\
+Screened canonical compounds & 28,477 & Frozen screening library; distinct from the modeling structures \\
+\bottomrule
+\end{tabular}
+\end{table}
+\endgroup

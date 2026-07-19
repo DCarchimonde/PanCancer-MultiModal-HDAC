@@ -1,0 +1,310 @@
+\documentclass[10pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[margin=0.82in]{geometry}
+\usepackage{xcolor}
+\usepackage{enumitem}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{microtype}
+\usepackage{setspace}
+\usepackage[colorlinks=true,linkcolor=blue,urlcolor=blue]{hyperref}
+\setstretch{1.07}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.55em}
+\setlength{\emergencystretch}{2em}
+\setlist[itemize]{leftmargin=1.5em,itemsep=0.2em,topsep=0.2em}
+\definecolor{commentgray}{RGB}{245,247,249}
+\definecolor{rulegray}{RGB}{180,188,196}
+\newenvironment{reviewcomment}{%
+  \begin{quote}\small\itshape\color{black}
+}{\end{quote}}
+\newcommand{\Response}{\textbf{Response.} }
+\newcommand{\Action}{\textbf{Action and result.} }
+\newcommand{\RevisedText}{\textbf{Revised manuscript text.} }
+\newcommand{\Location}{\textbf{Location.} }
+\newcommand{\qtext}[1]{``#1''}
+
+\begin{document}
+
+\begin{center}
+{\Large\bfseries Point-by-point response to the Editor and Reviewers}\par
+\vspace{0.45em}
+{\large Revised manuscript:}\par
+\textbf{Multi-Modal Molecular Representation Learning Prioritizes Class I HDAC Inhibitors for Pan-Cancer Transcriptomic Reversal}\par
+\vspace{0.35em}
+Submission ID: \texttt{8b1e184c-443d-4707-954c-70a65930e16f}\par
+20 July 2026
+\end{center}
+
+\section*{Dear Editor and Reviewers}
+
+Thank you for the careful and constructive assessment. We did not merely soften wording. We rebuilt the evaluation and evidence chain while retaining the submitted prediction task and frozen model family. The principal model conclusion has changed: the dual-stream atom-token/fingerprint model does \emph{not} consistently outperform a matched fingerprint MLP. The revised paper adds entity-aware generalization tests, repeated seeds, corrected annotation-defined HDAC holdout results, formal class-enrichment testing, official-condition measured LINCS comparisons with crossed candidate--cancer uncertainty, structural-neighbor and identity audits, frozen candidate tiers, reversal-associated network terminology, DepMap context, and controlled crystallographic docking.
+
+Unsupported material was removed, including simulated survival and stage analyses, unreproducible mutation-burden claims, proxy DeepCE/ChemCPA performance comparisons, an unsupported legacy ablation claim, an MMFF ``validation'' claim, and supportive interpretation of the non-significant GDSC surrogate result. The revised paper distinguishes prediction, measured transcriptomic reversal, biological context, and structural sensitivity from efficacy, direct target engagement, and clinical benefit.
+
+The manuscript is provided as a clean revised version, as requested. Additional file 1 now contains 24 supplementary tables and six supplementary figure groups; Additional file 2 contains 54 data sheets plus a README, sheet index, and data dictionary. The two added audit sheets document the archived condition-level table and the corrected g:Profiler identifier alignment. Run-level and large machine files remain available in the repository rather than being reduced to undocumented summaries.
+
+\subsection*{Principal revisions}
+\begin{enumerate}[leftmargin=1.7em,itemsep=0.25em]
+\item Clarified that 55,695 rows are Level 5 signatures, not unique compounds, and enumerated structures, identifiers, cells, times, nominal conditions, and Level 5 replicate handling.
+\item Added drug--cell pair, leave-drug-out, leave-cell-line-out, scaffold, and corrected annotation-defined HDAC evaluations with repeated seeds, run-level metrics, $R^2$, paired uncertainty, and explicit overlap inventories.
+\item Corrected the HDAC holdout from the invalid 1,565-profile/21-structure version to 1,856 profiles from 30 structures; the correction added nine structures and removed NCH-51 from training.
+\item Removed the claim of dual-stream superiority. The fingerprint MLP is slightly better on average in four settings and comparable in the corrected HDAC holdout.
+\item Added formal HDAC enrichment tests at fixed revision cutoffs. Signed wTRS enriched the explicit class I subset at top 0.5--10\% cutoffs (all FDR $<10^{-4}$), whereas co-primary Spearman reversal did not; the class claim is therefore explicitly metric-dependent.
+\item Recomputed candidate stability using 48 primary configurations (signed wTRS and Spearman reversal); the legacy-inclusive 72-configuration analysis is sensitivity only.
+\item Compared predicted and measured reversal for eight compounds and 22 cancers with 10,000 crossed candidate--cancer bootstrap iterations and leave-one-out influence diagnostics.
+\item Froze evidence tiers: Mocetinostat core, NCH-51 secondary, TC-H-106 exploratory, RG2833 prediction-only, and Tianeptinaline/BG-1010 identity-conflicted and excluded.
+\item Reframed networks as reversal-associated annotation, DepMap as genetic context, and docking as protocol/receptor sensitivity rather than independent mechanism or binding validation.
+\end{enumerate}
+
+\section*{Response to the Handling Editor}
+
+\begin{reviewcomment}
+Please ensure the results are accurately reported, any overstated conclusions are rewritten and the limitations of the work fully explained.
+\end{reviewcomment}
+
+\Response We agree. All central numbers in the revised manuscript are linked to frozen run-level or post-processing exports. The abstract, Results, Discussion, Conclusions, figure captions, Supplement, and workbook consistently state the applicable evidence boundary.
+
+\Action The manuscript now reports the corrected HDAC holdout only; adds crossed rather than single-cluster bootstrap intervals; separates primary and legacy stability definitions; removes unsupported analyses and causal terminology; and includes a limitations paragraph covering chemical-only inputs, same-ecosystem LINCS comparison, unequal condition coverage, residual scaffold exposure, the absence of a recoverable fully condition-matched non-HDAC null, and the absence of new viability or biochemical experiments.
+
+\RevisedText \qtext{The evidence does not support claims that the dual-stream model is superior to a fingerprint MLP, that the chemical-only models predict condition-specific responses, that reversal-associated genes are direct drug targets, that RG2833 or Tianeptinaline/BG-1010 has stable measured support, that GDSC provides validation, or that docking proves HDAC engagement.}
+
+\Location Revised manuscript pp.~1--2, lines 14--55 (Abstract); pp.~4--12, lines 104--328 (Methods and evidence hierarchy); p.~25 and pp.~27--30, lines 507--619 (Discussion, limitations, and Conclusions; Figure~9 occupies p.~26). Additional files 1 and 2 document the evidence chain.
+
+\clearpage
+\section*{Reviewer 1}
+
+\subsection*{Comment 1: Dataset composition and compound annotation need clarification}
+\begin{reviewcomment}
+The manuscript reports 55,695 quality-controlled LINCS perturbation signatures, but it does not sufficiently describe the number of unique compounds, cell lines, dose/time conditions, replicate handling, or pharmacological classes. Since the downstream interpretation depends on compound ranking, the authors should provide a clear summary of the training, test, and screened compound sets, including known targets or mechanisms of action when available.
+\end{reviewcomment}
+
+\Response We agree that the original wording could be misread as 55,695 independent compounds or raw biological replicates. Level 5 rows are consensus profiles generated upstream from replicates, while multiple plate/batch-level Level 5 signatures can remain for the same nominal condition.
+
+\Action The revised dataset contains 55,695 Level 5 signatures, 11,445 valid canonical structures, 65 cell lines, 13,314 perturbagen-instance tokens, 11,527 normalized base identifiers, and 52,834 perturbagen-token--cell--time--dose conditions. Recorded times were 6~h (27,226 profiles), 24~h (28,443), and 48~h (26). The screened library contains 28,477 canonical compounds. Known target/mechanism annotations are retained when supplied but are not imputed when missing. Split-specific signatures, structures, and scaffold overlaps are reported separately.
+
+\RevisedText \qtext{Level 5 signatures are consensus expression profiles derived upstream from replicate measurements rather than raw wells. Multiple Level 5 signatures can nevertheless represent the same nominal perturbagen--cell--dose--time combination because different instances, plates, or batches remain. These rows were not described as unique compounds or independent biological replicates.}
+
+\Location Revised manuscript pp.~5--6, lines 132--154 and Table~1; pp.~12--13, lines 330--347. Additional file 1, Tables S1--S3; Additional file 2, sheets \texttt{01\_Dataset}, \texttt{02\_Split\_Audit}, \texttt{07\_Candidate\_Identity}, \texttt{10\_Official\_Conditions}, and \texttt{21\_Condition\_Manifest}.
+
+\subsection*{Comment 2: The HDAC signal may depend on training-set overlap}
+\begin{reviewcomment}
+The recurrent prioritization of TC-H-106, RG2833, and Tianeptinaline as Class I HDAC inhibitors is potentially interesting. However, the authors should state whether these compounds, other HDAC inhibitors, or close structural analogues were already present in the LINCS training or test sets. Without this information, it is difficult to distinguish genuine generalization from recovery of known or training-proximal HDAC-associated signatures.
+\end{reviewcomment}
+
+\Response We agree. We audited exact signature, perturbagen, canonical structure, drug--cell pair, Murcko scaffold, and Morgan-fingerprint neighbor exposure. The pair split is not interpreted as unseen-drug generalization. The corrected annotation-defined HDAC holdout has zero exact HDAC-structure overlap but retains documented scaffold/analogue proximity.
+
+\Action Mocetinostat has no corrected-HDAC training scaffold and maximum training Tanimoto 0.537; NCH-51 has maximum 0.431 but residual scaffold exposure; TC-H-106 has a close training neighbor at 0.789; RG2833 has no LINCS train/test or measured signature; and Tianeptinaline/BG-1010 has exact training exposure plus a name--structure conflict. The corrected holdout contains 1,856 profiles from 30 structures; the discarded pre-correction version omitted nine structures and incorrectly left NCH-51 in training.
+
+\RevisedText \qtext{Candidate claims were therefore calibrated to both exact and near-neighbor exposure.} \qtext{RG2833 had neither a training nor test signature and no measured LINCS profile; it remains prediction-only. Tianeptinaline/BG-1010 had exact training exposure and an unresolved name--structure conflict and is excluded.}
+
+\Location Revised manuscript pp.~7--11, lines 192--296 (split, identity, and neighbor methods); pp.~18--21, lines 426--453 (candidate tiers and exposure), Table~3, and Figures~4--5. Additional file 1, Tables S7--S11 and S15; Additional file 2, sheets \texttt{08\_Candidate\_Splits}, \texttt{12\_HDAC30}, and \texttt{33\_Neighbor\_Summary}--\texttt{35\_Structural\_Splits}.
+
+\subsection*{Comment 3: The dual-stream advantage appears modest}
+\begin{reviewcomment}
+The dual-stream model performs best, but the gain over the fingerprint-only baseline is small, with similar MSE and MAE values across models. The authors should report repeated runs, confidence intervals or standard deviations, and statistical comparisons with the strongest baseline. The claim of a meaningful multi-modal advantage should be softened unless robustness is demonstrated.
+\end{reviewcomment}
+
+\Response We agree, and the repeated evaluation does not support the submitted advantage claim. The pair split used five seeds; the other four settings used three. We report every run, means, sample SDs, $R^2$, matched-seed differences, and two-sided 95\% $t$ intervals. Every split-level paired interval crosses zero.
+
+\Action The fingerprint MLP is slightly better on average in the pair, leave-drug, leave-cell-line, and scaffold settings. In the corrected HDAC holdout, mean Pearson is 0.378 versus 0.379 and mean Spearman is 0.345 versus 0.344 for dual stream versus fingerprint. Strict candidate-level leave-drug results for Mocetinostat and PCI-24781 also do not favor the dual stream. All superiority claims were removed.
+
+\RevisedText \qtext{All five paired 95\% intervals, including $R^2$, crossed zero. The revised evidence therefore supports comparable model families, not a meaningful or consistent multi-modal advantage.}
+
+\Location Revised manuscript pp.~6--8, lines 155--219 (architecture and chemical-only scope); pp.~14--16, lines 362--395 and Table~2 (repeated benchmarks and strict LDO); p.~25 and p.~27, lines 507--535 (interpretation; Figure~9 occupies p.~26). Additional file 1, Tables S4--S6 and S11; Additional file 2, sheets \texttt{03\_Model\_Runs}--\texttt{05\_Model\_Paired} and \texttt{15\_LDO\_Membership}--\texttt{18\_LDO\_Paired}.
+
+\subsection*{Comment 4: Network pharmacology should be framed as complementary annotation}
+\begin{reviewcomment}
+The network and enrichment analyses are biologically plausible, especially the convergence on CDK1, PLK1 and BIRC5. However, these genes appear to derive from the same predicted reversal signal used for ranking. Therefore, this analysis supports biological coherence but does not independently validate the mechanism or identify direct drug targets. The authors should use terms such as “reversal-associated genes” rather than “targets” unless direct evidence is provided.
+\end{reviewcomment}
+
+\Response We agree. These genes originate from the same disease--perturbation opposition used for ranking, so treating them as independent validation would be circular.
+
+\Action We use \qtext{reversal-associated genes} throughout, froze candidate tiers before network/pathway inspection, separated physical and functional STRING networks, used a measured-gene custom background, retained exact FDR values, and provided complete nodes and edges. The submitted background contained 11,144 unique measured Entrez identifiers; g:Profiler reported an effective mapped domain of 11,154 after service-side mapping. These are distinct quantities, not an unresolved typo. We additionally audited the frozen term responses: each per-query evidence array was aligned to the returned mapped-query order, GO evidence codes were retained separately from gene identifiers, and all 5,037 reconstructed gene-intersection counts matched the service-reported sizes. Representative-term redundancy filtering and the pathway panel were regenerated from the corrected gene sets.
+
+\RevisedText \qtext{Because the selected genes were derived from the same reversal signal used for ranking, enrichment and network topology are complementary annotation rather than independent mechanism validation.}
+
+\Location Revised manuscript pp.~10--11, lines 276--296 (gene/network methods); pp.~21--23, lines 454--475 and Figures~6--7 (results). Additional file 1, Tables S17--S20 and Figure S4; Additional file 2, sheets \texttt{36\_Reversal\_Genes}--\texttt{43\_Pathway\_Overlap}, including \texttt{41A\_gProfiler\_Audit}.
+
+\clearpage
+\section*{Reviewer 2}
+
+\subsection*{Comment 1: Justification of the pan-cancer ranking statement}
+\begin{reviewcomment}
+Manuscript Table 2 indicated the dual-stream model achieved modest predictive performance. Authors are required to justify statements like "Pan-cancer ranking consistently prioritized Class I HDAC inhibitors…"
+\end{reviewcomment}
+
+\Response We agree that \qtext{consistently} was too broad. We deleted the universal claim and replaced visual impression with formal enrichment at fixed revision cutoffs and stability analyses.
+
+\Action Under signed wTRS, the explicit class I HDAC subset was enriched at the fixed top 0.5\%, 1\%, 5\%, and 10\% revision cutoffs (fold 30.6, 19.2, 8.46, and 4.62; all within-family FDR $<10^{-4}$). For each metric, the ranking equally averages 528 library-percentile observations per compound (24 screening runs $\times$ 22 cancers). The co-primary Spearman reversal metric was not significantly enriched. Stability is primary across 48 configurations; the legacy-inclusive 72 configurations are sensitivity only. Candidate roles are tiered rather than presented as universally robust.
+
+\RevisedText \qtext{The useful result is therefore narrower than a universal class claim: the screen identifies specific measured HDAC compounds and a signed-score class signal while quantifying sensitivity to strict structure removal, alternate encoders, reversal definition, and official-condition aggregation.}
+
+\Location Revised manuscript pp.~1--2, lines 33--55; pp.~13--14, lines 348--361 and Figure~1; pp.~18--21, lines 426--453 and Table~3; p.~25 and pp.~27--28, lines 507--565 (Figure~9 occupies p.~26). Additional file 1, Tables S14 and S16; Additional file 2, sheets \texttt{06\_HDAC\_Enrichment} and \texttt{29\_Stability\_Primary48}--\texttt{32\_Stability\_BySplit}.
+
+\subsection*{Comment 2: Generalization beyond a drug--cell line pair split}
+\begin{reviewcomment}
+The manuscript drew pan-cancer conclusions that implicitly assume generalization to unseen compounds and contexts. The generalization claims remain incomplete. Drug–cell line pair split was insufficient for generalization claims. Authors are required to include additional evaluations. For exmaple, leave-drug-out split, leave-cell-line-out split, scaffold split, and external validation using unseen LINCS compounds.
+\end{reviewcomment}
+
+\Response We agree. We added each requested split and a corrected annotation-defined HDAC holdout. We also added official-condition measured LINCS comparisons, while explicitly not calling them a fully independent external platform.
+
+\Action Leave-drug has zero exact-structure overlap; scaffold has zero Murcko-scaffold overlap; corrected HDAC has zero exact HDAC-structure overlap. The leave-cell-line test is retained but reinterpreted because neither model receives cell identity, dose, or time: it measures agreement with unseen cellular-background profiles under a chemical-only predictor, not learned cell-specific rules. Strict candidate leave-drug evaluation is available only for Mocetinostat and PCI-24781. Eight corrected-HDAC-held-out compounds have official HiQ measured profiles.
+
+\RevisedText \qtext{The learned output should be interpreted as a structure-conditioned central tendency across the training conditions, not as a condition-specific response prediction.} \qtext{These results support the prediction-to-measurement bridge for both encoders while providing no evidence that the dual-stream architecture is superior. They also remain internal to held-out compounds from the LINCS resource rather than constituting validation on an independent experimental platform.}
+
+\Location Revised manuscript pp.~6--10, lines 155--267 (models, splits, and official-condition methods); pp.~12--18, lines 329--425 and Figures~1--3 (results); pp.~28--30, lines 566--619 (limitations and Conclusions). Additional file 1, Tables S3--S13; Additional file 2, generalization, holdout, LDO, official-condition, and predicted--measured sheets.
+
+\subsection*{Comment 3: Transcriptomic reversal is not therapeutic potential}
+\begin{reviewcomment}
+Transcriptomic reversal does not equal to therapeutic potential. But several sections of manuscript emphasized reversal implied mechanistic suppression of oncogenic programs. Such phrasing risks implying causal drug effects, even though these are predicted signatures, not experimentally measured. Authors are required to rephrase mechanistic interpretations to avoid implying direct drug action.
+\end{reviewcomment}
+
+\Response We agree. The revision separates predicted reversal, measured transcriptomic reversal, biological context, and structural sensitivity. None is equated with viability, efficacy, a therapeutic window, target engagement, or clinical benefit.
+
+\Action We removed causal suppression, treated/untreated survival, stage-independent efficacy, direct-target, pharmacological-validation, and binding-validation language from the manuscript and figures. Even measured LINCS is presented as experimental expression evidence under specified conditions, not therapeutic validation.
+
+\RevisedText \qtext{Reversal can identify a compound-associated expression pattern worth testing, but it does not demonstrate binding, growth inhibition, a therapeutic window, or clinical benefit.}
+
+\Location Revised manuscript pp.~1--4, lines 14--121; all figure captions; p.~25 and pp.~27--30, lines 507--619 (Figure~9 occupies p.~26). Additional file 1, evidence-boundary preamble and Tables S17--S24.
+
+\subsection*{Comment 4: Figure quality}
+\begin{reviewcomment}
+Figure quality should be improved. Clearer legends, larger font size, etc., are required for figures.
+\end{reviewcomment}
+
+\Response We agree. Every main figure was rebuilt or replaced from audited revision results in vector PDF format, with larger axes, legends, panel labels, and evidence-aware captions. The two visually useful submitted concepts---pan-cancer landscape and candidate distribution---were restored using corrected screening data rather than discarded.
+
+\Action Dense networks were reduced to interpretable main panels and expanded to full supplementary pages. Measured LINCS, crossed-bootstrap prediction--measurement, primary stability, structural-neighbor exposure, pathway/network, DepMap, and docking-control panels were regenerated. Supplementary figures now show complementary seed-, condition-, metric-, lineage-, network-, and pose-level diagnostics rather than repeating the main figure files. Simulated survival/stage and unsupported old docking/GDSC figures were not retained.
+
+\RevisedText Figure~1 now states that the distributions show \qtext{candidate heterogeneity rather than uniform pan-cancer activity}; Figure~2 states that measured reversal is \qtext{experimental expression evidence, not direct evidence of viability, efficacy, or binding.}
+
+\Location Revised manuscript Figures~1--9, pp.~14--26; Additional file 1, Figures S1--S6.
+
+\clearpage
+\section*{Reviewer 3}
+
+\subsection*{Comment 1: Insufficient methodological novelty}
+\begin{reviewcomment}
+The proposed architecture mainly combines existing approaches (Transformer-based atom encoder with Morgan fingerprints) using a fusion network. The manuscript should better explain the methodological innovation compared with previous models such as DeepCE, ChemCPA, and related multi-modal molecular learning frameworks. A clearer discussion of what is genuinely novel beyond integrating established components is needed.
+\end{reviewcomment}
+
+\Response We agree and narrowed the novelty claim. The implemented atom stream uses padded element-identity tokens without bond-conditioned message passing. We therefore call it an atom-token Transformer, not a GNN, graph Transformer, cross-attention model, or bond-aware architecture. We do not claim a new neural primitive or state-of-the-art performance.
+
+\Action DeepCE, ChemCPA, DeepPurpose, and AttentiveFP are discussed according to their native objectives and inputs. Proxy numbers that did not reproduce DeepCE or ChemCPA were removed. The contribution is framed as the end-to-end evidence audit connecting two molecular views to reversal, leakage-aware tests, corrected class holdout, measured profiles, candidate freezing, and separated evidence layers.
+
+\RevisedText \qtext{The present work does not claim a new neural primitive or report proxy numbers as if these published systems had been reproduced under their native protocols.}
+
+\Location Revised manuscript pp.~3--4, lines 75--121; pp.~6--7, lines 155--191; p.~25 and p.~27, lines 507--535 (Figure~9 occupies p.~26).
+
+\subsection*{Comment 2: Limited model performance improvement and weak evaluation strategy}
+\begin{reviewcomment}
+Although the proposed model achieves the highest Pearson and Spearman correlations, the absolute improvement over baseline models is relatively small (Pearson R = 0.2841 versus 0.2735). Statistical significance of these improvements is not reported. Confidence intervals, repeated experiments with different random seeds, or statistical testing should be included. Evaluation strategy remains weak. The authors acknowledge using only a drug–cell line pair split. This evaluation does not adequately assess model generalization. Additional validation using: leave-drug-out, leave-cell-line-out, scaffold split, external validation datasets, would substantially strengthen the study.
+\end{reviewcomment}
+
+\Response We agree. The original single-run values are not retained as evidence of superiority. The old 0.2841 value could not be linked to a reproducible run artifact and appeared only as a literal value in a legacy ablation script; it is therefore excluded from the revision.
+
+\Action We report 34 frozen model runs, five evaluation settings, all requested headline metrics including $R^2$, repeated seeds, paired differences, and 95\% intervals. The fingerprint MLP is slightly better on average in four settings; corrected-HDAC performance is comparable. Held-out official LINCS profiles provide measured transcriptomic support, with the same-platform limitation explicit.
+
+\RevisedText \qtext{The revision changes the principal model claim. The dual-stream atom-token/\allowbreak fingerprint architecture did not consistently outperform a fingerprint MLP trained on the same expression targets and splits.}
+
+\Location Revised manuscript pp.~6--10, lines 155--267; pp.~14--18, lines 362--425 and Table~2/Figure~3; p.~25 and pp.~27--29, lines 507--595 (Figure~9 occupies p.~26). Additional file 1, Tables S3--S13.
+
+\subsection*{Comment 3: Lack of experimental validation}
+\begin{reviewcomment}
+All conclusions are based on computational analyses. Although the Discussion clearly states this limitation, even minimal biological validation (cell viability assays, publicly available transcriptomic validation, or comparison with experimentally validated compounds) would greatly increase confidence in the findings.
+\end{reviewcomment}
+
+\Response We addressed the explicitly suggested public transcriptomic option. We did not perform new wet-lab experiments and do not imply that measured expression replaces viability or biochemical validation.
+
+\Action Official metadata identified 1,212 measured profiles across nine named rows before identity exclusion. Eight unambiguous compounds comprise the HiQ primary set. After condition-first and official-cell-first aggregation, both models were positively associated with measured reversal across 176 candidate--cancer pairs. The 95\% intervals use 10,000 crossed bootstrap iterations that independently resample eight candidates and 22 cancers; all lower limits are positive. A fully condition-matched non-HDAC null could not be reconstructed from the archived official-condition outputs, so the available 11,445-compound all-profile rank is labeled unmatched sensitivity rather than a matched negative control.
+
+\RevisedText \qtext{Because these profiles are experimentally measured perturbational expression, they close part of the gap between purely generated signatures and biological response. They do not close the gap to anti-cancer efficacy.}
+
+\Location Revised manuscript pp.~9--10, lines 248--267 (official-condition methods); pp.~16--18, lines 396--425 and Figures~2--3 (measured results); pp.~28--29, lines 566--600 (limitations). Additional file 1, Tables S8, S12, and S13; Additional file 2, measured and predicted--measured sheets, including \texttt{21\_Condition\_Manifest}.
+
+\subsection*{Comment 4: Candidate prioritization criteria require clarification}
+\begin{reviewcomment}
+The rationale for selecting TC-H-106 as the principal candidate is not sufficiently justified. Why was this compound preferred over RG2833 or other HDAC inhibitors? Additional ranking metrics, reproducibility analyses, or sensitivity analyses would improve transparency.
+\end{reviewcomment}
+
+\Response The audit shows that TC-H-106 should not remain the principal candidate. Its corrected-HDAC nearest training similarity is 0.789 and only four HiQ profiles are available. RG2833 has no measured LINCS signature.
+
+\Action Mocetinostat is core because it combines strict leave-drug testing, no corrected-HDAC training scaffold, maximum training similarity 0.537, eight HiQ profiles, positive measured reversal, and a primary 48-configuration median stability percentile of 92.2. NCH-51 is secondary (eight HiQ profiles; percentile 88.5; residual scaffold exposure). TC-H-106 is exploratory (four HiQ profiles; percentile 84.3; close neighbor). Tianeptinaline/BG-1010 remains excluded regardless of its descriptive rank.
+
+\RevisedText \qtext{TC-H-106 had four high-quality profiles, a primary stability percentile of 84.3, and a closest corrected annotation-defined HDAC training neighbor of 0.789. It was downgraded to exploratory/original-method-sensitive rather than selected as the principal candidate.}
+
+\Location Revised manuscript pp.~18--21, lines 426--453, Table~3, and Figures~4--5; pp.~21--24, lines 454--486 (candidate biology and DepMap context); pp.~27--28, lines 536--565. Additional file 1, Tables S7--S16.
+
+\subsection*{Comment 5: Docking analysis is relatively superficial}
+\begin{reviewcomment}
+Only docking scores are presented. No comparison with known HDAC inhibitors or co-crystallized ligands is provided. Docking validation, redocking experiments, interaction comparisons, or molecular dynamics simulations would strengthen this section.
+\end{reviewcomment}
+
+\Response We agree that score-only docking was inadequate. The revised analysis is control-centered and deliberately avoids a binding-validation claim.
+
+\Action The HDAC2--Vorinostat cocrystal 4LXZ is the primary redocking control. Standard Vina failed the prespecified 2~\AA{} medoid RMSD gate (4.771~\AA{}), while AutoDock4Zn passed (1.091~\AA{}). The frozen three-seed panel includes crystallographic Vorinostat, an O-methyl zinc-chelation decoy, Mocetinostat, NCH-51, TC-H-106, Entinostat, and Belinostat. The decoy scored favorably but failed the intended zinc-binding-group geometry, demonstrating that score alone is insufficient. The panel was repeated in aligned HDAC1 4BKX; pose changes were compound dependent. We did not add molecular dynamics because these controls already reveal substantial protocol/receptor uncertainty and do not justify a stronger affinity claim.
+
+\RevisedText \qtext{These findings illustrate why an affinity score or attractive rendering cannot establish direct binding. Docking remains useful for identifying structural uncertainties and planning biochemical experiments, not for validating a target.}
+
+\Location Revised manuscript pp.~11--12, lines 305--320 (protocol); pp.~24--26, lines 487--506 and Figure~9 (results); pp.~28--29, lines 566--600 (limitations). Additional file 1, Table S22 and Figure S6; Additional file 2, sheets \texttt{48\_Redocking}--\texttt{51\_Receptor\_Sensitivity}.
+
+\subsection*{Comment 6: Interpretation of GDSC analysis}
+\begin{reviewcomment}
+The correlation between predicted wTRS and Entinostat sensitivity is essentially absent (R = $-0.052$, P = 0.859). Although the Discussion appropriately addresses this limitation, the Results section should avoid implying supportive validation from this analysis.
+\end{reviewcomment}
+
+\Response We agree. Entinostat viability is not a direct validation of TC-H-106 reversal, and the non-significant correlation is not support.
+
+\Action The GDSC surrogate analysis and all supportive wording were removed from the Results, main figures, and Conclusions. Its availability and null result are retained only in the Supplement/workbook audit so that the failed surrogate cannot be silently reintroduced.
+
+\RevisedText \qtext{The prior non-significant GDSC surrogate comparison was removed rather than presented as support because Entinostat viability is not a valid direct validation of TC-H-106 reversal.}
+
+\Location Revised manuscript p.~4, lines 104--121 (evidence exclusions); pp.~28--29, lines 566--600 (limitations); pp.~29--30, lines 601--619 (Conclusion). Additional file 1, Table S23; Additional file 2, sheet \texttt{52\_External\_Sensitivity}.
+
+\subsection*{Comment 7: Biological interpretation}
+\begin{reviewcomment}
+The manuscript repeatedly identifies HDAC inhibitors. Since HDAC inhibition is already well established in oncology, the manuscript should more clearly emphasize whether the novelty lies in identifying specific brain-penetrant compounds rather than rediscovering HDAC biology.
+\end{reviewcomment}
+
+\Response We agree that HDAC oncology biology is established. We also do not claim that the current data demonstrate brain penetrance.
+
+\Action HDAC enrichment is now an established-class positive context and is qualified by metric dependence. The narrower contribution is an audited prioritization of specific hypotheses. CNS exposure is described only as a future experimental question and is not a ranking criterion or novelty claim.
+
+\RevisedText \qtext{Candidate-specific central nervous system exposure may motivate later experiments, but brain penetrance is not inferred from the present data and is not used as the primary ranking criterion.}
+
+\Location Revised manuscript pp.~3--4, lines 89--103; pp.~23--24, lines 476--486; pp.~27--30, lines 536--619.
+
+\subsection*{Comment 8: Hyperparameters, architecture selection, and reproducibility}
+\begin{reviewcomment}
+Provide additional hyperparameter optimization details and explain how the final architecture was selected. Include computational cost, training time, GPU specifications, and reproducibility information. Report random seed values used for training. Clarify whether batch normalization or layer normalization was employed in each network component. Include uncertainty estimates for prediction performance.
+\end{reviewcomment}
+
+\Response We added the requested architecture, optimization, seed, cost, and uncertainty information. We also state what was not recorded rather than reconstructing it after the fact.
+
+\Action The atom-token Transformer has three layers, hidden dimension 512, eight heads, feed-forward dimension 2,048, ReLU, dropout 0.1, and Transformer-internal layer normalization. Fingerprint and fusion/MLP blocks use batch normalization, ReLU, and dropout 0.3/0.4. The dual-stream and fingerprint models contain 38,682,152 and 28,415,016 trainable parameters. Both use MSE, AdamW, learning rate $2\times10^{-4}$, weight decay $10^{-4}$, batch size 128, maximum 30 epochs, and patience five. No exhaustive hyperparameter search is claimed. Training used AMP on an NVIDIA GeForce RTX 4090; split seed was 42 and run seeds were 1--5 or 1--3. The 34 benchmark runs totaled 5,112.6~s. Python/package versions, selected epochs, checkpoint hashes, and per-run runtimes are supplied. CPU model and RAM were not captured in the frozen AutoDL manifests and are explicitly marked \qtext{not recorded}, not fabricated.
+
+\RevisedText \qtext{The architecture and optimization settings were frozen before the revision benchmark and were not tuned separately by split, seed, candidate, or test performance. We did not conduct or claim an exhaustive hyperparameter search.}
+
+\Location Revised manuscript pp.~6--12, lines 155--328; pp.~14--16, lines 362--381. Additional file 1, Tables S2--S6 and S24; Additional file 2, sheets \texttt{03\_Model\_Runs}, \texttt{04\_Model\_Summary}, and \texttt{53\_Reproducibility}.
+
+\subsection*{Comment 9: Figure readability and biological significance}
+\begin{reviewcomment}
+Several figures (particularly network pharmacology figures) contain very small text and should be improved for readability. Some figure captions are descriptive but do not explain the biological significance of the displayed results.
+\end{reviewcomment}
+
+\Response We agree. All main figures and captions were rebuilt from the corrected evidence set.
+
+\Action The main network view is limited to the prioritized candidates with enlarged labels, while expanded, consistently selected physical-network plotting subsets occupy two full supplementary pages. Complete node and edge tables, rather than an unreadable all-node drawing, are supplied in Additional file 2. Captions now state both the biological interpretation and its limit: network nodes are reversal-associated rather than direct targets; DepMap is genetic context; docking is structural sensitivity; and measured reversal is not efficacy. All figures are supplied as vector PDFs in the source package.
+
+\RevisedText Figure~6 states: \qtext{These analyses annotate the reversal signal and are not independent mechanism validation.} Figure~9 states: \qtext{Docking is reported as structural sensitivity, not binding validation.}
+
+\Location Revised manuscript Figures~1--9, pp.~14--26; Additional file 1, Figures S1--S6.
+
+\section*{Closing statement}
+
+We thank the Editor and Reviewers again. The revised manuscript is intentionally more conservative than the submission. It retains the computational prioritization contribution while separating what is predicted, what is experimentally measured at the transcriptomic level, what is contextual, and what remains to be tested. We believe the corrected analyses, explicit null and unavailable results, complete evidence tiers, and machine-readable outputs provide a more transparent and reproducible basis for assessment.
+
+\end{document}

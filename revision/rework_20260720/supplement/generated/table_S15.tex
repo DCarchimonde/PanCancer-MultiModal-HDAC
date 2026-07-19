@@ -1,0 +1,24 @@
+\begingroup
+\tiny
+\begin{table}[H]
+\centering
+\caption{Corrected annotation-defined HDAC structural-neighbor and scaffold exposure audit.}
+\label{tab:s_neighbor}
+\begin{tabular}{@{}p{3.2cm}p{3.7cm}rrrrrrrr@{}}
+\toprule
+Candidate & Role & Train & Test & Max Tanimoto & Top-10 mean & Exact train & Scaffold train & Same-scaffold n & Conflict \\
+\midrule
+Mocetinostat & core candidate & 0 & 14 & 0.537 & 0.447 & no & no & 0 & no \\
+TC-H-106 & exploratory / original-method-sensitive & 0 & 6 & 0.789 & 0.438 & no & no & 0 & no \\
+NCH-51 & secondary candidate & 0 & 17 & 0.431 & 0.366 & no & yes & 1 & no \\
+Belinostat & class support & 0 & 24 & 0.500 & 0.339 & no & yes & 8 & no \\
+PCI-24781 & class support & 0 & 19 & 0.410 & 0.317 & no & no & 0 & no \\
+Panobinostat & class support & 0 & 126 & 0.381 & 0.315 & no & yes & 1 & no \\
+Entinostat & reference control & 0 & 101 & 0.558 & 0.429 & no & no & 0 & no \\
+Vorinostat & reference control & 0 & 899 & 0.697 & 0.503 & no & yes & 296 & no \\
+RG2833 & prediction only & 0 & 0 & 0.574 & 0.407 & no & no & 0 & no \\
+Tianeptinaline/BG-1010 & identity conflict; excluded & 6 & 0 & 1.000 & 0.508 & yes & yes & 1 & yes \\
+\bottomrule
+\end{tabular}
+\end{table}
+\endgroup

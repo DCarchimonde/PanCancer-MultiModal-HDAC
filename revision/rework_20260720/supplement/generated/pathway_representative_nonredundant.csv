@@ -1,0 +1,61 @@
+candidate,gene_set_scope,source,native,name,p_value,intersection_size,term_size,effective_domain_size
+Belinostat,disease_up_drug_down,GO:BP,GO:0007059,chromosome segregation,1.6092571834078138e-29,36,294,11154
+Belinostat,disease_up_drug_down,GO:BP,GO:0010965,regulation of mitotic sister chromatid separation,2.356826517444376e-18,15,47,11154
+Belinostat,disease_up_drug_down,GO:CC,GO:0098687,chromosomal region,1.50507493787463e-16,25,283,11154
+Belinostat,disease_up_drug_down,GO:CC,GO:0005819,spindle,2.678749117339164e-14,23,305,11154
+Belinostat,disease_up_drug_down,GO:MF,GO:0008017,microtubule binding,1.453953769183175e-07,14,182,11154
+Belinostat,disease_up_drug_down,GO:MF,GO:0120543,macromolecular conformation isomerase activity,3.745295977418504e-05,12,217,11154
+Belinostat,disease_up_drug_down,KEGG,KEGG:04110,Cell cycle,3.276543615702798e-10,14,130,11154
+Belinostat,disease_up_drug_down,KEGG,KEGG:03030,DNA replication,4.92598969283845e-07,7,34,11154
+Belinostat,disease_up_drug_down,REAC,REAC:R-HSA-1640170,Cell Cycle,1.2921500569863315e-30,43,505,11154
+Belinostat,disease_up_drug_down,REAC,REAC:R-HSA-69620,Cell Cycle Checkpoints,4.531769322526712e-15,21,209,11154
+Entinostat,disease_up_drug_down,GO:BP,GO:1903047,mitotic cell cycle process,1.209271790914309e-16,37,568,11154
+Entinostat,disease_up_drug_down,GO:BP,GO:0022613,ribonucleoprotein complex biogenesis,1.770871175661424e-13,26,333,11154
+Entinostat,disease_up_drug_down,GO:CC,GO:0098687,chromosomal region,1.944259139221221e-18,29,283,11154
+Entinostat,disease_up_drug_down,GO:CC,GO:0000940,outer kinetochore,5.510998217485757e-10,7,13,11154
+Entinostat,disease_up_drug_down,GO:MF,GO:0003723,RNA binding,3.715593990762031e-12,44,1188,11154
+Entinostat,disease_up_drug_down,GO:MF,GO:0140640,"catalytic activity, acting on a nucleic acid",3.715593990762031e-12,27,410,11154
+Entinostat,disease_up_drug_down,KEGG,KEGG:04110,Cell cycle,6.122542602292102e-11,16,130,11154
+Entinostat,disease_up_drug_down,KEGG,KEGG:03030,DNA replication,1.407966293605857e-07,8,34,11154
+Entinostat,disease_up_drug_down,REAC,REAC:R-HSA-1640170,Cell Cycle,2.7977370839454903e-24,42,505,11154
+Entinostat,disease_up_drug_down,REAC,REAC:R-HSA-69306,DNA Replication,7.778015872908563e-11,15,111,11154
+Mocetinostat,disease_up_drug_down,GO:BP,GO:1903047,mitotic cell cycle process,7.657523097903857e-30,41,568,11154
+Mocetinostat,disease_up_drug_down,GO:BP,GO:0000070,mitotic sister chromatid segregation,7.461627510527965e-18,19,142,11154
+Mocetinostat,disease_up_drug_down,GO:CC,GO:0000793,condensed chromosome,1.1193201496117561e-14,19,197,11154
+Mocetinostat,disease_up_drug_down,GO:CC,GO:0005819,spindle,4.624534930189713e-13,20,305,11154
+Mocetinostat,disease_up_drug_down,GO:MF,GO:0008017,microtubule binding,1.3370182317598336e-05,11,182,11154
+Mocetinostat,disease_up_drug_down,GO:MF,GO:0016853,isomerase activity,0.0045901550030862,10,324,11154
+Mocetinostat,disease_up_drug_down,KEGG,KEGG:04110,Cell cycle,1.0903993104357472e-06,10,130,11154
+Mocetinostat,disease_up_drug_down,KEGG,KEGG:04114,Oocyte meiosis,0.0009329404386502,6,95,11154
+Mocetinostat,disease_up_drug_down,REAC,REAC:R-HSA-69278,"Cell Cycle, Mitotic",4.711300867965712e-25,33,405,11154
+Mocetinostat,disease_up_drug_down,REAC,REAC:R-HSA-69618,Mitotic Spindle Checkpoint,3.7771870974786465e-11,12,86,11154
+NCH-51,disease_up_drug_down,GO:BP,GO:1903047,mitotic cell cycle process,5.4795271793669366e-33,46,568,11154
+NCH-51,all_selected,GO:BP,GO:0007059,chromosome segregation,8.044332601666318e-19,38,294,11154
+NCH-51,disease_up_drug_down,GO:CC,GO:0000793,condensed chromosome,3.113056878553852e-17,22,197,11154
+NCH-51,disease_up_drug_down,GO:CC,GO:0005819,spindle,4.1989835473119854e-16,24,305,11154
+NCH-51,disease_up_drug_down,GO:MF,GO:0008017,microtubule binding,5.1729268765895594e-08,14,182,11154
+NCH-51,disease_up_drug_down,GO:MF,GO:0120543,macromolecular conformation isomerase activity,1.5768974620016313e-05,12,217,11154
+NCH-51,disease_up_drug_down,KEGG,KEGG:04110,Cell cycle,2.063489382385844e-09,13,130,11154
+NCH-51,disease_up_drug_down,KEGG,KEGG:03030,DNA replication,2.854890727676197e-07,7,34,11154
+NCH-51,disease_up_drug_down,REAC,REAC:R-HSA-69278,"Cell Cycle, Mitotic",2.125871516972562e-30,39,405,11154
+NCH-51,disease_up_drug_down,REAC,REAC:R-HSA-68886,M Phase,4.292899757672842e-11,19,279,11154
+TC-H-106,disease_up_drug_down,GO:BP,GO:0022613,ribonucleoprotein complex biogenesis,3.477781355660763e-12,22,333,11154
+TC-H-106,disease_up_drug_down,GO:BP,GO:0006260,DNA replication,1.3852520119273043e-06,13,213,11154
+TC-H-106,disease_up_drug_down,GO:CC,GO:1990904,ribonucleoprotein complex,2.0131963828940767e-07,19,510,11154
+TC-H-106,disease_up_drug_down,GO:CC,GO:0005730,nucleolus,6.614636771674188e-07,22,751,11154
+TC-H-106,disease_up_drug_down,GO:MF,GO:0003723,RNA binding,1.1686276607109373e-08,32,1188,11154
+TC-H-106,disease_up_drug_down,GO:MF,GO:0016887,ATP hydrolysis activity,0.0112111425390906,10,305,11154
+TC-H-106,disease_up_drug_down,KEGG,KEGG:03040,Spliceosome,0.0001603333156805,8,105,11154
+TC-H-106,disease_up_drug_down,KEGG,KEGG:03030,DNA replication,0.0082382461350085,4,34,11154
+TC-H-106,disease_up_drug_down,REAC,REAC:R-HSA-69278,"Cell Cycle, Mitotic",2.5268315044970343e-06,17,405,11154
+TC-H-106,disease_up_drug_down,REAC,REAC:R-HSA-8953854,Metabolism of RNA,1.1904944730971678e-05,18,553,11154
+Vorinostat,disease_up_drug_down,GO:BP,GO:0007059,chromosome segregation,2.308692940627712e-25,36,294,11154
+Vorinostat,disease_up_drug_down,GO:BP,GO:0010965,regulation of mitotic sister chromatid separation,8.869344186376883e-17,15,47,11154
+Vorinostat,disease_up_drug_down,GO:CC,GO:0098687,chromosomal region,9.267958103650832e-22,32,283,11154
+Vorinostat,all_selected,GO:CC,GO:0005694,chromosome,7.932801289875389e-16,72,1361,11154
+Vorinostat,disease_up_drug_down,GO:MF,GO:0120543,macromolecular conformation isomerase activity,1.879877405636666e-06,15,217,11154
+Vorinostat,disease_up_drug_down,GO:MF,GO:0140640,"catalytic activity, acting on a nucleic acid",1.879877405636666e-06,20,410,11154
+Vorinostat,disease_up_drug_down,KEGG,KEGG:04110,Cell cycle,5.1168585202867066e-11,16,130,11154
+Vorinostat,disease_up_drug_down,KEGG,KEGG:03030,DNA replication,2.9875594957004278e-06,7,34,11154
+Vorinostat,disease_up_drug_down,REAC,REAC:R-HSA-1640170,Cell Cycle,4.003946069321792e-25,43,505,11154
+Vorinostat,disease_up_drug_down,REAC,REAC:R-HSA-2500257,Resolution of Sister Chromatid Cohesion,1.2478428540930037e-11,15,98,11154

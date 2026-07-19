@@ -1,0 +1,38 @@
+\begin{landscape}
+\begingroup
+\scriptsize
+\begin{longtable}{@{}llrrrrrrrr@{}}
+\caption{Formal HDAC enrichment at fixed revision library cutoffs. Consensus ranks equally average 24 screening runs across 22 cancers per compound; Fisher tests are one-sided and FDR is within each metric and annotation definition.}\label{tab:s_enrichment}\\
+\toprule
+Metric & Definition & Top fraction & Top k & Library HDAC & Observed & Expected & Fold & $P$ & FDR \\
+\midrule
+\endfirsthead
+\multicolumn{10}{l}{\textit{Table continued}}\\
+\toprule
+Metric & Definition & Top fraction & Top k & Library HDAC & Observed & Expected & Fold & $P$ & FDR \\
+\midrule
+\endhead
+\midrule
+\multicolumn{10}{r}{\textit{Continued on next page}}\\
+\endfoot
+\bottomrule
+\endlastfoot
+signed\_wtrs & annotation\_defined\_HDAC & 0.5 & 143 & 39 & 4 & 0.20 & 20.42 & 4.37e-05 & 5.83e-05 \\
+signed\_wtrs & annotation\_defined\_HDAC & 1.0 & 285 & 39 & 5 & 0.39 & 12.81 & 4.22e-05 & 5.83e-05 \\
+signed\_wtrs & annotation\_defined\_HDAC & 5.0 & 1,424 & 39 & 11 & 1.95 & 5.64 & 2.16e-06 & 8.62e-06 \\
+signed\_wtrs & annotation\_defined\_HDAC & 10.0 & 2,848 & 39 & 13 & 3.90 & 3.33 & 6.48e-05 & 6.48e-05 \\
+signed\_wtrs & explicit\_class\_I\_target & 0.5 & 143 & 26 & 4 & 0.13 & 30.64 & 8.36e-06 & 8.36e-06 \\
+signed\_wtrs & explicit\_class\_I\_target & 1.0 & 285 & 26 & 5 & 0.26 & 19.22 & 5.37e-06 & 7.16e-06 \\
+signed\_wtrs & explicit\_class\_I\_target & 5.0 & 1,424 & 26 & 11 & 1.30 & 8.46 & 1.81e-08 & 7.25e-08 \\
+signed\_wtrs & explicit\_class\_I\_target & 10.0 & 2,848 & 26 & 12 & 2.60 & 4.61 & 2.47e-06 & 4.93e-06 \\
+spearman\_reversal & annotation\_defined\_HDAC & 0.5 & 143 & 39 & 1 & 0.20 & 5.11 & 1.78e-01 & 3.50e-01 \\
+spearman\_reversal & annotation\_defined\_HDAC & 1.0 & 285 & 39 & 2 & 0.39 & 5.12 & 5.80e-02 & 2.32e-01 \\
+spearman\_reversal & annotation\_defined\_HDAC & 5.0 & 1,424 & 39 & 3 & 1.95 & 1.54 & 3.09e-01 & 3.50e-01 \\
+spearman\_reversal & annotation\_defined\_HDAC & 10.0 & 2,848 & 39 & 5 & 3.90 & 1.28 & 3.50e-01 & 3.50e-01 \\
+spearman\_reversal & explicit\_class\_I\_target & 0.5 & 143 & 26 & 1 & 0.13 & 7.66 & 1.23e-01 & 4.60e-01 \\
+spearman\_reversal & explicit\_class\_I\_target & 1.0 & 285 & 26 & 1 & 0.26 & 3.84 & 2.30e-01 & 4.60e-01 \\
+spearman\_reversal & explicit\_class\_I\_target & 5.0 & 1,424 & 26 & 2 & 1.30 & 1.54 & 3.76e-01 & 4.90e-01 \\
+spearman\_reversal & explicit\_class\_I\_target & 10.0 & 2,848 & 26 & 3 & 2.60 & 1.15 & 4.90e-01 & 4.90e-01 \\
+\end{longtable}
+\endgroup
+\end{landscape}

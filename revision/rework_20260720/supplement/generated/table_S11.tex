@@ -1,0 +1,41 @@
+\begingroup
+\small
+\begin{table}[H]
+\centering
+\caption{Strict leave-drug candidate membership.}
+\label{tab:s_ldo_member}
+\begin{tabular}{@{}lrrrr@{}}
+\toprule
+Candidate & Train & Test & Test cells & Strict LDO \\
+\midrule
+Belinostat & 24 & 0 & 0 & no \\
+Entinostat & 101 & 0 & 0 & no \\
+Mocetinostat & 0 & 14 & 12 & yes \\
+NCH-51 & 17 & 0 & 0 & no \\
+PCI-24781 & 0 & 19 & 13 & yes \\
+Panobinostat & 126 & 0 & 0 & no \\
+RG2833 & 0 & 0 & 0 & no \\
+TC-H-106 & 6 & 0 & 0 & no \\
+Tianeptinaline/BG-1010 & 6 & 0 & 0 & no \\
+Vorinostat & 899 & 0 & 0 & no \\
+\bottomrule
+\end{tabular}
+\end{table}
+\endgroup
+\begingroup
+\scriptsize
+\begin{table}[H]
+\centering
+\caption*{Supplementary Table S11 (continued). Strict leave-drug candidate metrics. Only Mocetinostat and PCI-24781 were true test candidates.}
+\begin{tabular}{@{}llrrrrrrr@{}}
+\toprule
+Candidate & Model & Seeds & Profiles & Cells & Pearson & 95\% low & 95\% high & Spearman \\
+\midrule
+Mocetinostat & dual\_stream & 3 & 14 & 12 & 0.483 & 0.393 & 0.574 & 0.476 \\
+Mocetinostat & fingerprint\_mlp & 3 & 14 & 12 & 0.504 & 0.468 & 0.539 & 0.499 \\
+PCI-24781 & dual\_stream & 3 & 19 & 13 & 0.308 & 0.152 & 0.464 & 0.270 \\
+PCI-24781 & fingerprint\_mlp & 3 & 19 & 13 & 0.540 & 0.423 & 0.657 & 0.493 \\
+\bottomrule
+\end{tabular}
+\end{table}
+\endgroup

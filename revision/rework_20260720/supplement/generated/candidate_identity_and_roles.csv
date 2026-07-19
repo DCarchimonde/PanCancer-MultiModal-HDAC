@@ -1,0 +1,11 @@
+candidate,resolved,compound_index,display_name,compoundinfo_name,canonical_smiles,drug_ids,is_hdac_annotated,name_conflict,role,evidence_note,candidate_display
+Mocetinostat,True,23500,mocetinostat,mocetinostat,Nc1ccccc1NC(=O)c1ccc(CNc2nccc(-c3cccnc3)n2)cc1,BRD-K16485616,True,False,core candidate,Primary computational hypothesis,Mocetinostat
+TC-H-106,True,21112,TC-H-106,TC-H-106,Cc1ccc(NC(=O)CCCCCC(=O)Nc2ccccc2N)cc1,BRD-K45044657,True,False,exploratory / original-method-sensitive,Limited HiQ coverage; close training neighbor,TC-H-106
+NCH-51,True,1222,NCH-51,NCH-51,CC(C)C(=O)SCCCCCCC(=O)Nc1nc(-c2ccccc2)cs1,BRD-K52522949,True,False,secondary candidate,Measured support; scaffold-exposure caveat,NCH-51
+Belinostat,True,23748,belinostat,belinostat,O=C(C=Cc1cccc(S(=O)(=O)Nc2ccccc2)c1)NO,BRD-K17743125,True,False,class support,Measured HDAC-class support,Belinostat
+PCI-24781,True,6661,PCI-24781,PCI-24781,CN(C)Cc1c(C(=O)NCCOc2ccc(C(=O)NO)cc2)oc2ccccc12,BRD-K12867552,True,False,class support,Measured HDAC-class support,PCI-24781
+Panobinostat,True,20685,panobinostat,panobinostat,Cc1[nH]c2ccccc2c1CCNCc1ccc(C=CC(=O)NO)cc1,BRD-K02130563,True,False,class support,Measured HDAC-class support,Panobinostat
+Entinostat,True,23499,entinostat,entinostat,Nc1ccccc1NC(=O)c1ccc(CNC(=O)OCc2cccnc2)cc1,BRD-K77908580,True,False,reference control,Established HDAC reference,Entinostat
+Vorinostat,True,23844,vorinostat,vorinostat,O=C(CCCCCCC(=O)Nc1ccccc1)NO,BRD-K81418486,True,False,reference control,Established HDAC reference,Vorinostat
+RG2833,True,21030,RG2833,RG-2833,Cc1ccc(C(=O)NCCCCCC(=O)Nc2ccccc2N)cc1,BRD-K02389548,True,False,prediction only,No measured LINCS profile,RG2833
+Tianeptinaline_or_BG-1010,True,7585,Tianeptinaline,BG-1010,CN1c2ccccc2C(NCCCCCCC(=O)Nc2ccccc2N)c2ccc(Cl)cc2S1(=O)=O,BRD-A73972952,False,True,identity conflict; excluded,Name--structure conflict; exact training exposure,Tianeptinaline / BG-1010

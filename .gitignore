@@ -38,6 +38,11 @@ checkpoints/
 *.out
 *.synctex.gz
 *.toc
+*.fdb_latexmk
+*.fls
+revision/rework_20260720/manuscript/*.pdf
+revision/rework_20260720/supplement/*.pdf
+revision/rework_20260720/response/*.pdf
 
 # Operating system
 .DS_Store

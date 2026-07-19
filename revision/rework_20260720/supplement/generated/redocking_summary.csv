@@ -1,0 +1,3 @@
+method,seeds,top1_rmsd_median_a,top1_rmsd_min_a,top1_rmsd_max_a,selected_cluster_seed_coverage,selected_cluster_pose_count,selected_cluster_median_score_kcal_mol,consensus_medoid_seed,consensus_medoid_rank,consensus_medoid_rmsd_a,consensus_medoid_zn_min_a,consensus_medoid_zn_max_a,selected_cluster_max_crystal_rmsd_a
+vina_standard,3,5.014069294967596,4.770971174443251,5.025773394267425,3,8,-7.2895,1,1,4.770971174443251,2.34827787963861,3.64456581776211,5.821360340206257
+ad4zn,3,6.319291774108534,1.0906398653036082,8.65112640977432,3,3,-7.491,1,1,1.0906398653036082,2.123285425937831,3.107624494690437,1.0906398653036082

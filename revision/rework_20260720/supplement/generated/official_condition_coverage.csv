@@ -1,0 +1,10 @@
+candidate,candidate_role,all_profiles,qc_pass_profiles,hiq_profiles,official_cell_lines,times_h,dose_levels,dose_um_min,dose_um_max,hiq_official_cell_lines
+Mocetinostat,core_candidate,14,8,8,12,6 | 24,1,10.0,10.0,8
+NCH-51,secondary_candidate,17,8,8,10,6 | 24,1,10.0,10.0,8
+TC-H-106,original_method_sensitive,6,4,4,5,6 | 24,1,10.0,10.0,4
+Belinostat,class_support,24,13,12,12,6 | 24,4,0.3704,10.0,6
+PCI-24781,class_support,19,13,13,13,6 | 24,1,10.0,10.0,10
+Panobinostat,class_support,126,93,84,15,6 | 24,20,0.0012207,10.0,10
+Entinostat,reference_control,101,77,67,14,6 | 24,13,0.04,10.0,10
+Vorinostat,reference_control,899,521,487,54,6 | 24 | 48,38,0.0012207,30.0,35
+Tianeptinaline_or_BG-1010,identity_conflict_excluded,6,1,1,2,6 | 24,1,10.0,10.0,1

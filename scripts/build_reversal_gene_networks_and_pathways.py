@@ -488,20 +488,48 @@ def write_api_request_bundle(
     return args.api_bundle_path, hashlib.sha256(encoded).hexdigest()
 
 
-def intersection_values(result: dict[str, Any]) -> list[str]:
+def intersection_values(
+    result: dict[str, Any],
+    mapped_query_ids: list[str],
+) -> tuple[list[str], list[str]]:
+    """Recover intersecting query identifiers from g:Profiler evidence rows.
+
+    With ``no_evidences=False``, g:Profiler's ``intersections`` field is an
+    array aligned to the successfully mapped query identifiers.  Each element
+    contains GO evidence codes for one query gene; flattening that array yields
+    evidence codes, not genes.  A non-empty element marks the corresponding
+    mapped query identifier as part of the term intersection.
+    """
     value = result.get("intersections", result.get("intersection", []))
     if value is None:
-        return []
-    if isinstance(value, str):
-        return [part for part in value.replace(",", " ").split() if part]
-    flattened: list[str] = []
-    if isinstance(value, list):
-        for item in value:
-            if isinstance(item, list):
-                flattened.extend(str(part) for part in item if str(part))
-            elif item is not None and str(item):
-                flattened.append(str(item))
-    return unique_strings(flattened)
+        return [], []
+    if not isinstance(value, list):
+        raise RuntimeError(
+            "Expected g:Profiler intersections to be an evidence array; "
+            f"observed {type(value).__name__}"
+        )
+    if len(value) != len(mapped_query_ids):
+        raise RuntimeError(
+            "g:Profiler intersection/query alignment mismatch: "
+            f"intersections={len(value)}, mapped_query_ids={len(mapped_query_ids)}"
+        )
+    genes: list[str] = []
+    evidence_codes: list[str] = []
+    for gene_id, evidence in zip(mapped_query_ids, value):
+        if evidence:
+            genes.append(str(gene_id))
+        if isinstance(evidence, list):
+            evidence_codes.extend(str(code) for code in evidence if str(code))
+        elif evidence is not None and str(evidence):
+            evidence_codes.append(str(evidence))
+    genes = unique_strings(genes)
+    if len(genes) != int(result.get("intersection_size", len(genes))):
+        raise RuntimeError(
+            "Derived g:Profiler intersection-gene count does not match "
+            f"intersection_size for {result.get('native', 'unknown')}: "
+            f"derived={len(genes)}, reported={result.get('intersection_size')}"
+        )
+    return genes, unique_strings(evidence_codes)
 
 
 def run_enrichment(
@@ -556,11 +584,21 @@ def run_enrichment(
                     f"g:Profiler response lacks result: {candidate}/{scope}"
                 )
             metadata.append(response.get("meta", {}))
+            genes_metadata = response.get("meta", {}).get("genes_metadata", {})
+            query_metadata = genes_metadata.get("query", {})
+            if not query_metadata:
+                raise RuntimeError(
+                    f"g:Profiler response lacks mapped-query metadata: {candidate}/{scope}"
+                )
+            mapped_query = next(iter(query_metadata.values())).get("mapping", {})
+            mapped_query_ids = [str(value) for value in mapped_query.keys()]
             for result in response["result"]:
                 row = dict(result)
                 row["candidate"] = candidate
                 row["gene_set_scope"] = scope
-                row["intersection_genes"] = intersection_values(result)
+                genes, evidence_codes = intersection_values(result, mapped_query_ids)
+                row["intersection_genes"] = genes
+                row["intersection_evidence_codes"] = evidence_codes
                 rows.append(row)
             inventory.append(
                 {
@@ -640,6 +678,10 @@ def serialize_intersections(frame: pd.DataFrame) -> pd.DataFrame:
         output["intersection_genes"] = output["intersection_genes"].map(
             lambda values: " | ".join(str(value) for value in values)
         )
+    if "intersection_evidence_codes" in output.columns:
+        output["intersection_evidence_codes"] = output[
+            "intersection_evidence_codes"
+        ].map(lambda values: " | ".join(str(value) for value in values))
     for column in output.columns:
         if output[column].map(lambda value: isinstance(value, (list, dict))).any():
             output[column] = output[column].map(

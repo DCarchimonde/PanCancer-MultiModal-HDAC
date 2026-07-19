@@ -1,0 +1,11 @@
+item,count,interpretation
+Level 5 signatures,55695,Modeling rows after quality control
+Signature-ID perturbagen tokens,13314,Includes instance suffixes
+Base perturbagen identifiers,11527,Normalized BRD identifiers
+Unique canonical structures,11445,Valid RDKit structures
+Cell lines,65,Across the modeling dataset
+Perturbagen-token--cell combinations,39266,Descriptive combinations
+Perturbagen-token--cell--time--dose conditions,52834,Nominal conditions
+Additional signatures beyond nominal conditions,2861,Plate/batch-level Level 5 entries
+Expression genes,12328,Shared disease/perturbation feature space
+Screened canonical compounds,28477,Frozen screening library; distinct from the modeling structures

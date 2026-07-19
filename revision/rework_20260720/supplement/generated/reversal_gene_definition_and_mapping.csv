@@ -1,0 +1,7 @@
+candidate,candidate_role,consensus_threshold,eligible_genes,stable_direction_genes,selected_top_genes,selected_genes,string_mappable_genes,mapping_fraction
+Mocetinostat,core_candidate,0.7,1212,1212,200,200,200,1.0
+NCH-51,secondary_candidate,0.7,1242,1242,200,200,200,1.0
+TC-H-106,exploratory_candidate,0.7,1324,1324,200,200,200,1.0
+Belinostat,class_support,0.7,1167,1167,200,200,200,1.0
+Entinostat,reference_control,0.7,880,880,200,200,200,1.0
+Vorinostat,reference_control,0.7,1035,1035,200,200,200,1.0
