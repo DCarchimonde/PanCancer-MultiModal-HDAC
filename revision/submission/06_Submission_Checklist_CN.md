@@ -1,0 +1,54 @@
+# BMC Bioinformatics 大修上传清单
+
+投稿编号：`8b1e184c-443d-4707-954c-70a65930e16f`  
+返修截止：2026-07-27  
+证据快照：`fefbf2f4fa7399983d4d4041dcb8e7e91b84d17f`
+
+## 需要上传
+
+1. `01_Revised_Manuscript.pdf`：clean revised manuscript。
+2. `02_Response_to_Reviewers.pdf`：17 条意见逐点回复。
+3. `03_Additional_file_1_Supplementary_Material.pdf`：24 个 Supplementary table 主题与 6 个 Supplementary figure 组。
+4. `04_Additional_file_2_Revision_Tables.xlsx`：55 sheets 的机器可读结果。
+5. `05_LaTeX_Source.zip`：主稿、Supplement、回复信的 TeX 源码及编译所需图表。
+
+如果系统要求单独上传图文件，可从源码包的 `manuscript/figures/` 与 `supplement/figures/` 选择对应 vector PDF；不要上传旧原稿中的模拟生存、模拟分期、旧 docking 或 GDSC 图。
+
+## 不要上传
+
+- `INTERNAL_Audit_Assessment_CN.md`：仅供作者和导师内部核对。
+- `FINAL_QA_REPORT.md`：内部质量检查记录，除非编辑明确索要。
+- 任何上一轮名称相同但日期或 hash 不同的旧投稿包。
+- 旧 `Supplementary_Material.pdf`、旧 GDSC 图、旧模拟 survival/stage/TMB 图。
+
+## 上传前作者必须人工确认
+
+- [ ] 所有作者姓名、顺序、单位和通讯作者信息正确。
+- [ ] Funding grant numbers：`823B2095`、`SYWD2024255`、`SYW2025185` 均准确。
+- [ ] Authors' contributions 与实际贡献一致，所有作者同意。
+- [ ] Competing interests、ethics、consent 和 data availability 声明准确。
+- [ ] AI-assisted language/formatting disclosure 符合作者与期刊政策。
+- [ ] 正文标题使用：`Leakage-Aware Pan-Cancer Transcriptomic Reversal Prioritization: Measured Support and Metric-Dependent Class I HDAC Enrichment`。
+- [ ] 上传界面的 Figure/Table/Additional file 标签与文件名一致。
+- [ ] 回复信上传后抽查 17 个 Comment 标题是否全部可见。
+- [ ] CPU 型号与 RAM 保持 `not recorded`，不要根据当前机器补猜。
+
+## 关键科学口径
+
+- dual-stream 与 fingerprint MLP 总体相当，不主张多模态优势。
+- 模型仅输入化学结构，不预测指定 cell/dose/time 响应。
+- measured LINCS 是实测表达证据，不是 viability、efficacy 或独立外部平台验证。
+- Mocetinostat 为 core，NCH-51 为 secondary，TC-H-106 为 exploratory。
+- RG2833 为 prediction-only；Tianeptinaline/BG-1010 因身份冲突排除。
+- reversal-associated genes 不是 direct targets。
+- HDAC class enrichment 仅在 signed wTRS 下显著，因此是 metric-dependent。
+- DepMap 表明 HDAC3 是主要遗传依赖背景，但不等于候选药效或选择性。
+- docking 是 protocol/receptor sensitivity，不证明 binding。
+- Entinostat GDSC `R=-0.052, P=0.859` 是 null result，不是支持性验证。
+
+## 提交后建议保存
+
+- 提交成功页面和系统生成 PDF 的截图。
+- 所有已上传文件的 SHA256（见 `FILE_SHA256SUMS.txt`）。
+- 编辑系统的自动回执邮件。
+- 本次完整 ZIP 与 GitHub evidence commit。

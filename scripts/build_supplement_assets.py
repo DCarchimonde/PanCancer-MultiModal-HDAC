@@ -96,6 +96,7 @@ def make_table(
     font: str = r"\footnotesize",
     landscape: bool = False,
     longtable: bool = False,
+    numbered: bool = True,
 ) -> str:
     if aligns is None:
         aligns = "l" + "r" * (len(columns) - 1)
@@ -105,9 +106,10 @@ def make_table(
     lines.append(r"\begingroup")
     lines.append(font)
     if longtable:
+        caption_line = rf"\caption{{{caption}}}\label{{{label}}}\\" if numbered else rf"\caption*{{{caption}}}\\"
         lines.extend([
             rf"\begin{{longtable}}{{@{{}}{aligns}@{{}}}}",
-            rf"\caption{{{caption}}}\label{{{label}}}\\",
+            caption_line,
             r"\toprule",
             " & ".join(headers) + r" \\",
             r"\midrule",
@@ -124,11 +126,11 @@ def make_table(
             r"\endlastfoot",
         ])
     else:
+        caption_lines = [rf"\caption{{{caption}}}", rf"\label{{{label}}}"] if numbered else [rf"\caption*{{{caption}}}"]
         lines.extend([
             r"\begin{table}[H]",
             r"\centering",
-            rf"\caption{{{caption}}}",
-            rf"\label{{{label}}}",
+            *caption_lines,
             rf"\begin{{tabular}}{{@{{}}{aligns}@{{}}}}",
             r"\toprule",
             " & ".join(headers) + r" \\",
@@ -138,6 +140,10 @@ def make_table(
         lines.append(" & ".join(fmt(row[c], k) for c, k in zip(columns, kinds)) + r" \\")
     if longtable:
         lines.append(r"\end{longtable}")
+        if not numbered:
+            # caption/longtable advances the table counter even for caption*;
+            # restore the thematic S-number so continued parts do not renumber later tables.
+            lines.append(r"\addtocounter{table}{-1}")
     else:
         lines.extend([r"\bottomrule", r"\end{tabular}", r"\end{table}"])
     lines.append(r"\endgroup")
@@ -161,11 +167,12 @@ def build_tabular_assets() -> None:
         ("Perturbagen-token--cell--time--dose conditions", 52834, "Nominal conditions"),
         ("Additional signatures beyond nominal conditions", 2861, "Plate/batch-level Level 5 entries"),
         ("Expression genes", 12328, "Shared disease/perturbation feature space"),
+        ("Screened canonical compounds", 28477, "Frozen screening library; distinct from the modeling structures"),
     ], columns=["item", "count", "interpretation"])
     save(dataset, "dataset_composition")
     write_table(1, make_table(dataset, ["item", "count", "interpretation"],
         ["Item", "Count", "Interpretation"], ["text", "int", "text"],
-        r"Composition of the quality-controlled LINCS modeling dataset. Level 5 signatures are not unique compounds or raw biological replicates.",
+        r"Composition of the quality-controlled LINCS modeling dataset and frozen screening library. Level 5 signatures are not unique compounds or raw biological replicates.",
         "tab:s_dataset", aligns=r"p{0.30\textwidth}rp{0.58\textwidth}", font=r"\small"))
 
     settings = pd.DataFrame([
@@ -197,10 +204,10 @@ def build_tabular_assets() -> None:
     save(split, "split_audit")
     write_table(3, make_table(split,
         ["split", "train_signatures", "test_signatures", "train_unique_structures", "test_unique_valid_structures", "signature_overlap", "train_test_murcko_scaffold_overlap"],
-        ["Split", "Train", "Test", "Train structures", "Test structures", "Sig. overlap", "Scaffold overlap"],
+        ["Split", "Train n", "Test n", "Train struct.", "Test struct.", "Sig. ovlp.", "Scaffold ovlp."],
         ["text", "int", "int", "int", "int", "int", "int"],
         r"Leakage and structural-overlap audit. Exact-structure overlap is zero for leave-drug, scaffold, and corrected annotation-defined HDAC evaluations; the scaffold column is the directly recorded Murcko overlap.",
-        "tab:s_split", aligns="lrrrrrr", font=r"\footnotesize"))
+        "tab:s_split", aligns="lrrrrrr", font=r"\scriptsize"))
 
     summary = pd.read_csv(DERIVED / "generalization_summary_corrected.csv")
     summary = summary.sort_values(["split", "model"])
@@ -246,13 +253,14 @@ def build_tabular_assets() -> None:
     identity = pd.read_csv(RESULTS / "lincs_candidate_validation" / "candidate_identity_map.csv")
     identity["role"] = identity["candidate"].map(lambda x: ROLES.get(x, ("", ""))[0])
     identity["evidence_note"] = identity["candidate"].map(lambda x: ROLES.get(x, ("", ""))[1])
+    identity["candidate_display"] = identity["candidate"].replace({"Tianeptinaline_or_BG-1010": "Tianeptinaline / BG-1010"})
     save(identity, "candidate_identity_and_roles")
     write_table(7, make_table(identity,
-        ["candidate", "drug_ids", "role", "is_hdac_annotated", "name_conflict", "evidence_note"],
+        ["candidate_display", "drug_ids", "role", "is_hdac_annotated", "name_conflict", "evidence_note"],
         ["Candidate", "BRD ID", "Frozen role", "HDAC annotated", "Name conflict", "Interpretation"],
         ["text", "text", "text", "bool", "bool", "text"],
         r"Candidate identity, BRD identifier, and frozen evidence role. Tianeptinaline/BG-1010 is retained only to document the identity conflict.",
-        "tab:s_identity", aligns=r"p{3.0cm}p{3.0cm}p{4.4cm}ccp{8.0cm}", font=r"\footnotesize", landscape=True))
+        "tab:s_identity", aligns=r"p{2.8cm}p{2.8cm}p{4.2cm}ccp{7.5cm}", font=r"\scriptsize", landscape=True))
 
     coverage = pd.read_csv(RESULTS / "measured_lincs_figures" / "candidate_condition_quality_coverage.csv")
     hiq = pd.read_csv(RESULTS / "measured_lincs_figures" / "candidate_pan_cancer_measured_summary_official.csv")
@@ -298,8 +306,8 @@ def build_tabular_assets() -> None:
         ["candidate", "model", "seeds", "signatures", "cell_lines", "pearson_mean", "pearson_ci95_low", "pearson_ci95_high", "spearman_mean"],
         ["Candidate", "Model", "Seeds", "Profiles", "Cells", "Pearson", r"95\% low", r"95\% high", "Spearman"],
         ["text", "text", "int", "int", "int", "f3", "f3", "f3", "f3"],
-        r"Strict leave-drug candidate metrics. Only Mocetinostat and PCI-24781 were true test candidates.",
-        "tab:s_ldo_metrics", aligns="llrrrrrrr", font=r"\scriptsize")
+        r"Supplementary Table S11 (continued). Strict leave-drug candidate metrics. Only Mocetinostat and PCI-24781 were true test candidates.",
+        "tab:s_ldo_metrics", aligns="llrrrrrrr", font=r"\scriptsize", numbered=False)
     write_table(11, text)
 
     twoway = pd.read_csv(DERIVED / "predicted_measured_two_way_bootstrap.csv")
@@ -341,7 +349,7 @@ def build_tabular_assets() -> None:
         ["Candidate", "Role", "Train", "Test", "Max Tanimoto", "Top-10 mean", "Exact train", "Scaffold train", "Same-scaffold n", "Conflict"],
         ["text", "text", "int", "int", "f3", "f3", "bool", "bool", "int", "bool"],
         r"Corrected annotation-defined HDAC structural-neighbor and scaffold exposure audit.",
-        "tab:s_neighbor", aligns=r"p{2.8cm}p{4.2cm}rrrrrrrr", font=r"\scriptsize", landscape=True))
+        "tab:s_neighbor", aligns=r"p{3.2cm}p{3.7cm}rrrrrrrr", font=r"\tiny", landscape=True))
 
     enrichment = pd.read_csv(DERIVED / "formal_hdac_enrichment.csv")
     enrichment_primary = enrichment[enrichment["metric"].isin(["signed_wtrs", "spearman_reversal"])].copy()
@@ -398,25 +406,25 @@ def build_tabular_assets() -> None:
     ]].copy()
     save(enrichment_sanitized, "gprofiler_enrichment_sanitized")
     sig = full[full["significant"] == True].copy()  # noqa: E712
-    scope = sig.groupby(["candidate", "source"], as_index=False).size().rename(columns={"size": "significant_terms_fdr_lt_0_05"})
+    scope = sig.groupby(["candidate", "gene_set_scope", "source"], as_index=False).size().rename(columns={"size": "significant_terms_fdr_lt_0_05"})
     save(scope, "pathway_scope_counts")
     reps = pd.read_csv(RESULTS / "reversal_gene_networks_pathways" / "gprofiler_enrichment_representative.csv")
     reps = reps[reps["significant"] == True].sort_values(["candidate", "source", "p_value", "representative_rank"])  # noqa: E712
     reps["norm_name"] = reps["name"].str.lower().str.replace(r"[^a-z0-9]+", " ", regex=True).str.strip()
     reps = reps.drop_duplicates(["candidate", "source", "norm_name"]).groupby(["candidate", "source"]).head(2)
-    reps = reps[["candidate", "source", "native", "name", "p_value", "intersection_size", "term_size", "effective_domain_size"]]
+    reps = reps[["candidate", "gene_set_scope", "source", "native", "name", "p_value", "intersection_size", "term_size", "effective_domain_size"]]
     save(reps, "pathway_representative_nonredundant")
     text = make_table(scope,
-        ["candidate", "source", "significant_terms_fdr_lt_0_05"],
-        ["Candidate", "Source", "Significant terms"], ["text", "text", "int"],
-        r"Scope of significant g:Profiler results by candidate and ontology/source.",
-        "tab:s_path_scope", aligns="llr", font=r"\small", longtable=True)
+        ["candidate", "gene_set_scope", "source", "significant_terms_fdr_lt_0_05"],
+        ["Candidate", "Gene-set scope", "Source", "Significant terms"], ["text", "text", "text", "int"],
+        r"Scope of significant g:Profiler results by candidate, reversal direction, and ontology/source.",
+        "tab:s_path_scope", aligns="lllr", font=r"\footnotesize", longtable=True)
     text += make_table(reps,
-        ["candidate", "source", "native", "name", "p_value", "intersection_size", "term_size", "effective_domain_size"],
-        ["Candidate", "Source", "Term ID", "Nonredundant term", "$P_{FDR}$", "Overlap", "Term size", "Effective domain"],
-        ["text", "text", "text", "text", "sci", "int", "int", "int"],
-        r"Representative nonredundant enrichment terms. Probabilities are shown in scientific notation rather than rounded to zero.",
-        "tab:s_path_rep", aligns=r"p{2.5cm}p{1.5cm}p{2.6cm}p{8.2cm}rrrr", font=r"\scriptsize", landscape=True, longtable=True)
+        ["candidate", "gene_set_scope", "source", "native", "name", "p_value", "intersection_size", "term_size", "effective_domain_size"],
+        ["Candidate", "Gene-set scope", "Source", "Term ID", "Nonredundant term", "$P_{FDR}$", "Overlap", "Term size", "Effective domain"],
+        ["text", "text", "text", "text", "text", "sci", "int", "int", "int"],
+        r"Supplementary Table S19 (continued). Representative nonredundant enrichment terms. Probabilities are shown in scientific notation rather than rounded to zero.",
+        "tab:s_path_rep", aligns=r"p{2.0cm}p{3.1cm}p{1.2cm}p{2.2cm}p{6.3cm}rrrr", font=r"\scriptsize", landscape=True, longtable=True, numbered=False)
     write_table(19, text)
 
     net = pd.read_csv(RESULTS / "reversal_gene_networks_pathways" / "string_network_summary.csv")
@@ -433,8 +441,8 @@ def build_tabular_assets() -> None:
         ["candidate_a", "candidate_b", "genes_a", "genes_b", "shared_genes", "jaccard"],
         ["Candidate", "Reference", "Genes A", "Genes B", "Shared", "Jaccard"],
         ["text", "text", "int", "int", "int", "f3"],
-        r"Primary-candidate overlap with Entinostat and Vorinostat reversal-associated gene sets.",
-        "tab:s_overlap", aligns="llrrrr", font=r"\small")
+        r"Supplementary Table S20 (continued). Primary-candidate overlap with Entinostat and Vorinostat reversal-associated gene sets.",
+        "tab:s_overlap", aligns="llrrrr", font=r"\small", numbered=False)
     write_table(20, text)
 
     dep = pd.read_csv(RESULTS / "depmap_hdac_background" / "analysis" / "depmap_hdac_pan_cancer_summary.csv")
@@ -451,8 +459,8 @@ def build_tabular_assets() -> None:
         ["gene", "eligible_lineages", "models", "kruskal_wallis_h", "p_value", "epsilon_squared", "fdr_bh"],
         ["Gene", "Lineages", "Models", "Kruskal $H$", "$P$", r"$\epsilon^2$", "FDR"],
         ["text", "int", "int", "f2", "sci", "f3", "sci"],
-        r"Lineage heterogeneity. Effect sizes are modest despite FDR significance.",
-        "tab:s_depmap_het", aligns="lrrrrrr", font=r"\small")
+        r"Supplementary Table S21 (continued). Lineage heterogeneity. Effect sizes are modest despite FDR significance.",
+        "tab:s_depmap_het", aligns="lrrrrrr", font=r"\small", numbered=False)
     write_table(21, text)
 
     redock = pd.read_csv(RESULTS / "docking_controls" / "redocking_4lxz" / "redocking_method_summary.csv")
@@ -478,14 +486,14 @@ def build_tabular_assets() -> None:
         ["compound", "role", "stable_all_seed_consensus", "selected_cluster_pose_count", "selected_cluster_median_score_kcal_mol", "consensus_medoid_score_kcal_mol", "zbg_min_zn_a", "zbg_max_zn_a", "nearest_heteroatom_zn_a"],
         ["Compound", "Role", "3-seed", "Poses", "Cluster score", "Medoid score", "ZBG min", "ZBG max", "Nearest heteroatom"],
         ["text", "text", "bool", "int", "f3", "f3", "f3", "f3", "f3"],
-        r"Frozen 4LXZ control/candidate panel. Favorable score is not evidence of intended zinc geometry.",
-        "tab:s_panel", aligns=r"p{3.2cm}p{6.0cm}rrrrrrr", font=r"\scriptsize", landscape=True)
+        r"Supplementary Table S22 (continued). Frozen 4LXZ control/candidate panel. Favorable score is not evidence of intended zinc geometry.",
+        "tab:s_panel", aligns=r"p{3.2cm}p{6.0cm}rrrrrrr", font=r"\scriptsize", landscape=True, numbered=False)
     text += make_table(sens,
         ["compound", "fixed_frame_medoid_rmsd_a", "cluster_median_score_4lxz_kcal_mol", "cluster_median_score_4bkx_kcal_mol", "score_delta_4bkx_minus_4lxz_kcal_mol", "nearest_heteroatom_zn_4lxz_a", "nearest_heteroatom_zn_4bkx_a"],
         ["Compound", "Pose RMSD", "4LXZ score", "4BKX score", r"$\Delta$ score", "4LXZ nearest Zn", "4BKX nearest Zn"],
         ["text", "f3", "f3", "f3", "f3", "f3", "f3"],
-        r"HDAC2 4LXZ versus aligned HDAC1 4BKX receptor sensitivity.",
-        "tab:s_receptor", aligns="lrrrrrr", font=r"\footnotesize")
+        r"Supplementary Table S22 (continued). HDAC2 4LXZ versus aligned HDAC1 4BKX receptor sensitivity.",
+        "tab:s_receptor", aligns="lrrrrrr", font=r"\footnotesize", numbered=False)
     write_table(22, text)
 
     external = pd.DataFrame([
@@ -496,10 +504,10 @@ def build_tabular_assets() -> None:
     save(external, "external_drug_sensitivity_availability")
     write_table(23, make_table(external,
         ["compound", "endpoint", "availability", "result", "interpretation"],
-        ["Compound/scope", "Endpoint", "Availability", "Result", "Interpretation"],
+        ["Scope", "Endpoint", "Availability", "Result", "Interpretation"],
         ["text"] * 5,
         r"External direct drug-sensitivity availability and null results. A surrogate is not presented as validation.",
-        "tab:s_external", aligns="p{0.14\\textwidth}p{0.19\\textwidth}p{0.24\\textwidth}p{0.16\\textwidth}p{0.22\\textwidth}", font=r"\footnotesize"))
+        "tab:s_external", aligns="p{0.13\\textwidth}p{0.17\\textwidth}p{0.21\\textwidth}p{0.14\\textwidth}p{0.22\\textwidth}", font=r"\footnotesize"))
 
     repro = pd.DataFrame([
         ("Neural hardware", "NVIDIA GeForce RTX 4090", "Recorded by run manifests"),
@@ -513,7 +521,7 @@ def build_tabular_assets() -> None:
         ("Split seed", "42", "Top-level grouping"),
         ("Run seeds", "1--5 pair; 1--3 other splits", "Frozen benchmark"),
         ("Crossed-bootstrap seed", "20260719", "10,000 iterations"),
-        ("Repository revision", "To be replaced by immutable final commit after synchronized upload", "No placeholder will remain in submitted package"),
+        ("Repository evidence snapshot", "fefbf2f4fa7399983d4d4041dcb8e7e91b84d17f", "Corrected statistics, scripts, exclusions, and tracker on major-revision-2026"),
     ], columns=["item", "value", "provenance"])
     save(repro, "reproducibility_inventory")
     write_table(24, make_table(repro,

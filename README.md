@@ -1,194 +1,131 @@
-# Pan-Cancer Multi-Modal HDAC Inhibitor Repurposing
+# Leakage-Aware Pan-Cancer Transcriptomic Reversal Prioritization
 
-This repository contains the source code, computational workflow, and supplementary material associated with the manuscript:
+This repository contains the corrected major-revision analysis for:
 
-**Multi-Modal Molecular Representation Learning Prioritizes Class I HDAC Inhibitors for Pan-Cancer Transcriptomic Reversal**
+> **Leakage-Aware Pan-Cancer Transcriptomic Reversal Prioritization: Measured Support and Metric-Dependent Class I HDAC Enrichment**
 
-The study implements a hypothesis-generating computational drug-repurposing workflow that integrates molecular representation learning, LINCS L1000 perturbational transcriptomics, TCGA pan-cancer disease signatures, weighted transcriptomic reversal scoring, network pharmacology, public dependency/sensitivity resources, and structural docking support.
+The revision is a hypothesis-generating computational study. It separates model generalization, experimentally measured transcriptomic reversal, candidate identity, biological context, and docking sensitivity. It does **not** claim drug efficacy, clinical benefit, direct target discovery, biochemical target engagement, or superiority of the dual-stream model.
 
-## Scope and evidence statement
+## Frozen evidence snapshot
 
-This repository supports a **computational prioritization** study. The analyses nominate Class I HDAC inhibitors, including TC-H-106, RG2833, and Tianeptinaline, as candidates for future experimental testing. The repository does **not** provide wet-lab validation and should not be interpreted as proving therapeutic efficacy.
+- Revision branch: `major-revision-2026`
+- Corrected analysis snapshot: `fefbf2f4fa7399983d4d4041dcb8e7e91b84d17f`
+- Perturbation profiles: 55,695 LINCS L1000 Level 5 profiles
+- Output genes: 12,328
+- Screened canonical compounds: 28,477
+- Disease signatures: 22 TCGA cancer types
+- Neural hardware recorded by run manifests: NVIDIA GeForce RTX 4090
+- CPU model and RAM: not captured in the frozen AutoDL manifests and therefore not inferred
 
-Transcriptomic reversal, network enrichment, survival stratification, DepMap dependency, GDSC surrogate comparison, docking, and conformer-energy analysis are supportive computational evidence layers rather than direct pharmacological validation.
+Large public source datasets are not redistributed because of file size and source-specific access terms. The repository contains scripts, checksums, manifests, plotting data, and redistributable processed outputs.
 
-## Current implementation
+## What the models estimate
 
-The reported model uses two complementary molecular representations:
+Both predictors receive chemical structure only. They do not receive cell-line identity, dose, exposure time, or other experimental-condition covariates. Their predictions are therefore structure-conditioned central tendencies across training conditions, not condition-specific responses.
 
-1. **Graph-derived atom-token representation** parsed from SMILES using RDKit.
-2. **Morgan fingerprint representation** using ECFP4 fingerprints with radius 2 and 1024 bits.
+The evaluated models are:
 
-In the current implementation, molecules are encoded using an atom-token Transformer encoder and a fingerprint MLP branch, followed by a regularized nonlinear fusion head to predict LINCS Level 5 transcriptomic perturbation vectors. Explicit edge-conditioned graph message passing is not claimed as the basis of the reported results.
+- `dual_stream`: atom-token Transformer stream fused with a Morgan-fingerprint stream;
+- `fingerprint_mlp`: an internal Morgan-fingerprint multilayer perceptron baseline.
 
-## Repository contents
+Across pair, leave-drug, leave-cell-line, scaffold, and corrected annotation-defined HDAC holdout evaluations, the models were broadly comparable. Paired confidence intervals did not establish a stable dual-stream advantage. The old claims of direct comparison with DeepCE or ChemCPA were invalid because the legacy scripts contained non-equivalent proxy implementations; those entry points now remain only as deprecation notices.
 
-| File | Purpose |
-|---|---|
-| `dataset.py` | PyTorch dataset for metadata, SMILES parsing, fingerprint generation, and LINCS expression retrieval. |
-| `drug_to_graph.py` | RDKit-based conversion of SMILES strings into atom-feature and adjacency representations. |
-| `multimodal_model.py` | Dual-stream molecular representation model. |
-| `strict_data_split.py` | Drug-cell line pair split used to reduce duplicate-pair leakage. |
-| `train.py` | Main training script for the multi-modal model. |
-| `run_baselines.py` | Reimplemented baseline models for comparison. |
-| `run_ablation.py` | Ablation experiments for molecular representation components. |
-| `calc_mmff94_energy.py` | RDKit MMFF94 conformer energy calculation for TC-H-106. |
-| `Supplementary_Material.pdf` | Supplementary analyses and extended pan-cancer contextualization figures. |
+## Leakage-aware evaluation
 
-## Data requirements
+The revision reports five complementary settings:
 
-Large public source datasets are not redistributed in this repository. Please download them from their original sources:
+1. drug--cell pair split;
+2. leave-drug-out;
+3. leave-cell-line-out;
+4. Murcko-scaffold split;
+5. corrected annotation-defined HDAC holdout.
 
-- **TCGA RNA-seq and clinical metadata:** Genomic Data Commons (GDC) portal.
-- **LINCS L1000 Level 5 perturbation profiles:** GEO accession `GSE92742`.
-- **LINCS signature metrics:** Broad LINCS signature metadata and quality metrics.
-- **HDAC1 protein structure:** RCSB PDB ID `4BKX`.
-- **TC-H-106 ligand conformer:** PubChem CID `16070100`.
-- **DepMap and GDSC data:** Official DepMap and GDSC public download portals.
+The corrected HDAC holdout contains 53,839 training profiles and 1,856 test profiles from 30 held-out canonical structures and 55 test cell lines. Exact test structure, drug identifier, signature, and drug--cell pair overlap are zero. Eleven test scaffolds occur in training and are disclosed; this is a class holdout, not a claim of universal scaffold independence. The discarded pre-correction summary contained 1,565 profiles from 21 structures and is retained only as provenance.
 
-Expected local data paths used by the scripts:
+## Main findings and evidence boundaries
 
-```text
-data/
-  clean_dataset.csv
-  GSE92742_Broad_LINCS_sig_metrics.txt
-  level5_beta_trt_cp_n720216x12328.gctx
-```
+### Screening and class enrichment
 
-`clean_dataset.csv` should contain at least the following columns:
+Class I HDAC compounds are formally enriched at prespecified top 0.5%, 1%, 5%, and 10% cutoffs under signed wTRS after multiplicity correction. The same class enrichment is not significant under Spearman reversal. The result is therefore **metric-dependent**, not a universal HDAC-class effect.
 
-```text
-sig_id, smiles, drug_id
-```
+Primary candidate stability uses 48 configurations:
 
-The `sig_id` field must match the column identifiers in the LINCS Level 5 `.gctx` file.
+`4 splits × 2 models × 3 seeds × 2 primary metrics`.
 
-## Environment
+The 72-configuration result that additionally includes legacy wTRS is retained as a sensitivity analysis only.
 
-The code was developed in Python with PyTorch and RDKit. A minimal environment should include:
+### Candidate hierarchy
 
-```bash
-pip install torch numpy pandas scipy scikit-learn tqdm cmapPy
-```
+| Candidate | Revised role | Interpretation |
+|---|---|---|
+| Mocetinostat | Core computational candidate | Best combined revised evidence tier; hypothesis for follow-up |
+| NCH-51 | Secondary candidate | Stable transcriptomic signal with residual scaffold exposure |
+| TC-H-106 | Exploratory/original-method-sensitive | Downgraded because of close training-neighbor exposure |
+| RG2833 | Prediction-only | No measured LINCS signature in the frozen cache |
+| Tianeptinaline/BG-1010 | Identity-conflict excluded | Exact training exposure and unresolved name--structure conflict |
 
-RDKit installation is often more stable through conda:
+Belinostat, PCI-24781, and Panobinostat provide class-support context; Entinostat and Vorinostat are reference controls. These roles are evidence tiers, not claims of therapeutic efficacy.
 
-```bash
-conda install -c conda-forge rdkit
-pip install torch numpy pandas scipy scikit-learn tqdm cmapPy
-```
+### Measured LINCS expression
 
-A minimal dependency file is provided as `requirements.txt`.
+Measured reversal uses official LINCS condition metadata and distinguishes all-profile, QC-pass, and `is_hiq` strata. Profiles are aggregated within candidate/dose/time/official-cell conditions before candidate--cancer summaries. This is experimentally measured expression evidence, but it is not viability, efficacy, binding, or validation on an independent experimental platform.
 
-## Reproducing the main computational workflow
+The prediction--measurement analysis uses a two-way candidate-by-cancer bootstrap (10,000 iterations; seed 20260719) plus leave-one-candidate/cancer sensitivity. A fully condition-matched non-HDAC null could not be recovered from the archived official-condition outputs. An unmatched 11,445-compound all-profile rank analysis is provided only as sensitivity evidence.
 
-### 1. Prepare the data
+### Biological context
 
-Place the LINCS metadata, LINCS Level 5 `.gctx` file, and signature metrics under `data/` using the filenames listed above. Confirm that `sig_id` values in `clean_dataset.csv` match the `.gctx` column identifiers.
+- Network and enrichment nodes are **reversal-associated genes**, not direct drug targets.
+- The custom g:Profiler request submitted 11,144 measured Entrez identifiers; the service reported an effective mapped domain of 11,154. These are distinct quantities.
+- DepMap Public 26Q1 shows HDAC3 as the dominant pan-cancer class I HDAC dependency. Genetic-loss context does not identify compound efficacy, selectivity, or safety.
 
-### 2. Generate the drug-cell line pair split
+### Docking controls
 
-```bash
-python strict_data_split.py
-```
+Docking includes 4LXZ crystallographic redocking, a positive control, an O-methyl zinc-chelation sensitivity decoy, three docking seeds, pose clustering, zinc-geometry reporting, and 4BKX/HDAC1 receptor sensitivity. The decoy illustrates that a favorable docking score can coexist with implausible prespecified zinc-binding geometry. Docking is reported as protocol/receptor sensitivity with unresolved pose plausibility, not proof of binding or HDAC engagement.
 
-This creates:
+### External drug sensitivity
 
-```text
-data/train_dataset_drugcell.csv
-data/test_dataset_drugcell.csv
-```
+No direct candidate-matched public viability response was available for TC-H-106 in the frozen audit. The Entinostat GDSC surrogate correlation (`R = -0.052`, `P = 0.859`) is a null result and is not used as validation. No new wet-lab assay is claimed.
 
-This split prevents exact drug-cell line perturbation pairs from appearing in both training and testing subsets. It is not a strict zero-shot drug, zero-shot cell-line, or scaffold split.
+## Removed or retired analyses
 
-### 3. Train the multi-modal model
+The revision excludes the following from scientific inference:
 
-```bash
-python train.py
-```
+- simulated TCGA survival and treated/untreated interpretations;
+- simulated stage and “stage-independent efficacy” claims;
+- hard-coded or unreproducible TMB conclusions;
+- non-equivalent DeepCE/ChemCPA proxy comparisons;
+- the hard-coded `Pearson R = 0.2841` legacy ablation value;
+- direct-target language inferred from reversal genes;
+- GDSC surrogate validation claims;
+- stable measured-support claims for RG2833 or Tianeptinaline/BG-1010;
+- MMFF94 energy as thermodynamic, binding, or efficacy validation.
 
-Default training settings:
+The full exclusion policy is documented in [`revision/analysis_scope_and_exclusions.md`](revision/analysis_scope_and_exclusions.md).
 
-- batch size: 128
-- training epochs: 60
-- optimizer: AdamW
-- learning rate: 5e-4
-- output dimension: 12,328 genes
+## Reproducing the corrected post-processing
 
-Expected output:
-
-```text
-multimodal_model_epoch_*.pth
-```
-
-### 4. Run baseline comparisons
+The GPU training outputs are frozen. Final statistical post-processing and Supplement assets are CPU workflows:
 
 ```bash
-python run_baselines.py
+python scripts/finalize_revision_statistics.py
+MPLCONFIGDIR=/tmp/matplotlib-cache python scripts/build_supplement_assets.py
 ```
 
-This script trains and evaluates reimplemented single-modality baselines under the same drug-cell line pair split.
+Key corrected outputs are under:
 
-### 5. Run ablation experiments
+- `results/revision/final_statistics/`
+- `results/revision/measured_lincs_figures/`
+- `results/revision/candidate_stability/`
+- `results/revision/reversal_gene_networks_pathways/`
+- `results/revision/depmap_hdac_background/`
+- `results/revision/docking_controls/`
 
-```bash
-python run_ablation.py
-```
+Run-level parameters, selected checkpoints, hashes, seeds, runtimes, software versions, and evidence limitations are supplied in the machine-readable manifests and revision supplementary tables.
 
-This script evaluates the contribution of molecular representation components.
+## Submission materials
 
-### 6. Compute MMFF94 conformer support
+The synchronized clean manuscript, response letter, Supplement, machine-readable workbook, and LaTeX sources are stored under `revision/submission/`. The reviewer tracker records 17/17 comments as addressed in the revised package.
 
-```bash
-python calc_mmff94_energy.py
-```
+## License and responsibility
 
-This script computes an MMFF94 minimized conformer energy for TC-H-106 as structural support. It does not prove biological activity.
-
-## Evaluation metrics
-
-The manuscript reports:
-
-- Mean Squared Error (MSE)
-- Mean Absolute Error (MAE)
-- profile-wise Pearson correlation
-- profile-wise Spearman correlation
-- weighted transcriptomic reversal score (wTRS)
-
-Correlation metrics are interpreted as directional transcriptomic concordance for downstream compound prioritization, not as direct evidence of drug efficacy.
-
-## Reproducibility notes and limitations
-
-- The current train/test split is a drug-cell line pair split.
-- The manuscript explicitly acknowledges that stronger future benchmarks should include leave-drug-out, leave-cell-line-out, scaffold-based, and external pharmacogenomic validation settings.
-- Large `.gctx`, checkpoint, and intermediate prediction files are intentionally not stored in the repository.
-- Users should verify local paths before running the scripts.
-- The GDSC analysis uses Entinostat as a pharmacological surrogate because TC-H-106 is not available in GDSC. This result is reported as contextual and non-significant, not as positive validation.
-- Molecular docking and MMFF94 calculations provide structural plausibility, not evidence of cellular efficacy.
-
-## Supplementary material
-
-The supplementary material contains extended pan-cancer network analyses and additional supporting figures. For the journal submission, use the conservative version aligned with the manuscript title and hypothesis-generating framing:
-
-```text
-Supplementary_Material.pdf
-```
-
-If you keep multiple drafts locally, make sure the submitted GitHub-facing version corresponds to `Supplementary_Material_csbj_safe_v4_flow_fixed.pdf` or the latest caption/flow-fixed version.
-
-## Citation
-
-If you use this code or processed outputs, please cite the associated preprint/manuscript:
-
-```bibtex
-@article{tong2026multimodal,
-  title={Multi-Modal Molecular Representation Learning Prioritizes Class I HDAC Inhibitors for Pan-Cancer Transcriptomic Reversal},
-  author={Tong, Siyuan and Zhang, Wen and Ji, Shiliang},
-  year={2026},
-  doi={10.64898/2026.04.22.720196}
-}
-```
-
-## License
-
-This repository is intended for non-commercial academic research use. Please check the licenses and terms of use of the original public data sources before redistributing derived files.
+Users must follow the access and reuse terms of TCGA/GDC, LINCS/GEO, DepMap, RCSB PDB, STRING, and g:Profiler. All scientific conclusions should be interpreted within the evidence boundaries above.
