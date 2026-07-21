@@ -47,7 +47,7 @@
 - reversal-associated genes 不是 direct targets。
 - HDAC class enrichment 仅在 signed wTRS 下显著，因此是 metric-dependent。
 - enrichment consensus 对每个 metric 独立计算：4 个 generalization regimes × 2 models × 3 seeds × 22 cancers，共 528 个等权 within-library rank fractions/compound（0 = strongest）；0.5%、1%、5%、10% 是本次修回固定阈值，并非前瞻性预注册。Candidate stability 使用相反方向的 strength percentile（100 = strongest）。
-- `00_TCGA_Cohorts` 列出 22 个 TCGA/GDC projects 与冻结 disease-signature 文件；逐癌种 tumor/normal counts 未保留，因此明确留空，未猜测。
+- `00_TCGA_Cohorts` 列出 22 个 TCGA/GDC projects；重复出现的 disease-matrix 和 observed-mask 校验值已明确标为 global hashes，并非逐癌种文件 hash。逐癌种 tumor/normal counts 未保留，因此明确留空，未猜测。
 - `21_Condition_Manifest` 明确披露分析时的 83,490-row condition-level CSV 及其 SHA256 未进入冻结便携包；没有编造校验值。
 - g:Profiler 的真实 Entrez intersection genes 与 GO evidence codes 已分列，5,037 个 term 的重建交集计数均通过审计。
 - DepMap 表明 HDAC3 是主要遗传依赖背景，但不等于候选药效或选择性。

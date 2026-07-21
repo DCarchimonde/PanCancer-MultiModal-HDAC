@@ -12,7 +12,7 @@ Final package QA date: 2026-07-21
 
 - Clean revised manuscript: 36 pages; reviewer-marked manuscript: 36 pages; nine main-figure groups; 36 bibliography entries; no blank page.
 - The original uploaded TeX also contained 36 bibliography entries. The revision replaces five obsolete citations with five sources directly required by the corrected workflow; it does not reduce 38 references to 16.
-- Response letter: 10 pages; 17/17 reviewer-comment sections; no blank page; locations were rechecked after final float placement.
+- Response letter: 10 pages; 17/17 reviewer-comment sections; no blank page; every location was refreshed against the final clean-manuscript anchors (scientific text lines 14--611).
 - Additional file 1: 30 pages; 24 numbered Supplementary table themes (`S1`--`S24`); six complementary Supplementary figure groups (`S1`--`S6`); no blank page.
 - Additional file 2: 58 sheets (README, Sheet Index, Data Dictionary, and 55 data sheets).
 - All four PDFs were rendered page by page and visually reviewed as contact sheets plus full-size key pages.
@@ -55,7 +55,7 @@ Final package QA date: 2026-07-21
 
 - A condition-matched non-HDAC official-condition null could not be reconstructed from the frozen archive; the unmatched 11,445-compound sensitivity analysis is labeled accordingly.
 - The analysis-time 83,490-row condition-level CSV and its SHA256 were not retained in the frozen portable package; the manifest discloses this rather than inventing a checksum.
-- Per-cohort final TCGA tumor/normal sample counts were not preserved in the frozen analysis archive and were not guessed.
+- Per-cohort final TCGA tumor/normal sample counts were not preserved in the frozen analysis archive and were not guessed. The repeated disease-matrix and observed-mask checksums are explicitly labeled as global rather than cohort-specific hashes.
 - CPU model and RAM were not captured by the AutoDL manifests and remain `not recorded`.
 - No new wet-lab viability, biochemical, organoid, animal, or clinical experiment was performed.
 - Author identities, affiliations, contribution statements, grant identifiers, and policy compliance require final human confirmation.

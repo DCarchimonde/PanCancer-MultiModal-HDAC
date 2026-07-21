@@ -824,17 +824,6 @@ def make_stability_figure(
         fontsize=16,
         fontweight="bold",
     )
-    figure.text(
-        0.5,
-        -0.012,
-        (
-            "Ranks are descriptive model outputs, not efficacy validation. RG2833 is "
-            "prediction-only; Tianeptinaline/BG-1010 is retained only as an "
-            "identity-conflict sensitivity row and excluded from primary inference."
-        ),
-        ha="center",
-        fontsize=9,
-    )
     figure.savefig(
         output_dir / "candidate_stability_figure.png",
         dpi=dpi,

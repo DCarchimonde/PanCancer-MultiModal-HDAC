@@ -46,15 +46,14 @@ $^{*}$ Correspondence: Shiliang Ji (dg21300014@smail.nju.edu.cn) and Siyuan Tong
 \end{flushleft}
 \ifdefined\reviewmarkedversion
 \vspace{0.7em}
-{\color{revisionred}\textbf{Reviewer-marked copy: revised scientific text is shown in red.}\par}
+\begin{nolinenumbers}
+{\color{revisionred}\textbf{Reviewer-marked copy --- revised scientific text is shown in dark red.}\par}
+\end{nolinenumbers}
 \fi
 \vfill
 \end{titlepage}
 
 \ifdefined\reviewmarkedversion
-% The reviewer note adds one counted line on the title page; restore the
-% clean-manuscript line numbering before the scientific body begins.
-\addtocounter{linenumber}{-1}
 {\color{revisionred}\input{manuscript_body}}
 \else
 \input{manuscript_body}

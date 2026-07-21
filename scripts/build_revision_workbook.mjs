@@ -7,7 +7,7 @@ const OUT_DIR = process.env.PANCANCER_WORKBOOK_OUT || path.join(ROOT, "outputs")
 const PREVIEW_DIR = process.env.PANCANCER_WORKBOOK_PREVIEWS || path.join(ROOT, "qa", "workbook_previews");
 
 const specs = [
-  ["00_TCGA_Cohorts", "supplement/generated/tcga_cohort_manifest.csv", "Manifest of the 22 TCGA/GDC projects and frozen disease-matrix hashes; per-cohort final sample counts were not retained and are not reconstructed."],
+  ["00_TCGA_Cohorts", "supplement/generated/tcga_cohort_manifest.csv", "Manifest of the 22 TCGA/GDC projects and repeated global disease-matrix/mask hashes; these are not cohort-specific hashes. Per-cohort final sample counts were not retained and are not reconstructed."],
   ["01_Dataset", "supplement/generated/dataset_composition.csv", "Dataset composition; signatures, structures, cells, conditions, and genes are distinct units."],
   ["02_Split_Audit", "supplement/generated/split_audit.csv", "Leakage and Murcko-scaffold overlap inventory for all five evaluation settings."],
   ["03_Model_Runs", "derived_final/generalization_all_runs_corrected.csv", "All 34 frozen model runs; corrected 1,856-profile HDAC summaries only."],
