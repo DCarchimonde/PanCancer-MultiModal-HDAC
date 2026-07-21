@@ -346,7 +346,7 @@ def formal_hdac_enrichment() -> pd.DataFrame:
     result["fdr_bh_within_metric_definition"] = result.groupby(
         ["metric", "annotation_definition"], group_keys=False
     )["fisher_one_sided_p"].transform(lambda x: bh_fdr(x))
-    result["ranking_source"] = "cross_generalization_mean_rank_percentile"
+    result["ranking_source"] = "cross_generalization_mean_rank_fraction_0_strongest"
     result["included_splits"] = (
         "leave_drug_out | leave_cell_line_out | scaffold_split | hdac_class_holdout"
     )
@@ -356,9 +356,9 @@ def formal_hdac_enrichment() -> pd.DataFrame:
     result["cancers"] = 22
     result["run_cancer_observations_per_compound"] = 528
     result["aggregation_definition"] = (
-        "Rank compounds within each run and cancer; convert to library percentile; "
-        "average all 528 run-cancer percentiles equally within metric; ascending mean "
-        "percentile defines consensus rank."
+        "Rank compounds within each run and cancer; convert to a within-library rank "
+        "fraction (0 = strongest); average all 528 run-cancer rank fractions equally "
+        "within metric; ascending mean rank fraction defines consensus rank."
     )
     result["cutoff_status"] = "fixed_for_revision_not_prospectively_preregistered"
     result.to_csv(OUTPUT / "formal_hdac_enrichment.csv", index=False)
@@ -620,7 +620,7 @@ def plot_primary_stability(source: pd.DataFrame, comparison: pd.DataFrame) -> No
         patch.set_alpha(0.75)
     ax_box.set_xticks(range(1, len(order) + 1), [x.replace("_or_", "/") for x in order], rotation=38, ha="right")
     ax_box.set_ylim(-2, 102)
-    ax_box.set_ylabel("Library percentile (higher = stronger rank)")
+    ax_box.set_ylabel("Strength percentile (100 = strongest rank)")
     ax_box.set_title("A  Primary 48-config stability: signed wTRS + Spearman reversal", loc="left", fontweight="bold")
     ax_box.grid(axis="y", color="#dddddd", lw=0.6)
 
@@ -635,7 +635,7 @@ def plot_primary_stability(source: pd.DataFrame, comparison: pd.DataFrame) -> No
     ax_compare.set_yticks(y, [x.replace("_or_", "/") for x in order])
     ax_compare.invert_yaxis()
     ax_compare.set_xlim(45, 100)
-    ax_compare.set_xlabel("Median library percentile")
+    ax_compare.set_xlabel("Median strength percentile (100 = strongest)")
     ax_compare.set_title("B  Primary versus legacy-inclusive summary", loc="left", fontweight="bold")
     ax_compare.legend(frameon=False, fontsize=8)
     ax_compare.grid(axis="x", color="#dddddd", lw=0.6)

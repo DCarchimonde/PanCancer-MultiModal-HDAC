@@ -153,8 +153,6 @@ The primary stability hierarchy contains 48 configurations: four generalization 
 
 \input{generated/table_S16}
 
-Formal testing shows that the explicitly annotated class I subset is enriched under signed wTRS at every fixed revision cutoff, but not under Spearman reversal. For each metric, compounds were ordered by the mean of 528 equally weighted library-rank percentiles (24 screening runs across four generalization regimes, two models, and three seeds, multiplied by 22 cancers). The cutoffs were fixed for the revision analysis but were not prospectively preregistered. The Results and conclusions therefore describe the enrichment as metric-dependent rather than universal. The retained original title refers to computational prioritization and does not imply model superiority, efficacy, or metric-independent enrichment. The broader annotation-defined HDAC analysis and the legacy metric are included in Additional file 2.
-
 \begin{landscape}
 \section{Frozen reversal-associated genes, pathways, and networks}
 Candidate roles were frozen before these analyses. At the 70\% primary consensus threshold, the top 200 reversal-associated genes per candidate/control were carried forward. The term ``reversal-associated'' is used because gene selection derives from the same disease--perturbation opposition used for ranking; these genes are not direct pharmacological targets.
@@ -222,6 +220,6 @@ CPU model and RAM were not captured in the frozen AutoDL manifests. They are exp
 
 \section{Machine-readable companion}
 
-Additional file 2 contains the complete run-level, candidate-level, condition-level, network, pathway, DepMap, docking, sensitivity, and reproducibility tables with filters and a data dictionary. A dedicated condition-level manifest records the 83,490-row archived condition table, its schema, and why that large table is represented by auditable aggregates rather than duplicated into the formatted workbook. Repository-relative source paths are used; no AutoDL absolute paths are required to interpret the workbook. Blank fields are retained only when a measurement is not applicable or was not recorded, and the corresponding reason is supplied in a status or note column.
+Additional file 2 contains the complete preserved run-level, candidate-level, network, pathway, DepMap, docking, sensitivity, and reproducibility tables with filters and a data dictionary. A TCGA cohort manifest identifies all 22 GDC projects and the frozen disease-matrix hashes; per-cohort final tumor/normal counts were not retained and are not retrospectively reconstructed. A separate condition-level manifest records the schema of the analysis-time 83,490-row table and explicitly discloses that the source file and its SHA256 were not preserved in the frozen portable package. All preserved aggregates used for the reported figures and inferences are included. Repository-relative source paths are used; no AutoDL absolute paths are required to interpret the workbook. Blank fields are retained only when a measurement is not applicable or was not recorded, and the corresponding reason is supplied in a status or note column.
 
 \end{document}

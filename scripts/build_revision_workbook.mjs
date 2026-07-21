@@ -7,12 +7,13 @@ const OUT_DIR = process.env.PANCANCER_WORKBOOK_OUT || path.join(ROOT, "outputs")
 const PREVIEW_DIR = process.env.PANCANCER_WORKBOOK_PREVIEWS || path.join(ROOT, "qa", "workbook_previews");
 
 const specs = [
+  ["00_TCGA_Cohorts", "supplement/generated/tcga_cohort_manifest.csv", "Manifest of the 22 TCGA/GDC projects and frozen disease-matrix hashes; per-cohort final sample counts were not retained and are not reconstructed."],
   ["01_Dataset", "supplement/generated/dataset_composition.csv", "Dataset composition; signatures, structures, cells, conditions, and genes are distinct units."],
   ["02_Split_Audit", "supplement/generated/split_audit.csv", "Leakage and Murcko-scaffold overlap inventory for all five evaluation settings."],
   ["03_Model_Runs", "derived_final/generalization_all_runs_corrected.csv", "All 34 frozen model runs; corrected 1,856-profile HDAC summaries only."],
   ["04_Model_Summary", "derived_final/generalization_summary_corrected.csv", "Model-by-split mean, SD, confidence interval, epochs, and runtime."],
   ["05_Model_Paired", "derived_final/generalization_paired_corrected.csv", "Seed-paired model differences; positive values favor dual stream by construction."],
-  ["06_HDAC_Enrichment", "derived_final/formal_hdac_enrichment.csv", "Formal top-library HDAC enrichment for primary and legacy sensitivity metrics."],
+  ["06_HDAC_Enrichment", "derived_final/formal_hdac_enrichment.csv", "Formal top-library HDAC enrichment using mean rank fraction (0 = strongest; lower is better) for primary and legacy sensitivity metrics."],
   ["07_Candidate_Identity", "supplement/generated/candidate_identity_and_roles.csv", "Canonical structures, BRD IDs, identity conflicts, and frozen evidence roles."],
   ["08_Candidate_Splits", "results/revision/lincs_candidate_validation/candidate_split_membership.csv", "Candidate train/test membership by split."],
   ["09_Official_Coverage", "supplement/generated/official_condition_coverage.csv", "All/QC/HiQ profile counts with all-official-cell and HiQ-cell counts separated."],
@@ -27,7 +28,7 @@ const specs = [
   ["18_LDO_Paired", "results/revision/leave_drug_candidate_validation/leave_drug_candidate_paired_comparison.csv", "Seed-paired strict candidate model differences."],
   ["19_Measured_Cancer", "results/revision/measured_lincs_figures/candidate_cancer_measured_summary_official.csv", "Candidate-by-cancer official-condition measured reversal."],
   ["20_Measured_PanCancer", "results/revision/measured_lincs_figures/candidate_pan_cancer_measured_summary_official.csv", "Pan-cancer measured reversal by quality stratum and metric."],
-  ["21_Condition_Manifest", "supplement/generated/condition_level_manifest.csv", "Manifest for the archived 83,490-row condition-level table; schema and non-duplication policy."],
+  ["21_Condition_Manifest", "supplement/generated/condition_level_manifest.csv", "Manifest for the analysis-time 83,490-row condition-level table; the portable source and its SHA256 were not preserved, and this absence is explicit."],
   ["22_Measured_Time", "results/revision/measured_lincs_figures/candidate_time_measured_summary.csv", "Measured reversal summarized by time."],
   ["23_Measured_Dose", "results/revision/measured_lincs_figures/candidate_dose_measured_summary.csv", "Measured reversal summarized by dose."],
   ["24_PredMeasured_Plot", "results/revision/measured_lincs_figures/predicted_measured_hiq_plot_data.csv", "Candidate-cancer plot data for corrected-HDAC prediction versus HiQ measurement."],
@@ -35,10 +36,10 @@ const specs = [
   ["26_PredMeasured_TwoWay", "derived_final/predicted_measured_two_way_bootstrap.csv", "Crossed candidate-cancer bootstrap, 10,000 iterations, seed 20260719."],
   ["27_PredMeasured_LOO", "derived_final/predicted_measured_leave_one_out.csv", "Leave-one-candidate-out and leave-one-cancer-out influence diagnostics."],
   ["28_Background_Rank", "derived_final/measured_all_profile_background_rank_sensitivity.csv", "Unmatched all-profile empirical ranks; not a condition-matched non-HDAC null."],
-  ["29_Stability_Primary48", "derived_final/candidate_stability_primary_48.csv", "Primary stability using signed wTRS and Spearman reversal only."],
-  ["30_Stability_Sens72", "derived_final/candidate_stability_legacy_inclusive_72.csv", "Legacy-inclusive 72-configuration sensitivity analysis."],
-  ["31_Stability_Compare", "derived_final/candidate_stability_primary_vs_sensitivity.csv", "Primary versus legacy-inclusive stability comparison."],
-  ["32_Stability_BySplit", "results/revision/candidate_stability/candidate_stability_by_split_metric.csv", "Candidate stability stratified by split and reversal metric."],
+  ["29_Stability_Primary48", "derived_final/candidate_stability_primary_48.csv", "Primary stability using strength percentile (100 = strongest; higher is better) and the two primary reversal metrics."],
+  ["30_Stability_Sens72", "derived_final/candidate_stability_legacy_inclusive_72.csv", "Legacy-inclusive 72-configuration strength-percentile sensitivity analysis (100 = strongest)."],
+  ["31_Stability_Compare", "derived_final/candidate_stability_primary_vs_sensitivity.csv", "Primary versus legacy-inclusive strength-percentile comparison (100 = strongest)."],
+  ["32_Stability_BySplit", "results/revision/candidate_stability/candidate_stability_by_split_metric.csv", "Candidate strength percentile stratified by split and reversal metric (100 = strongest; higher is better)."],
   ["33_Neighbor_Summary", "results/revision/structural_neighbor_audit/candidate_train_similarity_summary.csv", "Candidate exact, scaffold, and Morgan-neighbor exposure across splits."],
   ["34_Neighbor_Top10", "results/revision/structural_neighbor_audit/candidate_top10_training_neighbors.csv", "Ten nearest training structures for each candidate and split."],
   ["35_Structural_Splits", "results/revision/structural_neighbor_audit/structural_split_inventory.csv", "Structure/scaffold inventory by split."],
@@ -81,12 +82,15 @@ const dictionaryRows = [
   ["Reversal-associated gene", "Gene contributing to disease-perturbation opposition; not a direct drug target."],
   ["Class I explicit target subset", "Structures with explicit HDAC1, HDAC2, HDAC3, or HDAC8 target annotation."],
   ["Two-way bootstrap", "Independent resampling of candidates and cancers to preserve crossed clustering."],
-  ["Stability primary48", "4 splits x 2 models x 3 seeds x 2 primary reversal metrics."],
-  ["Stability sensitivity72", "Primary48 plus legacy wTRS configurations."],
+  ["HDAC enrichment mean rank fraction", "Within each run and cancer, rank is scaled from 0 to 1 with 0 = strongest. The mean across 528 observations defines the consensus; lower is better."],
+  ["Candidate stability strength percentile", "Candidate rank is reoriented to a 0--100 strength scale with 100 = strongest. Higher is better."],
+  ["Stability primary48", "4 splits x 2 models x 3 seeds x 2 primary reversal metrics, reported as strength percentile (100 = strongest)."],
+  ["Stability sensitivity72", "Primary48 plus legacy wTRS configurations, reported as strength percentile (100 = strongest)."],
   ["Structural sensitivity", "Docking protocol/receptor sensitivity; not biochemical binding validation."],
   ["DepMap gene effect", "CRISPR loss-of-function effect; not a compound response or normal-tissue safety measure."],
   ["g:Profiler submitted background", "11,144 measured Entrez identifiers sent in the request."],
   ["g:Profiler effective domain", "11,154 service-reported statistical universe after identifier mapping."],
+  ["TCGA cohort counts", "Final per-cohort tumor/normal sample counts were not retained in the frozen archive and are left blank rather than reconstructed from current GDC holdings."],
 ];
 
 function colName(n) {
@@ -107,6 +111,7 @@ function safeTableName(sheetName) {
 function inferNumberFormat(header) {
   const h = String(header).toLowerCase();
   if (/sha|id|name|role|source|path|smiles|candidate|compound|model|split|metric|gene|cell|time|dose_levels|definition|scope|interpret/.test(h)) return null;
+  if (/strength_percentile|stability_percentile/.test(h)) return "0.0";
   if (/fraction|percent/.test(h)) return "0.0%";
   if (/p_value|fdr|p$/.test(h)) return "0.00E+00";
   if (/count|rows|columns|profiles|signatures|structures|models|cells|seeds|epoch|genes|nodes|edges|rank$|top_k|size|iterations/.test(h)) return "#,##0";
@@ -196,10 +201,11 @@ const readmeRows = [
   ["Docking", "Protocol/receptor sensitivity; not binding validation."],
   ["External drug sensitivity", "No direct TC-H-106 public viability response; Entinostat surrogate R=-0.052, P=0.859 is null."],
   ["g:Profiler", "11,144 submitted IDs; 11,154 service-reported effective domain."],
+  ["TCGA cohort manifest", "All 22 GDC projects and frozen matrix hashes are listed; final per-cohort tumor/normal counts were not preserved and are not reconstructed."],
+  ["Condition-level source", "The analysis-time 83,490-row condition_level_measured_scores.csv and its SHA256 were not preserved in the frozen portable package; all aggregates used for figures and inference are included."],
   ["CPU/RAM", "Not recorded; not fabricated."],
   ["Navigation", "Sheet_Index lists every included table, repository-relative source, scope, row count, and field count. Data_Dictionary defines recurring terms."],
   ["Corrected holdout", "No stale 1,565-profile HDAC summary is used for model inference; corrected results use 1,856 profiles and 30 structures."],
-  ["Large machine file", "The complete 83,490-row condition_level_measured_scores.csv remains in results/revision/measured_lincs_figures/ and is not duplicated as a formatted Excel sheet. Auditable candidate-cancer, time, dose, official-condition, quality, seed, and crossed-bootstrap aggregates are included here."],
 ];
 readme.getRange(`A1:B${readmeRows.length}`).values = readmeRows;
 readme.getRange(`A1:B${readmeRows.length}`).format.wrapText = true;
@@ -208,9 +214,9 @@ readme.getRange(`A1:A${readmeRows.length}`).format.fill = "#D9EAF7";
 readme.getRange(`A1:A${readmeRows.length}`).format.font = { bold: true, color: "#17365D", size: 10 };
 readme.getRange("A1:B2").format.fill = "#17365D";
 readme.getRange("A1:B2").format.font = { bold: true, color: "#FFFFFF", size: 11 };
-readme.getRange(`A18:B${readmeRows.length}`).format.fill = "#FFF2CC";
-readme.getRange("A20:B20").format.fill = "#E2F0D9";
-readme.getRange("A20:B20").format.font = { italic: true, color: "#375623" };
+readme.getRange(`A17:B${readmeRows.length}`).format.fill = "#FFF2CC";
+readme.getRange(`A${readmeRows.length}:B${readmeRows.length}`).format.fill = "#E2F0D9";
+readme.getRange(`A${readmeRows.length}:B${readmeRows.length}`).format.font = { italic: true, color: "#375623" };
 readme.getRange("A:A").format.columnWidthPx = 190;
 readme.getRange("B:B").format.columnWidthPx = 760;
 readme.freezePanes.freezeRows(2);

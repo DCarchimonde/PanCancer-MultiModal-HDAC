@@ -35,7 +35,7 @@
 \textbf{Multi-Modal Molecular Representation Learning Prioritizes Class I HDAC Inhibitors for Pan-Cancer Transcriptomic Reversal}\par
 \vspace{0.35em}
 Submission ID: \texttt{8b1e184c-443d-4707-954c-70a65930e16f}\par
-20 July 2026
+21 July 2026
 \end{center}
 
 \section*{Dear Editor and Reviewers}
@@ -44,7 +44,7 @@ Thank you for the careful and constructive assessment. We did not merely soften 
 
 Unsupported material was removed, including simulated survival and stage analyses, unreproducible mutation-burden claims, proxy DeepCE/ChemCPA performance comparisons, an unsupported legacy ablation claim, an MMFF ``validation'' claim, and supportive interpretation of the non-significant GDSC surrogate result. The revised paper distinguishes prediction, measured transcriptomic reversal, biological context, and structural sensitivity from efficacy, direct target engagement, and clinical benefit.
 
-The manuscript is provided as a clean revised version, as requested. Additional file 1 now contains 24 supplementary tables and six supplementary figure groups; Additional file 2 contains 54 data sheets plus a README, sheet index, and data dictionary. The two added audit sheets document the archived condition-level table and the corrected g:Profiler identifier alignment. Run-level and large machine files remain available in the repository rather than being reduced to undocumented summaries.
+A clean production manuscript and a reviewer-marked copy are provided. In the marked copy, the revised scientific body is shown in dark red so that reviewers can identify the changes without tracked-change markup obscuring the text. Additional file 1 contains 24 supplementary tables and six supplementary figure groups; Additional file 2 contains 55 data sheets plus a README, sheet index, and data dictionary. Its dedicated audit sheets identify all 22 TCGA/GDC projects, disclose that the analysis-time 83,490-row condition-level source and its SHA256 were not preserved in the frozen portable package, and document the corrected g:Profiler identifier alignment. Run-level and aggregate evidence used for the reported figures and inferences remains machine readable.
 
 \subsection*{Principal revisions}
 \begin{enumerate}[leftmargin=1.7em,itemsep=0.25em]
@@ -69,7 +69,7 @@ Please ensure the results are accurately reported, any overstated conclusions ar
 
 \Action The manuscript now reports the corrected HDAC holdout only; adds crossed rather than single-cluster bootstrap intervals; separates primary and legacy stability definitions; removes unsupported analyses and causal terminology; and includes a limitations paragraph covering chemical-only inputs, same-ecosystem LINCS comparison, unequal condition coverage, residual scaffold exposure, the absence of a recoverable fully condition-matched non-HDAC null, and the absence of new viability or biochemical experiments.
 
-\RevisedText \qtext{The evidence does not support claims that the dual-stream model is superior to a fingerprint MLP, that the chemical-only models predict condition-specific responses, that reversal-associated genes are direct drug targets, that RG2833 or Tianeptinaline/BG-1010 has stable measured support, that GDSC provides validation, or that docking proves HDAC engagement.}
+\RevisedText \qtext{The evidence does not establish superiority of the dual-stream model, condition-specific response prediction, or direct targets from reversal-associated genes. It also does not provide stable measured support for RG2833 or Tianeptinaline/BG-1010, GDSC validation, or proof of HDAC engagement from docking.}
 
 \Location Revised manuscript pp.~1--2, lines 14--55 (Abstract); pp.~4--12, lines 104--328 (Methods and evidence hierarchy); p.~25 and pp.~27--30, lines 507--619 (Discussion, limitations, and Conclusions; Figure~9 occupies p.~26). Additional files 1 and 2 document the evidence chain.
 
@@ -87,7 +87,7 @@ The manuscript reports 55,695 quality-controlled LINCS perturbation signatures, 
 
 \RevisedText \qtext{Level 5 signatures are consensus expression profiles derived upstream from replicate measurements rather than raw wells. Multiple Level 5 signatures can nevertheless represent the same nominal perturbagen--cell--dose--time combination because different instances, plates, or batches remain. These rows were not described as unique compounds or independent biological replicates.}
 
-\Location Revised manuscript pp.~5--6, lines 132--154 and Table~1; pp.~12--13, lines 330--347. Additional file 1, Tables S1--S3; Additional file 2, sheets \texttt{01\_Dataset}, \texttt{02\_Split\_Audit}, \texttt{07\_Candidate\_Identity}, \texttt{10\_Official\_Conditions}, and \texttt{21\_Condition\_Manifest}.
+\Location Revised manuscript pp.~5--6, lines 132--154 and Table~1; pp.~12--13, lines 330--347. Additional file 1, Tables S1--S3; Additional file 2, sheets \texttt{00\_TCGA\_Cohorts}, \texttt{01\_Dataset}, \texttt{02\_Split\_Audit}, \texttt{07\_Candidate\_Identity}, \texttt{10\_Official\_Conditions}, and \texttt{21\_Condition\_Manifest}.
 
 \subsection*{Comment 2: The HDAC signal may depend on training-set overlap}
 \begin{reviewcomment}
@@ -138,7 +138,7 @@ Manuscript Table 2 indicated the dual-stream model achieved modest predictive pe
 
 \Response We agree that \qtext{consistently} was too broad. We deleted the universal claim and replaced visual impression with formal enrichment at fixed revision cutoffs and stability analyses.
 
-\Action Under signed wTRS, the explicit class I HDAC subset was enriched at the fixed top 0.5\%, 1\%, 5\%, and 10\% revision cutoffs (fold 30.6, 19.2, 8.46, and 4.62; all within-family FDR $<10^{-4}$). For each metric, the ranking equally averages 528 library-percentile observations per compound (24 screening runs $\times$ 22 cancers). The co-primary Spearman reversal metric was not significantly enriched. Stability is primary across 48 configurations; the legacy-inclusive 72 configurations are sensitivity only. Candidate roles are tiered rather than presented as universally robust.
+\Action Under signed wTRS, the explicit class I HDAC subset was enriched at the fixed top 0.5\%, 1\%, 5\%, and 10\% revision cutoffs (fold 30.6, 19.2, 8.46, and 4.62; all within-family FDR $<10^{-4}$). For each metric, the ranking equally averages 528 within-library rank fractions per compound (24 screening runs $\times$ 22 cancers), where 0 denotes the strongest rank. The co-primary Spearman reversal metric was not significantly enriched. Candidate stability uses a separate strength-percentile orientation (100 = strongest) across 48 primary configurations; the legacy-inclusive 72 configurations are sensitivity only. Candidate roles are tiered rather than presented as universally robust.
 
 \RevisedText \qtext{The useful result is therefore narrower than a universal class claim: the screen identifies specific measured HDAC compounds and a signed-score class signal while quantifying sensitivity to strict structure removal, alternate encoders, reversal definition, and official-condition aggregation.}
 
@@ -204,7 +204,7 @@ The proposed architecture mainly combines existing approaches (Transformer-based
 Although the proposed model achieves the highest Pearson and Spearman correlations, the absolute improvement over baseline models is relatively small (Pearson R = 0.2841 versus 0.2735). Statistical significance of these improvements is not reported. Confidence intervals, repeated experiments with different random seeds, or statistical testing should be included. Evaluation strategy remains weak. The authors acknowledge using only a drug–cell line pair split. This evaluation does not adequately assess model generalization. Additional validation using: leave-drug-out, leave-cell-line-out, scaffold split, external validation datasets, would substantially strengthen the study.
 \end{reviewcomment}
 
-\Response We agree. The original single-run values are not retained as evidence of superiority. The old 0.2841 value could not be linked to a reproducible run artifact and appeared only as a literal value in a legacy ablation script; it is therefore excluded from the revision.
+\Response We agree. The original single-run values are not retained as evidence of superiority. The old 0.2841 value could not be traced to a corresponding reproducible run artifact and was therefore excluded from the revision.
 
 \Action We report 34 frozen model runs, five evaluation settings, all requested headline metrics including $R^2$, repeated seeds, paired differences, and 95\% intervals. The fingerprint MLP is slightly better on average in four settings; corrected-HDAC performance is comparable. Held-out official LINCS profiles provide measured transcriptomic support, with the same-platform limitation explicit.
 
@@ -232,9 +232,9 @@ The rationale for selecting TC-H-106 as the principal candidate is not sufficien
 
 \Response The audit shows that TC-H-106 should not remain the principal candidate. Its corrected-HDAC nearest training similarity is 0.789 and only four HiQ profiles are available. RG2833 has no measured LINCS signature.
 
-\Action Mocetinostat is core because it combines strict leave-drug testing, no corrected-HDAC training scaffold, maximum training similarity 0.537, eight HiQ profiles, positive measured reversal, and a primary 48-configuration median stability percentile of 92.2. NCH-51 is secondary (eight HiQ profiles; percentile 88.5; residual scaffold exposure). TC-H-106 is exploratory (four HiQ profiles; percentile 84.3; close neighbor). Tianeptinaline/BG-1010 remains excluded regardless of its descriptive rank.
+\Action Mocetinostat is core because it combines strict leave-drug testing, no corrected-HDAC training scaffold, maximum training similarity 0.537, eight HiQ profiles, positive measured reversal, and a primary 48-configuration median strength percentile of 92.2 (100 = strongest). NCH-51 is secondary (eight HiQ profiles; strength percentile 88.5; residual scaffold exposure). TC-H-106 is exploratory (four HiQ profiles; strength percentile 84.3; close neighbor). Tianeptinaline/BG-1010 remains excluded regardless of its descriptive rank.
 
-\RevisedText \qtext{TC-H-106 had four high-quality profiles, a primary stability percentile of 84.3, and a closest corrected annotation-defined HDAC training neighbor of 0.789. It was downgraded to exploratory/original-method-sensitive rather than selected as the principal candidate.}
+\RevisedText \qtext{TC-H-106 had four high-quality profiles, a primary strength percentile of 84.3, and a closest corrected annotation-defined HDAC training neighbor of 0.789. It was downgraded to exploratory/original-method-sensitive rather than selected as the principal candidate.}
 
 \Location Revised manuscript pp.~18--21, lines 426--453, Table~3, and Figures~4--5; pp.~21--24, lines 454--486 (candidate biology and DepMap context); pp.~27--28, lines 536--565. Additional file 1, Tables S7--S16.
 

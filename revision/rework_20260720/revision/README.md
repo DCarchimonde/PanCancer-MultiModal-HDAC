@@ -46,7 +46,7 @@ The corrected HDAC holdout contains 53,839 training profiles and 1,856 test prof
 
 ### Screening and class enrichment
 
-Class I HDAC compounds are formally enriched at the fixed top 0.5%, 1%, 5%, and 10% revision cutoffs under signed wTRS after multiplicity correction. For each metric, the ranking equally averages 528 library-percentile observations per compound (24 screening runs across four generalization regimes, two models, and three seeds, multiplied by 22 cancers). The same class enrichment is not significant under Spearman reversal. The result is therefore **metric-dependent**, not a universal HDAC-class effect; the cutoffs were not prospectively preregistered.
+Class I HDAC compounds are formally enriched at the fixed top 0.5%, 1%, 5%, and 10% revision cutoffs under signed wTRS after multiplicity correction. For each metric, the ranking equally averages 528 within-library rank fractions per compound (24 screening runs across four generalization regimes, two models, and three seeds, multiplied by 22 cancers); 0 is the strongest rank, so lower is better. Candidate stability uses a separate strength percentile, where 100 is strongest and higher is better. The same class enrichment is not significant under Spearman reversal. The result is therefore **metric-dependent**, not a universal HDAC-class effect; the cutoffs were not prospectively preregistered.
 
 Primary candidate stability uses 48 configurations:
 

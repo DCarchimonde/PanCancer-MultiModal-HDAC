@@ -13,7 +13,7 @@
 
 ## GitHub 断线一致性核查
 
-断线时 `major-revision-2026` 分支的 `revision/submission/` 只有 01--06 和内部 manifest；并没有实际提交 07 内部审计文件与 08 总包。因此它当时不等同于声称的“八件套”。本轮没有沿用旧 ZIP，而是由修正后的源码重新编译并生成 01--08，再覆盖同步至 GitHub。
+断线时 `major-revision-2026` 分支的 `revision/submission/` 只有 01--06 和内部 manifest；并没有实际提交 07 内部审计文件与 08 总包。因此它当时不等同于声称的“八件套”。本轮没有沿用旧 ZIP，而是由修正后的源码重新编译 01、01A 与 02--05，并重新生成 06--08 后同步至 GitHub。
 
 ## 第二对话框审计逐项结论
 
@@ -21,14 +21,17 @@
 |---|---|---|
 | S23 称湿实验“未被要求” | 正确发现事实错误 | 改为：未开展新湿实验；审稿人同时给出的 public transcriptomic validation 选项已用官方条件 measured LINCS 回应 |
 | `intersection_genes` 实为 GO evidence codes | 正确，且会影响 redundancy filtering | 按冻结 API response 的 mapped-query 顺序重建真实 Entrez intersections；evidence codes 单列；5,037/5,037 term 的重建计数与服务返回 `intersection_size` 一致；代表通路和热图重算 |
-| HDAC enrichment 聚合不清楚 | 正确 | 对每个 metric，在 4 splits × 2 models × 3 seeds = 24 runs 及 22 cancers 内分别排序并转 library percentile；每个化合物等权平均 528 个 run--cancer percentiles，升序定义 consensus rank |
+| HDAC enrichment 聚合不清楚 | 正确 | 对每个 metric，在 4 splits × 2 models × 3 seeds = 24 runs 及 22 cancers 内分别转为 within-library rank fraction；每个化合物等权平均 528 个 run--cancer rank fractions，0 为 strongest；candidate stability 另用 100 为 strongest 的 strength percentile |
 | Figure 3 声称有 error bars | 正确 | 改为 OLS 黑线仅用于视觉概括；点级误差条未显示；相关置信区间来自 10,000 次 crossed candidate--cancer bootstrap |
 | `hard-coded` 措辞风险 | 正确 | 改为“unsupported legacy value not linked to a reproducible run artifact”，旧 0.2841 不进入修订证据 |
 | HDAC holdout 需注明 matched LINCS profiles | 正确 | 写明 39 个 annotation-defined library structures 中 30 个有 matched modeling profiles，共 1,856 signatures |
 | OOD 用词过强 | 正确 | 改为 generalization/distribution-shift regimes，并明确不是每个候选在每个 regime 都未见过 |
 | class cutoffs 称 `prespecified` | 有风险 | 改为 fixed revision cutoffs，并明确 not prospectively preregistered |
 | 11,144 与 11,154 需映射审计 | 正确 | 前者是 submitted unique measured Entrez IDs，后者是 service effective domain；新增 `41A_gProfiler_Audit` sheet 与 JSON/CSV 审计 |
-| 工作簿缺 21 号 sheet | 正确 | 新增 `21_Condition_Manifest`，记录 83,490-row condition table 的路径、schema、hash 与不重复嵌入的原因 |
+| 工作簿缺 21 号 sheet | 正确 | 新增 `21_Condition_Manifest`，记录 83,490-row condition table 的预期相对路径与 schema；该源文件及 SHA256 未保存在冻结便携包，已如实披露而未编造 |
+| TCGA cohort manifest 缺失 | 正确 | 新增 `00_TCGA_Cohorts`，列出 22 个 TCGA/GDC projects、12,328-gene 空间、矩阵/掩码路径与 SHA256；逐癌种 tumor/normal counts 未保留，明确留空 |
+| Figure 5 黄色块白字难辨 | 正确 | 热图文字按背景亮度自动切换黑/白；浅黄单元格改用黑字，并重新生成 vector PDF |
+| 正文修改处应标红 | 合理，但应与 clean 稿分开 | 保留 clean production manuscript，另生成 reviewer-marked copy；修订科学正文用深红显示，避免把 marked copy 当作 Additional file |
 | Sheet Index 的 Columns 为小数 | 正确 | 改为整数格式 |
 | 网络仍可再放大 | 可选，不是阻断项 | 主文只显示 weighted-degree 最高的可读子集；Supplement 分两页扩展；完整 nodes/edges 在工作簿 |
 | AI 声明建议扩大 | 作者明确不同意修改 | 保持上一版声明原文；作者仍须确认符合期刊政策并对声明负责 |
@@ -59,11 +62,11 @@
 
 ## 最终文件核查摘要
 
-- 主稿：36 页，九个主图组，36 条参考文献；原上传 TeX 同样是 36 条参考文献，并非由 38 减至 16。
+- clean 主稿：36 页；reviewer-marked 主稿：36 页；九个主图组，36 条参考文献；原上传 TeX 同样是 36 条参考文献，并非由 38 减至 16；Figure 5 浅色单元格文字对比度已修复。
 - 回复信：10 页，17/17 comments，每条含 Response、Action/result、Revised text 与最终页码/行号位置。
-- Additional file 1：32 页，S1--S24 表主题与 S1--S6 互补图组。
-- Additional file 2：57 sheets，即 README、Sheet Index、Data Dictionary 与 54 个数据 sheets；公式错误扫描和绝对路径扫描均为零。
-- Source ZIP：从独立目录成功编译主稿、Supplement 与回复信；不含 `.aux/.log/.fls/.fdb_latexmk` 临时文件。
+- Additional file 1：30 页，S1--S24 表主题与 S1--S6 互补图组。
+- Additional file 2：58 sheets，即 README、Sheet Index、Data Dictionary 与 55 个数据 sheets；公式错误扫描和绝对路径扫描均为零。
+- Source ZIP：从独立目录成功编译 clean/marked 主稿、Supplement 与回复信；不含 `.aux/.log/.fls/.fdb_latexmk` 临时文件。
 
 ## 仍需作者人工确认
 

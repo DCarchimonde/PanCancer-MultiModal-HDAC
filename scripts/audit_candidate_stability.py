@@ -726,7 +726,7 @@ def make_stability_figure(
     heat_axis.set_yticks(np.arange(len(candidate_order)))
     heat_axis.set_yticklabels(candidate_order, fontsize=10)
     heat_axis.set_title(
-        "A  Median library percentile across cancers, models, and seeds",
+        "A  Median strength percentile across cancers, models, and seeds",
         loc="left",
         fontweight="bold",
     )
@@ -746,7 +746,7 @@ def make_stability_figure(
     for boundary in range(len(METRICS), len(column_order), len(METRICS)):
         heat_axis.axvline(boundary - 0.5, color="white", linewidth=2.0)
     colorbar = figure.colorbar(image, ax=heat_axis, fraction=0.018, pad=0.01)
-    colorbar.set_label("Library percentile (higher = stronger predicted reversal)")
+    colorbar.set_label("Strength percentile (100 = strongest predicted rank)")
 
     box_axis = figure.add_subplot(grid[1, 0])
     box_values = [
@@ -772,7 +772,7 @@ def make_stability_figure(
     box_axis.grid(axis="x", alpha=0.25)
     box_axis.invert_yaxis()
     box_axis.set_xlabel(
-        "Run-level median library percentile (one value per split/model/seed/metric)"
+        "Run-level median strength percentile (100 = strongest; one value per split/model/seed/metric)"
     )
     box_axis.set_title(
         (

@@ -532,7 +532,9 @@ def make_figure(
         for column in range(len(splits)):
             value = float(max_similarity.iloc[row, column])
             marker = "*" if bool(exact.iloc[row, column]) else ""
-            color = "white" if value < 0.42 or value > 0.78 else "black"
+            rgba = image.cmap(image.norm(value))
+            luminance = 0.2126 * rgba[0] + 0.7152 * rgba[1] + 0.0722 * rgba[2]
+            color = "black" if luminance >= 0.53 else "white"
             heat_axis.text(
                 column,
                 row,

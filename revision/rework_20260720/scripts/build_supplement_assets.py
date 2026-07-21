@@ -363,12 +363,22 @@ def build_tabular_assets() -> None:
     enrichment = pd.read_csv(DERIVED / "formal_hdac_enrichment.csv")
     enrichment_primary = enrichment[enrichment["metric"].isin(["signed_wtrs", "spearman_reversal"])].copy()
     save(enrichment, "formal_hdac_enrichment_all_metrics")
-    write_table(16, make_table(enrichment_primary,
+    table_s16 = make_table(enrichment_primary,
         ["metric", "annotation_definition", "top_fraction", "top_k", "library_annotated", "observed_annotated", "expected_annotated", "fold_enrichment", "fisher_one_sided_p", "fdr_bh_within_metric_definition"],
         ["Metric", "Definition", "Top fraction", "Top k", "Library HDAC", "Observed", "Expected", "Fold", "$P$", "FDR"],
         ["text", "text", "pct1", "int", "int", "int", "f2", "f2", "sci", "sci"],
-        r"Formal HDAC enrichment at fixed revision library cutoffs. Consensus ranks equally average 24 screening runs across 22 cancers per compound; Fisher tests are one-sided and FDR is within each metric and annotation definition.",
-        "tab:s_enrichment", aligns="llrrrrrrrr", font=r"\scriptsize", landscape=True, longtable=True))
+        r"Formal HDAC enrichment at fixed revision library cutoffs. Consensus ranks equally average 24 screening runs across 22 cancers per compound as mean rank fractions (0 = strongest); Fisher tests are one-sided and FDR is within each metric and annotation definition.",
+        "tab:s_enrichment", aligns="llrrrrrrrr", font=r"\scriptsize", landscape=True, longtable=True)
+    formal_note = (
+        r"\begingroup" "\n" r"\small" "\n"
+        "Formal testing shows that the explicitly annotated class I subset is enriched under signed wTRS at every fixed revision cutoff, but not under Spearman reversal. "
+        "For each metric, compounds were ordered by the mean of 528 equally weighted within-library rank fractions (24 screening runs multiplied by 22 cancers); 0 denotes the strongest rank, so lower is better. "
+        "Candidate stability uses a distinct strength-percentile orientation, where 100 denotes the strongest rank and higher is better. The cutoffs were fixed for the revision but were not prospectively preregistered. "
+        "The result is metric-dependent rather than universal; the retained title refers to computational prioritization and does not imply model superiority or efficacy."
+        "\n" r"\par\vspace{0.5em}" "\n" r"\scriptsize"
+    )
+    table_s16 = table_s16.replace(r"\begingroup" "\n" r"\scriptsize", formal_note, 1)
+    write_table(16, table_s16)
 
     threshold = pd.read_csv(RESULTS / "frozen_candidate_biology" / "consensus_threshold_sensitivity.csv")
     threshold70 = threshold[threshold["consensus_threshold"] == 0.7].copy()
@@ -429,6 +439,11 @@ def build_tabular_assets() -> None:
         ["Candidate", "Gene-set scope", "Source", "Significant terms"], ["text", "text", "text", "int"],
         r"Scope of significant g:Profiler results by candidate, reversal direction, and ontology/source.",
         "tab:s_path_scope", aligns="lllr", font=r"\footnotesize", longtable=True)
+    text = text.replace(
+        r"\begingroup" "\n" r"\footnotesize",
+        r"\begingroup" "\n" r"\scriptsize" "\n" r"\renewcommand{\arraystretch}{0.82}",
+        1,
+    )
     text += make_table(reps,
         ["candidate", "gene_set_scope", "source", "native", "name", "p_value", "intersection_size", "term_size", "effective_domain_size"],
         ["Candidate", "Gene-set scope", "Source", "Term ID", "Nonredundant term", "$P_{FDR}$", "Overlap", "Term size", "Effective domain"],

@@ -21,6 +21,8 @@
 \usepackage{lineno}
 \usepackage[colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue,hypertexnames=false]{hyperref}
 
+\definecolor{revisionred}{RGB}{170,0,0}
+
 \doublespacing
 \graphicspath{{figures/}}
 \setlength{\emergencystretch}{3em}
@@ -42,10 +44,21 @@ $^{2}$ Department of Electrical Engineering and Computer Science, Florida Atlant
 $^{3}$ Department of Pharmacy, Suzhou Hospital, Affiliated Hospital of Medical School, Nanjing University, Suzhou, 215153, P. R. China.\\[0.5em]
 $^{*}$ Correspondence: Shiliang Ji (dg21300014@smail.nju.edu.cn) and Siyuan Tong (25064241@siswa.um.edu.my; ORCID: 0009-0004-4450-083X).
 \end{flushleft}
+\ifdefined\reviewmarkedversion
+\vspace{0.7em}
+{\color{revisionred}\textbf{Reviewer-marked copy: revised scientific text is shown in red.}\par}
+\fi
 \vfill
 \end{titlepage}
 
+\ifdefined\reviewmarkedversion
+% The reviewer note adds one counted line on the title page; restore the
+% clean-manuscript line numbering before the scientific body begins.
+\addtocounter{linenumber}{-1}
+{\color{revisionred}\input{manuscript_body}}
+\else
 \input{manuscript_body}
+\fi
 \input{declarations}
 \input{references}
 

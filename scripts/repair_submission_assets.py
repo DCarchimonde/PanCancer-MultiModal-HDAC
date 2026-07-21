@@ -193,6 +193,11 @@ def main() -> None:
         font=r"\footnotesize",
         longtable=True,
     )
+    table_s19 = table_s19.replace(
+        r"\begingroup" "\n" r"\footnotesize",
+        r"\begingroup" "\n" r"\scriptsize" "\n" r"\renewcommand{\arraystretch}{0.82}",
+        1,
+    )
     table_s19 += builder.make_table(
         representatives,
         representative_columns,
@@ -269,11 +274,13 @@ def main() -> None:
                     "candidate-cancer, pan-cancer, time, dose, official-condition, "
                     "quality, seed, and crossed-bootstrap aggregates"
                 ),
+                "source_availability": "absent_from_frozen_portable_package",
                 "nonduplication_reason": (
-                    "The full 83,490-row archived table is retained in repository results "
-                    "and is not duplicated into the formatted workbook."
+                    "The analysis-time table was not preserved in the portable package; "
+                    "all aggregates used for figures and inference are included and the "
+                    "missing source is disclosed."
                 ),
-                "source_sha256": "not captured in frozen portable package",
+                "source_sha256": "unavailable_source_file_not_preserved",
             }
         ]
     )
@@ -281,7 +288,7 @@ def main() -> None:
 
     formal_path = generated / "formal_hdac_enrichment_all_metrics.csv"
     formal = pd.read_csv(formal_path)
-    formal["ranking_source"] = "cross_generalization_mean_rank_percentile"
+    formal["ranking_source"] = "cross_generalization_mean_rank_fraction_0_strongest"
     formal["included_splits"] = (
         "leave_drug_out | leave_cell_line_out | scaffold_split | hdac_class_holdout"
     )
@@ -291,9 +298,9 @@ def main() -> None:
     formal["cancers"] = 22
     formal["run_cancer_observations_per_compound"] = 528
     formal["aggregation_definition"] = (
-        "Rank compounds within each run and cancer; convert to library percentile; "
-        "average all 528 run-cancer percentiles equally within metric; ascending mean "
-        "percentile defines consensus rank."
+        "Rank compounds within each run and cancer; convert to a within-library rank "
+        "fraction (0 = strongest); average all 528 run-cancer rank fractions equally "
+        "within metric; ascending mean rank fraction defines consensus rank."
     )
     formal["cutoff_status"] = "fixed_for_revision_not_prospectively_preregistered"
     formal.to_csv(formal_path, index=False)
@@ -314,13 +321,22 @@ def main() -> None:
         ],
         ["Metric", "Definition", "Top fraction", "Top k", "Library HDAC", "Observed", "Expected", "Fold", "$P$", "FDR"],
         ["text", "text", "pct1", "int", "int", "int", "f2", "f2", "sci", "sci"],
-        r"Formal HDAC enrichment at fixed revision library cutoffs. Consensus ranks equally average 24 screening runs across 22 cancers per compound; Fisher tests are one-sided and FDR is within each metric and annotation definition.",
+        r"Formal HDAC enrichment at fixed revision library cutoffs. Consensus ranks equally average 24 screening runs across 22 cancers per compound as mean rank fractions (0 = strongest); Fisher tests are one-sided and FDR is within each metric and annotation definition.",
         "tab:s_enrichment",
         aligns="llrrrrrrrr",
         font=r"\scriptsize",
         landscape=True,
         longtable=True,
     )
+    formal_note = (
+        r"\begingroup" "\n" r"\small" "\n"
+        "Formal testing shows that the explicitly annotated class I subset is enriched under signed wTRS at every fixed revision cutoff, but not under Spearman reversal. "
+        "For each metric, compounds were ordered by the mean of 528 equally weighted within-library rank fractions (24 screening runs multiplied by 22 cancers); 0 denotes the strongest rank, so lower is better. "
+        "Candidate stability uses a distinct strength-percentile orientation, where 100 denotes the strongest rank and higher is better. The cutoffs were fixed for the revision but were not prospectively preregistered. "
+        "The result is metric-dependent rather than universal; the retained title refers to computational prioritization and does not imply model superiority or efficacy."
+        "\n" r"\par\vspace{0.5em}" "\n" r"\scriptsize"
+    )
+    table_s16 = table_s16.replace(r"\begingroup" "\n" r"\scriptsize", formal_note, 1)
     (generated / "table_S16.tex").write_text(table_s16, encoding="utf-8")
 
     external = pd.DataFrame(
