@@ -22,6 +22,9 @@
 \usepackage[colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue,hypertexnames=false]{hyperref}
 
 \definecolor{revisionred}{RGB}{170,0,0}
+\newenvironment{minorrevision}
+  {\ifdefined\reviewmarkedversion\color{black}\fi}
+  {}
 
 \doublespacing
 \graphicspath{{figures/}}
@@ -47,7 +50,7 @@ $^{*}$ Correspondence: Shiliang Ji (dg21300014@smail.nju.edu.cn) and Siyuan Tong
 \ifdefined\reviewmarkedversion
 \vspace{0.7em}
 \begin{nolinenumbers}
-{\color{revisionred}\textbf{Reviewer-marked copy --- revised scientific text is shown in dark red.}\par}
+    {\color{revisionred}\textbf{Reviewer-marked copy --- substantive revisions are shown in dark red; minor editorial updates remain black.}\par}
 \end{nolinenumbers}
 \fi
 \vfill

@@ -1,8 +1,9 @@
 # LaTeX source build guide
 
 The source archive contains four independently compilable documents: a clean
-production manuscript, a reviewer-marked manuscript with revised scientific
-text in dark red, the Supplement, and the point-by-point response.
+production manuscript, a reviewer-marked manuscript with substantive revisions
+in dark red and selected minor editorial updates in black, the Supplement, and
+the point-by-point response.
 
 ```bash
 cd manuscript

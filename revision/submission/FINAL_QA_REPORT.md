@@ -1,7 +1,14 @@
 # Final QA report (internal; do not upload unless requested)
 
-Evidence snapshot: `fefbf2f4fa7399983d4d4041dcb8e7e91b84d17f`  
-Final package QA date: 2026-07-21
+Evidence baseline: `5bdbd60696defe47a682f92b9d03da073234b3a8`
+Final package QA date: 2026-07-22
+
+## Final shallow correction pass
+
+- Supplementary Table S11 now reports that the seed-paired 95% interval favored the fingerprint baseline for PCI-24781, while explicitly identifying all three-seed intervals as uncertainty summaries rather than population-level significance tests.
+- Supplementary Figure S3 uses black annotation text on bright yellow/light-green heatmap cells and white text on dark cells. All 56 high-value annotations were contrast-repaired without changing any displayed value, panel, axis, or caption.
+- The reviewer-marked manuscript keeps substantive revisions in dark red while selected minor editorial updates remain black; the clean manuscript content is unchanged apart from the requested acknowledgement.
+- The Acknowledgements now thank the handling editor and reviewers for constructive comments that improved the manuscript's clarity and overall presentation.
 
 ## GitHub disconnect recovery
 
@@ -16,7 +23,7 @@ Final package QA date: 2026-07-21
 - Additional file 1: 30 pages; 24 numbered Supplementary table themes (`S1`--`S24`); six complementary Supplementary figure groups (`S1`--`S6`); no blank page.
 - Additional file 2: 58 sheets (README, Sheet Index, Data Dictionary, and 55 data sheets).
 - All four PDFs were rendered page by page and visually reviewed as contact sheets plus full-size key pages.
-- Every font in all four PDFs is embedded. The two overlay-generated Helvetica instances were explicitly embedded before the final build.
+- Every font in all four PDFs is embedded, including the font used for the Figure S3 contrast repair.
 - The 13 main figure assets and six Supplementary figure assets have zero exact SHA-256 overlap. Supplementary figures provide seed-, condition-, legacy-sensitivity-, expanded-network-, lineage-, and pose-level diagnostics instead of reusing main figure files.
 
 ## Build, workbook, and container checks
@@ -49,7 +56,7 @@ Final package QA date: 2026-07-21
 
 - The original submitted title is retained exactly. It is defensible as a computational-prioritization description because formal signed-wTRS enrichment is reported, while metric dependence and lack of architecture superiority are explicit.
 - The AI-assisted technologies declaration is unchanged from the prior package at the author's request.
-- A clean production manuscript and a separate dark-red reviewer-marked copy are supplied; the marked copy is not classified as an Additional file.
+- A clean production manuscript and a separate reviewer-marked copy are supplied; substantive revisions are dark red and selected minor editorial updates remain black. The marked copy is not classified as an Additional file.
 
 ## Known disclosed limitations, not QA failures
 

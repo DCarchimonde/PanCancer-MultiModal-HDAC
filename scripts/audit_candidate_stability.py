@@ -733,7 +733,9 @@ def make_stability_figure(
     for row in range(len(candidate_order)):
         for column in range(len(column_order)):
             value = float(heatmap.iloc[row, column])
-            color = "white" if value < 45 or value > 80 else "black"
+            # Viridis is brightest at the high end, so black text is required
+            # there for readable contrast. White is reserved for dark cells.
+            color = "white" if value < 45 else "black"
             heat_axis.text(
                 column,
                 row,
@@ -811,9 +813,9 @@ def make_stability_figure(
     bar_axis.invert_yaxis()
     bar_axis.set_xlim(0, 1)
     bar_axis.grid(axis="x", alpha=0.25)
-    bar_axis.set_xlabel("Fraction of OOD cancer-level observations")
+    bar_axis.set_xlabel("Fraction of cancer-level observations across regimes")
     bar_axis.set_title(
-        "C  Recurrent high-rank frequency in OOD regimes",
+        "C  Recurrent high-rank frequency across generalization regimes",
         loc="left",
         fontweight="bold",
     )

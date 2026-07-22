@@ -7,7 +7,7 @@
 ## 需要上传
 
 1. `01_Revised_Manuscript.pdf`：clean revised manuscript。
-2. `01A_Revised_Manuscript_Reviewer_Marked.pdf`：给审稿人查看的红色修订稿。若投稿系统有 “annotated/marked manuscript” 或 “for reviewers” 槽位，单独上传到该槽位；不要把它标成 Additional file。
+2. `01A_Revised_Manuscript_Reviewer_Marked.pdf`：给审稿人查看的标记修订稿；实质性修改为深红色，少量次要编辑保留黑色。若投稿系统有 “annotated/marked manuscript” 或 “for reviewers” 槽位，单独上传到该槽位；不要把它标成 Additional file。
 3. `02_Response_to_Reviewers.pdf`：17 条意见逐点回复。
 4. `03_Additional_file_1_Supplementary_Material.pdf`：24 个 Supplementary table 主题与 6 个不重复的补充诊断图组。
 5. `04_Additional_file_2_Revision_Tables.xlsx`：58 sheets（README、Sheet Index、Data Dictionary 与 55 个数据 sheets）的机器可读结果。
