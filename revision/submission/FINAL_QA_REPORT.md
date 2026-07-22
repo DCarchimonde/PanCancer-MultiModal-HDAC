@@ -1,7 +1,14 @@
 # Final QA report (internal; do not upload unless requested)
 
 Evidence baseline: `5bdbd60696defe47a682f92b9d03da073234b3a8`
-Final package QA date: 2026-07-22
+Final package QA date: 2026-07-23
+
+## Final figure-legibility pass
+
+- Typography was enlarged across all 13 main-figure assets and all six Supplementary figure assets, with 1,623 text objects increased while preserving the plotted raster/vector data layers.
+- Main Figure 1 now uses substantially larger text for all 176 heatmap annotations; the corresponding 176 annotations in Figure 2 and all cell annotations in Supplementary Figure S3 were enlarged as well.
+- The redundant bottom methods/evidence-boundary line in Figure 5 was removed because the same information is already stated in the Methods and figure caption.
+- Automated comparison against the frozen originals confirmed identical displayed numeric-token multisets after excluding the intentionally removed Figure 5 footer. Every retained text bounding box lies within its PDF page, and final manuscript-scale renders show no overlap or clipping.
 
 ## Final shallow correction pass
 
