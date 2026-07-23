@@ -1,7 +1,16 @@
 # Final QA report (internal; do not upload unless requested)
 
 Evidence baseline: `5bdbd60696defe47a682f92b9d03da073234b3a8`
-Final package QA date: 2026-07-23
+Final package QA date: 2026-07-24
+
+## Final network-figure layout refinement
+
+- Main Figure 7 and Supplementary Figure S4 were regenerated only from the frozen STRING response caches and frozen candidate-gene bundle; no API call, model run, or biological-result recomputation was performed.
+- Figure 7 retains the audited top-25 subsets and induced-edge counts (Mocetinostat 25/32, NCH-51 25/36, and TC-H-106 25/40 nodes/edges) and continues to label the seven leading hubs in each panel.
+- Figure S4 retains the audited expanded subsets and induced-edge counts (45/49, 45/51, 43/52, 45/52, 45/95, and 45/90 nodes/edges for Mocetinostat, NCH-51, TC-H-106, Belinostat, Entinostat, and Vorinostat) while labeling nine leading hubs per panel.
+- Disconnected components are packed independently to use the panel area without assigning biological meaning to inter-component distance. Hub labels use deterministic collision relaxation, white backing, and leader lines.
+- Automated final-layout checks report zero label--label overlaps and zero label--node overlaps in all nine network panels. Standalone figures and their compiled manuscript/Supplement pages were rendered at submission scale and visually checked with no clipping or overflow.
+- The main manuscript remains 36 pages, Figure 7 remains on p. 23, and the next scientific-text line remains 477; the response-letter location anchors therefore remain valid.
 
 ## Final figure-legibility pass
 

@@ -27,6 +27,8 @@ under `supplement/generated/`.
 
 `scripts/enlarge_submission_figure_fonts.py` applies the final vector-only figure-legibility pass to all main and Supplementary PDF figures. It enlarges retained labels without changing plotted data, removes the redundant Figure 2 and Figure 5 footers, keeps Figure 6B row labels outside the heatmap, checks page bounds, and is idempotent.
 
+`scripts/refine_network_figures.py` regenerates main Figure 7 and Supplementary Figure S4 directly from the frozen STRING response caches and frozen candidate-gene bundle. It preserves the audited node/edge subsets while packing disconnected components and placing hub labels with collision checks. Run it after `build_supplement_assets.py`; the generic font-enlargement pass deliberately excludes these two collision-safe figures.
+
 The Supplement figure files are intentionally distinct from the main-manuscript figure files. They report seed-level, condition-level, expanded-stability, expanded-network, lineage-level, and pose-level diagnostics instead of repeating the main panels.
 
 Frozen corrected-evidence commit: `fefbf2f4fa7399983d4d4041dcb8e7e91b84d17f`.

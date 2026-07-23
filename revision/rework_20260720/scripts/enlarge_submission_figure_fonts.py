@@ -80,9 +80,9 @@ RULES: dict[str, FigureRule] = {
         {7.0: 7.5, 8.0: 10.0, 10.0: 11.5, 12.0: 14.0},
         right_anchor_prefixes=("GO:BP |", "KEGG |", "REAC |"),
     ),
-    "manuscript/figures/primary_candidate_physical_networks.pdf": FigureRule(
-        {9.0: 10.5, 10.0: 11.5, 13.0: 14.0, 15.0: 17.0}
-    ),
+    # Main Figure 7 and Supplementary Figure S4 are intentionally absent.
+    # refine_network_figures.py regenerates both at final print dimensions
+    # with collision-aware labels; PDF-layer enlargement would undo that QA.
     "manuscript/figures/depmap_hdac_overall_distributions.pdf": FigureRule(
         {10.0: 11.5, 12.0: 13.5}
     ),
@@ -107,9 +107,6 @@ RULES: dict[str, FigureRule] = {
     ),
     "supplement/figures/candidate_stability_expanded_72.pdf": FigureRule(
         {7.0: 11.0, 9.0: 10.0, 10.0: 11.5, 12.0: 13.0, 16.0: 18.0}
-    ),
-    "supplement/figures/supplementary_expanded_physical_networks.pdf": FigureRule(
-        {6.3: 7.2, 9.0: 10.0, 10.0: 11.0, 13.0: 14.0, 14.0: 16.0}
     ),
     "supplement/figures/depmap_hdac_lineage_heatmap.pdf": FigureRule(
         {7.5: 9.5, 8.0: 9.5, 10.0: 11.5, 12.0: 14.0},
