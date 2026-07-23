@@ -5,10 +5,11 @@ Final package QA date: 2026-07-23
 
 ## Final figure-legibility pass
 
-- Typography was enlarged across all 13 main-figure assets and all six Supplementary figure assets, with 1,623 text objects increased while preserving the plotted raster/vector data layers.
+- Typography was enlarged across all 13 main-figure assets and all six Supplementary figure assets, with 1,622 retained text objects increased while preserving the plotted raster/vector data layers.
 - Main Figure 1 now uses substantially larger text for all 176 heatmap annotations; the corresponding 176 annotations in Figure 2 and all cell annotations in Supplementary Figure S3 were enlarged as well.
-- The redundant bottom methods/evidence-boundary line in Figure 5 was removed because the same information is already stated in the Methods and figure caption.
-- Automated comparison against the frozen originals confirmed identical displayed numeric-token multisets after excluding the intentionally removed Figure 5 footer. Every retained text bounding box lies within its PDF page, and final manuscript-scale renders show no overlap or clipping.
+- The redundant bottom methods/evidence-boundary lines in Figures 2 and 5 were removed because the same information is already stated in the Methods and figure captions.
+- Figure 6B pathway row labels retain their original right-aligned axis boundary after enlargement, so no label enters the first heatmap column; the longest labels automatically fall back to the largest size that fits the page.
+- Automated comparison against the frozen originals confirmed identical displayed numeric-token multisets after excluding the intentionally removed Figure 2 and Figure 5 footers. Every retained text bounding box lies within its PDF page, and final manuscript-scale renders show no overlap or clipping.
 
 ## Final shallow correction pass
 

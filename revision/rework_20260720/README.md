@@ -25,7 +25,7 @@ under `supplement/generated/`.
 
 `scripts/finalize_revision_statistics.py` performs the final CPU statistical post-processing from the frozen revision results. `scripts/build_supplement_assets.py` regenerates Supplement tables and the six complementary diagnostic figure groups when the repository result tree is available. `scripts/build_revision_workbook.mjs` builds Additional file 2 in the Codex artifact runtime; the already generated `.xlsx` is the submission artifact.
 
-`scripts/enlarge_submission_figure_fonts.py` applies the final vector-only figure-legibility pass to all main and Supplementary PDF figures. It enlarges retained labels without changing plotted data, removes the redundant Figure 5 footer, checks page bounds, and is idempotent.
+`scripts/enlarge_submission_figure_fonts.py` applies the final vector-only figure-legibility pass to all main and Supplementary PDF figures. It enlarges retained labels without changing plotted data, removes the redundant Figure 2 and Figure 5 footers, keeps Figure 6B row labels outside the heatmap, checks page bounds, and is idempotent.
 
 The Supplement figure files are intentionally distinct from the main-manuscript figure files. They report seed-level, condition-level, expanded-stability, expanded-network, lineage-level, and pose-level diagnostics instead of repeating the main panels.
 

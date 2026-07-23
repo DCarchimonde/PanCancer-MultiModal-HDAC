@@ -4,7 +4,8 @@
 The major-revision repository intentionally keeps the final, audited PDF
 figures even when the large upstream datasets are not redistributed.  This
 post-processing step replaces only PDF text objects, preserves every raster
-and vector data layer, and removes one redundant footer from main Figure 5.
+and vector data layer, removes redundant footers from main Figures 2 and 5,
+and keeps enlarged Figure 6B row labels outside the plotted heatmap.
 
 The operation is idempotent: processed PDFs carry a metadata marker and are
 skipped on later runs unless ``--force`` is supplied.
@@ -45,6 +46,7 @@ class FigureRule:
     remove_prefixes: tuple[str, ...] = ()
     crop_bottom: float = 0.0
     preserve_texts: tuple[str, ...] = ()
+    right_anchor_prefixes: tuple[str, ...] = ()
 
 
 RULES: dict[str, FigureRule] = {
@@ -54,7 +56,9 @@ RULES: dict[str, FigureRule] = {
     ),
     # Main Figure 2: compensate for the unusually wide 22-inch source canvas.
     "manuscript/figures/measured_reversal_official_conditions.pdf": FigureRule(
-        {6.5: 15.0, 9.0: 11.0, 10.0: 11.5, 12.0: 14.0, 16.0: 18.5}
+        {6.5: 15.0, 9.0: 11.0, 10.0: 11.5, 12.0: 14.0, 16.0: 18.5},
+        remove_prefixes=("Official siginfo is authoritative.",),
+        crop_bottom=18.0,
     ),
     "manuscript/figures/predicted_measured_hiq_two_way.pdf": FigureRule(
         {8.0: 9.5, 8.5: 10.0, 10.0: 11.0, 12.0: 13.0, 15.0: 16.5}
@@ -73,7 +77,8 @@ RULES: dict[str, FigureRule] = {
         {8.0: 12.0, 10.0: 11.5, 12.0: 14.0}
     ),
     "manuscript/figures/reversal_pathway_enrichment_heatmap.pdf": FigureRule(
-        {7.0: 7.5, 8.0: 10.0, 10.0: 11.5, 12.0: 14.0}
+        {7.0: 7.5, 8.0: 10.0, 10.0: 11.5, 12.0: 14.0},
+        right_anchor_prefixes=("GO:BP |", "KEGG |", "REAC |"),
     ),
     "manuscript/figures/primary_candidate_physical_networks.pdf": FigureRule(
         {9.0: 10.5, 10.0: 11.5, 13.0: 14.0, 15.0: 17.0}
@@ -237,6 +242,10 @@ def line_items(page: fitz.Page, rule: FigureRule) -> list[dict[str, object]]:
                         "old_size": old_size,
                         "new_size": new_size,
                         "remove": remove,
+                        "right_anchor": any(
+                            text.startswith(prefix)
+                            for prefix in rule.right_anchor_prefixes
+                        ),
                     }
                 )
     return items
@@ -265,18 +274,26 @@ def insertion_origin(
     # direction returned by get_text().
     angle = -math.degrees(math.atan2(direction.y, direction.x))
 
+    def positioned_origin(length: float, vertical_offset: float) -> fitz.Point:
+        if abs(direction.y) >= 0.01:
+            return fitz.Point(item["origin"])
+        if bool(item.get("right_anchor")):
+            # Matplotlib y tick labels are right-aligned to the axis. Preserve
+            # that right edge so enlargement proceeds into the label margin
+            # instead of covering the first heatmap column.
+            return fitz.Point(rect.x1 - length, center.y - vertical_offset)
+        if is_left_anchored(text, rect, page):
+            return fitz.Point(rect.x0, center.y - vertical_offset)
+        return center - direction * (length / 2) - normal * vertical_offset
+
     # Keep the enlarged text on the PDF page. For left-aligned panel titles,
-    # retain their original left edge; otherwise preserve the visual center.
+    # retain their original left edge; for y tick labels, retain the right
+    # edge at the axis; otherwise preserve the visual center.
     requested = size
     while size > float(item["old_size"]):
         length = font.text_length(text, fontsize=size)
         vertical_offset = -(font.ascender + font.descender) * size / 2
-        if abs(direction.y) >= 0.01:
-            origin = fitz.Point(item["origin"])
-        elif is_left_anchored(text, rect, page):
-            origin = fitz.Point(rect.x0, center.y - vertical_offset)
-        else:
-            origin = center - direction * (length / 2) - normal * vertical_offset
+        origin = positioned_origin(length, vertical_offset)
         corners = [
             origin - normal * (font.ascender * size),
             origin + direction * length - normal * (font.ascender * size),
@@ -300,12 +317,7 @@ def insertion_origin(
         size = max(size, float(item["old_size"]))
     length = font.text_length(text, fontsize=size)
     vertical_offset = -(font.ascender + font.descender) * size / 2
-    if abs(direction.y) >= 0.01:
-        origin = fitz.Point(item["origin"])
-    elif is_left_anchored(text, rect, page):
-        origin = fitz.Point(rect.x0, center.y - vertical_offset)
-    else:
-        origin = center - direction * (length / 2) - normal * vertical_offset
+    origin = positioned_origin(length, vertical_offset)
     # A few source labels already extended slightly beyond the MediaBox. If
     # enlargement cannot fit even at the original size, retain that size and
     # translate the label just inside a two-point safety margin.
