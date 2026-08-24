@@ -1,0 +1,12 @@
+item,specification
+Prediction input,"Canonical chemical structure only; no cell-line, dose, or time covariates"
+Target,"12,328-gene LINCS Level 5 perturbation vector"
+Atom stream,43-dimensional element identity; 3 Transformer layers; 512 pooled dimensions; no bond adjacency
+Fingerprint stream,"1,024-bit radius-2 Morgan fingerprint; 512-dimensional projection"
+Dual-stream parameters,"38,682,152"
+Fingerprint MLP parameters,"28,415,016"
+Optimization,MSE; AdamW; learning rate 2e-4; weight decay 1e-4; batch 128
+Stopping,Maximum 30 epochs; patience 5; checkpoint by validation MSE
+Benchmark seeds,Pair split 1--5; other splits 1--3; grouping seed 42
+Primary screening metrics,signed wTRS and negative Spearman disease--perturbation correlation
+Stability configurations,48 primary; 72 only when legacy wTRS is added as sensitivity

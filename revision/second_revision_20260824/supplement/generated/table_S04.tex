@@ -1,0 +1,26 @@
+\begin{landscape}
+\begingroup
+\scriptsize
+\begin{table}[H]
+\centering
+\caption{Generalization summary as mean (seed SD). Corrected 1,856-profile HDAC runs replace stale pre-correction summaries.}
+\label{tab:s_model_summary}
+\begin{tabular}{@{}llrrrrrrr@{}}
+\toprule
+Split & Model & Seeds & Test & MSE & MAE & $R^2$ & Pearson & Spearman \\
+\midrule
+Corrected annotation-defined HDAC holdout & Dual stream & 3 & 1856 & 1.326 (0.026) & 0.839 (0.005) & 0.131 (0.017) & 0.378 (0.009) & 0.345 (0.010) \\
+Corrected annotation-defined HDAC holdout & Fingerprint MLP & 3 & 1856 & 1.333 (0.015) & 0.841 (0.004) & 0.127 (0.010) & 0.379 (0.007) & 0.344 (0.006) \\
+Leave cell line out & Dual stream & 3 & 5175 & 0.942 (0.004) & 0.714 (0.000) & 0.121 (0.003) & 0.266 (0.010) & 0.243 (0.010) \\
+Leave cell line out & Fingerprint MLP & 3 & 5175 & 0.941 (0.007) & 0.713 (0.002) & 0.122 (0.006) & 0.272 (0.010) & 0.249 (0.010) \\
+Leave drug out & Dual stream & 3 & 7967 & 0.919 (0.003) & 0.717 (0.001) & 0.052 (0.003) & 0.188 (0.000) & 0.166 (0.001) \\
+Leave drug out & Fingerprint MLP & 3 & 7967 & 0.919 (0.001) & 0.716 (0.001) & 0.052 (0.001) & 0.191 (0.003) & 0.170 (0.003) \\
+Drug--cell pair & Dual stream & 5 & 8319 & 0.882 (0.004) & 0.704 (0.003) & 0.108 (0.004) & 0.259 (0.009) & 0.237 (0.009) \\
+Drug--cell pair & Fingerprint MLP & 5 & 8319 & 0.881 (0.001) & 0.703 (0.001) & 0.110 (0.002) & 0.263 (0.005) & 0.241 (0.005) \\
+Scaffold split & Dual stream & 3 & 7844 & 0.973 (0.000) & 0.738 (0.002) & 0.062 (0.000) & 0.185 (0.006) & 0.163 (0.007) \\
+Scaffold split & Fingerprint MLP & 3 & 7844 & 0.971 (0.002) & 0.736 (0.001) & 0.064 (0.002) & 0.186 (0.001) & 0.165 (0.002) \\
+\bottomrule
+\end{tabular}
+\end{table}
+\endgroup
+\end{landscape}

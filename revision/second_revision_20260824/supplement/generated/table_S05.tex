@@ -1,0 +1,56 @@
+\begin{landscape}
+\begingroup
+\scriptsize
+\begin{longtable}{@{}llrrrrrrrrr@{}}
+\caption{All 34 frozen model runs. Runtime includes training and evaluation on the recorded RTX 4090 environment.}\label{tab:s_runs}\\
+\toprule
+Split & Model & Seed & Test & Epoch & Runtime s & MSE & MAE & $R^2$ & Pearson & Spearman \\
+\midrule
+\endfirsthead
+\multicolumn{11}{l}{\textit{Table continued}}\\
+\toprule
+Split & Model & Seed & Test & Epoch & Runtime s & MSE & MAE & $R^2$ & Pearson & Spearman \\
+\midrule
+\endhead
+\midrule
+\multicolumn{11}{r}{\textit{Continued on next page}}\\
+\endfoot
+\bottomrule
+\endlastfoot
+Corrected HDAC & Dual & 1 & 1,856 & 4 & 260.5 & 1.320 & 0.837 & 0.135 & 0.381 & 0.348 \\
+Corrected HDAC & Dual & 2 & 1,856 & 5 & 282.7 & 1.355 & 0.845 & 0.112 & 0.385 & 0.353 \\
+Corrected HDAC & Dual & 3 & 1,856 & 8 & 365.0 & 1.305 & 0.834 & 0.145 & 0.368 & 0.334 \\
+Corrected HDAC & Fingerprint & 1 & 1,856 & 2 & 54.1 & 1.347 & 0.844 & 0.118 & 0.387 & 0.351 \\
+Corrected HDAC & Fingerprint & 2 & 1,856 & 5 & 72.5 & 1.336 & 0.842 & 0.125 & 0.373 & 0.338 \\
+Corrected HDAC & Fingerprint & 3 & 1,856 & 4 & 70.3 & 1.316 & 0.837 & 0.138 & 0.378 & 0.344 \\
+Leave cell & Dual & 1 & 5,175 & 6 & 209.5 & 0.938 & 0.713 & 0.125 & 0.259 & 0.236 \\
+Leave cell & Dual & 2 & 5,175 & 7 & 212.4 & 0.945 & 0.713 & 0.118 & 0.261 & 0.238 \\
+Leave cell & Dual & 3 & 5,175 & 15 & 394.8 & 0.942 & 0.714 & 0.121 & 0.277 & 0.254 \\
+Leave cell & Fingerprint & 1 & 5,175 & 13 & 78.9 & 0.937 & 0.712 & 0.125 & 0.277 & 0.254 \\
+Leave cell & Fingerprint & 2 & 5,175 & 7 & 58.4 & 0.949 & 0.715 & 0.115 & 0.261 & 0.238 \\
+Leave cell & Fingerprint & 3 & 5,175 & 15 & 91.5 & 0.937 & 0.711 & 0.126 & 0.279 & 0.256 \\
+Leave drug & Dual & 1 & 7,967 & 2 & 132.4 & 0.916 & 0.716 & 0.055 & 0.187 & 0.165 \\
+Leave drug & Dual & 2 & 7,967 & 4 & 163.5 & 0.921 & 0.718 & 0.049 & 0.188 & 0.166 \\
+Leave drug & Dual & 3 & 7,967 & 5 & 182.0 & 0.921 & 0.717 & 0.050 & 0.188 & 0.167 \\
+Leave drug & Fingerprint & 1 & 7,967 & 5 & 48.5 & 0.918 & 0.716 & 0.053 & 0.195 & 0.173 \\
+Leave drug & Fingerprint & 2 & 7,967 & 2 & 36.7 & 0.919 & 0.715 & 0.052 & 0.188 & 0.167 \\
+Leave drug & Fingerprint & 3 & 7,967 & 5 & 51.7 & 0.920 & 0.716 & 0.051 & 0.191 & 0.169 \\
+Pair & Dual & 1 & 8,319 & 13 & 327.2 & 0.880 & 0.702 & 0.111 & 0.268 & 0.246 \\
+Pair & Dual & 2 & 8,319 & 5 & 191.6 & 0.888 & 0.707 & 0.102 & 0.248 & 0.225 \\
+Pair & Dual & 3 & 8,319 & 14 & 336.4 & 0.877 & 0.701 & 0.113 & 0.268 & 0.245 \\
+Pair & Dual & 4 & 8,319 & 8 & 237.8 & 0.881 & 0.704 & 0.109 & 0.256 & 0.233 \\
+Pair & Dual & 5 & 8,319 & 10 & 278.0 & 0.885 & 0.705 & 0.106 & 0.258 & 0.236 \\
+Pair & Fingerprint & 1 & 8,319 & 14 & 86.7 & 0.881 & 0.703 & 0.109 & 0.268 & 0.246 \\
+Pair & Fingerprint & 2 & 8,319 & 11 & 71.9 & 0.879 & 0.702 & 0.112 & 0.263 & 0.241 \\
+Pair & Fingerprint & 3 & 8,319 & 6 & 55.0 & 0.883 & 0.704 & 0.108 & 0.254 & 0.232 \\
+Pair & Fingerprint & 4 & 8,319 & 14 & 87.5 & 0.881 & 0.703 & 0.110 & 0.266 & 0.244 \\
+Pair & Fingerprint & 5 & 8,319 & 10 & 72.7 & 0.880 & 0.702 & 0.111 & 0.263 & 0.240 \\
+Scaffold & Dual & 1 & 7,844 & 2 & 135.6 & 0.973 & 0.735 & 0.062 & 0.179 & 0.156 \\
+Scaffold & Dual & 2 & 7,844 & 4 & 167.6 & 0.974 & 0.739 & 0.061 & 0.191 & 0.170 \\
+Scaffold & Dual & 3 & 7,844 & 3 & 152.6 & 0.974 & 0.739 & 0.061 & 0.186 & 0.163 \\
+Scaffold & Fingerprint & 1 & 7,844 & 6 & 56.7 & 0.974 & 0.736 & 0.062 & 0.187 & 0.165 \\
+Scaffold & Fingerprint & 2 & 7,844 & 3 & 45.2 & 0.969 & 0.735 & 0.066 & 0.185 & 0.163 \\
+Scaffold & Fingerprint & 3 & 7,844 & 3 & 44.7 & 0.971 & 0.736 & 0.064 & 0.186 & 0.166 \\
+\end{longtable}
+\endgroup
+\end{landscape}

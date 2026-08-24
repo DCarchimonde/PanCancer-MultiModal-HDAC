@@ -1,0 +1,19 @@
+\begin{table}[H]
+\centering
+\caption{\textbf{Composition of the quality-controlled LINCS modeling dataset.} Level 5 signatures are replicate-collapsed LINCS profiles; multiple signatures can remain for the same nominal compound--cell--time--dose condition because of plate or batch structure.}
+\label{tab:datasetcomposition}
+\begin{tabularx}{\textwidth}{@{}l r X@{}}
+\toprule
+Item & Count & Interpretation \\
+\midrule
+Level 5 signatures & 55,695 & Modeling units after quality control \\
+LINCS perturbagen tokens & 13,314 & Signature-ID perturbagen tokens, including instance suffixes \\
+Base perturbagen identifiers & 11,527 & Normalized BRD identifiers \\
+Unique canonical structures & 11,445 & Valid structures; no leave-drug train/test overlap \\
+Cell lines & 65 & Across all signatures \\
+Perturbagen-token--cell combinations & 39,266 & Descriptive signature-ID combinations \\
+Perturbagen-token--cell--time--dose conditions & 52,834 & Multiple Level 5 signatures may remain for a condition \\
+Additional signatures beyond unique conditions & 2,861 & Plate/batch-level Level 5 signatures \\
+\bottomrule
+\end{tabularx}
+\end{table}

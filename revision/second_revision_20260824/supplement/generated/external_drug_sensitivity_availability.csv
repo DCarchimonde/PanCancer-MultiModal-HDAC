@@ -1,0 +1,4 @@
+compound,endpoint,availability,result,interpretation
+TC-H-106,Direct public viability response,Unavailable in frozen public-data audit,Not performed,No direct external drug-sensitivity validation claimed
+Entinostat,GDSC surrogate correlation,Available but not candidate matched,Pearson R=-0.052; P=0.859,Null result; cannot validate TC-H-106
+All frozen candidates,New wet-lab viability/biochemical assay,Not performed; reviewer suggested wet-lab assays or public transcriptomic validation,Official-condition measured LINCS used as the public transcriptomic option,Does not replace viability or biochemical validation

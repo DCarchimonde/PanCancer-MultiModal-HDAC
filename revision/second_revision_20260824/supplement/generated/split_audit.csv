@@ -1,0 +1,6 @@
+split,train_signatures,test_signatures,train_unique_structures,test_unique_valid_structures,invalid_train_smiles,invalid_test_smiles,train_test_sig_id_overlap,train_test_murcko_scaffold_overlap,structure_overlap,signature_overlap
+Drug--cell pair,47376,8319,10582,3827,0,0,0,2489,present,0
+Leave drug out,47728,7967,9728,1717,0,0,0,686,zero,0
+Leave cell line out,50520,5175,11170,2826,0,0,0,1914,present,0
+Scaffold split,47851,7844,9831,1614,0,0,0,0,zero,0
+Corrected annotation-defined HDAC,53839,1856,11415,30,0,0,0,11,zero,0

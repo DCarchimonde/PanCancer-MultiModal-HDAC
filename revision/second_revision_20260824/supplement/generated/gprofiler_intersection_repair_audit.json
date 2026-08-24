@@ -1,0 +1,202 @@
+{
+  "repair": "gprofiler_intersection_gene_alignment",
+  "network_requests_performed": false,
+  "source_cache_files": [
+    {
+      "file": "gost_belinostat_all_selected.json",
+      "sha256": "2706eb53979052bd1b874e8c6e1356c2e770832718ee4a59d2b20f064829cced",
+      "candidate": "Belinostat",
+      "gene_set_scope": "all_selected",
+      "mapped_query_ids": 200,
+      "reported_terms": 267,
+      "gprofiler_version": "e114_eg62_p19_27110d83",
+      "timestamp": "2026-07-18T12:13:48.327987+00:00"
+    },
+    {
+      "file": "gost_belinostat_disease_down_drug_up.json",
+      "sha256": "ff566b8835b5e9027e35927808aec48a3e7290f2949552bdf5ccb0a66a1d5084",
+      "candidate": "Belinostat",
+      "gene_set_scope": "disease_down_drug_up",
+      "mapped_query_ids": 105,
+      "reported_terms": 7,
+      "gprofiler_version": "e114_eg62_p19_27110d83",
+      "timestamp": "2026-07-18T12:13:54.567682+00:00"
+    },
+    {
+      "file": "gost_belinostat_disease_up_drug_down.json",
+      "sha256": "453a8584209f75c67d7f04f28632d732e60b12a0648ef0c5c34ba870318ecdfb",
+      "candidate": "Belinostat",
+      "gene_set_scope": "disease_up_drug_down",
+      "mapped_query_ids": 95,
+      "reported_terms": 522,
+      "gprofiler_version": "e114_eg62_p19_27110d83",
+      "timestamp": "2026-07-18T12:13:51.898766+00:00"
+    },
+    {
+      "file": "gost_entinostat_all_selected.json",
+      "sha256": "cb5444d622a55d682113a6da1b888dc42aaeb666b1528b71e3249f58b26464b5",
+      "candidate": "Entinostat",
+      "gene_set_scope": "all_selected",
+      "mapped_query_ids": 199,
+      "reported_terms": 367,
+      "gprofiler_version": "e114_eg62_p19_27110d83",
+      "timestamp": "2026-07-18T12:13:56.495974+00:00"
+    },
+    {
+      "file": "gost_entinostat_disease_down_drug_up.json",
+      "sha256": "54653634fafe47ac30df15e941e9e0b8c28229eae01bd45c1c94a707f2fc387a",
+      "candidate": "Entinostat",
+      "gene_set_scope": "disease_down_drug_up",
+      "mapped_query_ids": 81,
+      "reported_terms": 26,
+      "gprofiler_version": "e114_eg62_p19_27110d83",
+      "timestamp": "2026-07-18T12:14:03.414396+00:00"
+    },
+    {
+      "file": "gost_entinostat_disease_up_drug_down.json",
+      "sha256": "1987ff91526455cdf506fb6c4642f38bf31c8f69f1d4bcd996337deb978bca7c",
+      "candidate": "Entinostat",
+      "gene_set_scope": "disease_up_drug_down",
+      "mapped_query_ids": 118,
+      "reported_terms": 653,
+      "gprofiler_version": "e114_eg62_p19_27110d83",
+      "timestamp": "2026-07-18T12:14:00.355032+00:00"
+    },
+    {
+      "file": "gost_mocetinostat_all_selected.json",
+      "sha256": "5b2c3aca61d5b1ec0e17c5e6a553d75a636105cd8514df5234ba795f56f8d434",
+      "candidate": "Mocetinostat",
+      "gene_set_scope": "all_selected",
+      "mapped_query_ids": 199,
+      "reported_terms": 248,
+      "gprofiler_version": "e114_eg62_p19_27110d83",
+      "timestamp": "2026-07-18T12:13:21.532704+00:00"
+    },
+    {
+      "file": "gost_mocetinostat_disease_down_drug_up.json",
+      "sha256": "7385b2baa52c8f6f5fc59bd35bc4fad2b4e83b07ce300d340b5060034bbef4c1",
+      "candidate": "Mocetinostat",
+      "gene_set_scope": "disease_down_drug_up",
+      "mapped_query_ids": 122,
+      "reported_terms": 110,
+      "gprofiler_version": "e114_eg62_p19_27110d83",
+      "timestamp": "2026-07-18T12:13:28.716516+00:00"
+    },
+    {
+      "file": "gost_mocetinostat_disease_up_drug_down.json",
+      "sha256": "f3712329f51314bf149f65890f7e1486eac937a100697703d67a316cd59c2156",
+      "candidate": "Mocetinostat",
+      "gene_set_scope": "disease_up_drug_down",
+      "mapped_query_ids": 77,
+      "reported_terms": 575,
+      "gprofiler_version": "e114_eg62_p19_27110d83",
+      "timestamp": "2026-07-18T12:13:25.224543+00:00"
+    },
+    {
+      "file": "gost_nch_51_all_selected.json",
+      "sha256": "85232c27223b9baa879bcc3f5c2777a7ef72f0923e415dd3eae5cea5f17d09ef",
+      "candidate": "NCH-51",
+      "gene_set_scope": "all_selected",
+      "mapped_query_ids": 200,
+      "reported_terms": 272,
+      "gprofiler_version": "e114_eg62_p19_27110d83",
+      "timestamp": "2026-07-18T12:13:30.828807+00:00"
+    },
+    {
+      "file": "gost_nch_51_disease_down_drug_up.json",
+      "sha256": "01e3f4c67d9c6c06116237008eace9477d5504e39f61d93b32e7494d4b226e0d",
+      "candidate": "NCH-51",
+      "gene_set_scope": "disease_down_drug_up",
+      "mapped_query_ids": 111,
+      "reported_terms": 5,
+      "gprofiler_version": "e114_eg62_p19_27110d83",
+      "timestamp": "2026-07-18T12:13:37.767810+00:00"
+    },
+    {
+      "file": "gost_nch_51_disease_up_drug_down.json",
+      "sha256": "8c0e998d08fa8625be6b928597b740b9fc2768a362b43523e8fc14cd55bbe74f",
+      "candidate": "NCH-51",
+      "gene_set_scope": "disease_up_drug_down",
+      "mapped_query_ids": 89,
+      "reported_terms": 575,
+      "gprofiler_version": "e114_eg62_p19_27110d83",
+      "timestamp": "2026-07-18T12:13:34.136748+00:00"
+    },
+    {
+      "file": "gost_tc_h_106_all_selected.json",
+      "sha256": "6a2c52caa888eb573d7b5388d1d59438037e2a41c927ca3cefa95766912cb561",
+      "candidate": "TC-H-106",
+      "gene_set_scope": "all_selected",
+      "mapped_query_ids": 199,
+      "reported_terms": 52,
+      "gprofiler_version": "e114_eg62_p19_27110d83",
+      "timestamp": "2026-07-18T12:13:40.584153+00:00"
+    },
+    {
+      "file": "gost_tc_h_106_disease_down_drug_up.json",
+      "sha256": "0337fb330bd168874d1227bf17ef9660a139344ee5bd13a59c356cc5686e2da3",
+      "candidate": "TC-H-106",
+      "gene_set_scope": "disease_down_drug_up",
+      "mapped_query_ids": 115,
+      "reported_terms": 35,
+      "gprofiler_version": "e114_eg62_p19_27110d83",
+      "timestamp": "2026-07-18T12:13:46.277472+00:00"
+    },
+    {
+      "file": "gost_tc_h_106_disease_up_drug_down.json",
+      "sha256": "e1904c21a4511881bcc7ad697b5c2fe7ae2daf677300e00ba58f93c4254e0825",
+      "candidate": "TC-H-106",
+      "gene_set_scope": "disease_up_drug_down",
+      "mapped_query_ids": 84,
+      "reported_terms": 336,
+      "gprofiler_version": "e114_eg62_p19_27110d83",
+      "timestamp": "2026-07-18T12:13:43.759650+00:00"
+    },
+    {
+      "file": "gost_vorinostat_all_selected.json",
+      "sha256": "66c4e2e0d4870fce2aca859b4e4ab08ac394f14f4d619c930e279ddc03524cb0",
+      "candidate": "Vorinostat",
+      "gene_set_scope": "all_selected",
+      "mapped_query_ids": 200,
+      "reported_terms": 388,
+      "gprofiler_version": "e114_eg62_p19_27110d83",
+      "timestamp": "2026-07-18T12:14:05.565167+00:00"
+    },
+    {
+      "file": "gost_vorinostat_disease_down_drug_up.json",
+      "sha256": "c684c3787c8ad4c7a0f4e55279c2dd5e53b8b088dd90629d6d54fba66f4e09f3",
+      "candidate": "Vorinostat",
+      "gene_set_scope": "disease_down_drug_up",
+      "mapped_query_ids": 80,
+      "reported_terms": 21,
+      "gprofiler_version": "e114_eg62_p19_27110d83",
+      "timestamp": "2026-07-18T12:14:12.261121+00:00"
+    },
+    {
+      "file": "gost_vorinostat_disease_up_drug_down.json",
+      "sha256": "1bdb94a85084732d2a897fa9b0f08f3950e7d08e17ab762bbea8a9913985c991",
+      "candidate": "Vorinostat",
+      "gene_set_scope": "disease_up_drug_down",
+      "mapped_query_ids": 120,
+      "reported_terms": 578,
+      "gprofiler_version": "e114_eg62_p19_27110d83",
+      "timestamp": "2026-07-18T12:14:08.363421+00:00"
+    }
+  ],
+  "full_terms": 5037,
+  "representative_terms": 311,
+  "intersection_count_gate": "all derived gene counts equal g:Profiler intersection_size",
+  "alignment_source": "meta.genes_metadata.query.<query>.mapping key order",
+  "evidence_code_policy": "GO evidence codes are retained separately as intersection_evidence_codes and are never labelled as genes.",
+  "representative_term_policy": {
+    "max_terms_per_candidate_scope_source": 5,
+    "term_size_min": 10,
+    "term_size_max": 2000,
+    "intersection_gene_jaccard_exclusion_threshold": 0.5
+  },
+  "outputs_sha256": {
+    "gprofiler_enrichment_full.csv": "d4181b437d545195896c289bc1509fc24c6f3d7528ae931419146e3fcedf2217",
+    "gprofiler_enrichment_representative.csv": "66315db9f36540f193618ab055f4f2cf7ad8faad0b9eac24d3b972c1b97b0d19",
+    "reversal_pathway_enrichment_heatmap.pdf": "6a17a3c6341cf07dfbaab0822e39ace6c8242d654b708f49a644217f09ccd541"
+  }
+}

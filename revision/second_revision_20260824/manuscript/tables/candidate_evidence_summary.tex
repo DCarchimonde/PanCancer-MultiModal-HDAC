@@ -1,0 +1,22 @@
+\begin{table}[H]
+\centering
+\caption{\textbf{Frozen candidate evidence tiers.} Stability is the median strength percentile (100 = strongest) across the 48 primary split--model--seed--metric configurations using signed wTRS and Spearman reversal; the 72-configuration legacy-inclusive sensitivity analysis is reported in Additional file 2. HiQ, official LINCS high-quality profile. Identity and exposure rules override descriptive rank.}
+\label{tab:candidateevidence}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{llrrrrl}
+\toprule
+Candidate & Frozen role & HDAC test $n$ & Max train similarity & HiQ $n$ & Stability percentile & Evidence interpretation \\
+\midrule
+Mocetinostat & core candidate & 14 & 0.537 & 8 & 92.2 & Primary computational hypothesis \\
+NCH-51 & secondary candidate & 17 & 0.431 & 8 & 88.5 & Measured support; scaffold-exposure caveat \\
+TC-H-106 & original method sensitive & 6 & 0.789 & 4 & 84.3 & Exploratory; limited HiQ coverage and close neighbor \\
+Belinostat & class support & 24 & 0.500 & 12 & 70.0 & HDAC-class / measured transcriptomic support \\
+PCI-24781 & class support & 19 & 0.410 & 13 & 57.6 & HDAC-class / measured transcriptomic support \\
+Panobinostat & class support & 126 & 0.381 & 84 & 60.6 & HDAC-class / measured transcriptomic support \\
+Entinostat & reference control & 101 & 0.558 & 67 & 77.9 & Established HDAC reference control \\
+Vorinostat & reference control & 899 & 0.697 & 487 & 69.5 & Established HDAC reference control \\
+RG2833 & prediction only & 0 & 0.574 & 0 & 72.0 & Prediction only; no measured LINCS profile \\
+Tianeptinaline/BG-1010 & identity conflict excluded & 0 & 1.000 & 1 & 90.0 & Identity conflict; excluded despite high descriptive rank \\
+\bottomrule
+\end{tabular}}
+\end{table}

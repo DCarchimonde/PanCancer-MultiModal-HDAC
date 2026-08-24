@@ -1,0 +1,11 @@
+candidate,train_signatures,test_signatures,test_cell_lines,strict_leave_drug_out
+Belinostat,24,0,0,False
+Entinostat,101,0,0,False
+Mocetinostat,0,14,12,True
+NCH-51,17,0,0,False
+PCI-24781,0,19,13,True
+Panobinostat,126,0,0,False
+RG2833,0,0,0,False
+TC-H-106,6,0,0,False
+Tianeptinaline_or_BG-1010,6,0,0,False
+Vorinostat,899,0,0,False

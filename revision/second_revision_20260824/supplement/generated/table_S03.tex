@@ -1,0 +1,19 @@
+\begingroup
+\scriptsize
+\begin{table}[H]
+\centering
+\caption{Leakage and structural-overlap audit. Exact-structure overlap is zero for leave-drug, scaffold, and corrected annotation-defined HDAC evaluations; the scaffold column is the directly recorded Murcko overlap.}
+\label{tab:s_split}
+\begin{tabular}{@{}lrrrrrr@{}}
+\toprule
+Split & Train n & Test n & Train struct. & Test struct. & Sig. ovlp. & Scaffold ovlp. \\
+\midrule
+Drug--cell pair & 47,376 & 8,319 & 10,582 & 3,827 & 0 & 2,489 \\
+Leave drug out & 47,728 & 7,967 & 9,728 & 1,717 & 0 & 686 \\
+Leave cell line out & 50,520 & 5,175 & 11,170 & 2,826 & 0 & 1,914 \\
+Scaffold split & 47,851 & 7,844 & 9,831 & 1,614 & 0 & 0 \\
+Corrected annotation-defined HDAC & 53,839 & 1,856 & 11,415 & 30 & 0 & 11 \\
+\bottomrule
+\end{tabular}
+\end{table}
+\endgroup

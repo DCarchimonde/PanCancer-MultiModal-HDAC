@@ -1,6 +1,8 @@
-# Data layout for the major revision
+# Data layout and reproducibility boundary
 
 Large source datasets are intentionally excluded from GitHub. Keep them in a local or AutoDL data directory and pass that directory to the revision scripts.
+
+Downloading these files is necessary but not sufficient for a bitwise end-to-end rerun: the portable repository also excludes large expression caches, GPU checkpoints, screening arrays, and specified analysis-time intermediates. See [`../REPRODUCIBILITY.md`](../REPRODUCIBILITY.md) for the stage-by-stage status.
 
 Required large files:
 

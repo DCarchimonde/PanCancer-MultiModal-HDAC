@@ -1,0 +1,192 @@
+\documentclass[10pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[margin=0.82in]{geometry}
+\usepackage{xcolor}
+\usepackage{enumitem}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{microtype}
+\usepackage{setspace}
+\usepackage[colorlinks=true,linkcolor=blue,urlcolor=blue]{hyperref}
+\setstretch{1.07}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.55em}
+\setlength{\emergencystretch}{2em}
+\setlist[itemize]{leftmargin=1.5em,itemsep=0.2em,topsep=0.2em}
+\definecolor{responseblue}{RGB}{23,54,93}
+\newenvironment{reviewcomment}{%
+  \begin{quote}\small\itshape\color{black}
+}{\end{quote}}
+\newcommand{\Response}{\textbf{Response.} }
+\newcommand{\Action}{\textbf{Action and result.} }
+\newcommand{\RevisedText}{\textbf{Revised manuscript text.} }
+\newcommand{\Location}{\textbf{Location.} }
+\newcommand{\qtext}[1]{``#1''}
+
+\begin{document}
+
+\begin{center}
+{\Large\bfseries Point-by-point response to the Editor and Reviewers}\par
+\vspace{0.2em}
+{\large Second-round minor revision}\par
+\vspace{0.5em}
+{\large Revised manuscript:}\par
+\textbf{A Leakage-Aware and Auditable Framework Prioritizes Class I HDAC Inhibitors for Pan-Cancer Transcriptomic Reversal}\par
+\vspace{0.35em}
+Submission ID: \texttt{8b1e184c-443d-4707-954c-70a65930e16f}\par
+24 August 2026
+\end{center}
+
+\section*{Dear Editor and Reviewers}
+
+Thank you for the careful and encouraging second-round assessment. We appreciate Reviewer 1's recognition that the manuscript has improved substantially and Reviewer 3's conclusion that it is suitable for publication. We have accepted the remaining recommendations and aligned the manuscript's title, Abstract, Background, Discussion, and Conclusions with the actual comparative evidence.
+
+The central message is now explicit: the dual-stream atom-token/fingerprint architecture provides no measurable performance gain over the strong conventional fingerprint MLP comparator, while adding parameters and observed runtime. The principal contribution is therefore the leakage-aware and auditable evaluation framework---data curation, entity-aware splits, structural-proximity and applicability assessment, predicted--measured concordance, frozen candidate tiers, and calibrated evidence boundaries---rather than representation-learning novelty.
+
+We also restrict class I HDAC enrichment to signed wTRS. The Methods now state mathematically why signed wTRS is sensitive to perturbational amplitude, whereas Spearman reversal is invariant to positive rescaling; the Abstract, Results, Discussion, Limitations, Supplement, repository README, and machine-readable workbook acknowledge that response magnitude may contribute. No new wet-lab experiment, model retraining, library rescreening, or post hoc magnitude-adjusted endpoint was introduced in this minor revision.
+
+\subsection*{Principal second-round changes}
+\begin{enumerate}[leftmargin=1.7em,itemsep=0.25em]
+\item Adopted the reviewer-suggested title verbatim.
+\item Reframed the Abstract and central narrative around the leakage-aware, auditable framework and stated the null representation comparison before candidate-level findings.
+\item Described the fingerprint MLP throughout as a strong conventional comparator and explicitly linked its efficiency to the absence of measurable dual-stream gain.
+\item Restricted HDAC enrichment to signed wTRS and added the perturbational-magnitude limitation consistently across all submission components.
+\item Limited the measured LINCS terminology to predicted--measured transcriptomic concordance and stated that the absence of a condition-matched non-HDAC comparator precludes preferential validation.
+\item Integrated the suggested methodological references naturally in the Background and Discussion.
+\item Added a stage-by-stage repository reproducibility statement that distinguishes original outputs, revision-regenerated analyses, retained evidence, large nonredistributed artifacts, and unavailable intermediates.
+\item Preserved the first-round submission snapshot and created a second-round marked copy showing only the changes made for this minor revision.
+\end{enumerate}
+
+\section*{Response to the Handling Editor}
+
+\begin{reviewcomment}
+Please ensure the results are accurately reported, any overstated conclusions are rewritten and the limitations of the work fully explained.
+\end{reviewcomment}
+
+\Response We agree. The comparative result is now the first result stated in the Abstract and the organizing result of the Discussion and Conclusions. Candidate prioritization, signed-wTRS enrichment, and predicted--measured concordance are each reported within their specific evidentiary scope.
+
+\Action We changed the title and central framing; removed any implication that representation complexity is itself the contribution; restricted class enrichment to signed wTRS; stated the possible contribution of response magnitude; limited measured LINCS claims to concordance; and made the reproducibility boundary explicit. The limitations now cover representation complexity, metric dependence, comparator availability, same-ecosystem measured profiles, chemical-space exposure, and unavailable run artifacts in addition to the previously disclosed experimental limitations.
+
+\RevisedText \qtext{Rigorous split design, leakage auditing, structural-proximity and applicability assessment, and calibrated evidence layers provide an auditable basis for pan-cancer transcriptomic-reversal analysis and hypothesis-generating candidate prioritization.}
+
+\Location Clean revised manuscript: title page; Abstract (pp.~1--2, lines 14--59); Background (pp.~2--4, lines 62--113); Methods subsection ``Statistical analysis, reproducibility, and reporting'' (p.~13, lines 343--358); Discussion and Limitations (pp.~26--30, lines 542--647); Conclusions (pp.~30--31, lines 648--660); and Availability statement (p.~32, lines 678--698). Repository: \texttt{README.md} and \texttt{REPRODUCIBILITY.md}.
+
+\clearpage
+\section*{Reviewer 1}
+
+\subsection*{Comment 1: Frame the manuscript around the absence of a multimodal advantage}
+
+\begin{reviewcomment}
+The revised benchmarks do not support a measurable advantage of the dual-stream architecture over the fingerprint-based MLP. The title, Abstract, Introduction, and Conclusions should present the study primarily as a rigorous and auditable framework for transcriptomic-reversal analysis and candidate prioritization. The comparison between molecular representations can remain informative, but should no longer be framed as the principal methodological advance. The suggested methodological references may strengthen this positioning.
+\end{reviewcomment}
+
+\Response We agree fully. We adopted the reviewer's suggested title verbatim and made the null representation comparison central rather than ancillary. The fingerprint MLP is now identified as a strong conventional comparator, not a weak benchmark. The additional parameter count and observed runtime of the dual stream are interpreted together with the absence of a measurable gain.
+
+\Action The Abstract Results now opens with the null comparison before candidate-level findings. The Background defines molecular-representation comparison as one component of the audit and identifies the primary contribution as the leakage-aware framework. The Discussion begins with the absence of measurable dual-stream advantage and then positions the contribution around curation, split design, chemical-space coverage, applicability assessment, measured concordance, and evidence calibration. The Conclusions state directly that the additional representation complexity is not justified by the present benchmarks.
+
+We integrated all three suggested references where they support the argument rather than as a stand-alone citation list. Deng et al. is cited in the Background and Discussion for the broader observation that learned representations do not uniformly outperform fixed representations and that dataset/evaluation properties affect apparent performance. Delre et al. and ALPACA are cited in the Discussion as examples of ligand-based workflows that combine curation, applicability-domain assessment, and external or temporal validation.
+
+\RevisedText \qtext{The dual-stream architecture provided no measurable performance gain over the strong conventional fingerprint MLP comparator.}
+
+\RevisedText \qtext{The principal contribution is an auditable end-to-end framework: data curation, entity-aware generalization, a corrected class holdout, same-data model comparison, structural-proximity and applicability assessment, official-condition measured concordance, frozen candidate roles, and separate biological and structural evidence layers.}
+
+\Location Clean revised manuscript: title page; Abstract (pp.~1--2, lines 14--59); Background representation and contribution paragraphs (pp.~2--4, lines 77--113); Results subsection ``Repeated generalization benchmarks show no measurable dual-stream gain'' (pp.~15--16, lines 393--419); opening Discussion paragraphs (pp.~26--27, lines 542--566); and Conclusions (pp.~30--31, lines 648--660). References added at lines 808--818: Deng et al. (2023), Delre et al. (2022), and Delre et al. (2023; ALPACA).
+
+\subsection*{Comment 2: State the metric dependence and possible magnitude contribution more explicitly}
+
+\begin{reviewcomment}
+Class I HDAC enrichment is significant under signed wTRS and absent under the co-primary Spearman reversal metric. Because signed wTRS may reflect the overall magnitude of the predicted perturbational response whereas Spearman correlation is insensitive to scale, the authors should avoid presenting general enrichment across reversal definitions. A brief magnitude-controlled sensitivity analysis would strengthen the interpretation; alternatively, the current analysis is acceptable if the conclusion is explicitly restricted to signed wTRS and the possible contribution of response magnitude is acknowledged in the limitations.
+\end{reviewcomment}
+
+\Response We agree and followed the explicitly offered textual-qualification route. Signed wTRS is linear in the perturbation vector: for a positive scalar $c$, $\mathrm{signed\mbox{-}wTRS}(D,cP)=c\,\mathrm{signed\mbox{-}wTRS}(D,P)$. Spearman correlation is unchanged by positive rescaling. The observed divergence can therefore reflect perturbational amplitude as well as the reversal definition.
+
+\Action We now restrict the enrichment claim to signed wTRS in the title-independent central narrative, Abstract, Methods, Results subsection heading and text, figure interpretation, Discussion, Limitations, Conclusions, Supplement, repository README, and workbook README/Data Dictionary. We did not introduce a new post hoc magnitude-adjusted endpoint because no unique adjustment was prespecified and the reviewer indicated that explicit restriction and limitation were acceptable.
+
+\RevisedText \qtext{Because signed wTRS is proportional to perturbational amplitude while Spearman correlation is scale invariant, the divergence may partly reflect overall response magnitude. The evidence therefore supports enrichment only under signed wTRS, not general enrichment across reversal definitions.}
+
+\Location Clean revised manuscript: Abstract Results (pp.~1--2, lines 33--53); Methods subsection ``Pan-cancer screening and transcriptomic reversal metrics'' (p.~9, lines 232--245); Results subsection ``Pan-cancer screening shows signed-wTRS-specific class I HDAC enrichment'' (p.~14, lines 378--392); class-level Discussion paragraph (pp.~28--29, lines 586--597); Limitations (pp.~29--30, lines 619--639); and Conclusions (pp.~30--31, lines 648--660). Additional file 1: section ``Candidate stability, structural exposure, and formal class enrichment.''
+
+\subsection*{Minor comment 1: Limit the measured LINCS terminology to concordance}
+
+\begin{reviewcomment}
+The predicted-versus-measured LINCS analysis supports transcriptomic concordance for the eight evaluated compounds. In the absence of a condition-matched non-HDAC comparator set, it does not establish preferential validation relative to alternative perturbagens. The terminology should remain limited to predicted--measured concordance.
+\end{reviewcomment}
+
+\Response We agree. The result is now consistently described as predicted--measured transcriptomic concordance.
+
+\Action We changed the Results subsection heading, Results interpretation, figure caption, Discussion, Conclusions, Supplement, repository README, and workbook documentation. Each relevant location now states that the lack of a condition-matched non-HDAC comparator prevents preferential validation relative to alternative perturbagens.
+
+\RevisedText \qtext{These results establish predicted--measured transcriptomic concordance for the eight evaluated compounds. Because no condition-matched non-HDAC comparator set was available, they do not establish preferential concordance or validation relative to alternative perturbagens.}
+
+\Location Clean revised manuscript: Methods subsection ``Official-condition measured LINCS comparison'' (pp.~10--11, lines 268--289); Results subsection ``Predicted and measured LINCS reversal are concordant for both encoders'' and its figure caption (pp.~18--19, lines 446--460); Discussion (p.~28, lines 567--576); Limitations (pp.~29--30, lines 619--639); and Conclusions (pp.~30--31, lines 648--660). Additional file 1: section ``Measured LINCS reversal and prediction--measurement concordance.''
+
+\subsection*{Minor comment 2: Treat the fingerprint MLP as a strong conventional comparator}
+
+\begin{reviewcomment}
+The fingerprint MLP should be described throughout as a strong conventional comparator. Referring to it only as a baseline may understate its role, since it is the most computationally efficient and frequently the best-performing model.
+\end{reviewcomment}
+
+\Response We agree. We use \qtext{strong conventional fingerprint MLP comparator} at the model's first introduction and at the central comparative interpretations. We removed language that could imply a weak or merely perfunctory baseline.
+
+\Action The terminology was synchronized across the Abstract, Background, Methods, Results, Discussion, Conclusions, Supplement, repository README, response, and workbook. Its lower parameter count and shorter observed training time are now interpreted together with its equal or better predictive performance.
+
+\RevisedText \qtext{The strong conventional fingerprint MLP was at least as predictive and substantially more computationally efficient than the dual-stream model; the added representation complexity is not justified by the current benchmarks.}
+
+\Location Clean revised manuscript: Abstract Methods and Results (pp.~1--2, lines 21--53); Background (pp.~2--4, lines 77--113); Methods subsection ``Molecular representations and prediction models'' (pp.~6--8, lines 167--203); Results model-comparison subsection (pp.~15--16, lines 393--419); Discussion (pp.~26--27, lines 542--566); and Conclusions (pp.~30--31, lines 648--660). Additional file 1: model-evaluation text and strict leave-drug interpretation.
+
+\subsection*{Minor comment 3: State the null model comparison directly in the Abstract}
+
+\begin{reviewcomment}
+The Abstract should state directly that the dual-stream model provides no measurable performance gain. This result is central to the methodological interpretation and should appear before the candidate-level findings.
+\end{reviewcomment}
+
+\Response We agree. This is now the first sentence of the Abstract Results, before all candidate-level findings.
+
+\RevisedText \qtext{The dual-stream architecture provided no measurable performance gain over the strong conventional fingerprint MLP comparator.}
+
+\Location Clean revised manuscript: Abstract Results, first sentence (p.~1, lines 33--34).
+
+\subsection*{Minor comment 4: Clarify repository provenance and end-to-end reproducibility}
+
+\begin{reviewcomment}
+The repository documentation should distinguish original outputs, analyses regenerated during revision, and intermediate files that are no longer available. The authors should also clarify whether the complete revised workflow can be reproduced from the archived code and public input data.
+\end{reviewcomment}
+
+\Response We agree and provide a direct answer: the complete revised workflow is not a self-contained, bitwise-reproducible workflow from the GitHub repository and currently downloadable public inputs alone. The analysis code is archived, but the portable repository excludes large public source files, expression caches, GPU checkpoints, screening prediction arrays, and specified analysis-time intermediates. Re-downloaded public resources may also differ from frozen versions.
+
+The reported-result layer remains auditable: all manuscript values are preserved in machine-readable tables, final figure assets are archived, the complete document source can be recompiled, and settings, seeds, runtimes, selected checkpoint hashes, software versions, and known omissions are recorded.
+
+\Action We added a root-level \texttt{REPRODUCIBILITY.md} with five artifact classes and a stage-by-stage matrix covering TCGA preparation, LINCS processing, splitting, training, screening, measured comparison, structural audit, network/pathway analysis, DepMap, docking, and document assembly. The root and data READMEs, manuscript Availability statement, Methods reproducibility paragraph, Supplement, and workbook now use the same boundary. The document explicitly records the unavailable 83,490-row analysis-time condition table and SHA-256, per-cohort TCGA counts, CPU/RAM metadata, checkpoints, caches, prediction arrays, and missing upstream result directories without inventing replacements.
+
+\RevisedText \qtext{Reported values can be verified against archived machine-readable evidence and the submission documents recompiled from frozen table and figure assets; however, a self-contained bitwise rerun of every training and screening stage from the GitHub repository and current public inputs alone is not guaranteed.}
+
+\Location Clean revised manuscript: Methods subsection ``Statistical analysis, reproducibility, and reporting'' (p.~13, lines 343--358) and ``Availability of data and materials'' (p.~32, lines 678--698). Additional file 1: ``External drug-sensitivity availability and reproducibility'' and ``Machine-readable companion.'' Repository: \texttt{README.md}, \texttt{data/README.md}, and \texttt{REPRODUCIBILITY.md}. Additional file 2: README and Data Dictionary.
+
+\subsection*{Minor comment 5: Emphasize the principal methodological outcome in the Conclusions}
+
+\begin{reviewcomment}
+The Conclusions should emphasize that rigorous split design, leakage auditing, structural-proximity assessment, and evidence calibration support candidate prioritization, whereas the additional representation complexity is not justified by the current benchmarks.
+\end{reviewcomment}
+
+\Response We agree and rewrote the Conclusions around this methodological outcome.
+
+\RevisedText \qtext{Rigorous split design, leakage auditing, structural-proximity and applicability assessment, and calibrated evidence layers provide an auditable basis for pan-cancer transcriptomic-reversal analysis and hypothesis-generating candidate prioritization. The strong conventional fingerprint MLP was at least as predictive and substantially more computationally efficient than the dual-stream model; the added representation complexity is not justified by the current benchmarks.}
+
+\Location Clean revised manuscript: Conclusions, opening two sentences (pp.~30--31, lines 648--653).
+
+\clearpage
+\section*{Reviewer 3}
+
+\begin{reviewcomment}
+The revised manuscript is now suitable for publication.
+\end{reviewcomment}
+
+\Response We thank the reviewer for reassessing the substantially revised manuscript and for this positive recommendation. No additional action was requested.
+
+\section*{Closing statement}
+
+We believe the second-round revision now matches the evidence precisely: the scientific value lies in the leakage-aware and auditable framework and in transparent calibration of candidate evidence, while the more complex molecular representation does not provide a measurable benefit under the reported benchmarks. We thank the Editor and Reviewers again for helping us make this central conclusion explicit.
+
+\end{document}
