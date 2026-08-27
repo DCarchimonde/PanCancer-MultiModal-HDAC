@@ -13,7 +13,7 @@
 \setstretch{1.07}
 \setlength{\parindent}{0pt}
 \setlength{\parskip}{0.55em}
-\setlength{\emergencystretch}{2em}
+\setlength{\emergencystretch}{3em}
 \setlist[itemize]{leftmargin=1.5em,itemsep=0.2em,topsep=0.2em}
 \definecolor{responseblue}{RGB}{23,54,93}
 \newenvironment{reviewcomment}{%
@@ -36,7 +36,7 @@
 \textbf{A Leakage-Aware and Auditable Framework Prioritizes Class I HDAC Inhibitors for Pan-Cancer Transcriptomic Reversal}\par
 \vspace{0.35em}
 Submission ID: \texttt{8b1e184c-443d-4707-954c-70a65930e16f}\par
-24 August 2026
+27 August 2026
 \end{center}
 
 \section*{Dear Editor and Reviewers}
@@ -57,6 +57,7 @@ We also restrict class I HDAC enrichment to signed wTRS. The Methods now state m
 \item Integrated the suggested methodological references naturally in the Background and Discussion.
 \item Added a stage-by-stage repository reproducibility statement that distinguishes original outputs, revision-regenerated analyses, retained evidence, large nonredistributed artifacts, and unavailable intermediates.
 \item Preserved the first-round submission snapshot and created a second-round marked copy showing only the changes made for this minor revision.
+\item Added a running title and a standard ``List of additional files,'' and clarified that the matching Mocetinostat and PCI-24781 profile counts in the strict leave-drug and corrected-HDAC tests arise because both splits hold out each complete canonical structure, not because the overall test partitions are the same.
 \end{enumerate}
 
 \section*{Response to the Handling Editor}
@@ -71,7 +72,9 @@ Please ensure the results are accurately reported, any overstated conclusions ar
 
 \RevisedText \qtext{Rigorous split design, leakage auditing, structural-proximity and applicability assessment, and calibrated evidence layers provide an auditable basis for pan-cancer transcriptomic-reversal analysis and hypothesis-generating candidate prioritization.}
 
-\Location Clean revised manuscript: title page; Abstract (pp.~1--2, lines 14--59); Background (pp.~2--4, lines 62--113); Methods subsection ``Statistical analysis, reproducibility, and reporting'' (p.~13, lines 343--358); Discussion and Limitations (pp.~26--30, lines 542--647); Conclusions (pp.~30--31, lines 648--660); and Availability statement (p.~32, lines 678--698). Repository: \texttt{README.md} and \texttt{REPRODUCIBILITY.md}.
+\Location Clean revised manuscript: title page; Abstract (pp.~1--2, lines 15--60); Background (pp.~2--4, lines 63--114); Methods subsection ``Statistical analysis, reproducibility, and reporting'' (p.~13, lines 344--359); Discussion and Limitations (pp.~27--31, lines 547--655); and Conclusions (pp.~31--32, lines 656--668).
+
+\noindent\textbf{Additional locations:} Availability statement (p.~33, lines 686--706); ``List of additional files'' (pp.~34--35, lines 728--738); and repository files \texttt{README.md} and \texttt{REPRODUCIBILITY.md}.
 
 \clearpage
 \section*{Reviewer 1}
@@ -92,7 +95,7 @@ We integrated all three suggested references where they support the argument rat
 
 \RevisedText \qtext{The principal contribution is an auditable end-to-end framework: data curation, entity-aware generalization, a corrected class holdout, same-data model comparison, structural-proximity and applicability assessment, official-condition measured concordance, frozen candidate roles, and separate biological and structural evidence layers.}
 
-\Location Clean revised manuscript: title page; Abstract (pp.~1--2, lines 14--59); Background representation and contribution paragraphs (pp.~2--4, lines 77--113); Results subsection ``Repeated generalization benchmarks show no measurable dual-stream gain'' (pp.~15--16, lines 393--419); opening Discussion paragraphs (pp.~26--27, lines 542--566); and Conclusions (pp.~30--31, lines 648--660). References added at lines 808--818: Deng et al. (2023), Delre et al. (2022), and Delre et al. (2023; ALPACA).
+\Location Clean revised manuscript: title page; Abstract (pp.~1--2, lines 15--60); Background representation and contribution paragraphs (pp.~3--4, lines 78--114); Results subsection ``Repeated generalization benchmarks show no measurable dual-stream gain'' (pp.~15--16, lines 394--415); opening Discussion paragraphs (pp.~27--29, lines 547--571); and Conclusions (pp.~31--32, lines 656--668). References added at pp.~38--39, lines 828--838: Deng et al. (2023), Delre et al. (2022), and Delre et al. (2023; ALPACA).
 
 \subsection*{Comment 2: State the metric dependence and possible magnitude contribution more explicitly}
 
@@ -102,11 +105,11 @@ Class I HDAC enrichment is significant under signed wTRS and absent under the co
 
 \Response We agree and followed the explicitly offered textual-qualification route. Signed wTRS is linear in the perturbation vector: for a positive scalar $c$, $\mathrm{signed\mbox{-}wTRS}(D,cP)=c\,\mathrm{signed\mbox{-}wTRS}(D,P)$. Spearman correlation is unchanged by positive rescaling. The observed divergence can therefore reflect perturbational amplitude as well as the reversal definition.
 
-\Action We now restrict the enrichment claim to signed wTRS in the title-independent central narrative, Abstract, Methods, Results subsection heading and text, figure interpretation, Discussion, Limitations, Conclusions, Supplement, repository README, and workbook README/Data Dictionary. We did not introduce a new post hoc magnitude-adjusted endpoint because no unique adjustment was prespecified and the reviewer indicated that explicit restriction and limitation were acceptable.
+\Action We now restrict the enrichment claim to signed wTRS in the title-independent central narrative, Abstract, Methods, Results subsection heading and text, figure interpretation, Discussion, Limitations, Conclusions, Supplement, repository README, and workbook README/Data Dictionary. The Limitations explicitly states that a magnitude-controlled sensitivity analysis was considered but not added post hoc because no unique adjustment had been prespecified and choosing among alternative schemes after observing the divergence would introduce an unplanned analytic choice. This follows the reviewer's explicitly acceptable qualification route.
 
 \RevisedText \qtext{Because signed wTRS is proportional to perturbational amplitude while Spearman correlation is scale invariant, the divergence may partly reflect overall response magnitude. The evidence therefore supports enrichment only under signed wTRS, not general enrichment across reversal definitions.}
 
-\Location Clean revised manuscript: Abstract Results (pp.~1--2, lines 33--53); Methods subsection ``Pan-cancer screening and transcriptomic reversal metrics'' (p.~9, lines 232--245); Results subsection ``Pan-cancer screening shows signed-wTRS-specific class I HDAC enrichment'' (p.~14, lines 378--392); class-level Discussion paragraph (pp.~28--29, lines 586--597); Limitations (pp.~29--30, lines 619--639); and Conclusions (pp.~30--31, lines 648--660). Additional file 1: section ``Candidate stability, structural exposure, and formal class enrichment.''
+\Location Clean revised manuscript: Abstract Results (pp.~1--2, lines 34--54); Methods subsection ``Pan-cancer screening and transcriptomic reversal metrics'' (pp.~9--10, lines 233--266); Results subsection ``Pan-cancer screening shows signed-wTRS-specific class I HDAC enrichment'' (p.~14, lines 379--393); class-level Discussion paragraph (pp.~29--30, lines 591--602); Limitations (pp.~30--31, lines 624--647); and Conclusions (pp.~31--32, lines 656--668). Additional file 1: section ``Candidate stability, structural exposure, and formal class enrichment.''
 
 \subsection*{Minor comment 1: Limit the measured LINCS terminology to concordance}
 
@@ -120,7 +123,7 @@ The predicted-versus-measured LINCS analysis supports transcriptomic concordance
 
 \RevisedText \qtext{These results establish predicted--measured transcriptomic concordance for the eight evaluated compounds. Because no condition-matched non-HDAC comparator set was available, they do not establish preferential concordance or validation relative to alternative perturbagens.}
 
-\Location Clean revised manuscript: Methods subsection ``Official-condition measured LINCS comparison'' (pp.~10--11, lines 268--289); Results subsection ``Predicted and measured LINCS reversal are concordant for both encoders'' and its figure caption (pp.~18--19, lines 446--460); Discussion (p.~28, lines 567--576); Limitations (pp.~29--30, lines 619--639); and Conclusions (pp.~30--31, lines 648--660). Additional file 1: section ``Measured LINCS reversal and prediction--measurement concordance.''
+\Location Clean revised manuscript: Methods subsection ``Official-condition measured LINCS comparison'' (pp.~10--11, lines 267--290); Results subsection ``Predicted and measured LINCS reversal are concordant for both encoders'' (pp.~18--19, lines 451--465) and Figure~3 caption (p.~20); Discussion (p.~29, lines 572--581); Limitations (pp.~30--31, lines 624--647); and Conclusions (pp.~31--32, lines 656--668). Additional file 1: section ``Measured LINCS reversal and prediction--measurement concordance.''
 
 \subsection*{Minor comment 2: Treat the fingerprint MLP as a strong conventional comparator}
 
@@ -134,7 +137,7 @@ The fingerprint MLP should be described throughout as a strong conventional comp
 
 \RevisedText \qtext{The strong conventional fingerprint MLP was at least as predictive and substantially more computationally efficient than the dual-stream model; the added representation complexity is not justified by the current benchmarks.}
 
-\Location Clean revised manuscript: Abstract Methods and Results (pp.~1--2, lines 21--53); Background (pp.~2--4, lines 77--113); Methods subsection ``Molecular representations and prediction models'' (pp.~6--8, lines 167--203); Results model-comparison subsection (pp.~15--16, lines 393--419); Discussion (pp.~26--27, lines 542--566); and Conclusions (pp.~30--31, lines 648--660). Additional file 1: model-evaluation text and strict leave-drug interpretation.
+\Location Clean revised manuscript: Abstract Methods and Results (pp.~1--2, lines 22--54); Background representation and contribution paragraphs (pp.~3--4, lines 78--114); Methods subsection ``Molecular representations and prediction models'' (pp.~6--7, lines 168--204); Results model-comparison subsection (pp.~15--16, lines 394--415); Discussion (pp.~27--29, lines 547--571); and Conclusions (pp.~31--32, lines 656--668). Additional file 1: model-evaluation text and strict leave-drug interpretation.
 
 \subsection*{Minor comment 3: State the null model comparison directly in the Abstract}
 
@@ -146,7 +149,7 @@ The Abstract should state directly that the dual-stream model provides no measur
 
 \RevisedText \qtext{The dual-stream architecture provided no measurable performance gain over the strong conventional fingerprint MLP comparator.}
 
-\Location Clean revised manuscript: Abstract Results, first sentence (p.~1, lines 33--34).
+\Location Clean revised manuscript: Abstract Results, first sentence (p.~1, lines 34--35).
 
 \subsection*{Minor comment 4: Clarify repository provenance and end-to-end reproducibility}
 
@@ -162,7 +165,7 @@ The reported-result layer remains auditable: all manuscript values are preserved
 
 \RevisedText \qtext{Reported values can be verified against archived machine-readable evidence and the submission documents recompiled from frozen table and figure assets; however, a self-contained bitwise rerun of every training and screening stage from the GitHub repository and current public inputs alone is not guaranteed.}
 
-\Location Clean revised manuscript: Methods subsection ``Statistical analysis, reproducibility, and reporting'' (p.~13, lines 343--358) and ``Availability of data and materials'' (p.~32, lines 678--698). Additional file 1: ``External drug-sensitivity availability and reproducibility'' and ``Machine-readable companion.'' Repository: \texttt{README.md}, \texttt{data/README.md}, and \texttt{REPRODUCIBILITY.md}. Additional file 2: README and Data Dictionary.
+\Location Clean revised manuscript: Methods subsection ``Statistical analysis, reproducibility, and reporting'' (p.~13, lines 344--359), ``Availability of data and materials'' (p.~33, lines 686--706), and ``List of additional files'' (pp.~34--35, lines 728--738). Additional file 1: ``External drug-sensitivity availability and reproducibility'' and ``Machine-readable companion.'' Repository: \texttt{README.md}, \texttt{data/README.md}, and \texttt{REPRODUCIBILITY.md}. Additional file 2: README and Data Dictionary.
 
 \subsection*{Minor comment 5: Emphasize the principal methodological outcome in the Conclusions}
 
@@ -174,7 +177,7 @@ The Conclusions should emphasize that rigorous split design, leakage auditing, s
 
 \RevisedText \qtext{Rigorous split design, leakage auditing, structural-proximity and applicability assessment, and calibrated evidence layers provide an auditable basis for pan-cancer transcriptomic-reversal analysis and hypothesis-generating candidate prioritization. The strong conventional fingerprint MLP was at least as predictive and substantially more computationally efficient than the dual-stream model; the added representation complexity is not justified by the current benchmarks.}
 
-\Location Clean revised manuscript: Conclusions, opening two sentences (pp.~30--31, lines 648--653).
+\Location Clean revised manuscript: Conclusions, opening two sentences (pp.~31--32, lines 657--661).
 
 \clearpage
 \section*{Reviewer 3}
